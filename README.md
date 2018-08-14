@@ -2,6 +2,7 @@
 Module with CRUD for users, and profile admin.
 
 ##Required
+
 ####Plugins
 - helper
 - vuelidate

@@ -270,7 +270,7 @@
           userService.update(data, data.id).then(response => {
             this.loading = false;
             alert.success('User updated', 'top');
-            this.$router.push({name:'user.index'})
+            this.$router.push({name:'user.users.index'})
           }).catch(error => {
             this.loading = false;
             let errorMessage = error.response.data.error ? error.response.data.error : 'User not updated';
@@ -280,7 +280,7 @@
           userService.create(data).then(response => {
             this.loading = false;
             alert.success('User created', 'top')
-            this.$router.push({name:'user.index'})
+            this.$router.push({name:'user.users.index'})
           }).catch(error => {
             this.loading = false;
             let errorMessage = error.response.data.error ? error.response.data.error : 'User not created';

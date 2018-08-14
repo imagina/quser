@@ -97,7 +97,7 @@
                 class=""
                 icon="edit"
                 color="secondary"
-                :to="{name:'user.edit',params:{id:user.id}}"
+                :to="{name:'user.users.edit',params:{id:user.id}}"
                 size="sm"
               />
 
