@@ -1,0 +1,54 @@
+{
+  "_from": "@imagina/quser",
+  "_id": "@imagina/quser@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-UHIpWNNCDS3DR7TGHSx8O44YoGut+75ADjfbKXUpiSinqxhR51rqp8KsEbq9rcwGoJE/gxqe/z7k4gYmut984Q==",
+  "_location": "/@imagina/quser",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@imagina/quser",
+    "name": "@imagina/quser",
+    "escapedName": "@imagina%2fquser",
+    "scope": "@imagina",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.1.tgz",
+  "_shasum": "63c1be5dd96769f3c82265343e1462ca84bfa700",
+  "_spec": "@imagina/quser",
+  "_where": "D:\\Imagina\\html\\fhaproducts2018_frontend",
+  "author": {
+    "name": "http://imaginacolombia.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/imagina/quser/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Quasar Framework, AsgardCMS, Laravel Passport Authentication, Module with CRUD for users, and Profile Admin",
+  "homepage": "https://github.com/imagina/quser#readme",
+  "keywords": [
+    "quasar",
+    "laravel",
+    "asgardcms",
+    "passport"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "@imagina/quser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imagina/quser.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}
