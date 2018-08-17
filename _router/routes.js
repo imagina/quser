@@ -3,7 +3,7 @@ import guest from '../_router/middlewares/guest'
 import auth from '../_router/middlewares/auth' //Middleware auth
 import access from '../_router/middlewares/access' //Middleware access
 
-import vueCrud from '@imagina/vcrud/_components/vueCrud'
+import vueCrud from '@imagina/qcrud/_components/vueCrud'
 
 /*VIEWS*/
 import home from 'src/layouts/default'
