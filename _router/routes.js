@@ -3,9 +3,14 @@ import guest from '../_router/middlewares/guest'
 import auth from '../_router/middlewares/auth' //Middleware auth
 import access from '../_router/middlewares/access' //Middleware access
 
+import vueCrud from '@imagina/vcrud/_components/vueCrud'
+
 /*VIEWS*/
 import home from 'src/layouts/default'
 import blank from 'src/layouts/blank'
+
+/*CRUD DEPARTMENT CONFIGURATIONS*/
+import * as departments from '../_components/crud/departments'
 
 
 //Routes for auth
@@ -36,6 +41,14 @@ Route.view('/users', home)
         guard: access
       })
       Route.view('/me/profile', require('../_layouts/profile').default).name('user.profile.me')
+  
+    Route.view('/department', vueCrud).options({
+      name: 'user.department',
+      meta: {permission: 'fhia.roles.admin'},
+      guard: access,
+      props: (route) => { return { storeName: 'departments', singularName:'department', parentId: route.params.parentId || null, ...departments, doPage: false } },
+    })
     }
   )
+
 export default Route.all()
