@@ -39,7 +39,7 @@ In file `src/config/index` add:
 ```js
 import auth from '@imagina/quser/_config/auth'; //Import this file
 ```
-####Slidebar
+####Sidebar
 in file `src/config/slidebar` add:
 ```js
 /*User*/
@@ -63,6 +63,11 @@ user: {
       title: 'My profile',
       icon: 'fas fa-user-tie',
       to: 'user.profile.me'
+    },
+    {
+      title: 'Departments',
+      icon: 'fas fa-cube',
+      to: 'user.department'
     }
   ]
 },

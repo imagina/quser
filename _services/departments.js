@@ -6,6 +6,7 @@ import {remember} from '@imagina/qhelper/_plugins/remember'
 export default {
 
   index(filter, take, page, fields, include) {
+  
     filter = JSON.stringify(filter);
     let key = ":"+JSON.stringify(filter + take + page + fields + include);
     key = key==":null" ? "" : key;
@@ -29,7 +30,8 @@ export default {
     });
   },
 
-  show(filter, fields, include, id) {
+  
+  show(id,filter, fields, include) {
     filter = JSON.stringify(filter);
     let key = JSON.stringify(filter + fields + include + id);
     return new Promise((resolve, reject) => {
@@ -42,17 +44,30 @@ export default {
           }
        /* })*/
       }).then(response => {
-        resolve(response);
+        resolve(response.data);
       })
         .catch(error => {
           reject(error);
         });
     });
   },
-
+  
   update(data,id) {
     return new Promise((resolve, reject) => {
       http.put(config('api.api_url') + '/departments/'+id, data)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+  
+  create(data) {
+    console.log(data)
+    return new Promise((resolve, reject) => {
+      http.post(config('api.api_url') + '/departments', data)
         .then(response => {
           resolve(response);
         })
