@@ -3,6 +3,7 @@ import Config from 'src/config/index'
 import {Notify} from 'quasar'
 import http from "axios/index";
 
+
 class Auth {
 
   constructor() {

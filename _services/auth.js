@@ -1,25 +1,26 @@
-import { Cookies, LocalStorage } from 'quasar'
+import {Cookies, LocalStorage} from 'quasar'
 import Config from 'src/config/index'
 import Http from "axios";
+import {helper} from '@imagina/qhelper/_plugins/helper'
 
 export default {
 
-  logout () {
+  logout() {
     //let response = Http.get(Config('api.logout'));
-      return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
-          Http.get(Config('api.base_url')+'/auth/logout')
-              .then(response => {
-                  resolve(response);
-              })
-              .catch(error => {
-                  console.log('Logout error: ', error);
-                  reject(error);
-              });
-      });
+      Http.get(Config('api.base_url') + '/auth/logout')
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          console.log('Logout error: ', error);
+          reject(error);
+        });
+    });
   },
 
-  login (username, password) {
+  login(username, password) {
     let data = {
       username,
       password
@@ -28,7 +29,7 @@ export default {
     // We merge grant type and client secret stored in configuration
     Object.assign(data, Config('auth.auth'));
     return new Promise((resolve, reject) => {
-        Http.post(Config('api.token_url'), data)
+      Http.post(Config('api.token_url'), data)
         .then(response => {
           response.data.userToken = response.data.asgard_access_token;
           resolve(response);
@@ -40,56 +41,56 @@ export default {
     });
   },
 
-  currentUser () {
-    if (this.$helper.storage.get.item('userToken')) {
-        let userData = this.$helper.storage.get.item('userData');
-        if(userData)
-            return new Promise((resolve) => {
-                resolve(userData);
+  currentUser() {
+    if (helper.storage.get.item('userToken')) {
+      let userData = helper.storage.get.item('userData');
+      if (userData)
+        return new Promise((resolve) => {
+          resolve(userData);
+        })
+      else
+        return new Promise((resolve, reject) => {
+          Http.get(Config('api.current_user_url'))
+            .then(response => {
+              resolve(response);
             })
-        else
-            return new Promise((resolve, reject) => {
-                Http.get(Config('api.current_user_url'))
-                    .then(response => {
-                        resolve(response);
-                    })
-                    .catch(error => {
-                        if (error.response && (error.response.status === 401 || error.response.status === 429)) {
-                            this.logout()
-                        }
-                        reject(error)
-                    })
+            .catch(error => {
+              if (error.response && (error.response.status === 401 || error.response.status === 429)) {
+                this.logout()
+              }
+              reject(error)
             })
+        })
 
 
     }
     return new Promise(resolve => resolve(null))
   },
 
-  getAuthHeader () {
-    if (this.$helper.has('access_token')) {
+  getAuthHeader() {
+    if (helper.has('access_token')) {
       let access_token = this.getItem('access_token')
       return Config('auth.oauth_type') + ' ' + access_token
     }
     return null
   },
 
-  getItem (key) {
+  getItem(key) {
     if (Config('auth.default_storage') === 'LocalStorage') {
-      return this.$helper.get.item(key)
+      return helper.get.item(key)
     }
-    return this.$helper.get(key)
+    return helper.get(key)
   },
 
-  storeSession (data) {
+  storeSession(data) {
     let hourInMilliSeconds = 86400
     let time = data.expires_in / hourInMilliSeconds
 
     if (Config('auth.default_storage') === 'LocalStorage') {
-      this.$helper.set('access_token', data.access_token)
-      this.$helper.set('refresh_token', data.access_token)
+      helper.set('access_token', data.access_token)
+      helper.set('refresh_token', data.access_token)
       //Save user data.
-      this.$helper.set('userdata', data.userdata)
+      helper.set('userdata', data.userdata)
     }
     //By default we'll be working only with LocalStorage
     //Are we going to implement more storages?

@@ -30,7 +30,7 @@
 
 
 <script>
-  import {helper} from 'src/plugins/helper'
+  import {helper} from '@imagina/qhelper/_plugins/helper'
 
   export default {
     props: {},
@@ -54,7 +54,7 @@
        * set department selected
        */
       setData() {
-        let departmentSelected = this.$helper.storage.get.item("depSelected");
+        let departmentSelected = helper.storage.get.item("depSelected");
         if (!departmentSelected) {
           if (this.auth.hasAccess('fhia.role.admin'))
             this.depSelected = 'all';

@@ -261,10 +261,14 @@
 </template>
 
 <script>
-  import {alert} from 'src/plugins/alert';
+  /*Services*/
   import authService from '../_services/auth';
   import profileService from '../_services/profile';
+
+  /*Plugins*/
   import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
+  import {alert} from '@imagina/qhelper/_plugins/alert';
+  import {helper} from '@imagina/qhelper/_plugins/helper';
 
   export default {
     mounted() {
@@ -327,8 +331,8 @@
     },
     methods: {
       getData() {
-        this.profile = this.$helper.storage.get.item('userData').profile;
-        this.userData = this.$helper.storage.get.item('userData')
+        this.profile = helper.storage.get.item('userData').profile;
+        this.userData = helper.storage.get.item('userData')
         this.image = this.profile.mainimage;
         this.form = this.userData;
 

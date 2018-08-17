@@ -1,8 +1,8 @@
 import router from 'src/router';
 import authService from '../../_services/auth';
 import auth from '../../_plugins/auth';
-import {alert} from 'src/plugins/alert';
-import {helper} from 'src/plugins/helper';
+import {alert} from '@imagina/qhelper/_plugins/alert';
+import {helper} from '@imagina/qhelper/_plugins/helper';
 import axios from 'axios';
 
 export const AUTH_REQUEST = ({commit, dispatch}, authData) => {

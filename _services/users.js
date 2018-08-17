@@ -1,7 +1,7 @@
 import {Cookies, LocalStorage} from 'quasar'
 import config from 'src/config/index'
 import http from "axios"
-import {helper} from 'src/plugins/helper'
+import {remember} from '@imagina/qhelper/_plugins/remember'
 
 export default {
 
@@ -9,7 +9,7 @@ export default {
     filter = JSON.stringify(filter);
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
-      helper.rememberAsync("users:" + key, 3600 * 3, () => {
+      remember.async("users:" + key, 3600 * 3, () => {
         return http.get(config('api.api_url') + '/usersapi', {
           params: {
             filter: filter,
@@ -47,11 +47,13 @@ export default {
     parameters.filter = {roles: [6]}
 
     return new Promise((resolve, reject) => {
-      helper.rememberAsync('usersRep', 3600 * 3, () => {
+      remember.async('usersRep', 3600 * 3, () => {
         return http.get(config('api.api_url') + '/users', {params: parameters})
       }).then(response => {
+        console.log('>>>',response)
         resolve(response.data)
       }).catch(error => {
+        console.log('>>>',error)
         reject([])
       });
     })
@@ -85,7 +87,7 @@ export default {
     filter = JSON.stringify(filter);
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
-      helper.rememberAsync("roles:" + key, 3600 * 3, () => {
+      remember.async("roles:" + key, 3600 * 3, () => {
         return http.get(config('api.api_url') + '/rolesapi', {
           params: {
             filter: filter,

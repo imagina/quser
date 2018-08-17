@@ -43,6 +43,8 @@
 
 
 <script>
+  import {helper} from '@imagina/qhelper/_plugins/helper'
+
   export default {
     props: {},
     components: {},
@@ -52,7 +54,7 @@
     },
     data() {
       return {
-        userData : this.$helper.storage.get.item('userData')
+        userData : helper.storage.get.item('userData')
       }
     },
     methods: {}

@@ -134,11 +134,14 @@
   </div>
 </template>
 <script>
-  import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
-  import auth from '../_plugins/auth'
-  import {alert} from 'src/plugins/alert'
-  import userService from '../_services/users'
+  /*Services*/
   import departmentService from '../_services/departments'
+
+  /*Plugins*/
+  import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
+  import {alert} from '@imagina/qhelper/_plugins/alert'
+  import auth from '../_plugins/auth'
+  import userService from '../_services/users'
 
   export default {
     props: {},
@@ -174,7 +177,7 @@
           this.getData();
         } else {
           alert.error('Permission Denied', 'bottom')
-          this.$router.push({name:'home'})
+          this.$router.push({name: 'home'})
         }
       })
     },
@@ -270,7 +273,7 @@
           userService.update(data, data.id).then(response => {
             this.loading = false;
             alert.success('User updated', 'top');
-            this.$router.push({name:'user.users.index'})
+            this.$router.push({name: 'user.users.index'})
           }).catch(error => {
             this.loading = false;
             let errorMessage = error.response.data.error ? error.response.data.error : 'User not updated';
@@ -280,7 +283,7 @@
           userService.create(data).then(response => {
             this.loading = false;
             alert.success('User created', 'top')
-            this.$router.push({name:'user.users.index'})
+            this.$router.push({name: 'user.users.index'})
           }).catch(error => {
             this.loading = false;
             let errorMessage = error.response.data.error ? error.response.data.error : 'User not created';

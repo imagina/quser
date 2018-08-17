@@ -74,8 +74,9 @@
 </template>
 
 <script>
+  /*Plugins*/
   import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
-  import {alert} from 'src/plugins/alert'
+  import {alert} from '@imagina/qhelper/_plugins/alert'
 
   export default {
     data() {

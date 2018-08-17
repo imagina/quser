@@ -162,8 +162,12 @@
   </q-page>
 </template>
 <script>
-  import {alert} from 'src/plugins/alert'
+  /*Services*/
   import userService from '../_services/users'
+
+  /*Plugins*/
+  import {alert} from '@imagina/qhelper/_plugins/alert'
+  import {helper} from '@imagina/qhelper/_plugins/helper'
   import auth from '../_plugins/auth'
 
   export default {
@@ -202,7 +206,7 @@
       getData() {
         this.loading = true;
         let page = this.pagination.page;
-        let departmentId = this.$helper.storage.get.item("depSelected") //Department id
+        let departmentId = helper.storage.get.item("depSelected") //Department id
         let filter = {};
 
         departmentId != 'all' ? filter.department = departmentId : false;
