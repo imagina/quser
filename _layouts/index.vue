@@ -28,38 +28,39 @@
     </q-dialog>
 
 
-    <div v-if="users.length || loading || usedFilter" id="users-index"
-         class="q-layout-page row justify-center layout-padding">
+    <div class="text_title text-blue-9 col-xs-12 q-title text-right">
+      <span>Users</span>
 
-      <div class="text_title text-blue-9 col-xs-12 q-title text-right">
-        <span>Users</span>
+    </div>
+    <br><br>
+    <div class="col-xs-12">
 
-      </div>
-      <br><br>
-      <div class="col-xs-12">
+      <div class="row justify-end items-center q-mx-xl ">
 
-        <div class="row justify-end items-center q-mx-xl ">
-
-          <div class="col-sm-4 q-mb-xl q-px-lg">
-            <!-- Search -->
-            <q-search
-              v-model="filter.search"
-              placeholder="Text Search"
-              @keyup.enter="getData(); usedFilter = true"
-              class="q-mt-xl"/>
-            <q-checkbox
-              v-model="filter.deactivateds"
-              checked-icon="visibility"
-              unchecked-icon="visibility_off"
-              label="Deactivated Users"
-              @input="getData(); usedFilter = true"
-            />
-          </div>
-
-
+        <div class="col-sm-4 q-mb-xl q-px-lg">
+          <!-- Search -->
+          <q-search
+            v-model="filter.search"
+            placeholder="Text Search"
+            @keyup.enter="pagination.page = 1; getData()"
+            class="q-mt-xl"/>
+          <q-checkbox
+            v-model="filter.deactivateds"
+            checked-icon="visibility"
+            unchecked-icon="visibility_off"
+            label="Deactivated Users"
+            @input="pagination.page = 1; getData()"
+          />
         </div>
 
+
       </div>
+
+    </div>
+
+    <div v-if="users.length || loading" id="users-index"
+         class="q-layout-page row justify-center layout-padding">
+
       <div v-if="users.length" class="table-responsive">
 
         <table class="q-table">
@@ -213,12 +214,12 @@
         this.filter.search != '' ? filter.search = this.filter.search : false;
         this.filter.deactivateds ? filter.status = [0, 1] : false;
 
-
         userService.index(filter, 10, page, '', 'roles')
           .then((response) => {
             this.users = response.data
             this.pagination.max = response.meta.page.lastPage
             this.loading = false
+
           })
           .catch((error) => {
             alert.error('No users found', 'bottom')

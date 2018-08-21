@@ -1,6 +1,6 @@
 {
   "_from": "@imagina/quser",
-  "_id": "@imagina/quser@0.0.3",
+  "_id": "@imagina/quser@0.0.6",
   "_inBundle": false,
   "_integrity": "sha512-bPYqid1ZScfWhz5981sXzBBLyhgl2wxL0+xk9vKG7+ERjRv0MiZ+HZUV+DoS7uGY8EVSYWJeZXlia+7UrCeXvA==",
   "_location": "/@imagina/quser",
@@ -20,7 +20,7 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.3.tgz",
+  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.6.tgz",
   "_shasum": "38dba7e95be4179e909934d0cb6eea738f7875ef",
   "_spec": "@imagina/quser",
   "_where": "C:\\imagina\\html\\fhaproducts2018_frontend",
@@ -50,5 +50,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
