@@ -1,5 +1,5 @@
 import {Cookies, LocalStorage} from 'quasar'
-import Config from 'src/config/index'
+import Config from '../../../../src/config/index'
 import Http from "axios";
 import {helper} from '@imagina/qhelper/_plugins/helper'
 
@@ -42,29 +42,31 @@ export default {
   },
 
   currentUser() {
-    if (helper.storage.get.item('userToken')) {
-      let userData = helper.storage.get.item('userData');
-      if (userData)
-        return new Promise((resolve) => {
-          resolve(userData);
-        })
-      else
-        return new Promise((resolve, reject) => {
-          Http.get(Config('api.current_user_url'))
-            .then(response => {
-              resolve(response);
+    helper.storage.get.item('userToken').then(response => {
+      if (response) {
+        helper.storage.get.item('userData').then(responseData => {
+          let userData = responseData;
+          if (userData)
+            return new Promise((resolve) => {
+              resolve(userData);
             })
-            .catch(error => {
-              if (error.response && (error.response.status === 401 || error.response.status === 429)) {
-                this.logout()
-              }
-              reject(error)
+          else
+            return new Promise((resolve, reject) => {
+              Http.get(Config('api.current_user_url'))
+                .then(response => {
+                  resolve(response);
+                })
+                .catch(error => {
+                  if (error.response && (error.response.status === 401 || error.response.status === 429)) {
+                    this.logout()
+                  }
+                  reject(error)
+                })
             })
         })
-
-
-    }
-    return new Promise(resolve => resolve(null))
+      }
+      return new Promise(resolve => resolve(null))
+    })
   },
 
   getAuthHeader() {

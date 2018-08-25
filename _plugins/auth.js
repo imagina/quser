@@ -1,5 +1,6 @@
 import {Cookies, LocalStorage} from 'quasar'
 import Config from 'src/config/index'
+import {helper} from '@imagina/qhelper/_plugins/helper'
 import {Notify} from 'quasar'
 import http from "axios/index";
 
@@ -7,11 +8,7 @@ import http from "axios/index";
 class Auth {
 
   constructor() {
-    this.storages = {
-      Cookies,
-      LocalStorage
-    };
-    this.storage = this.storages[Config('auth.default_storage')];
+
   }
 
   /**
@@ -20,12 +17,11 @@ class Auth {
    * @returns {boolean}
    * Example : auth.hasAccess('account.api-keys.create');
    */
-  hasAccess(permission) {
-    let permissions = this.storage.get.item("userData").permissions;
-    if (permissions.hasOwnProperty(permission))
-      return permissions[permission];
-    else
-      return false;
+  async hasAccess(can) {
+    let userPermissions = await helper.storage.get.item("userData")
+    let access = userPermissions.permissions[can]
+
+    return access == null ? false : access
   }
 }
 

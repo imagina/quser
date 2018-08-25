@@ -1,12 +1,12 @@
 import {Cookies, LocalStorage} from 'quasar'
-import config from 'src/config/index'
+import config from '../../../../src/config/index'
 import http from "axios"
 import {remember} from '@imagina/qhelper/_plugins/remember'
 
 export default {
 
   index(filter, take, page, fields, include) {
-  
+
     filter = JSON.stringify(filter);
     let key = ":"+JSON.stringify(filter + take + page + fields + include);
     key = key==":null" ? "" : key;
@@ -30,7 +30,7 @@ export default {
     });
   },
 
-  
+
   show(id,filter, fields, include) {
     filter = JSON.stringify(filter);
     let key = JSON.stringify(filter + fields + include + id);
@@ -51,7 +51,7 @@ export default {
         });
     });
   },
-  
+
   update(data,id) {
     return new Promise((resolve, reject) => {
       http.put(config('api.api_url') + '/departments/'+id, data)
@@ -63,7 +63,7 @@ export default {
         });
     });
   },
-  
+
   create(data) {
     console.log(data)
     return new Promise((resolve, reject) => {

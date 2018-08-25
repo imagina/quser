@@ -207,24 +207,26 @@
       getData() {
         this.loading = true;
         let page = this.pagination.page;
-        let departmentId = helper.storage.get.item("depSelected") //Department id
-        let filter = {};
+        helper.storage.get.item("depSelected").then(response => {
+          let departmentId = response
+          let filter = {};
 
-        departmentId != 'all' ? filter.department = departmentId : false;
-        this.filter.search != '' ? filter.search = this.filter.search : false;
-        this.filter.deactivateds ? filter.status = [0, 1] : false;
+          departmentId != 'all' ? filter.department = departmentId : false;
+          this.filter.search != '' ? filter.search = this.filter.search : false;
+          this.filter.deactivateds ? filter.status = [0, 1] : false;
 
-        userService.index(filter, 10, page, '', 'roles')
-          .then((response) => {
-            this.users = response.data
-            this.pagination.max = response.meta.page.lastPage
-            this.loading = false
+          userService.index(filter, 10, page, '', 'roles')
+            .then((response) => {
+              this.users = response.data
+              this.pagination.max = response.meta.page.lastPage
+              this.loading = false
 
-          })
-          .catch((error) => {
-            alert.error('No users found', 'bottom')
-            this.loading = false
-          })
+            })
+            .catch((error) => {
+              alert.error('No users found', 'bottom')
+              this.loading = false
+            })
+        })
       },
       createUser(id) {
         this.$router.push('/users/create')

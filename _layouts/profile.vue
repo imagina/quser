@@ -331,11 +331,14 @@
     },
     methods: {
       getData() {
-        this.profile = helper.storage.get.item('userData').profile;
-        this.userData = helper.storage.get.item('userData')
+        helper.storage.get.item('userData').then(response =>{
+          this.profile = response.profile;
+        });
+        helper.storage.get.item('userData').then(response => {
+          this.userData = response
+        })
         this.image = this.profile.mainimage;
         this.form = this.userData;
-
       },
 
       async getSignedUrl(files) {

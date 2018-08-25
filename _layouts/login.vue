@@ -96,7 +96,6 @@
       }
     },
     methods: {
-
       async authenticate() {
         this.$v.$touch();
 
@@ -111,7 +110,6 @@
           });
         }
       },
-
     }
   }
 </script>

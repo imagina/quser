@@ -1,5 +1,5 @@
 import {Cookies, LocalStorage} from 'quasar'
-import config from 'src/config/index'
+import config from '../../../../src/config/index'
 import http from "axios"
 import {remember} from '@imagina/qhelper/_plugins/remember'
 
@@ -50,10 +50,8 @@ export default {
       remember.async('usersRep', 3600 * 3, () => {
         return http.get(config('api.api_url') + '/users', {params: parameters})
       }).then(response => {
-        console.log('>>>',response)
         resolve(response.data)
       }).catch(error => {
-        console.log('>>>',error)
         reject([])
       });
     })

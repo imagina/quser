@@ -3,7 +3,8 @@
   <q-btn-dropdown
     color="white"
     flat
-    icon="account_circle"
+    v-if="userData"
+    icon="fas fa-user-circle"
     :label="userData.first_name"
     id="user-dropdown"
   >
@@ -12,7 +13,6 @@
       <q-item tag="label" :to="{name: 'user.profile.me'}">
         <q-item-side>
           <img :src="userData.profile.smallimage" width="32px" style="border-radius: 100%">
-
         </q-item-side>
         <q-item-main>
           <q-item-tile tag="a"
@@ -26,7 +26,7 @@
 
       <q-item tag="label" link :to="{name:'auth.logout'}">
         <q-item-side>
-          <q-icon color="negative" name="exit_to_app" size="25px"></q-icon>
+          <q-icon color="negative" name="fas fa-sign-out-alt" size="25px"></q-icon>
         </q-item-side>
         <q-item-main>
           <q-item-tile tag="a"
@@ -50,14 +50,22 @@
     components: {},
     watch: {},
     mounted() {
-      this.$nextTick(function () {})
+      this.$nextTick(function () {
+        this.setData()
+      })
     },
     data() {
       return {
-        userData : helper.storage.get.item('userData')
+        userData : false
       }
     },
-    methods: {}
+    methods: {
+      setData(){
+        helper.storage.get.item('userData').then(response => {
+          this.userData = response
+        })
+      }
+    }
   }
 </script>
 <style lang="stylus">

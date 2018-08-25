@@ -1,4 +1,4 @@
-import router from 'src/router';
+import router from '../../../../../src/router/index';
 import authService from '../../_services/auth';
 import auth from '../../_plugins/auth';
 import {alert} from '@imagina/qhelper/_plugins/alert';
@@ -6,7 +6,6 @@ import {helper} from '@imagina/qhelper/_plugins/helper';
 import axios from 'axios';
 
 export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
-
   return authService.login(authData.username, authData.password)
     .then(response => {
       let data = response.data
@@ -35,48 +34,62 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
     });
 };
 
+export const AUTH_TRYAUTOLOGIN = ({commit, dispatch}) => {
+  return new Promise((resolve, reject) => {
+    helper.storage.get.item('userToken').then(userToken => {
+      if (!userToken) {
+        resolve(false)
+        return
+      }
+
+      helper.storage.get.item('expirationDate').then(expirationDate => {
+        const now = new Date();
+        if (now >= expirationDate) {
+          resolve(false)
+          return
+        }
+
+        helper.storage.get.item('userId').then(userId => {
+          helper.storage.get.item('userData').then(userData => {
+            dispatch('AUTH_SUCCESS', {
+              userToken: userToken,
+              userId: userId,
+              userData: userData
+            }).then(response => {
+              resolve(true)
+            });
+          })
+        })
+      })
+    })
+  })
+};
+
+export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
+  return new Promise((resolve => {
+    //Register token by default in axios
+    helper.storage.get.item('userToken').then(response => {
+      axios.defaults.headers.common['Authorization'] = response;
+
+      commit('AUTH_SUCCESS', data);
+      if (router.currentRoute.path == "/auth/login") {
+        router.push("/");
+      }
+
+      resolve(true)
+    })
+  }))
+}
+
 export const AUTH_ERROR = ({commit, dispatch}) => {
   alert.error("Email or password incorrect.", "top");
 }
-
-export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
-
-  //Register token by default in axios
-  axios.defaults.headers.common['Authorization'] = helper.storage.get.item('userToken');
-
-  commit('AUTH_SUCCESS', data);
-  if (router.currentRoute.path == "/auth/login") {
-    router.push("/");
-  }
-
-}
-export const AUTH_TRYAUTOLOGIN = ({commit, dispatch}) => {
-
-  const userToken = helper.storage.get.item('userToken');
-  if (!userToken) {
-    return
-  }
-  const expirationDate = helper.storage.get.item('expirationDate');
-  const now = new Date();
-  if (now >= expirationDate) {
-    return;
-  }
-  const userId = helper.storage.get.item('userId');
-  const userData = helper.storage.get.item('userData');
-
-  dispatch('AUTH_SUCCESS', {
-    userToken: userToken,
-    userId: userId,
-    userData: userData
-  });
-
-};
 
 export const AUTH_LOGOUT = ({commit, dispatch}) => {
   return authService.logout().then(response => {
     commit('AUTH_LOGOUT');
     helper.storage.clear()
-    router.push({name : 'auth.login'});
+    router.push({name: 'auth.login'});
   }).catch(error => {
 
   });

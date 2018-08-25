@@ -2,7 +2,7 @@
   <!--= USER/DEPARTMENT =-->
   <q-btn-dropdown
     color="white" flat
-    :label="depSelected !== 'all' ? departments[posDepSelected].title : 'All'"
+    :label="departments && depSelected !== 'all' ? departments[posDepSelected].title : 'All'"
   >
     <q-list link>
       <!--Departments-->
@@ -43,8 +43,8 @@
     },
     data() {
       return {
-        departments: helper.storage.get.item('userData').departments,
-        depSelected: helper.storage.get.item("depSelected"),
+        departments: false,
+        depSelected: false,
         posDepSelected: 0,
         auth: require('@imagina/quser/_plugins/auth').default
       }
@@ -54,25 +54,32 @@
        * set department selected
        */
       setData() {
-        let departmentSelected = helper.storage.get.item("depSelected");
-        if (!departmentSelected) {
-          if (this.auth.hasAccess('fhia.role.admin'))
-            this.depSelected = 'all';
-          else
-            this.depSelected = this.departments[0].id;
+        helper.storage.get.item('userData').then(response => {
+          this.departments = response.departments
+        })
+        helper.storage.get.item("depSelected").then(response => {
+          this.depSelected = response
 
-          helper.storage.set("depSelected", this.depSelected);
-        } else
-          this.depSelected = departmentSelected;
+          let departmentSelected = this.depSelected;
+          if (!departmentSelected) {
+            if (this.auth.hasAccess('fhia.role.admin'))
+              this.depSelected = 'all';
+            else
+              this.depSelected = this.departments[0].id;
 
-        let selected = 'all';
-        if (this.depSelected != 'all') {
-          Object.keys(this.departments).forEach((index) => {
-            if (this.departments[index].id == this.depSelected)
-              selected = index;
-          })
-          this.posDepSelected = selected;
-        }
+            helper.storage.set("depSelected", this.depSelected);
+          } else
+            this.depSelected = departmentSelected;
+
+          let selected = 'all';
+          if (this.depSelected != 'all') {
+            Object.keys(this.departments).forEach((index) => {
+              if (this.departments[index].id == this.depSelected)
+                selected = index;
+            })
+            this.posDepSelected = selected;
+          }
+        })
       },
 
       changeDepartment() {
