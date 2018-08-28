@@ -14,20 +14,23 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
       const expirationDate = new Date(now.getTime() + data.expires_in * 1000)
       helper.storage.set('userToken', data.userToken)
       helper.storage.set('userId', data.userdata.id)
-      helper.storage.set('userData', data.userdata)
       helper.storage.set('expirationDate', expirationDate)
       data.userdata.departments ? helper.storage.set('depSelected', data.userdata.departments[0].id) : false
 
-      if (auth.hasAccess('fhia.login')) {
-        dispatch("AUTH_SUCCESS", {
-          userToken: data.userToken,
-          userId: data.userdata.id,
-          userData: data.userdata
-        });
-      } else {
-        alert.error("User without access", "top");
-        dispatch("AUTH_LOGOUT");
-      }
+      helper.storage.set('userData', data.userdata).then(response =>{
+        auth.hasAccess('fhia.login').then(can => {
+          if (can) {
+            dispatch("AUTH_SUCCESS", {
+              userToken: data.userToken,
+              userId: data.userdata.id,
+              userData: data.userdata
+            });
+          } else {
+            alert.error("User without access", "top");
+            dispatch("AUTH_LOGOUT");
+          }
+        })
+      })
       //dispatch('setLogoutTimer', res.data.expiresIn)
     }).catch(error => {
       dispatch("AUTH_ERROR");
