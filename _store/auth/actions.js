@@ -1,4 +1,4 @@
-import router from '../../../../../src/router/index';
+import router from 'src/router/index';
 import authService from '../../_services/auth';
 import auth from '../../_plugins/auth';
 import {alert} from '@imagina/qhelper/_plugins/alert';

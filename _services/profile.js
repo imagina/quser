@@ -1,5 +1,5 @@
 import {Cookies, LocalStorage} from 'quasar'
-import config from '../../../../src/config/index'
+import config from 'src/config/index'
 import http from "axios";
 
 export default {

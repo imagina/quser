@@ -1,5 +1,5 @@
 import {Cookies, LocalStorage} from 'quasar'
-import Config from '../../../../src/config/index'
+import Config from 'src/config/index'
 import Http from "axios";
 import {helper} from '@imagina/qhelper/_plugins/helper'
 
