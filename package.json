@@ -40,6 +40,16 @@
     "asgardcms",
     "passport"
   ],
+  "dependencies": {
+    "@imagina/qhelper": "^0.0.4",
+    "@imagina/qcrud": "^0.0.9",
+    "vuelidate": "^0.7.4",
+    "axios": "^0.18.0",
+    "date-fns": "^1.29.0",
+    "export-from-json": "^1.0.15",
+    "lodash.pick": "^4.4.0",
+    "@riophae/vue-treeselect": "0.0.30"
+  },
   "license": "ISC",
   "main": "index.js",
   "name": "@imagina/quser",
@@ -50,5 +60,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.9"
+  "version": "0.0.10"
 }
