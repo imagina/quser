@@ -6,7 +6,7 @@ import access from '../_router/middlewares/access' //Middleware access
 import vueCrud from '@imagina/qcrud/_components/vueCrud'
 
 /*VIEWS*/
-import home from 'src/layouts/default'
+import home from 'src/layouts/master'
 import blank from 'src/layouts/blank'
 
 /*CRUD DEPARTMENT CONFIGURATIONS*/
@@ -41,7 +41,7 @@ Route.view('/users', home)
         guard: access
       })
       Route.view('/me/profile', require('../_layouts/profile').default).name('user.profile.me')
-  
+
     Route.view('/department', vueCrud).options({
       name: 'user.department',
       meta: {permission: 'fhia.roles.admin'},
