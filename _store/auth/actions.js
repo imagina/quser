@@ -18,7 +18,7 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
       data.userdata.departments ? helper.storage.set('depSelected', data.userdata.departments[0].id) : false
 
       helper.storage.set('userData', data.userdata).then(response =>{
-        auth.hasAccess('fhia.login').then(can => {
+        auth.hasAccess('iprofile.api.login').then(can => {
           if (can) {
             dispatch("AUTH_SUCCESS", {
               userToken: data.userToken,
