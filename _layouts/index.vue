@@ -1,165 +1,183 @@
 <template>
   <q-page class="relative-position">
 
-    <!--======================== LOADING ======================-->
-    <q-inner-loading :visible="loading" style="z-index:1001; max-height: 100vh">
-      <q-spinner-hourglass size="50px" color="primary"/>
-    </q-inner-loading>
+    <div class="q-layout-page row justify-center layout-padding">
 
-    <!--======================== DIALOG DEACTIVE AND REACTIVE USER ======================-->
-    <q-dialog
-      v-model="deactivate"
-      stack-buttons
-      prevent-close
-    >
-      <!-- This or use "title" prop on <q-dialog> -->
-      <div class="q-heading text-warning"
-           slot="title">
-        Are you sure to {{statusToChange ? 'reactivate' : 'deactivate'}} this user?
+      <div class="text_title text-blue-9 col-xs-12 q-title text-right">
+        <span>USERS</span>
       </div>
 
+      <div class="q-py-md q-title col-xs-12 text-negative">
+        • LIST USERS
+      </div>
 
-      <template slot="buttons" slot-scope="props">
-
-        <q-btn flat :label="statusToChange ? 'Reactivate' : 'Deactivate'" @click="setStatusUser()"/>
-
-        <q-btn flat label="Cancel" @click="userToChange = ''; deactivate = false"/>
-      </template>
-    </q-dialog>
-
-
-    <div class="text_title text-blue-9 col-xs-12 q-title text-right">
-      <span>Users</span>
-
-    </div>
-    <br><br>
-    <div class="col-xs-12">
-
-      <div class="row justify-end items-center q-mx-xl ">
-
-        <div class="col-sm-4 q-mb-xl q-px-lg">
+      <!-- Content -->
+      <div id="listUserContent" class="col-12 q-pa-lg">
+        <div class="row">
           <!-- Search -->
-          <q-search
-            v-model="filter.search"
-            placeholder="Text Search"
-            @keyup.enter="pagination.page = 1; getData()"
-            class="q-mt-xl"/>
-          <q-checkbox
-            v-model="filter.deactivateds"
-            checked-icon="visibility"
-            unchecked-icon="visibility_off"
-            label="Deactivated Users"
-            @input="pagination.page = 1; getData()"
-          />
+          <div class="col-12 col-md-4 q-mb-md">
+            <q-search
+              inverted
+              v-model="filter.search"
+              placeholder="Text Search"
+              @keyup.enter="pagination.page = 1; getData()"/>
+          </div>
+
+          <!-- Show user disable -->
+          <div class="col-12 col-md-8 text-right q-mb-md">
+            <q-toggle v-model="filter.deactivateds"
+                      @input="pagination.page = 1; getData()"
+                      label="Show disabled users"/>
+          </div>
+
+          <!-- TABLE LIST USERS -->
+          <div class="col-12">
+            <div v-if="users.length || loading">
+
+              <div v-if="users.length" class="table-responsive" style="overflow-x: scroll">
+
+                <table class="q-table horizontal-delimiter striped-odd">
+                  <thead>
+                    <tr class="text-left">
+                      <th>ID</th>
+                      <th>User</th>
+                      <th class="gt-xs">User Login</th>
+                      <th class="gt-xs">Role</th>
+                      <th class="gt-xs">Created</th>
+                      <th class="gt-xs">Updated</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(user,index) in users"
+                      :key="index"
+                      v-if="user.status =='1' || (user.status=='0' && filter.deactivateds)"
+                      :class="user.status=='0' ? 'bg-red-1' : ''">
+
+                    <td>{{user.id}}</td>
+                    <td>{{user.full_name}}</td>
+                    <td class="gt-xs">{{user.email}}</td>
+                    <td class="gt-xs">
+                      <q-chip
+                        color="primary"
+                        tag small>
+                        {{user.roles.length ? user.roles[0].name : ' - '}}
+                      </q-chip>
+                    </td>
+                    <td class="gt-xs">{{user.created_at}}</td>
+                    <td class="gt-xs">{{user.updated_at}}</td>
+                    <td>
+                      <q-btn
+                        size="sm" rounded
+                        icon="fas fa-user-edit" color="secondary"
+                        :to="{name:'user.users.edit',params:{id:user.id}}">
+                        <q-tooltip>
+                          Edit
+                        </q-tooltip>
+                      </q-btn>
+
+                      <q-btn
+                        size="sm" rounded
+                        class="q-ml-sm"
+                        v-if="user.status=='1'"
+                        icon="fas fa-user-times"
+                        color="red"
+                        @click="dialogChangeStatus(user,0)"
+                      >
+                        <q-tooltip>
+                          Disable
+                        </q-tooltip>
+                      </q-btn>
+                      <q-btn
+                        size="sm" rounded
+                        class="q-ml-sm"
+                        v-if="user.status=='0'"
+                        icon="fas fa-user-check"
+                        color="primary"
+                        @click="dialogChangeStatus(user,1)"
+                      >
+                        <q-tooltip>
+                          Activate
+                        </q-tooltip>
+                      </q-btn>
+
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div v-else
+                   class="text-center"
+                   style="margin-top: 60px">
+                <p class="text-faded"
+                >
+                  No <b>Users</b> found...
+
+                </p>
+              </div>
+              <q-pagination
+                class="q-ma-lg"
+                v-if="pagination.max >= 2"
+                v-model="pagination.page"
+                color="primary"
+                @input="getData()"
+                :max="pagination.max"
+                :max-pages="6"
+                boundary-links
+                direction-links
+              />
+
+            </div>
+            <div v-else
+                 class="text-center"
+                 style="margin-top: 60px">
+              <p class="text-faded"
+              >
+                No <b>Users</b> found in department selected...
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--======================== LOADING ======================-->
+      <q-inner-loading :visible="loading" style="z-index:1001; max-height: 100vh">
+        <q-spinner-hourglass size="50px" color="primary"/>
+      </q-inner-loading>
+
+      <!--======================== DIALOG DEACTIVE AND REACTIVE USER ======================-->
+      <q-dialog
+        v-model="deactivate"
+        stack-buttons
+        prevent-close
+      >
+        <!-- This or use "title" prop on <q-dialog> -->
+        <div class="q-heading text-warning"
+             slot="title">
+          Are you sure to {{statusToChange ? 'reactivate' : 'deactivate'}} this user?
         </div>
 
 
-      </div>
+        <template slot="buttons" slot-scope="props">
 
+          <q-btn flat :label="statusToChange ? 'Reactivate' : 'Deactivate'" @click="setStatusUser()"/>
+
+          <q-btn flat label="Cancel" @click="userToChange = ''; deactivate = false"/>
+        </template>
+      </q-dialog>
+
+
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
+        <q-btn fab-mini color="secondary"
+               icon="fas fa-plus"
+               @click="createUser">
+          <q-tooltip>
+            New User
+          </q-tooltip>
+        </q-btn>
+      </q-page-sticky>
     </div>
-
-    <div v-if="users.length || loading" id="users-index"
-         class="q-layout-page row justify-center layout-padding">
-
-      <div v-if="users.length" class="table-responsive">
-
-        <table class="q-table">
-          <thead>
-          <tr class="text-left">
-            <th>ID</th>
-            <th>User</th>
-            <th class="gt-xs">User Login</th>
-            <th class="gt-xs">Role</th>
-            <th class="gt-xs">Created</th>
-            <th class="gt-xs">Updated</th>
-            <th>Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(user,index) in users"
-              :key="index"
-              v-if="user.status =='1' || (user.status=='0' && filter.deactivateds)"
-              :class="user.status=='0' ? 'bg-red-1' : ''">
-            <td>{{user.id}}</td>
-            <td>{{user.full_name}}</td>
-            <td class="gt-xs">{{user.email}}</td>
-            <td class="gt-xs">
-              <q-chip
-                color="primary"
-                small>
-                {{user.roles[0].name}}
-              </q-chip>
-            </td>
-            <td class="gt-xs">{{user.created_at}}</td>
-            <td class="gt-xs">{{user.updated_at}}</td>
-            <td>
-              <q-btn
-                round
-                class=""
-                icon="edit"
-                color="secondary"
-                :to="{name:'user.users.edit',params:{id:user.id}}"
-                size="sm"
-              />
-
-              <q-btn
-                v-if="user.status=='1'"
-                round
-                class=""
-                icon="delete"
-                color="red"
-                @click="dialogChangeStatus(user,0)"
-                size="sm"
-              />
-              <q-btn
-                v-if="user.status=='0'"
-                round
-                class=""
-                icon="arrow_upward"
-                color="primary"
-                @click="dialogChangeStatus(user,1)"
-                size="sm"
-              />
-
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <div v-else
-           class="text-center"
-           style="margin-top: 60px">
-        <p class="text-faded"
-        >
-          No <b>Users</b> found...
-
-        </p>
-      </div>
-      <q-pagination
-        class="q-ma-lg"
-        v-if="pagination.max >= 2"
-        v-model="pagination.page"
-        color="primary"
-        @input="getData()"
-        :max="pagination.max"
-        :max-pages="6"
-        boundary-links
-        direction-links
-      />
-
-    </div>
-    <div v-else
-         class="text-center"
-         style="margin-top: 60px">
-      <p class="text-faded"
-      >
-        No <b>Users</b> found in department selected...
-
-      </p>
-    </div>
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn fab-mini color="secondary" icon="add" class="animate-pop" @click="createUser"/>
-    </q-page-sticky>
   </q-page>
 </template>
 <script>
@@ -211,9 +229,9 @@
           let departmentId = response
           let filter = {};
 
-          departmentId != 'all' ? filter.department = departmentId : false;
+          //departmentId != 'all' ? filter.department = departmentId : false;
           this.filter.search != '' ? filter.search = this.filter.search : false;
-          this.filter.deactivateds ? filter.status = [0, 1] : false;
+          filter.status = this.filter.deactivateds ? [0, 1] : [1];
 
           userService.index(filter, 10, page, '', 'roles')
             .then((response) => {
@@ -262,4 +280,6 @@
 <style lang="stylus">
   @import "~variables";
 
+  #listUserContent
+    border 1px solid $grey-4
 </style>

@@ -25,29 +25,33 @@ Route.view('/auth', blank)
 Route.view('/users', home)
   .guard(auth)
   .children(() => {
-      Route.view('/index/', require('../_layouts/index').default).options({
+      Route.view('/index', require('../_layouts/index').default).options({
         name: 'user.users.index',
-        meta: {permission: 'user.users.index'},
+        meta: {permission: 'iprofile.api.user.index'},
         guard: access
-      })
+      });
       Route.view('/create', require('../_layouts/form').default).options({
         name: 'user.users.create',
-        meta: {permission: 'user.users.create'},
+        meta: {permission: 'iprofile.api.user.create'},
         guard: access
-      })
+      });
       Route.view('/:id/edit', require('../_layouts/form').default).options({
         name: 'user.users.edit',
-        meta: {permission: 'user.users.edit'},
+        meta: {permission: 'iprofile.api.user.edit'},
         guard: access
-      })
-      Route.view('/me/profile', require('../_layouts/profile').default).name('user.profile.me')
+      });
 
-    Route.view('/department', vueCrud).options({
-      name: 'user.department',
-      meta: {permission: 'fhia.roles.admin'},
-      guard: access,
-      props: (route) => { return { storeName: 'departments', singularName:'department', parentId: route.params.parentId || null, ...departments, doPage: false } },
-    })
+      Route.view('/me/profile', require('../_layouts/profile').default).options({
+        name : 'user.profile.me'
+      })
+/*
+      Route.view('/department', vueCrud).options({
+        name: 'user.department',
+        meta: {permission: 'iprofile.api.user.deparment'},
+        guard: access,
+        props: (route) => { return { storeName: 'departments', singularName:'department', parentId: route.params.parentId || null, ...departments, doPage: false } },
+      });
+*/
     }
   )
 

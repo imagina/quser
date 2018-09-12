@@ -8,8 +8,7 @@ export default {
   logout() {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
-
-      Http.get(Config('api.base_url') + '/auth/logout')
+      Http.get(Config('api.logout_url'))
         .then(response => {
           resolve(response);
         })
@@ -29,9 +28,8 @@ export default {
     // We merge grant type and client secret stored in configuration
     Object.assign(data, Config('auth.auth'));
     return new Promise((resolve, reject) => {
-      Http.post(Config('api.token_url'), data)
+      Http.post(Config('api.login_url'), data)
         .then(response => {
-          response.data.userToken = response.data.asgard_access_token;
           resolve(response);
         })
         .catch(error => {

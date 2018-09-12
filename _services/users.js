@@ -9,28 +9,27 @@ export default {
     filter = JSON.stringify(filter);
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
-      remember.async("users:" + key, 3600 * 3, () => {
-        return http.get(config('api.api_url') + '/usersapi', {
-          params: {
-            filter: filter,
-            take: take,
-            page: page,
-            fields: fields,
-            include: include
-          }
-        })
+      //remember.async("users:" + key, 3600 * 3, () => {
+      http.get(config('api.api_url') + '/users', {
+        params: {
+          filter: filter,
+          take: take,
+          page: page,
+          fields: fields,
+          include: include
+        }
       }).then(response => {
-        resolve(response);
+        resolve(response.data);
       })
-        .catch(error => {
-          reject(error);
-        });
+      .catch(error => {
+        reject(error);
+      });
     });
   },
 
   show(id) {
     return new Promise((resolve, reject) => {
-      return http.get(config('api.api_url') + '/usersapi/' + id)
+      return http.get(config('api.api_url') + '/users/' + id)
         .then(response => {
           resolve(response.data);
         })
@@ -59,7 +58,7 @@ export default {
 
   update(data, id) {
     return new Promise((resolve, reject) => {
-      http.put(config('api.api_url') + '/usersapi/' + id, data)
+      http.put(config('api.api_url') + '/users/' + id, data)
         .then(response => {
           resolve(response);
         })
@@ -71,7 +70,7 @@ export default {
 
   create(data) {
     return new Promise((resolve, reject) => {
-      http.post(config('api.api_url') + '/usersapi', data)
+      http.post(config('api.api_url') + '/users', data)
         .then(response => {
           resolve(response);
         })
@@ -86,7 +85,7 @@ export default {
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
       remember.async("roles:" + key, 3600 * 3, () => {
-        return http.get(config('api.api_url') + '/rolesapi', {
+        return http.get(config('api.api_url') + '/roles', {
           params: {
             filter: filter,
             take: take,

@@ -6,9 +6,9 @@ export default {
   update(id, data) {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
-      http.put(config('api.api_url') + '/profiles/' + id, data)
+      http.put(config('api.api_url') + '/profile/me', data)
         .then(response => {
-          resolve(response);
+          resolve(response.data);
         })
         .catch(error => {
           reject(error);

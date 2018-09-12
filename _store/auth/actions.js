@@ -11,13 +11,17 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
       let data = response.data
 
       const now = new Date();
-      const expirationDate = new Date(now.getTime() + data.expires_in * 1000)
+      const expirationDate = now.getTime() + ((env('DAYS_EXPIRE_SESSION') * 86400) * 1000)
+      const deparmentSelected = data.userdata.departments.length ? data.userdata.departments[0].id : 0;
+
+
       helper.storage.set('userToken', data.userToken)
       helper.storage.set('userId', data.userdata.id)
       helper.storage.set('expirationDate', expirationDate)
-      data.userdata.departments ? helper.storage.set('depSelected', data.userdata.departments[0].id) : false
+      helper.storage.set('depSelected', deparmentSelected)
 
-      helper.storage.set('userData', data.userdata).then(response =>{
+
+      helper.storage.set('userData', data.userdata).then(response => {
         auth.hasAccess('iprofile.api.login').then(can => {
           if (can) {
             dispatch("AUTH_SUCCESS", {
@@ -27,7 +31,6 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
             });
           } else {
             alert.error("User without access", "top");
-            dispatch("AUTH_LOGOUT");
           }
         })
       })
@@ -47,7 +50,8 @@ export const AUTH_TRYAUTOLOGIN = ({commit, dispatch}) => {
 
       helper.storage.get.item('expirationDate').then(expirationDate => {
         const now = new Date();
-        if (now >= expirationDate) {
+        if (now.getTime >= expirationDate) {
+          dispatch("AUTH_LOGOUT");
           resolve(false)
           return
         }
@@ -89,13 +93,12 @@ export const AUTH_ERROR = ({commit, dispatch}) => {
 }
 
 export const AUTH_LOGOUT = ({commit, dispatch}) => {
-  return authService.logout().then(response => {
-    commit('AUTH_LOGOUT');
-    helper.storage.clear()
-    router.push({name: 'auth.login'});
-  }).catch(error => {
+  authService.logout();
+  dispatch("AUTH_CLEAR");
+};
 
-  });
-
-
+export const AUTH_CLEAR = ({commit, dispatch}) => {
+  commit('AUTH_LOGOUT');
+  helper.storage.clear()
+  router.push({name: 'auth.login'});
 };
