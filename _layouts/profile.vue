@@ -41,10 +41,10 @@
                 <div class="item_form col-12 col-md-4 q-px-lg q-mb-md">
                   <q-field
                     :error="$v.form.email.$error"
-                    error-label="This field is required"
+                    error-label="Email format invalid"
                   >
                     <q-input v-model="form.email" type="email"
-                             float-label="User Name"/>
+                             float-label="Email"/>
                   </q-field>
                 </div>
               </div>
