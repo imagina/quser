@@ -16,14 +16,14 @@
         </q-item-main>
       </q-item>
       <!--All-->
-      <!--<q-item v-if="auth.hasAccess('fhia.roles.admin')">
+      <q-item v-if="departments.length >= 2">
         <q-item-side>
           <q-radio v-model="depSelected" val="all" @click.native="changeDepartment()"/>
         </q-item-side>
         <q-item-main>
           <q-item-tile label>All</q-item-tile>
         </q-item-main>
-      </q-item>-->
+      </q-item>
     </q-list>
 
   </q-btn-dropdown>
