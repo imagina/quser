@@ -115,17 +115,20 @@
 
                 </p>
               </div>
-              <q-pagination
-                class="q-ma-lg"
-                v-if="pagination.max >= 2"
-                v-model="pagination.page"
-                color="primary"
-                @input="getData()"
-                :max="pagination.max"
-                :max-pages="6"
-                boundary-links
-                direction-links
-              />
+              <!-- Pagination -->
+              <div style="width: max-content; margin: 0 auto">
+                <q-pagination
+                  class="q-ma-lg"
+                  v-if="pagination.max >= 2"
+                  v-model="pagination.page"
+                  color="primary"
+                  @input="getData()"
+                  :max="pagination.max"
+                  :max-pages="6"
+                  boundary-links
+                  direction-links
+                />
+              </div>
 
             </div>
             <div v-else

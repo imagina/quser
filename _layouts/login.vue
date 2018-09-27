@@ -1,10 +1,10 @@
 <template>
   <q-page class="flex flex-center">
 
-    <div class="row shadow-3 q-mx-xl" style="width: 550px">
+    <div class="row shadow-3 q-mx-md" style="width: 550px">
       <div id="form-login-left" class="col-12 col-md-5">
         <div class="bg-color flex flex-center">
-          <img src="../../../../src/assets/logo-login.svg" width="80%">
+          <img src="../../../../src/assets/image/logo_white.png" style="width: 50%; max-height: 100px">
         </div>
       </div>
       <div id="form-login-right"
