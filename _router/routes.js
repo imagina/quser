@@ -44,14 +44,13 @@ Route.view('/users', home)
       Route.view('/me/profile', require('../_layouts/profile').default).options({
         name : 'user.profile.me'
       })
-/*
+
       Route.view('/department', vueCrud).options({
         name: 'user.department',
-        meta: {permission: 'iprofile.api.user.deparment'},
+        meta: {permission: 'iprofile.api.user.department'},
         guard: access,
         props: (route) => { return { storeName: 'departments', singularName:'department', parentId: route.params.parentId || null, ...departments, doPage: false } },
       });
-*/
     }
   )
 

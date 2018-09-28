@@ -1,6 +1,6 @@
 {
   "_from": "@imagina/quser",
-  "_id": "@imagina/quser@0.0.18",
+  "_id": "@imagina/quser@0.0.19",
   "_inBundle": false,
   "_integrity": "sha512-MsbRIyMjDS95tbGguLkA1GwjzccncgDgGQ7biTrHgsXaKZJHTjunm9D85VdBFXgqwYT925SYEOThO/Ls4GcRKQ==",
   "_location": "/@imagina/quser",
@@ -61,5 +61,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.18"
+  "version": "0.0.19"
 }
