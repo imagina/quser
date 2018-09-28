@@ -1,6 +1,6 @@
 {
   "_from": "@imagina/quser",
-  "_id": "@imagina/quser@0.0.13",
+  "_id": "@imagina/quser@0.0.18",
   "_inBundle": false,
   "_integrity": "sha512-MsbRIyMjDS95tbGguLkA1GwjzccncgDgGQ7biTrHgsXaKZJHTjunm9D85VdBFXgqwYT925SYEOThO/Ls4GcRKQ==",
   "_location": "/@imagina/quser",
@@ -33,8 +33,8 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@imagina/qcrud": ">=0.0.9",
-    "@imagina/qhelper": ">=0.0.4",
+    "@imagina/qcrud": ">=0.0.11",
+    "@imagina/qhelper": ">=0.0.7",
     "@riophae/vue-treeselect": "0.0.30",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
@@ -61,5 +61,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.17"
+  "version": "0.0.18"
 }

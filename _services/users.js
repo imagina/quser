@@ -9,8 +9,8 @@ export default {
     filter = JSON.stringify(filter);
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
-      //remember.async("users:" + key, 3600 * 3, () => {
-      http.get(config('api.api_url') + '/users', {
+      remember.async("users:" + key, 3600 * 3, () => {
+      return http.get(config('api.api_url') + '/users', {
         params: {
           filter: filter,
           take: take,
@@ -18,6 +18,7 @@ export default {
           fields: fields,
           include: include
         }
+      })
       }).then(response => {
         resolve(response.data);
       })
