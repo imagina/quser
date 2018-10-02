@@ -4,120 +4,121 @@
     <q-inner-loading :visible="loading" style="z-index:1001; max-height: 100vh">
       <q-spinner-hourglass size="50px" color="primary"/>
     </q-inner-loading>
-
+    
     <div class="text_title text-blue-9 col-xs-12 q-title text-right">
       <span>USER</span>
     </div>
-
+    
     <div class="q-py-sm q-title col-12 text-negative">
       • {{title}}
     </div>
-  
-    <q-card class="no-shadow relative-position">
-    
-      <q-card-title class="q-pa-none bg-grey-2">
-        <div class="q-subheading float-left text-primary q-px-sm">
-        Information
-        </div>
-      </q-card-title>
-      <div class="row form-container q-py-md">
-        <div class="col-md-12 order-xs-last">
-          <div class="row">
-            <!-- First Name -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.first_name.$error"
-                error-label="This field is required"
-              >
-                <q-input type="text"
-                         v-model="form.first_name"
-                         float-label="First Name*:"
-                />
-              </q-field>
-            </div>
-
-            <!-- Last Name -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.last_name.$error"
-                error-label="This field is required"
-              >
-                <q-input v-model="form.last_name" float-label="Last Name*:"/>
-              </q-field>
-            </div>
-
-            <!-- User Name -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.email.$error"
-                error-label="This field is required"
-              >
-                <q-input v-model="form.email" type="text" float-label="User Name*:"/>
-              </q-field>
-            </div>
-
-            <!-- Password -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.password.$error"
-                error-label="This field must have 7 seven characters"
-              >
-                <q-input v-model="form.password" type="password" float-label="Password*:"/>
-              </q-field>
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.password_confirmation.$error"
-                error-label="This field is required"
-              >
-                <q-input v-model="form.password_confirmation" type="password" float-label="Password Confirm*:"/>
-              </q-field>
-            </div>
-
-            <!-- Deparments -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :disabled="departmentsLoading"
-                :error="$v.form.departments.$error"
-                error-label="This field is required"
-              >
-                <q-select
-                  multiple chips
-                  float-label="Deparments"
-                  v-model="dep"
-                  :options="departments"
-                  @input="changeDepartment()"
-                />
-              </q-field>
-            </div>
-
-            <!-- Roles -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                v-if="roles.length"
-                :disabled="rolesLoading"
-                :error="$v.form.roles.$error"
-                error-label="This field is required"
-              >
-                <q-select
-                  float-label="Role*:"
-                  v-model="form.roles"
-                  :options="roles"
-                  @input="changeRole()"
-                />
-              </q-field>
-            </div>
-
-            <!--Activated -->
-            <div class="col-12 col-md-8 text-right q-pa-lg">
-              <q-toggle v-model="form.status" label="Activated" />
+    <div class="col-12">
+      <q-card class="no-shadow relative-position">
+        
+        <q-card-title class="q-pa-none bg-grey-2">
+          <div class="q-subheading float-left text-primary q-px-sm">
+            Information
+          </div>
+        </q-card-title>
+        <div class="row form-container q-py-md">
+          <div class="col-md-12 order-xs-last">
+            <div class="row">
+              <!-- First Name -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  :error="$v.form.first_name.$error"
+                  error-label="This field is required"
+                >
+                  <q-input type="text"
+                           v-model="form.first_name"
+                           float-label="First Name*:"
+                  />
+                </q-field>
+              </div>
+              
+              <!-- Last Name -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  :error="$v.form.last_name.$error"
+                  error-label="This field is required"
+                >
+                  <q-input v-model="form.last_name" float-label="Last Name*:"/>
+                </q-field>
+              </div>
+              
+              <!-- User Name -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  :error="$v.form.email.$error"
+                  error-label="This field is required"
+                >
+                  <q-input v-model="form.email" type="text" float-label="User Name*:"/>
+                </q-field>
+              </div>
+              
+              <!-- Password -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  :error="$v.form.password.$error"
+                  error-label="This field must have 7 seven characters"
+                >
+                  <q-input v-model="form.password" type="password" float-label="Password*:"/>
+                </q-field>
+              </div>
+              
+              <!-- Confirm Password -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  :error="$v.form.password_confirmation.$error"
+                  error-label="This field is required"
+                >
+                  <q-input v-model="form.password_confirmation" type="password" float-label="Password Confirm*:"/>
+                </q-field>
+              </div>
+              
+              <!-- Deparments -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  :disabled="departmentsLoading"
+                  :error="$v.form.departments.$error"
+                  error-label="This field is required"
+                >
+                  <q-select
+                    multiple chips
+                    float-label="Deparments"
+                    v-model="dep"
+                    :options="departments"
+                    @input="changeDepartment()"
+                  />
+                </q-field>
+              </div>
+              
+              <!-- Roles -->
+              <div class="item_form col-12 col-md-4 q-px-sm">
+                <q-field
+                  v-if="roles.length"
+                  :disabled="rolesLoading"
+                  :error="$v.form.roles.$error"
+                  error-label="This field is required"
+                >
+                  <q-select
+                    float-label="Role*:"
+                    v-model="form.roles"
+                    :options="roles"
+                    @input="changeRole()"
+                  />
+                </q-field>
+              </div>
+              
+              <!--Activated -->
+              <div class="col-12 col-md-8 text-right q-pa-lg">
+                <q-toggle v-model="form.status" label="Activated"/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </q-card>
+      </q-card>
+    </div>
     <!--=== SAVE ===-->
     <div class="col-12 q-px-sm text-center">
       <!-- Activated -->
@@ -132,13 +133,13 @@
 <script>
   /*Services*/
   import departmentService from '../_services/departments'
-
+  
   /*Plugins*/
   import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import auth from '../_plugins/auth'
   import userService from '../_services/users'
-
+  
   export default {
     props: {},
     components: {},
@@ -158,12 +159,12 @@
           minLength: minLength(7)
         },
         password_confirmation: {
-
+          
           minLength: minLength(7),
           sameAsPassword: sameAs('password')
         },
         email: {required},
-
+        
       }
     },
     mounted() {
@@ -220,13 +221,13 @@
           })
         } else
           this.loading = false;
-
+        
         this.rolesLoading = true
         userService.roles('', 20).then(response => {
           this.roles = response.data;
           this.rolesLoading = false;
         });
-
+        
         this.departmentsLoading = true
         let take = 1000;
         departmentService.index(null, take).then(response => {
@@ -245,24 +246,24 @@
         this.departments.forEach((element, index) => {
           if (this.dep.indexOf(element.id) > -1)
             this.form.departments.push(element);
-
-
+          
+          
         })
       },
       submit() {
         this.$v.$touch();//validate all fields from form
-
+        
         if (!this.$v.$error) {
           this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
           let departmentService = Object.assign(data.departments)
-
+          
           /*Get only Id from departments*/
           data.departments = [];
           departmentService.forEach((item) => {
             data.departments.push(item.id)
           })
-
+          
           if (this.id) {
             userService.update(data, data.id).then(response => {
               alert.success('User updated', 'top');
@@ -290,12 +291,12 @@
         }
       }
     }
-
+    
   }
 </script>
 <style lang="stylus">
   @import "~variables";
-
+  
   .form-user-data {
     border 1px solid $grey-4
     margin-top 0 !important
