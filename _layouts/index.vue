@@ -68,13 +68,7 @@
                     <!--= Custom Columns =-->
                     <q-td key="id"
                           :props="props">
-                      <q-btn class="full-width" color="primary"
-                             @click="goToLead(props.row.id)"
-                             :label="props.row.id">
-                        <q-tooltip>
-                          Go to User
-                        </q-tooltip>
-                      </q-btn>
+                      {{ props.row.id }}
                     </q-td>
                     <q-td key="full_name" :props="props">{{ props.row.full_name }}</q-td>
                     <q-td key="email" :props="props">{{ props.row.email }}</q-td>

@@ -12,16 +12,19 @@
     <div class="q-py-sm q-title col-12 text-negative">
       • {{title}}
     </div>
-
-    <div class="form-user-data col-12">
-      <div class="form-title q-title">
+  
+    <q-card class="no-shadow relative-position">
+    
+      <q-card-title class="q-pa-none bg-grey-2">
+        <div class="q-subheading float-left text-primary q-px-sm">
         Information
-      </div>
+        </div>
+      </q-card-title>
       <div class="row form-container q-py-md">
         <div class="col-md-12 order-xs-last">
           <div class="row">
             <!-- First Name -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 :error="$v.form.first_name.$error"
                 error-label="This field is required"
@@ -34,7 +37,7 @@
             </div>
 
             <!-- Last Name -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 :error="$v.form.last_name.$error"
                 error-label="This field is required"
@@ -44,7 +47,7 @@
             </div>
 
             <!-- User Name -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 :error="$v.form.email.$error"
                 error-label="This field is required"
@@ -54,7 +57,7 @@
             </div>
 
             <!-- Password -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 :error="$v.form.password.$error"
                 error-label="This field must have 7 seven characters"
@@ -64,7 +67,7 @@
             </div>
 
             <!-- Confirm Password -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 :error="$v.form.password_confirmation.$error"
                 error-label="This field is required"
@@ -74,7 +77,7 @@
             </div>
 
             <!-- Deparments -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 :disabled="departmentsLoading"
                 :error="$v.form.departments.$error"
@@ -91,7 +94,7 @@
             </div>
 
             <!-- Roles -->
-            <div class="item_form col-12 col-md-4 q-px-lg">
+            <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
                 v-if="roles.length"
                 :disabled="rolesLoading"
@@ -114,9 +117,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </q-card>
     <!--=== SAVE ===-->
-    <div class="col-12 q-px-lg text-center">
+    <div class="col-12 q-px-sm text-center">
       <!-- Activated -->
       <q-btn :loading="loading"
              color="primary"
