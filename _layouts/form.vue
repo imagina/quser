@@ -13,7 +13,7 @@
       • {{title}}
     </div>
   
-    <q-card class="no-shadow relative-position">
+    <q-card class="no-shadow col-12 relative-position">
     
       <q-card-title class="q-pa-none bg-grey-2">
         <div class="q-subheading float-left text-primary q-px-sm">
@@ -295,6 +295,9 @@
 </script>
 <style lang="stylus">
   @import "~variables";
+
+  .q-card
+    border 1px solid $grey-4
 
   .form-user-data {
     border 1px solid $grey-4
