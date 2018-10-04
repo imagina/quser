@@ -298,6 +298,7 @@
 
   .q-card
     border 1px solid $grey-4
+    margin-bottom 15px
 
   .form-user-data {
     border 1px solid $grey-4
