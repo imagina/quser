@@ -4,6 +4,7 @@ import auth from '../../_plugins/auth';
 import {alert} from '@imagina/qhelper/_plugins/alert';
 import {helper} from '@imagina/qhelper/_plugins/helper';
 import axios from 'axios';
+import config from 'src/config/index'
 
 export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
   return authService.login(authData.username, authData.password)
@@ -80,7 +81,7 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
 
       commit('AUTH_SUCCESS', data);
       if (router.currentRoute.path == "/auth/login") {
-        router.push("/");
+          router.push(data.userData.default_route)
       }
 
       resolve(true)
