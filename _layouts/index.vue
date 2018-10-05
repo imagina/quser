@@ -292,9 +292,14 @@
       setStatusUser() {
         this.deactivate = false
         this.loading = true
-        let data = JSON.parse(JSON.stringify(this.userToChange));
-        data.status = this.statusToChange;
-        userService.update(data, data.id)
+        //let data = JSON.parse(JSON.stringify(this.userToChange));
+        let datax = {
+          id: this.userToChange.id,
+          status: this.statusToChange,
+        };
+        console.log(datax)
+        
+        userService.update(datax, datax.id)
           .then(response => {
             this.loading = false;
             this.userToChange.status = this.statusToChange;
