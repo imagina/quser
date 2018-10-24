@@ -22,7 +22,10 @@
 <script>
   export default {
     mounted() {
-      this.$store.dispatch("auth/AUTH_LOGOUT")
+      if(navigator.onLine)
+        this.$store.dispatch("auth/AUTH_LOGOUT")
+      else
+        this.$router.push({name:"offline"})
     }
   }
 </script>

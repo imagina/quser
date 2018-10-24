@@ -40,17 +40,25 @@ Route.view('/users', home)
         meta: {permission: 'iprofile.api.user.edit'},
         guard: access
       });
-
+      
       Route.view('/me/profile', require('../_layouts/profile').default).options({
-        name : 'user.profile.me'
-      })
-
+        name: 'user.profile.me'
+      });
+      
       Route.view('/department', vueCrud).options({
         name: 'user.department',
         meta: {permission: 'iprofile.api.user.department'},
         guard: access,
-        props: (route) => { return { storeName: 'departments', singularName:'department', parentId: route.params.parentId || null, ...departments, doPage: false } },
+        props: (route) => {
+          return {
+            storeName: 'departments',
+            singularName: 'department',
+            parentId: route.params.parentId || null, ...departments,
+            doPage: false
+          }
+        },
       });
+      
     }
   )
 
