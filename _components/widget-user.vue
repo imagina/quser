@@ -2,9 +2,9 @@
   <!--= USER/LOGIN =-->
   <q-btn-dropdown
     color="white"
+    split
     flat
     v-if="userData"
-    icon="fas fa-user-circle"
     :label="userData.first_name"
     id="user-dropdown"
   >

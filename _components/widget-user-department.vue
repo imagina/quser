@@ -1,7 +1,9 @@
 <template>
   <!--= USER/DEPARTMENT =-->
   <q-btn-dropdown
-    color="white" flat
+    split
+    class="float-right"
+    color="primary"
     v-if="departments.length"
     :label="departments && depSelected !== 'all' ? departments[posDepSelected].title : 'All'"
   >

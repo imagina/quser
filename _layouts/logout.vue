@@ -20,12 +20,20 @@
 </template>
 
 <script>
+  import {alert} from '@imagina/qhelper/_plugins/alert'
+  import {helper} from '@imagina/qhelper/_plugins/helper'
+  import {request} from '@imagina/qoffline/_plugins/request';
+  
   export default {
     mounted() {
-      if(navigator.onLine)
-        this.$store.dispatch("auth/AUTH_LOGOUT")
-      else
-        this.$router.push({name:"offline"})
+      helper.storage.get.item("offlineRequests")
+        .then(offRqsts =>{
+          offRqsts = request.userCurrentRequests(offRqsts);
+          if(!offRqsts.length)
+            this.$store.dispatch("auth/AUTH_LOGOUT")
+          else
+            this.$router.push({name:"offline"})
+        })
     }
   }
 </script>

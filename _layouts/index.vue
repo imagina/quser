@@ -12,7 +12,7 @@
       </div>
       
       <!-- Content -->
-      <div id="listUserContent" class="col-12 q-pa-lg">
+      <div id="listUserContent" class="col-12">
         <div class="row">
 
           
@@ -205,8 +205,8 @@
         loading: false,
         dataUsers: [],
         visibleColumns: [
-          'id', 'full_name', 'email', 'role',
-          'created_at', 'updated_at', 'actions'
+          'id', 'full_name', 'role',
+          'created_at', 'actions'
         ],
         columnsTable: [
           {

@@ -44,12 +44,7 @@
                    float-label="Password"
           />
         </q-field>
-
-        <!--<div class="text-right q-pb-md">
-          <q-checkbox v-model="rememberData"
-                      @input="rememberMe()"
-                      label="Remember me"/>
-        </div>-->
+        
 
         <!--=== LOGIN ===-->
         <div class="text-center q-pt-lg">
@@ -116,12 +111,6 @@
         }
       },
 
-      /**
-       * Auto Login
-       */
-      rememberMe(){
-        helper.storage.set('rememeberMe', this.rememberData)
-      }
     }
   }
 </script>

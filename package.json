@@ -1,6 +1,6 @@
 {
-  "_from": "@imagina/quser@0.0.26",
-  "_id": "@imagina/quser@0.0.26",
+  "_from": "@imagina/quser@0.0.27",
+  "_id": "@imagina/quser@0.0.27",
   "_inBundle": false,
   "_integrity": "sha512-BxPbxXEaPON7xYQMfrc0T2FKi8hT8vf8t2JpSLjYOGs/TkkdC5tn4dJQL8EfGZtIsCISJO4Kunc8F1T6MMsuzQ==",
   "_location": "/@imagina/quser",
@@ -14,21 +14,21 @@
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@imagina/quser@0.0.26",
+    "raw": "@imagina/quser@0.0.27",
     "name": "@imagina/quser",
     "escapedName": "@imagina%2fquser",
     "scope": "@imagina",
-    "rawSpec": "0.0.26",
+    "rawSpec": "0.0.27",
     "saveSpec": null,
-    "fetchSpec": "0.0.26"
+    "fetchSpec": "0.0.27"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.26.tgz",
+  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.27.tgz",
   "_shasum": "118a8739015fe3ccd834e3f95406fcc36a6a2d54",
-  "_spec": "@imagina/quser@0.0.26",
+  "_spec": "@imagina/quser@0.0.27",
   "_where": "D:\\Imagina\\html\\Applications\\fhia_app",
   "author": {
     "name": "http://imaginacolombia.com/"
@@ -40,6 +40,7 @@
   "dependencies": {
     "@imagina/qcrud": ">=0.0.11",
     "@imagina/qhelper": ">=0.0.7",
+    "@imagina/qoffline": ">=0.0.2",
     "@riophae/vue-treeselect": "0.0.30",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
@@ -66,5 +67,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.26"
+  "version": "0.0.27"
 }
