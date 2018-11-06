@@ -28,7 +28,7 @@
     mounted() {
       helper.storage.get.item("offlineRequests")
         .then(offRqsts =>{
-          offRqsts = request.userCurrentOfflineRequests(offRqsts);
+          offRqsts = request.currentOfflineUserRequests(offRqsts);
           if(!offRqsts.length)
             this.$store.dispatch("auth/AUTH_LOGOUT")
           else
