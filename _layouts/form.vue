@@ -85,7 +85,7 @@
               >
                 <q-select
                   multiple chips
-                  float-label="Deparments"
+                  float-label="Departments"
                   v-model="dep"
                   :options="departments"
                   @input="changeDepartment()"

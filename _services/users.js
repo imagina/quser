@@ -20,7 +20,7 @@ export default {
         }
       })
       }).then(response => {
-        resolve(response.data);
+        resolve(response);
       })
       .catch(error => {
         reject(error);

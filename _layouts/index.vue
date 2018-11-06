@@ -13,7 +13,7 @@
       
       <!-- Content -->
       <div id="listUserContent" class="col-12">
-        <div class="row">
+        <div class="row gutter-sm justify-center relative-position">
 
           
           <!-- TABLE LIST USERS -->
@@ -26,12 +26,11 @@
                   :data="dataUsers"
                   :visible-columns="visibleColumns"
                   :columns="columnsTable"
-                  :pagination.sync="pagination"
                   :separator="separatorTable"
-                  :filter="filterTable"
+                  :pagination.sync="pagination"
                   row-key="name"
                   color="secondary"
-                  @request="getData()"
+                  @request="pagination.page++;getData()"
                 >
                   <!--= Search =-->
                   <template slot="top-left" slot-scope="props">
@@ -39,9 +38,12 @@
                       hide-underline
                       clearable
                       color="secondary"
-                      v-model="filterTable"
+                      v-model="filter.search"
+                      @input="pagination.page = 1; getData()"
+                      
                       class="col-6"
                     />
+                 
                   </template>
                   
                   <!--= Config Table =-->
@@ -126,13 +128,17 @@
                   </q-tr>
                 
                 </q-table>
-              
+                
+               
+
               </div>
-            
+  
+             
             
             </div>
-
+            
           </div>
+
         </div>
       </div>
       
@@ -199,8 +205,8 @@
       return {
         pagination: {
           page: 1,
-          rowsPerPage: 10,
-          
+          rowsPerPage: 15,
+          rowsNumber: 1
         },
         loading: false,
         dataUsers: [],
@@ -264,9 +270,13 @@
           this.filter.search != '' ? filter.search = this.filter.search : false;
           filter.status = this.filter.deactivateds ? [0, 1] : [1];
           
-          userService.index(filter, null, null, '', 'roles')
+          userService.index(filter, this.pagination.rowsPerPage, this.pagination.page, 'email', 'roles')
             .then((response) => {
-              this.dataUsers = response
+              console.warn(response);
+              this.dataUsers = response.data;
+              this.pagination.rowsPerPage = response.meta.page.perPage;
+              this.pagination.page = response.meta.page.currentPage;
+              this.pagination.rowsNumber = response.meta.page.total;
               this.dataUsers.forEach(element => {
                 element['actions'] = ""
               })

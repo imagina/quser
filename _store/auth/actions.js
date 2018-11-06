@@ -5,6 +5,7 @@ import {alert} from '@imagina/qhelper/_plugins/alert';
 import {helper} from '@imagina/qhelper/_plugins/helper';
 import axios from 'axios';
 import config from 'src/config/index'
+import store from 'src/store/index'
 
 export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
   if (navigator.onLine)
@@ -82,6 +83,7 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
       
       commit('AUTH_SUCCESS', data);
       if (router.currentRoute.path == "/auth/login") {
+        console.log(data.userData.default_route)
         router.push(data.userData.default_route)
       }
       
@@ -104,17 +106,15 @@ export const AUTH_LOGOUT = ({commit, dispatch}) => {
   dispatch("AUTH_CLEAR");
 };
 
-export const AUTH_CLEAR = ({commit, dispatch}) => {
+export const AUTH_CLEAR = async ({commit, dispatch}) => {
   
-  helper.storage.get.item("offlineRequests").then(offRqsts => {
-    offRqsts = offRqsts || [];
-    helper.storage.clear().then(response => {
-      helper.storage.set('offlineRequests', offRqsts).then(response => {
-        commit('AUTH_LOGOUT');
-        router.push({name: 'auth.login'});
-      })
-    })
-  })
-  
+  let offRqsts = await helper.storage.get.item("offlineRequests");
+  let notifications = await helper.storage.get.item("notifications") || [];
+  await helper.storage.clear();
+  await helper.storage.set('offlineRequests', offRqsts);
+  await helper.storage.set('notifications', notifications) ;
+  store.dispatch('notification/FLUSH_NOTIFICATIONS');
+  commit('AUTH_LOGOUT');
+  router.push({name: 'auth.login'});
   
 };
