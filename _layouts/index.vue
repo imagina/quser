@@ -1,25 +1,25 @@
 <template>
   <q-page class="relative-position">
-    
+
     <div class="q-layout-page row justify-center layout-padding">
-      
+
       <div class="text_title text-blue-9 col-xs-12 q-title text-right">
         <span>USERS</span>
       </div>
-      
+
       <div class="q-py-md q-title col-xs-12 text-negative">
         • LIST USERS
       </div>
-      
+
       <!-- Content -->
       <div id="listUserContent" class="col-12">
         <div class="row gutter-sm justify-center relative-position">
 
-          
+
           <!-- TABLE LIST USERS -->
           <div class="col-12">
             <div >
-              
+
               <div class="table-responsive" style="overflow-x: scroll">
                 <q-table
                   :loading="loading"
@@ -40,12 +40,12 @@
                       color="secondary"
                       v-model="filter.search"
                       @input="pagination.page = 1; getData()"
-                      
+
                       class="col-6"
                     />
-                 
+
                   </template>
-                  
+
                   <!--= Config Table =-->
                   <template slot="top-right" slot-scope="props">
                     <q-table-columns
@@ -54,7 +54,7 @@
                       v-model="visibleColumns"
                       :columns="columnsTable"
                     />
-  
+
                     <q-toggle
                       class="q-mx-sm"
                       v-model="filter.deactivateds"
@@ -66,83 +66,69 @@
                       @click="props.toggleFullscreen"
                     />
                   </template>
-                  <q-tr slot="body" slot-scope="props" :props="props" :class="props.row.status=='0' ? 'bg-red-1' : ''">
-                    <!--= Custom Columns =-->
-                    <q-td key="id"
-                          :props="props">
-                      {{ props.row.id }}
-                    </q-td>
-                    <q-td key="full_name" :props="props">{{ props.row.full_name }}</q-td>
-                    <q-td key="email" :props="props">{{ props.row.email }}</q-td>
-                    <!--= Custom Columns =-->
-                    <q-td key="role"
-                          :props="props">
-                      <q-chip
-                        color="primary"
-                        tag small>
-                        {{props.row.roles.length ? props.row.roles[0].name : ' - '}}
-                      </q-chip>
-                    </q-td>
-                    <q-td key="created_at" :props="props">{{ props.row.created_at }}</q-td>
-                    <q-td key="updated_at" :props="props">{{ props.row.updated_at }}</q-td>
-                    <!--= Custom Columns =-->
-                    <q-td key="actions"
-                          :props="props">
-                      
-                      
-                      <q-btn
-                        size="sm" rounded
-                        icon="fas fa-user-edit" color="secondary"
-                        :to="{name:'user.users.edit',params:{id:props.row.id}}">
-                        <q-tooltip>
-                          Edit
-                        </q-tooltip>
-                      </q-btn>
-                      
-                      <q-btn
-                        size="sm" rounded
-                        class="q-ml-sm"
-                        v-if="props.row.status=='1'"
-                        icon="fas fa-user-times"
-                        color="red"
-                        @click="dialogChangeStatus(props.row,0)"
-                      >
-                        <q-tooltip>
-                          Disable
-                        </q-tooltip>
-                      </q-btn>
-                      <q-btn
-                        size="sm" rounded
-                        class="q-ml-sm"
-                        v-if="props.row.status=='0'"
-                        icon="fas fa-user-check"
-                        color="primary"
-                        @click="dialogChangeStatus(props.row,1)"
-                      >
-                        <q-tooltip>
-                          Activate
-                        </q-tooltip>
-                      </q-btn>
-                    
-                    </q-td>
-                  </q-tr>
-                
+
+                  <!--= Custom Columns =-->
+                  <q-td slot="body-cell-role"
+                        slot-scope="props" :props="props">
+                    <q-chip
+                      color="primary"
+                      tag small>
+                      {{props.row.roles.length ? props.row.roles[0].name : ' - '}}
+                    </q-chip>
+                  </q-td>
+                  <q-td slot="body-cell-actions"
+                        slot-scope="props" :props="props">
+                    <q-btn
+                      size="sm" rounded
+                      icon="fas fa-user-edit" color="secondary"
+                      :to="{name:'user.users.edit',params:{id:props.row.id}}">
+                      <q-tooltip>
+                        Edit
+                      </q-tooltip>
+                    </q-btn>
+
+                    <q-btn
+                      size="sm" rounded
+                      class="q-ml-sm"
+                      v-if="props.row.status=='1'"
+                      icon="fas fa-user-times"
+                      color="red"
+                      @click="dialogChangeStatus(props.row,0)"
+                    >
+                      <q-tooltip>
+                        Disable
+                      </q-tooltip>
+                    </q-btn>
+
+                    <q-btn
+                      size="sm" rounded
+                      class="q-ml-sm"
+                      v-if="props.row.status=='0'"
+                      icon="fas fa-user-check"
+                      color="primary"
+                      @click="dialogChangeStatus(props.row,1)"
+                    >
+                      <q-tooltip>
+                        Activate
+                      </q-tooltip>
+                    </q-btn>
+                  </q-td>
                 </q-table>
-                
-               
+
+
 
               </div>
-  
-             
-            
+
+
+
             </div>
-            
+
           </div>
 
         </div>
       </div>
-      
-      
+
+
       <!--======================== DIALOG DEACTIVE AND REACTIVE USER ======================-->
       <q-dialog
         v-model="deactivate"
@@ -154,17 +140,17 @@
              slot="title">
           Are you sure to {{statusToChange ? 'reactivate' : 'deactivate'}} this user?
         </div>
-        
-        
+
+
         <template slot="buttons" slot-scope="props">
-          
+
           <q-btn flat :label="statusToChange ? 'Reactivate' : 'Deactivate'" @click="setStatusUser()"/>
-          
+
           <q-btn flat label="Cancel" @click="userToChange = ''; deactivate = false"/>
         </template>
       </q-dialog>
-      
-      
+
+
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
         <q-btn fab-mini color="secondary"
                icon="fas fa-plus"
@@ -180,12 +166,12 @@
 <script>
   /*Services*/
   import userService from '../_services/users'
-  
+
   /*Plugins*/
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import {helper} from '@imagina/qhelper/_plugins/helper'
   import auth from '../_plugins/auth'
-  
+
   export default {
     props: {},
     components: {},
@@ -194,7 +180,7 @@
       this.$nextTick(function () {
         if (auth.hasAccess('fhia.roles.dept-manager')) {
           this.getData()
-          
+
         } else {
           alert.error('Permission Denied', 'bottom')
           this.$router.push('/')
@@ -229,10 +215,11 @@
           },
           {
             name: 'role', label: 'ROLE', field: 'role',
-            align: 'center', sortable: true
+            align: 'left', sortable: true
           },
           {
             name: 'created_at', label: 'CREATED', field: 'created_at',
+            format: val => val ? this.$d(new Date(val), 'short', this.$q.i18n.lang) : '-',
             align: 'center', sortable: true
           },
           {
@@ -243,7 +230,7 @@
             name: 'actions', label: 'ACTIONS', field: 'actions',
             align: 'center'
           },
-        
+
         ],
         separatorTable: 'horizontal',
         filterTable: '',
@@ -265,11 +252,11 @@
         helper.storage.get.item("depSelected").then(response => {
           let departmentId = response
           let filter = {};
-          
+
           //departmentId != 'all' ? filter.department = departmentId : false;
           this.filter.search != '' ? filter.search = this.filter.search : false;
           filter.status = this.filter.deactivateds ? [0, 1] : [1];
-          
+
           userService.index(filter, this.pagination.rowsPerPage, this.pagination.page, 'email', 'roles')
             .then((response) => {
               console.warn(response);
@@ -281,7 +268,7 @@
                 element['actions'] = ""
               })
               this.loading = false
-              
+
             })
             .catch((error) => {
               alert.error('No users found', 'bottom')
@@ -292,13 +279,13 @@
       createUser(id) {
         this.$router.push('/users/create')
       },
-      
+
       dialogChangeStatus(user, status) {
         this.userToChange = user;
         this.statusToChange = status;
         this.deactivate = true;
       },
-      
+
       setStatusUser() {
         this.deactivate = false
         this.loading = true
@@ -308,7 +295,7 @@
           status: this.statusToChange,
         };
         console.log(datax)
-        
+
         userService.update(datax, datax.id)
           .then(response => {
             this.loading = false;
@@ -322,12 +309,12 @@
           })
       }
     }
-    
+
   }
 </script>
 <style lang="stylus">
   @import "~variables";
-  
+
   #listUserContent
     border 1px solid $grey-4
 </style>

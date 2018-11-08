@@ -13,9 +13,10 @@ export const crudTable = {
   inline: null,
   headers: [
     { text: 'Title', value: 'title' },
-    { text: 'Updated At', value: 'updated_at' },
-    { text: 'Created At', value: 'created_at' }
+    { text: 'Updated At', value: 'updated_at', type: 'datetime' },
+    { text: 'Created At', value: 'created_at', type: 'datetime' }
   ],
+
 }
 
 

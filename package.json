@@ -2,15 +2,9 @@
   "_from": "@imagina/quser@0.0.29",
   "_id": "@imagina/quser@0.0.29",
   "_inBundle": false,
-  "_integrity": "sha512-BxPbxXEaPON7xYQMfrc0T2FKi8hT8vf8t2JpSLjYOGs/TkkdC5tn4dJQL8EfGZtIsCISJO4Kunc8F1T6MMsuzQ==",
+  "_integrity": "sha512-SpZTE9MFXQFu9C96dmfHxpbrkg50MJdbozo75/MjIJ3nlD5DJ0i5W0k5PbwmY7IrGPEAun1fB8Nt2wPQdHHhRw==",
   "_location": "/@imagina/quser",
-  "_phantomChildren": {
-    "axios": "0.18.0",
-    "laravel-echo": "1.4.0",
-    "localforage": "1.7.2",
-    "pusher-js": "4.3.1",
-    "vuelidate": "0.7.4"
-  },
+  "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
@@ -24,10 +18,11 @@
   },
   "_requiredBy": [
     "#USER",
-    "/"
+    "/",
+    "/@imagina/qcrud"
   ],
   "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.29.tgz",
-  "_shasum": "118a8739015fe3ccd834e3f95406fcc36a6a2d54",
+  "_shasum": "8158045f06253e4537a89954f66d7589e3466f84",
   "_spec": "@imagina/quser@0.0.29",
   "_where": "D:\\Imagina\\html\\Applications\\fhia_app",
   "author": {
