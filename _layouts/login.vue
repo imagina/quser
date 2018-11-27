@@ -44,7 +44,7 @@
                    float-label="Password"
           />
         </q-field>
-        
+
 
         <!--=== LOGIN ===-->
         <div class="text-center q-pt-lg">
@@ -105,7 +105,7 @@
           this.loading_login = !this.loading_login;
           const {username, password} = this.form;
 
-          this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then(response => {
+          this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
             this.loading_login = !this.loading_login;
           });
         }

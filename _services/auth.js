@@ -29,10 +29,10 @@ export default {
     Object.assign(data, Config('auth.auth'));
     return new Promise((resolve, reject) => {
       Http.post(Config('api.login_url'), data)
-        .then(response => {
+        .then((response) => {
           resolve(response);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('OAUTH Authentication error: ', error);
           reject(error);
         });

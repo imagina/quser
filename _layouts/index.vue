@@ -219,7 +219,7 @@
           },
           {
             name: 'created_at', label: 'CREATED', field: 'created_at',
-            format: val => val ? this.$d(new Date(val), 'short', this.$q.i18n.lang) : '-',
+            format: val => val ? this.$d($moment(val, 'YYYY-MM-DD HH:mm').toDate(), 'short', this.$q.i18n.lang) : '-',
             align: 'center', sortable: true
           },
           {
