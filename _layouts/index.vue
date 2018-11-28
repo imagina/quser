@@ -219,7 +219,7 @@
           },
           {
             name: 'created_at', label: 'CREATED', field: 'created_at',
-            format: val => val ? this.$d($moment(val, 'YYYY-MM-DD HH:mm').toDate(), 'short', this.$q.i18n.lang) : '-',
+            format: val => val ? this.$d(this.$moment(val, 'YYYY-MM-DD HH:mm').toDate(), 'short', this.$q.i18n.lang) : '-',
             align: 'center', sortable: true
           },
           {
@@ -259,7 +259,6 @@
 
           userService.index(filter, this.pagination.rowsPerPage, this.pagination.page, 'email', 'roles')
             .then((response) => {
-              console.warn(response);
               this.dataUsers = response.data;
               this.pagination.rowsPerPage = response.meta.page.perPage;
               this.pagination.page = response.meta.page.currentPage;
@@ -294,7 +293,6 @@
           id: this.userToChange.id,
           status: this.statusToChange,
         };
-        console.log(datax)
 
         userService.update(datax, datax.id)
           .then(response => {
