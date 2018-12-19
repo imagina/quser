@@ -23,17 +23,17 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
         helper.storage.set('depSelected', deparmentSelected)
 
         helper.storage.set('userData', data.userdata).then(response => {
-          auth.hasAccess('iprofile.api.login').then(can => {
-            if (can) {
+          /*auth.hasAccess('iprofile.api.login').then(can => {
+            if (can) {*/
               dispatch("AUTH_SUCCESS", {
                 userToken: data.userToken,
                 userId: data.userdata.id,
                 userData: data.userdata
               });
-            } else {
+            /*} else {
               alert.error("User without access", "top");
             }
-          })
+          })*/
         })
         //dispatch('setLogoutTimer', res.data.expiresIn)
       }).catch(error => {

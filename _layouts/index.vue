@@ -114,17 +114,9 @@
                     </q-btn>
                   </q-td>
                 </q-table>
-
-
-
               </div>
-
-
-
             </div>
-
           </div>
-
         </div>
       </div>
 
