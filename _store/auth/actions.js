@@ -1,5 +1,5 @@
 import router from 'src/router/index';
-import authService from '../../_services/auth';
+import profileService from '@imagina/quser/_services/profile/index';
 import auth from '../../_plugins/auth';
 import {alert} from '@imagina/qhelper/_plugins/alert';
 import {helper} from '@imagina/qhelper/_plugins/helper';
@@ -9,7 +9,7 @@ import store from 'src/store/index'
 
 export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
   if (navigator.onLine)
-    return authService.login(authData.username, authData.password)
+    return profileService.auth.login(authData.username, authData.password)
       .then(response => {
         let data = response.data
 
@@ -23,17 +23,17 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
         helper.storage.set('depSelected', deparmentSelected)
 
         helper.storage.set('userData', data.userdata).then(response => {
-          /*auth.hasAccess('iprofile.api.login').then(can => {
-            if (can) {*/
+          auth.hasAccess('iprofile.api.login').then(can => {
+            if (can) {
               dispatch("AUTH_SUCCESS", {
                 userToken: data.userToken,
                 userId: data.userdata.id,
                 userData: data.userdata
               });
-            /*} else {
+            } else {
               alert.error("User without access", "top");
             }
-          })*/
+          })
         })
         //dispatch('setLogoutTimer', res.data.expiresIn)
       }).catch(error => {
@@ -100,7 +100,7 @@ export const AUTH_ERROR = ({commit, dispatch}) => {
 export const AUTH_LOGOUT = ({commit, dispatch}) => {
 
   if (navigator.onLine)
-    authService.logout();
+    profileService.auth.logout();
 
   dispatch("AUTH_CLEAR");
 };

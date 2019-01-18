@@ -77,7 +77,7 @@
   import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import {helper} from '@imagina/qhelper/_plugins/helper'
-
+  import authService from '@imagina/quser/_services/profile/index';
   export default {
     data() {
       return {

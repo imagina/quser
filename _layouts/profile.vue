@@ -244,7 +244,7 @@
 
 <script>
   /*Services*/
-  import authService from '../_services/auth';
+  import authService from '../_services/profile/auth';
   import profileService from '../_services/profile';
 
   /*Plugins*/

@@ -131,9 +131,7 @@
   import {array} from '@imagina/qhelper/_plugins/array'
 
   /*Services*/
-  import departmentServices from '@imagina/quser/_services/departments'
-  import rolesServices from '@imagina/quser/_services/roles'
-  import userServies from '@imagina/quser/_services/users'
+  import profileService from '@imagina/quser/_services/profile/index'
 
   export default {
     props: {},
@@ -185,7 +183,14 @@
       getUsers(page, done){
         this.usersNotFound = false
         //Request users
-        userServies.index(this.filter,12,page).then(response => {
+        let params = {
+          params:{
+            filter:this.filter,
+            take: 12,
+            page: page
+          }
+        }
+        profileService.crud.index('profile.users',params).then(response => {
           setTimeout(() => {
             if(response.data.length){//Load data
               if(page > this.page){
@@ -224,7 +229,7 @@
 
       //Get Departments
       getDepartments(){
-        departmentServices.index().then(response => {
+        profileService.crud.index('iprofile.departments').then(response => {
           let departments =  response.data
           if(departments && departments.length){
             this.departmentsSelect = array.select(departments)
@@ -234,7 +239,7 @@
 
       //Get Roles
       getRoles(){
-        rolesServices.index().then(response => {
+        profileService.crud.index('profile.roles').then(response => {
           let roles = response.data
           if(roles && roles.length){
             this.rolesSelect = array.select(roles)

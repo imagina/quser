@@ -1,27 +1,28 @@
 <template>
   <q-page class="relative-position">
-
+    
     <div class="q-layout-page row justify-center layout-padding">
-
+      
       <div class="text_title text-blue-9 col-xs-12 q-title text-right">
         <span>USERS</span>
       </div>
-
+      
       <div class="q-py-md q-title col-xs-12 text-negative">
-        • LIST USERS
+        • USERS LIST
       </div>
-
+      
       <!-- Content -->
       <div id="listUserContent" class="col-12">
         <div class="row gutter-sm justify-center relative-position">
-
-
+          
+          
           <!-- TABLE LIST USERS -->
           <div class="col-12">
-            <div >
-
+            <div>
+        
               <div class="table-responsive" style="overflow-x: scroll">
                 <q-table
+                  ref="userList"
                   :loading="loading"
                   :data="dataUsers"
                   :visible-columns="visibleColumns"
@@ -30,7 +31,7 @@
                   :pagination.sync="pagination"
                   row-key="name"
                   color="secondary"
-                  @request="pagination.page++;getData()"
+                  @request="getData"
                 >
                   <!--= Search =-->
                   <template slot="top-left" slot-scope="props">
@@ -39,13 +40,13 @@
                       clearable
                       color="secondary"
                       v-model="filter.search"
-                      @input="pagination.page = 1; getData()"
-
+                      @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
+                      
                       class="col-6"
                     />
-
+                  
                   </template>
-
+                  
                   <!--= Config Table =-->
                   <template slot="top-right" slot-scope="props">
                     <q-table-columns
@@ -54,11 +55,11 @@
                       v-model="visibleColumns"
                       :columns="columnsTable"
                     />
-
+                    
                     <q-toggle
                       class="q-mx-sm"
                       v-model="filter.deactivateds"
-                      @input="pagination.page = 1; getData()"
+                      @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
                       label="Show disabled users"/>
                     <q-btn
                       flat round dense
@@ -66,7 +67,7 @@
                       @click="props.toggleFullscreen"
                     />
                   </template>
-
+                  
                   <!--= Custom Columns =-->
                   <q-td slot="body-cell-role"
                         slot-scope="props" :props="props">
@@ -86,7 +87,7 @@
                         Edit
                       </q-tooltip>
                     </q-btn>
-
+                    
                     <q-btn
                       size="sm" rounded
                       class="q-ml-sm"
@@ -99,7 +100,7 @@
                         Disable
                       </q-tooltip>
                     </q-btn>
-
+                    
                     <q-btn
                       size="sm" rounded
                       class="q-ml-sm"
@@ -114,13 +115,19 @@
                     </q-btn>
                   </q-td>
                 </q-table>
+              
+              
               </div>
+            
+            
             </div>
+          
           </div>
+        
         </div>
       </div>
-
-
+      
+      
       <!--======================== DIALOG DEACTIVE AND REACTIVE USER ======================-->
       <q-dialog
         v-model="deactivate"
@@ -132,20 +139,20 @@
              slot="title">
           Are you sure to {{statusToChange ? 'reactivate' : 'deactivate'}} this user?
         </div>
-
-
+        
+        
         <template slot="buttons" slot-scope="props">
-
+          
           <q-btn flat :label="statusToChange ? 'Reactivate' : 'Deactivate'" @click="setStatusUser()"/>
-
+          
           <q-btn flat label="Cancel" @click="userToChange = ''; deactivate = false"/>
         </template>
       </q-dialog>
-
-
+      
+      
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
         <q-btn fab-mini color="secondary"
-               icon="fas fa-plus"
+               icon="add"
                @click="createUser">
           <q-tooltip>
             New User
@@ -157,22 +164,23 @@
 </template>
 <script>
   /*Services*/
-  import userService from '../_services/users'
-
+  import profileService from '../_services/profile/index'
+  
   /*Plugins*/
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import {helper} from '@imagina/qhelper/_plugins/helper'
   import auth from '../_plugins/auth'
-
+  
   export default {
     props: {},
     components: {},
     watch: {},
     mounted() {
+      console.warn(this.$q);
       this.$nextTick(function () {
         if (auth.hasAccess('fhia.roles.dept-manager')) {
-          this.getData()
-
+          this.getData({pagination:this.pagination,filter:this.filter});
+          
         } else {
           alert.error('Permission Denied', 'bottom')
           this.$router.push('/')
@@ -189,8 +197,8 @@
         loading: false,
         dataUsers: [],
         visibleColumns: [
-          'id', 'full_name', 'role',
-          'created_at', 'actions'
+          'id', 'fullName', 'role',
+          'createdAt', 'actions'
         ],
         columnsTable: [
           {
@@ -198,7 +206,7 @@
             align: 'center', sortable: true
           },
           {
-            name: 'full_name', label: 'USER', field: 'full_name',
+            name: 'fullName', label: 'USER', field: 'fullName',
             align: 'left', sortable: true
           },
           {
@@ -210,19 +218,19 @@
             align: 'left', sortable: true
           },
           {
-            name: 'created_at', label: 'CREATED', field: 'created_at',
+            name: 'createdAt', label: 'CREATED', field: 'createdAt',
             format: val => val ? this.$d(this.$moment(val, 'YYYY-MM-DD HH:mm').toDate(), 'short', this.$q.i18n.lang) : '-',
             align: 'center', sortable: true
           },
           {
-            name: 'updated_at', label: 'UPDATED', field: 'updated_at',
+            name: 'updatedAt', label: 'UPDATED', field: 'updatedAt',
             align: 'center', sortable: true
           },
           {
             name: 'actions', label: 'ACTIONS', field: 'actions',
             align: 'center'
           },
-
+        
         ],
         separatorTable: 'horizontal',
         filterTable: '',
@@ -238,18 +246,28 @@
       }
     },
     methods: {
-      getData() {
+      getData({ pagination, filter }) {
+
         this.loading = true;
-        let page = this.pagination.page;
+
         helper.storage.get.item("depSelected").then(response => {
           let departmentId = response
           let filter = {};
-
+          
           //departmentId != 'all' ? filter.department = departmentId : false;
           this.filter.search != '' ? filter.search = this.filter.search : false;
           filter.status = this.filter.deactivateds ? [0, 1] : [1];
-
-          userService.index(filter, this.pagination.rowsPerPage, this.pagination.page, 'email', 'roles')
+  
+          let params={
+            params:{
+              filter: filter,
+              take: pagination.rowsPerPage,
+              page: pagination.page,
+              fields: 'id,first_name,last_name,created_at,updated_at',
+              include: 'roles'
+            }
+          }
+        profileService.crud.index('profile.users',params)
             .then((response) => {
               this.dataUsers = response.data;
               this.pagination.rowsPerPage = response.meta.page.perPage;
@@ -259,7 +277,7 @@
                 element['actions'] = ""
               })
               this.loading = false
-
+              
             })
             .catch((error) => {
               alert.error('No users found', 'bottom')
@@ -270,13 +288,13 @@
       createUser(id) {
         this.$router.push('/users/create')
       },
-
+      
       dialogChangeStatus(user, status) {
         this.userToChange = user;
         this.statusToChange = status;
         this.deactivate = true;
       },
-
+      
       setStatusUser() {
         this.deactivate = false
         this.loading = true
@@ -285,8 +303,7 @@
           id: this.userToChange.id,
           status: this.statusToChange,
         };
-
-        userService.update(datax, datax.id)
+        profileService.crud.update('profile.users',datax.id,datax)
           .then(response => {
             this.loading = false;
             this.userToChange.status = this.statusToChange;
@@ -299,12 +316,12 @@
           })
       }
     }
-
+    
   }
 </script>
 <style lang="stylus">
   @import "~variables";
-
+  
   #listUserContent
     border 1px solid $grey-4
 </style>
