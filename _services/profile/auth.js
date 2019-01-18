@@ -26,6 +26,8 @@ export default {
       password
     };
     
+    // We merge grant type and client secret stored in configuration
+    Object.assign(data, config('profile.authLogin'));
     return new Promise((resolve, reject) => {
       Http.post(config('profile.authLogin'), data)
       .then((response) => {

@@ -1,21 +1,17 @@
-import {Cookies, LocalStorage} from 'quasar'
-import Config from 'src/config/index'
-import {helper} from '@imagina/qhelper/_plugins/helper'
-import {Notify} from 'quasar'
-import http from "axios/index";
-
+import {helper} from '@imagina/qhelper/_plugins/helper';
 
 class Auth {
-
   constructor() {
-
+    helper.storage.get.item("userData").then(user => {
+      this.user = user
+    })
   }
 
   /**
+   * Validate permissions of user
    *
-   * @param permission {string}
-   * @returns {boolean}
-   * Example : auth.hasAccess('account.api-keys.create');
+   * @param can
+   * @returns {Promise<boolean>}
    */
   async hasAccess(can) {
     let userPermissions = await helper.storage.get.item("userData")
@@ -26,11 +22,5 @@ class Auth {
 }
 
 const auth = new Auth();
-/*
-export default ({Vue}) => {
-
-  Vue.prototype.$auth = auth;
-
-}*/
 
 export default auth;

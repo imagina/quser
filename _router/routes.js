@@ -51,9 +51,8 @@ Route.view('/users', home)
         guard: access,
         props: (route) => {
           return {
-            storeName: 'profile.departments',
+            storeName: 'departments',
             singularName: 'department',
-            pluralName: 'departments',
             parentId: route.params.parentId || null, ...departments,
             doPage: false
           }

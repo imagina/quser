@@ -3,7 +3,7 @@ import exportFromJSON from 'export-from-json'
 import {alert} from '@imagina/qhelper/_plugins/alert'
 import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
 import _pick from 'lodash.pick'
-import service from '../../_services/profile/index'
+import departmentService from '../../_services/profile/departments'
 
 /**
  *
@@ -12,10 +12,9 @@ import service from '../../_services/profile/index'
 export const crudTable = {
   inline: null,
   headers: [
-    { text: 'Id', value: 'id' },
     { text: 'Title', value: 'title' },
-    { text: 'Updated At', value: 'updatedAt', type: 'datetime' },
-    { text: 'Created At', value: 'createdAt', type: 'datetime' }
+    { text: 'Updated At', value: 'updated_at', type: 'datetime' },
+    { text: 'Created At', value: 'created_at', type: 'datetime' }
   ],
 
 }
@@ -116,7 +115,7 @@ export const crudOps = { // CRUD
         exportFromJSON({ data, fileName, exportType })
       })
       .catch((error) => {
-        let errorMessage = error ? error : 'No Departments found';
+        let errorMessage = error.response.data.error ? error.response.data.error : 'No Departments found';
         alert.error(errorMessage, 'bottom')
       })
   },
@@ -125,11 +124,11 @@ export const crudOps = { // CRUD
   delete: async (payload) => {
     let {id, ...attributes} = payload
 
-    await service.crud.delete('profile.departments',id)
+    await departmentService.delete(id)
       .then((response) => {
         alert.success('Department Deleted', 'top')
       }).catch(error => {
-        let errorMessage = error ? error: 'Delete failed';
+        let errorMessage = error.response.data.error ? error.response.data.error : 'Delete failed';
         alert.error(errorMessage, 'bottom')
       })
 
@@ -143,20 +142,14 @@ export const crudOps = { // CRUD
     for (var key in filterData)
       filter[key] = filterData[key].value
 
-      let params = {
-        params:{
-          filter:filter,
-          page: pagination.page ? pagination.page : 1,
-          take: 10,
-          fields:'id,title,updated_at,created_at'
-        }
-      }
-    
-      await service.crud.index('profile.departments',params)
+
+      let page = pagination.page ? pagination.page : 1;
+
+      await departmentService.index(filter,10,page)
         .then((response) => {
           data = response;
       }).catch(error => {
-        let errorMessage = error ? error : 'No departments found';
+        let errorMessage = error.response.data.error ? error.response.data.error : 'No departments found';
         alert.error(errorMessage, 'bottom')
       })
     return {records:data.data,pagination:data.meta}
@@ -166,16 +159,12 @@ export const crudOps = { // CRUD
   show: async (payload) => {
     const {id} = payload
     let record = { }
-    let params = {
-        params:{
-          fields:'id,title,updated_at,created_at'
-        }
-    }
-    await service.crud.show('profile.departments',id,params)
+    let fields = 'id,title,updated_at,created_at'
+    await departmentService.show(id,null,fields)
       .then((response) => {
         record = response.data;
       }).catch(error => {
-        let errorMessage = error ? error : 'department not found';
+        let errorMessage = error.response.data.error ? error.response.data.error : 'department not found';
         alert.error(errorMessage, 'bottom')
       })
     return record
@@ -184,12 +173,14 @@ export const crudOps = { // CRUD
 
   create: async (payload) => {
     const {record: {id, ...attributes}} = payload
-   
-    await service.crud.create('profile.departments',{attributes:attributes})
+    let data = {
+      attributes: attributes
+    }
+    await departmentService.create(data)
       .then((response) => {
         alert.success('Department Created', 'top')
       }).catch(error => {
-        let errorMessage = error ? error : 'Create failed';
+        let errorMessage = error.response.data.error ? error.response.data.error : 'Create failed';
         alert.error(errorMessage, 'bottom')
       })
 
@@ -197,12 +188,15 @@ export const crudOps = { // CRUD
 
   update: async (payload) => {
     let {record: {id, ...attributes}} = payload
-    attributes["id"] = id;
-    await service.crud.update('profile.departments',id,{attributes:attributes})
+    let data = {
+      id: id,
+      attributes:attributes
+    }
+    await departmentService.update(data,data.id)
       .then((response) => {
         alert.success('Department Updated', 'top')
       }).catch(error => {
-        let errorMessage = error ? error : 'Update failed';
+        let errorMessage = error.response.data.error ? error.response.data.error : 'Update failed';
         alert.error(errorMessage, 'bottom')
       })
 
