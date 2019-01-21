@@ -15,8 +15,8 @@
   
     <q-card class="q-box no-shadow col-12 relative-position">
     
-      <q-card-title class=" q-pa-none bg-grey-2">
-        <div class="q-box-title q-subheading float-left text-primary q-px-sm">
+      <q-card-title class="q-box-title q-pa-none bg-grey-2">
+        <div class="q-subheading float-left text-primary q-px-sm">
         Information
         </div>
       </q-card-title>
@@ -26,11 +26,11 @@
             <!-- First Name -->
             <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
-                :error="$v.form.first_name.$error"
+                :error="$v.form.firstName.$error"
                 error-label="This field is required"
               >
                 <q-input type="text"
-                         v-model="form.first_name"
+                         v-model="form.firstName"
                          float-label="First Name*:"
                 />
               </q-field>
@@ -39,10 +39,10 @@
             <!-- Last Name -->
             <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
-                :error="$v.form.last_name.$error"
+                :error="$v.form.lastName.$error"
                 error-label="This field is required"
               >
-                <q-input v-model="form.last_name" float-label="Last Name*:"/>
+                <q-input v-model="form.lastName" float-label="Last Name*:"/>
               </q-field>
             </div>
 
@@ -69,10 +69,10 @@
             <!-- Confirm Password -->
             <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
-                :error="$v.form.password_confirmation.$error"
+                :error="$v.form.passwordConfirmation.$error"
                 error-label="This field is required"
               >
-                <q-input v-model="form.password_confirmation" type="password" float-label="Password Confirm*:"/>
+                <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm*:"/>
               </q-field>
             </div>
 
@@ -86,9 +86,9 @@
                 <q-select
                   multiple chips
                   float-label="Departments"
-                  v-model="dep"
+                  v-model="form.departments"
                   :options="departments"
-                  @input="changeDepartment()"
+                  
                 />
               </q-field>
             </div>
@@ -112,7 +112,7 @@
 
             <!--Activated -->
             <div class="col-12 col-md-8 text-right q-pa-lg">
-              <q-toggle v-model="form.status" label="Activated" />
+              <q-toggle v-model="form.activated" label="Activated" />
             </div>
           </div>
         </div>
@@ -132,12 +132,12 @@
 <script>
   /*Services*/
   import profileService from '@imagina/quser/_services/profile/index'
-
+  
   /*Plugins*/
   import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import auth from '../_plugins/auth'
-  import userService from '../_services/users'
+  
 
   export default {
     props: {},
@@ -150,14 +150,14 @@
     },
     validations: {
       form: {
-        first_name: {required},
+        firstName: {required},
         roles: {required},
         departments: {required},
-        last_name: {required},
+        lastName: {required},
         password: {
           minLength: minLength(7)
         },
-        password_confirmation: {
+        passwordConfirmation: {
 
           minLength: minLength(7),
           sameAsPassword: sameAs('password')
@@ -193,25 +193,27 @@
         this.departments = []
         this.dep = []
         return {
-          first_name: '',
+          firstName: '',
           departments: [],
           email: '',
-          first_name: '',
-          last_name: '',
+          lastName: '',
           roles: '',
-          status: true
+          activated: true
         }
       },
       getData() {
         this.loading = true;
         if (this.id) {
-          userService.show(this.id).then(response => {
+          this.dep = [];
+          profileService.crud.show('profile.users',this.id,{params:{include:'roles,departments'}}).then(response => {
+            console.warn(response.data)
             this.form = response.data;
-            this.form.roles = (this.form.roles && this.form.roles.length) ? this.form.roles[0].id : ''
-            this.form.status == 0 ? this.form.status = false : this.form.status = true;
+            this.form.roles = (this.form.roles && this.form.roles.length) ? this.form.roles[0].id.toString() : ''
+            this.form.activated == 0 ? this.form.activated = false : this.form.activated = true;
             this.form.departments.forEach((element, index) => {
-              this.dep.push(element.id)
+              this.dep.push(element.id.toString())
             })
+            this.form.departments = this.dep;
             this.loading = false;
           }).catch(error => {
             let errorMessage = error.response.data.error ? error.response.data.error : 'Profile not Found';
@@ -222,19 +224,15 @@
           this.loading = false;
 
         this.rolesLoading = true
-        userService.roles('', 20).then(response => {
-          this.roles = response.data;
+        profileService.crud.index('profile.roles').then(response => {
+          this.roles = this.$helper.array.select(response.data);
           this.rolesLoading = false;
         });
 
         this.departmentsLoading = true
-        let params = {
-          params : {
-            take:1000
-          }
-        }
-        profileService.crud.index('iprofile.departments',params).then(response => {
-          this.departments = response.data
+       
+        profileService.crud.index('profile.departments',{}).then(response => {
+          this.departments = this.$helper.array.select(response.data)
           this.departmentsLoading = false
         })
       },
@@ -259,38 +257,34 @@
         if (!this.$v.$error) {
           this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
-          let departmentService = Object.assign(data.departments)
-
-          /*Get only Id from departments*/
-          data.departments = [];
-          departmentService.forEach((item) => {
-            data.departments.push(item.id)
-          })
-
+          data.roles = [data.roles];
+          
           if (this.id) {
-            userService.update(data, data.id).then(response => {
+            
+            profileService.crud.update('profile.users',data.id,data).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
             }).catch(error => {
-              let errorMessage = error.response.data.error ?
-                error.response.data.error : 'User not updated';
+              let errorMessage = error ?
+                error : 'User not updated';
               alert.error(errorMessage, 'bottom');
               this.loading = false;
             })
           } else {
-            userService.create(data).then(response => {
+            profileService.crud.create('profile.users',data).then(response => {
               alert.success('User created', 'top')
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
             }).catch(error => {
-              let errorMessage = error.response.data.error ? error.response.data.error : 'User not created';
+              
+              let errorMessage = error ? error : 'User not created';
               alert.error(errorMessage, 'bottom')
-              this.loading = false;
+              
             })
           }
         } else {
-          alert.error('Please review fields again.', 'bottom')
+          alert.error('Please review fields again. asd', 'bottom')
         }
       }
     }
@@ -299,6 +293,10 @@
 </script>
 <style lang="stylus">
   @import "~variables";
+
+  .q-card
+    border 1px solid $grey-4
+    margin-bottom 15px
 
   .form-user-data {
     border 1px solid $grey-4

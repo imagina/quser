@@ -127,11 +127,11 @@
             <div class="col-12">
               
               <q-tabs animated swipeable inverted color="secondary" align="justify">
-                
-                <!--<q-tab default name="fields" slot="title" label="Fields"/>-->
+  
                 <q-tab name="address" slot="title" label="Addresses"/>
                 <q-tab name="contacts" slot="title" label="Contacts"/>
                 <q-tab name="socials" slot="title" label="Social Networks"/>
+                <!--<q-tab default name="fields" slot="title" label="Fields"/>-->
                 
                 <!--
                 <q-tab-pane keep-alive name="fields">
@@ -367,7 +367,7 @@
                     <div class="col-12 col-md-6">
                       <q-list highlight>
                         <q-list-header>Contacts Added</q-list-header>
-                        <q-item separator v-for="(contact, index) in form.contacts.value" :key="index">
+                        <q-item separator v-for="(contact, index) in fields.contacts.value" :key="index">
                           
                           <q-item-main>
                             {{index+1}}. {{contact.firstName}} {{contact.lastName}} - {{contact.cellularPhone}}
@@ -424,7 +424,7 @@
                     <div class="col-12 col-md-6">
                       <q-list highlight>
                         <q-list-header>Social Networks Added</q-list-header>
-                        <q-item separator v-for="(social, index) in form.socialNetworks.value" :key="index">
+                        <q-item separator v-for="(social, index) in fields.socialNetworks.value" :key="index">
                           
                           <q-item-main>
                             {{social.name}}: {{social.value}}
@@ -584,6 +584,8 @@
           cellularPhone:{value:''},
           birthday:{value:''},
           identification:{value:''},
+          contacts:{value:[]},
+          socialNetworks:{value:[]},
         },
         loading: false,
         profile: '',
@@ -654,18 +656,20 @@
         
         let fields = [
           {name: 'cellularPhone', value: ''},
-          {name: 'email', value: ''},
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
-          {name: 'mainImage', value: ''}
+          {name: 'mainImage', value: ''},
+          {name: 'socialNetworks', value: ''},
+          {name: 'contacts', value: ''}
         ]
         
         helper.storage.get.item('userData').then(response => {
-          let aux;
-          console.warn(aux = helper.convertToFrontField(fields,response.fields));
-          console.warn(helper.convertToBackField(aux));
-          this.userData = response
+ 
+          console.warn(fields,response.fields,helper.convertToFrontField(fields,response.fields))
+          
+          this.userData = response;
           this.form = response;
+          this.fields = helper.convertToFrontField(fields,response.fields);
           this.image = response.mainimage ? response.mainimage : 'assets/image/default.jpg';
   
         })
@@ -973,6 +977,7 @@
       saveProfile() {
         //this.loading = true;
         console.warn(this.orderDataUpdate())
+    return
         let data = this.orderDataUpdate()
         
         profileService.crud.update('profile.users',this.form.id, data).then(response => {
@@ -1024,17 +1029,10 @@
           firstName: this.form.firstName,
           lastName: this.form.lastName,
           email: this.form.email,
-          fields: this.form.fields
-            .concat(birthday)
-            .concat(identification)
-            .concat(mainImage),
+          fields: helper.convertToBackField(this.fields),
           addresses: this.form.addresses,
         }
-        if(this.form.socialNetworks.value)
-          data.fields.concat(this.form.socialNetworks)
-        
-        if(this.form.contacts.value)
-          data.fields.concat(this.form.contacts)
+       
         
         return data
       }
