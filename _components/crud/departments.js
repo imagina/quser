@@ -209,3 +209,12 @@ export const crudOps = { // CRUD
   }
 
 }
+
+
+/*
+* 
+* customerName
+fieldManager
+installerName
+paymentMethod
+contractPrice*/

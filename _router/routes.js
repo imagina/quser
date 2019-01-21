@@ -40,10 +40,14 @@ Route.view('/users', home)
         meta: {permission: 'iprofile.api.user.edit'},
         guard: access
       });
-      
-      Route.view('/me/profile', require('../_layouts/profile').default).options({
-        name: 'user.profile.me'
-      });
+  
+    Route.view('/me/profile', require('../_layouts/profile').default).options({
+      name: 'user.profile.me'
+    });
+  
+    Route.view('/me/profile/customer', require('../_layouts/profileForm').default).options({
+      name: 'user.profile.me'
+    });
       
       Route.view('/department', vueCrud).options({
         name: 'user.department',

@@ -13,10 +13,10 @@
       • {{title}}
     </div>
   
-    <q-card class="no-shadow col-12 relative-position">
+    <q-card class="q-box no-shadow col-12 relative-position">
     
-      <q-card-title class="q-pa-none bg-grey-2">
-        <div class="q-subheading float-left text-primary q-px-sm">
+      <q-card-title class=" q-pa-none bg-grey-2">
+        <div class="q-box-title q-subheading float-left text-primary q-px-sm">
         Information
         </div>
       </q-card-title>

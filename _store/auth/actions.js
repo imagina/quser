@@ -15,20 +15,20 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
 
         const now = new Date();
         const expirationDate = now.getTime() + ((env('DAYS_EXPIRE_SESSION') * 86400) * 1000)
-        const deparmentSelected = data.userdata.departments.length ? data.userdata.departments[0].id : 0;
+        const deparmentSelected = data.userData.departments.length ? data.userData.departments[0].id : 0;
 
         helper.storage.set('userToken', data.userToken)
-        helper.storage.set('userId', data.userdata.id)
+        helper.storage.set('userId', data.userData.id)
         helper.storage.set('expirationDate', expirationDate)
         helper.storage.set('depSelected', deparmentSelected)
 
-        helper.storage.set('userData', data.userdata).then(response => {
+        helper.storage.set('userData', data.userData).then(response => {
           auth.hasAccess('iprofile.api.login').then(can => {
             if (can) {
               dispatch("AUTH_SUCCESS", {
                 userToken: data.userToken,
-                userId: data.userdata.id,
-                userData: data.userdata
+                userId: data.userData.id,
+                userData: data.userData
               });
             } else {
               alert.error("User without access", "top");
