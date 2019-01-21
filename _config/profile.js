@@ -7,13 +7,13 @@ const moduleName = 'profile'
 const moduleVersion = 'v1'
 
 export default {
-  version: moduleVersion,
-  authLogin: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/auth/login',
-  authLogout: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/auth/logout',
-  addresses: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/addresses',
-  departments: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/departments',
-  departmentSettings: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/department-settings',
-  fields: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/fields',
-  users: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/users',
-  roles: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/roles'
+	version: moduleVersion,
+	authLogin: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/auth/login',
+	authLogout: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/auth/logout',
+	addresses: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/addresses',
+	departments: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/departments',
+	departmentsSettings: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/departments/settings',
+	fields: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/fields',
+	users: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/users',
+	roles: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/roles'
 }

@@ -26,11 +26,11 @@
             <!-- First Name -->
             <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
-                :error="$v.form.firstName.$error"
+                :error="$v.form.first_name.$error"
                 error-label="This field is required"
               >
                 <q-input type="text"
-                         v-model="form.firstName"
+                         v-model="form.first_name"
                          float-label="First Name*:"
                 />
               </q-field>
@@ -39,10 +39,10 @@
             <!-- Last Name -->
             <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
-                :error="$v.form.lastName.$error"
+                :error="$v.form.last_name.$error"
                 error-label="This field is required"
               >
-                <q-input v-model="form.lastName" float-label="Last Name*:"/>
+                <q-input v-model="form.last_name" float-label="Last Name*:"/>
               </q-field>
             </div>
 
@@ -69,10 +69,10 @@
             <!-- Confirm Password -->
             <div class="item_form col-12 col-md-4 q-px-sm">
               <q-field
-                :error="$v.form.passwordConfirmation.$error"
+                :error="$v.form.password_confirmation.$error"
                 error-label="This field is required"
               >
-                <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm*:"/>
+                <q-input v-model="form.password_confirmation" type="password" float-label="Password Confirm*:"/>
               </q-field>
             </div>
 
@@ -86,9 +86,9 @@
                 <q-select
                   multiple chips
                   float-label="Departments"
-                  v-model="form.departments"
+                  v-model="dep"
                   :options="departments"
-                  
+                  @input="changeDepartment()"
                 />
               </q-field>
             </div>
@@ -112,7 +112,7 @@
 
             <!--Activated -->
             <div class="col-12 col-md-8 text-right q-pa-lg">
-              <q-toggle v-model="form.activated" label="Activated" />
+              <q-toggle v-model="form.status" label="Activated" />
             </div>
           </div>
         </div>
@@ -132,12 +132,12 @@
 <script>
   /*Services*/
   import profileService from '@imagina/quser/_services/profile/index'
-  
+
   /*Plugins*/
   import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import auth from '../_plugins/auth'
-  
+  import userService from '../_services/users'
 
   export default {
     props: {},
@@ -150,14 +150,14 @@
     },
     validations: {
       form: {
-        firstName: {required},
+        first_name: {required},
         roles: {required},
         departments: {required},
-        lastName: {required},
+        last_name: {required},
         password: {
           minLength: minLength(7)
         },
-        passwordConfirmation: {
+        password_confirmation: {
 
           minLength: minLength(7),
           sameAsPassword: sameAs('password')
@@ -193,27 +193,25 @@
         this.departments = []
         this.dep = []
         return {
-          firstName: '',
+          first_name: '',
           departments: [],
           email: '',
-          lastName: '',
+          first_name: '',
+          last_name: '',
           roles: '',
-          activated: true
+          status: true
         }
       },
       getData() {
         this.loading = true;
         if (this.id) {
-          this.dep = [];
-          profileService.crud.show('profile.users',this.id,{params:{include:'roles,departments'}}).then(response => {
-            console.warn(response.data)
+          userService.show(this.id).then(response => {
             this.form = response.data;
-            this.form.roles = (this.form.roles && this.form.roles.length) ? this.form.roles[0].id.toString() : ''
-            this.form.activated == 0 ? this.form.activated = false : this.form.activated = true;
+            this.form.roles = (this.form.roles && this.form.roles.length) ? this.form.roles[0].id : ''
+            this.form.status == 0 ? this.form.status = false : this.form.status = true;
             this.form.departments.forEach((element, index) => {
-              this.dep.push(element.id.toString())
+              this.dep.push(element.id)
             })
-            this.form.departments = this.dep;
             this.loading = false;
           }).catch(error => {
             let errorMessage = error.response.data.error ? error.response.data.error : 'Profile not Found';
@@ -224,15 +222,19 @@
           this.loading = false;
 
         this.rolesLoading = true
-        profileService.crud.index('profile.roles').then(response => {
-          this.roles = this.$helper.array.select(response.data);
+        userService.roles('', 20).then(response => {
+          this.roles = response.data;
           this.rolesLoading = false;
         });
 
         this.departmentsLoading = true
-       
-        profileService.crud.index('profile.departments',{}).then(response => {
-          this.departments = this.$helper.array.select(response.data)
+        let params = {
+          params : {
+            take:1000
+          }
+        }
+        profileService.crud.index('iprofile.departments',params).then(response => {
+          this.departments = response.data
           this.departmentsLoading = false
         })
       },
@@ -257,34 +259,38 @@
         if (!this.$v.$error) {
           this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
-          data.roles = [data.roles];
-          
+          let departmentService = Object.assign(data.departments)
+
+          /*Get only Id from departments*/
+          data.departments = [];
+          departmentService.forEach((item) => {
+            data.departments.push(item.id)
+          })
+
           if (this.id) {
-            
-            profileService.crud.update('profile.users',data.id,data).then(response => {
+            userService.update(data, data.id).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
             }).catch(error => {
-              let errorMessage = error ?
-                error : 'User not updated';
+              let errorMessage = error.response.data.error ?
+                error.response.data.error : 'User not updated';
               alert.error(errorMessage, 'bottom');
               this.loading = false;
             })
           } else {
-            profileService.crud.create('profile.users',data).then(response => {
+            userService.create(data).then(response => {
               alert.success('User created', 'top')
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
             }).catch(error => {
-              
-              let errorMessage = error ? error : 'User not created';
+              let errorMessage = error.response.data.error ? error.response.data.error : 'User not created';
               alert.error(errorMessage, 'bottom')
-              
+              this.loading = false;
             })
           }
         } else {
-          alert.error('Please review fields again. asd', 'bottom')
+          alert.error('Please review fields again.', 'bottom')
         }
       }
     }
@@ -293,10 +299,6 @@
 </script>
 <style lang="stylus">
   @import "~variables";
-
-  .q-card
-    border 1px solid $grey-4
-    margin-bottom 15px
 
   .form-user-data {
     border 1px solid $grey-4

@@ -31,7 +31,7 @@
                   :pagination.sync="pagination"
                   row-key="name"
                   color="secondary"
-                  @request="getData"
+                  @request="getData({pagination:pagination,filter:filter})"
                 >
                   <!--= Search =-->
                   <template slot="top-left" slot-scope="props">
@@ -152,7 +152,7 @@
       
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
         <q-btn fab-mini color="secondary"
-               icon="add"
+               icon="fas fa-plus"
                @click="createUser">
           <q-tooltip>
             New User
@@ -164,7 +164,7 @@
 </template>
 <script>
   /*Services*/
-  import profileService from '../_services/profile/index'
+  import userService from '../_services/users'
   
   /*Plugins*/
   import {alert} from '@imagina/qhelper/_plugins/alert'
@@ -197,8 +197,8 @@
         loading: false,
         dataUsers: [],
         visibleColumns: [
-          'id', 'fullName', 'role',
-          'createdAt', 'actions'
+          'id', 'full_name', 'role',
+          'created_at', 'actions'
         ],
         columnsTable: [
           {
@@ -206,7 +206,7 @@
             align: 'center', sortable: true
           },
           {
-            name: 'fullName', label: 'USER', field: 'fullName',
+            name: 'full_name', label: 'USER', field: 'full_name',
             align: 'left', sortable: true
           },
           {
@@ -218,12 +218,12 @@
             align: 'left', sortable: true
           },
           {
-            name: 'createdAt', label: 'CREATED', field: 'createdAt',
+            name: 'created_at', label: 'CREATED', field: 'created_at',
             format: val => val ? this.$d(this.$moment(val, 'YYYY-MM-DD HH:mm').toDate(), 'short', this.$q.i18n.lang) : '-',
             align: 'center', sortable: true
           },
           {
-            name: 'updatedAt', label: 'UPDATED', field: 'updatedAt',
+            name: 'updated_at', label: 'UPDATED', field: 'updated_at',
             align: 'center', sortable: true
           },
           {
@@ -247,9 +247,9 @@
     },
     methods: {
       getData({ pagination, filter }) {
-
+        this.pagination = pagination
         this.loading = true;
-
+        let page = this.pagination.page;
         helper.storage.get.item("depSelected").then(response => {
           let departmentId = response
           let filter = {};
@@ -257,17 +257,8 @@
           //departmentId != 'all' ? filter.department = departmentId : false;
           this.filter.search != '' ? filter.search = this.filter.search : false;
           filter.status = this.filter.deactivateds ? [0, 1] : [1];
-  
-          let params={
-            params:{
-              filter: filter,
-              take: pagination.rowsPerPage,
-              page: pagination.page,
-              fields: 'id,first_name,last_name,created_at,updated_at',
-              include: 'roles'
-            }
-          }
-        profileService.crud.index('profile.users',params)
+          
+          userService.index(filter, this.pagination.rowsPerPage, this.pagination.page, 'email', 'roles')
             .then((response) => {
               this.dataUsers = response.data;
               this.pagination.rowsPerPage = response.meta.page.perPage;
@@ -303,7 +294,8 @@
           id: this.userToChange.id,
           status: this.statusToChange,
         };
-        profileService.crud.update('profile.users',datax.id,datax)
+        
+        userService.update(datax, datax.id)
           .then(response => {
             this.loading = false;
             this.userToChange.status = this.statusToChange;
