@@ -263,7 +263,7 @@
               filter: filter,
               take: pagination.rowsPerPage,
               page: pagination.page,
-              fields: 'id,f,created_at,updated_at',
+              fields: 'id,first_name,last_name,created_at,updated_at',
               include: 'roles'
             }
           }
