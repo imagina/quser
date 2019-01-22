@@ -472,6 +472,7 @@
 
       //-------------------------------------------- ADDRESS
       addField(){
+        this.fieldExist=false;
         this.$v.field.$touch()
         if (this.$v.field.$error) {
           alert.error('Please review the fields again.');
@@ -549,6 +550,7 @@
 
       //-------------------------------------------- ADDRESS
       addAddress(){
+        this.addressExist = false
         if(this.addressEdit){
           this.addresses.push(this.address);
           this.address={
@@ -603,6 +605,7 @@
       },
       //-------------------------------------------- CONTACTS
       addContact(){
+        this.contactExist = false
         if(this.contactEdit){
           this.contacts.push(this.contact);
           this.contact={

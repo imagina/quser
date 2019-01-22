@@ -127,7 +127,7 @@
             <div class="col-12">
               
               <q-tabs animated swipeable inverted color="secondary" align="justify">
-  
+                
                 <q-tab name="address" slot="title" label="Addresses"/>
                 <q-tab name="contacts" slot="title" label="Contacts"/>
                 <q-tab name="socials" slot="title" label="Social Networks"/>
@@ -253,10 +253,10 @@
                     <div class="col-12 col-md-6">
                       
                       <q-field
-                        :error="$v.address.address.$error"
+                        :error="$v.address.address1.$error"
                         error-label="This field is required"
                       >
-                        <q-input v-model="address.address"
+                        <q-input v-model="address.address1"
                                  clearable
                                  float-label="Address:"
                                  @input="deleteError"
@@ -304,7 +304,8 @@
                         <q-item separator v-for="(address, index) in form.addresses" :key="index">
                           
                           <q-item-main>
-                            {{index+1}}. {{address.address}} - {{address.city}} - {{address.zipCode}}
+                            {{index+1}}. {{address.address1}} - {{address.state}} - {{address.city}} -
+                            {{address.zipCode}}
                           </q-item-main>
                           
                           <q-item-side right>
@@ -577,15 +578,15 @@
             value: 'Whatsapp',
             color: 'green'
           },
-          
+        
         ],
         
-        fields:{
-          cellularPhone:{value:''},
-          birthday:{value:''},
-          identification:{value:''},
-          contacts:{value:[]},
-          socialNetworks:{value:[]},
+        fields: {
+          cellularPhone: {value: ''},
+          birthday: {value: ''},
+          identification: {value: ''},
+          contacts: {value: []},
+          socialNetworks: {value: []},
         },
         loading: false,
         profile: '',
@@ -645,7 +646,7 @@
         value: {required},
       },
       address: {
-        address: {required},
+        address1: {required},
         city: {required},
         state: {required},
         zipCode: {required}
@@ -659,384 +660,464 @@
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
           {name: 'mainImage', value: ''},
-          {name: 'socialNetworks', value: ''},
-          {name: 'contacts', value: ''}
+          {name: 'socialNetworks', value: []},
+          {name: 'contacts', value: []}
         ]
         
         helper.storage.get.item('userData').then(response => {
- 
-          console.warn(fields,response.fields,helper.convertToFrontField(fields,response.fields))
           
-          this.userData = response;
-          this.form = response;
-          this.fields = helper.convertToFrontField(fields,response.fields);
-          this.image = response.mainimage ? response.mainimage : 'assets/image/default.jpg';
+          console.warn(fields, response.fields, helper.convertToFrontField(fields, response.fields))
+        
+        this.userData = response;
+        this.form = response;
+        this.fields = helper.convertToFrontField(fields, response.fields);
+        this.image = response.mainimage ? response.mainimage : 'assets/image/default.jpg';
+        
+      })
+      },
+      
+      async getSignedUrl(files)
+  {
+    setTimeout(() => {
+      this.image = this.form.mainimage = files[0].__img.src;
+  },
+    500
+  )
+  }
+  ,
   
-        })
-      },
-      
-      async getSignedUrl(files) {
-        setTimeout(() => {
-          this.image = this.form.mainimage = files[0].__img.src;
-        }, 500)
-      },
-      
-      addSocial: function () {
-        if (!this.profile.social) {
-          this.profile.social = [];
-        }
-        this.profile.social.push({
-          label: '',
-          color: '',
-          desc: '',
-        });
-      },
-      
-      maskPhone(num) {
-        return helper.maskPhone(num)
-      },
-      
-      removeSocial: function (index) {
-        this.profile.social.splice(index, 1);
-      },
-      
-      addLabelAndColor: function (index, label, color) {
-        this.profile.social[index].label = label;
-        this.profile.social[index].color = color;
-      },
-      
-      /*check fields required from form*/
-      
-      
-      deleteError() {
-        this.fieldExist = false;
-        this.addressExist = false;
-        this.contactExist = false;
-      },
-      
-      //-------------------------------------------- FIELDS
-      addField() {
-        this.$v.field.$touch()
-        if (this.$v.field.$error) {
-          alert.error('Please review the fields again.');
-          return
-        }
-        this.$v.field.$reset()
-        if (this.fieldEdit) {
-          this.form.fields.push(this.field);
-          this.field = {
-            name: '',
-            value: '',
-          };
-          this.fieldEdit = false;
-        } else if (!this.existField() && !this.fieldEdit) {
-          //quitar las opciones
-          if (this.field.name == 'eveningPhone') {
-            this.fieldOptions[0].disable = true;
-          } else if (this.field.name == 'dayPhone') {
-            this.fieldOptions[1].disable = true;
-          } else if (this.field.name == 'email') {
-            this.fieldOptions[2].disable = true;
-          } else if (this.field.name == 'cellularPhone') {
-            this.fieldOptions[3].disable = true;
-          }
-          this.form.fields.push(this.field);
-          this.field = {
-            name: '',
-            value: '',
-          };
-        }
-      },
-      existField() {
-        if (this.form.fields.find(item => item.value === this.field.value)) {
-          this.fieldExist = true;
-          return true;
-        } else
-          this.fieldExist = false;
-        return false;
-      },
-      cancelField() {
-        this.$v.field.$reset()
-        this.fieldEdit = false;
-        this.form.fields.push(this.fieldAux);
-        this.field = {
-          name: '',
-          value: '',
-        };
-      },
-      editField(data) {
-        this.fieldAux = Object.assign({}, data);
-        
-        var indice = this.form.fields.indexOf(data);
-        this.form.fields.splice(indice, 1);
-        
-        this.fieldEdit = true;
-        this.field = Object.assign({}, data);
-      },
-      
-      deleteField(data, pos) {
-        if (data.name == 'eveningPhone') {
-          this.fieldOptions[0].disable = false;
-        } else if (data.name == 'dayPhone') {
-          this.fieldOptions[1].disable = false;
-        } else if (data.name == 'email') {
-          this.fieldOptions[2].disable = false;
-        } else if (data.name == 'cellularPhone') {
-          this.fieldOptions[3].disable = false;
-        }
-        this.form.fields.splice(pos, 1);
-      },
-      
-      //-------------------------------------------- SOCIAL NETWORKS
-      addSocial() {
-        this.$v.social.$touch()
-        if (this.$v.social.$error) {
-          alert.error('Please review the fields again.');
-          return
-        }
-        this.$v.social.$reset()
-        if (this.socialEdit) {
-          this.form.socialNetworks.value.push(this.social);
-          this.social = {
-            name: '',
-            value: '',
-          };
-          this.socialEdit = false;
-        } else if (!this.existSocial() && !this.socialEdit) {
-          
-          this.form.socialNetworks.value.push(this.social);
-          this.social = {
-            name: '',
-            value: '',
-          };
-        }
-      },
-      existSocial() {
-        if (this.form.socialNetworks.value.find(item => item.value === this.social.value)) {
-          this.socialExist = true;
-          return true;
-        } else
-          this.socialExist = false;
-        return false;
-      },
-      cancelSocial() {
-        this.$v.social.$reset()
-        this.socialEdit = false;
-        this.form.socialNetworks.value.push(this.socialAux);
-        this.social = {
-          name: '',
-          value: '',
-        };
-      },
-      editSocial(data) {
-        this.socialAux = Object.assign({}, data);
-        
-        var indice = this.form.socialNetworks.value.indexOf(data);
-        this.form.socialNetworks.value.splice(indice, 1);
-        
-        this.socialEdit = true;
-        this.social = Object.assign({}, data);
-      },
-      
-      deleteSocial(data, pos) {
-        
-        this.form.socialNetworks.value.splice(pos, 1);
-      },
-      
-      
-      //-------------------------------------------- ADDRESS
-      addAddress() {
-        this.$v.address.$touch()
-        if (this.$v.address.$error) {
-          alert.error('Please review the fields again.');
-          return
-        }
-        this.$v.address.$reset()
-        if (this.addressEdit) {
-          this.form.addresses.push(this.address);
-          this.address = {
-            address: '',
-            city: '',
-            state: '',
-            zipCode: ''
-          };
-          this.addressEdit = false;
-        } else if (!this.existAddress()) {
-          this.form.addresses.push(this.address);
-          this.address = {
-            address: '',
-            city: '',
-            state: '',
-            zipCode: ''
-          };
-          this.addressEdit = false;
-        }
-      },
-      editAddress(data) {
-        this.addressAux = Object.assign({}, data);
-        this.addressEdit = true;
-        
-        var index = this.form.addresses.indexOf(data);
-        this.form.addresses.splice(index, 1);
-        
-        this.address = Object.assign({}, data);
-      },
-      cancelAddress() {
-        this.$v.address.$reset()
-        this.addressEdit = false;
-        this.form.addresses.push(this.addressAux);
-        this.address = {
-          address: '',
-          city: '',
-          state: '',
-          zipCode: ''
-        };
-      },
-      existAddress() {
-        
-        if (this.form.addresses.find(item => item.address === this.address.address)) {
-          this.addressExist = true;
-          return true;
-        } else
-          this.addressExist = false;
-        return false;
-      },
-      deleteAddress(data) {
-        this.form.addresses.splice(data, 1);
-      },
-      //-------------------------------------------- CONTACTS
-      addContact() {
-        
-        this.$v.contact.$touch()
-        if (this.$v.contact.$error) {
-          alert.error('Please review the fields again.');
-          return
-        }
-        this.$v.contact.$reset()
-        
-        if (this.contactEdit) {
-          this.form.contacts.value.push(this.contact);
-          this.contact = {
-            firstName: '',
-            lastName: '',
-            cellularPhone: '',
-            email: ''
-          };
-          this.contactEdit = false;
-        } else if (!this.existContact()) {
-          this.form.contacts.value.push(this.contact);
-          this.contact = {
-            firstName: '',
-            lastName: '',
-            cellularPhone: '',
-            email: ''
-          };
-          this.contactEdit = false;
-        }
-      },
-      editContact(data) {
-        this.contactAux = Object.assign({}, data);
-        this.contactEdit = true;
-        var index = this.form.contacts.value.indexOf(data);
-        this.form.contacts.value.splice(index, 1);
-        this.contact = Object.assign({}, data);
-      },
-      cancelContact() {
-        this.$v.contact.$reset()
-        this.contactEdit = false;
-        this.form.contacts.value.push(this.contactAux);
-        this.contact = {
-          firstName: '',
-          lastName: '',
-          cellularPhone: '',
-          email: ''
-        };
-      },
-      existContact() {
-        if (this.form.contacts.value.find(item => item.firstName === this.contact.firstName)) {
-          this.contactExist = true;
-          return true;
-        } else
-          this.contactExist = false;
-        return false;
-      },
-      deleteContact(data) {
-        this.form.contacts.value.splice(data, 1);
-      },
-      
-      submit() {
-        //this.$v.$touch();
-        
-        if (this.$v.$error) {
-          alert.error('Please review your fields again.', 'bottom');
-        } else {
-          this.saveProfile();
-        }
-      },
-      
-      saveProfile() {
-        //this.loading = true;
-        console.warn(this.orderDataUpdate())
-    return
-        let data = this.orderDataUpdate()
-        
-        profileService.crud.update('profile.users',this.form.id, data).then(response => {
-          
-          console.warn(response.data)
-          /*
-          helper.storage.get.item('userData').then(userData => {
-            //Update data in storage
-            userData.profile = data.profileData
-            userData.firstName = data.userData.firstName
-            userData.lastName = data.userData.lastName
-            userData.email = data.userData.email
-            
-            helper.storage.set('userData', userData)
-            
-            alert.success('Profile updated', 'top')
-            this.loading = false;
-            setTimeout(() => {
-              this.$router.go(0)
-            }, 3000)
-          })*/
-        }).catch(error => {
-          alert.error('Profile not updated', 'bottom')
-          this.loading = false;
-        });
-        
-      },
-      
-      orderDataUpdate() {
+  addSocial: function () {
+    if (!this.profile.social) {
+      this.profile.social = [];
+    }
+    this.profile.social.push({
+      label: '',
+      color: '',
+      desc: '',
+    });
+  }
+  ,
   
-        let birthday = {
-          name:'birthday',
-          value:this.form.birthday
-        }
+  maskPhone(num)
+  {
+    return helper.maskPhone(num)
+  }
+  ,
   
-        let identification = {
-          name:'identification',
-          value:this.form.identification
-        }
+  removeSocial: function (index) {
+    this.profile.social.splice(index, 1);
+  }
+  ,
   
-        let mainImage = {
-          name:'mainImage',
-          value:this.form.mainImage
-        }
-        
-        let data = {
-          id: this.form.id,
-          activated: this.form.activated,
-          firstName: this.form.firstName,
-          lastName: this.form.lastName,
-          email: this.form.email,
-          fields: helper.convertToBackField(this.fields),
-          addresses: this.form.addresses,
-        }
-       
-        
-        return data
+  addLabelAndColor: function (index, label, color) {
+    this.profile.social[index].label = label;
+    this.profile.social[index].color = color;
+  }
+  ,
+  
+  /*check fields required from form*/
+  
+  
+  deleteError()
+  {
+    this.fieldExist = false;
+    this.addressExist = false;
+    this.contactExist = false;
+  }
+  ,
+  
+  //-------------------------------------------- FIELDS
+  addField()
+  {
+    this.fieldExist = false
+    this.$v.field.$touch()
+    if (this.$v.field.$error) {
+      alert.error('Please review the fields again.');
+      return
+    }
+    this.$v.field.$reset()
+    if (this.fieldEdit) {
+      this.form.fields.push(this.field);
+      this.field = {
+        name: '',
+        value: '',
+      };
+      this.fieldEdit = false;
+    } else if (!this.existField() && !this.fieldEdit) {
+      //quitar las opciones
+      if (this.field.name == 'eveningPhone') {
+        this.fieldOptions[0].disable = true;
+      } else if (this.field.name == 'dayPhone') {
+        this.fieldOptions[1].disable = true;
+      } else if (this.field.name == 'email') {
+        this.fieldOptions[2].disable = true;
+      } else if (this.field.name == 'cellularPhone') {
+        this.fieldOptions[3].disable = true;
+      }
+      this.form.fields.push(this.field);
+      this.field = {
+        name: '',
+        value: '',
+      };
+    }
+  }
+  ,
+  existField()
+  {
+    if (this.form.fields.find(item => item.value === this.field.value))
+    {
+      this.fieldExist = true;
+      return true;
+    }
+  else
+    this.fieldExist = false;
+    return false;
+  }
+  ,
+  cancelField()
+  {
+    this.$v.field.$reset()
+    this.fieldEdit = false;
+    this.form.fields.push(this.fieldAux);
+    this.field = {
+      name: '',
+      value: '',
+    };
+  }
+  ,
+  editField(data)
+  {
+    this.fieldAux = Object.assign({}, data);
+    this.fieldExist = false
+    var indice = this.form.fields.indexOf(data);
+    this.form.fields.splice(indice, 1);
+    
+    this.fieldEdit = true;
+    this.field = Object.assign({}, data);
+  }
+  ,
+  
+  deleteField(data, pos)
+  {
+    if (data.name == 'eveningPhone') {
+      this.fieldOptions[0].disable = false;
+    } else if (data.name == 'dayPhone') {
+      this.fieldOptions[1].disable = false;
+    } else if (data.name == 'email') {
+      this.fieldOptions[2].disable = false;
+    } else if (data.name == 'cellularPhone') {
+      this.fieldOptions[3].disable = false;
+    }
+    this.form.fields.splice(pos, 1);
+  }
+  ,
+  
+  //-------------------------------------------- SOCIAL NETWORKS
+  addSocial()
+  {
+    this.socialExist = false
+    this.$v.social.$touch()
+    if (this.$v.social.$error) {
+      alert.error('Please review the fields again.');
+      return
+    }
+    this.$v.social.$reset()
+    if (this.socialEdit) {
+      this.fields.socialNetworks.value.push(this.social);
+      this.social = {
+        name: '',
+        value: '',
+      };
+      this.socialEdit = false;
+    } else if (!this.existSocial() && !this.socialEdit) {
+      
+      this.fields.socialNetworks.value.push(this.social);
+      this.social = {
+        name: '',
+        value: '',
+      };
+    }
+  }
+  ,
+  existSocial()
+  {
+    if (this.fields.socialNetworks.value.find(item => item.value === this.social.value))
+    {
+      this.socialExist = true;
+      return true;
+    }
+  else
+    this.socialExist = false;
+    return false;
+  }
+  ,
+  cancelSocial()
+  {
+    this.$v.social.$reset()
+    this.socialEdit = false;
+    this.fields.socialNetworks.value.push(this.socialAux);
+    this.social = {
+      name: '',
+      value: '',
+    };
+  }
+  ,
+  editSocial(data)
+  {
+    this.socialAux = Object.assign({}, data);
+    this.socialExist = false
+    var indice = this.fields.socialNetworks.value.indexOf(data);
+    this.fields.socialNetworks.value.splice(indice, 1);
+    
+    this.socialEdit = true;
+    this.social = Object.assign({}, data);
+  }
+  ,
+  
+  deleteSocial(data, pos)
+  {
+    
+    this.fields.socialNetworks.value.splice(pos, 1);
+  }
+  ,
+  
+  
+  //-------------------------------------------- ADDRESSES
+  addAddress()
+  {
+    this.addressExist = false
+    this.$v.address.$touch()
+    if (this.$v.address.$error) {
+      alert.error('Please review the fields again.');
+      return
+    }
+    this.$v.address.$reset()
+    if (this.addressEdit) {
+      this.form.addresses.push(this.address);
+      this.address = {
+        address1: '',
+        city: '',
+        state: '',
+        zipCode: ''
+      };
+      this.addressEdit = false;
+    } else if (!this.existAddress()) {
+      this.form.addresses.push(this.address);
+      this.address = {
+        address1: '',
+        city: '',
+        state: '',
+        zipCode: ''
+      };
+      this.addressEdit = false;
+    }
+  }
+  ,
+  editAddress(data)
+  {
+    this.addressAux = Object.assign({}, data);
+    this.addressEdit = true;
+    this.addressExist = false;
+    var index = this.form.addresses.indexOf(data);
+    this.form.addresses.splice(index, 1);
+    
+    this.address = Object.assign({}, data);
+  }
+  ,
+  cancelAddress()
+  {
+    this.$v.address.$reset()
+    this.addressEdit = false;
+    this.form.addresses.push(this.addressAux);
+    this.address = {
+      address1: '',
+      city: '',
+      state: '',
+      zipCode: ''
+    };
+  }
+  ,
+  existAddress()
+  {
+    
+    if (this.form.addresses.find(item =>
+      item.address1 === this.address.address1
+      && item.city === this.address.city
+      && item.state === this.address.state
+      && item.zipCode === this.address.zipCode))
+    {
+      this.addressExist = true;
+      return true;
+    }
+  else
+    this.addressExist = false;
+    return false;
+  }
+  ,
+  deleteAddress(data)
+  {
+    this.form.addresses.splice(data, 1);
+  }
+  ,
+  //-------------------------------------------- CONTACTS
+  addContact()
+  {
+    this.contactExist = false
+    this.$v.contact.$touch()
+    if (this.$v.contact.$error) {
+      alert.error('Please review the fields again.');
+      return
+    }
+    this.$v.contact.$reset()
+    
+    if (this.contactEdit) {
+      this.fields.contacts.value.push(this.contact);
+      this.contact = {
+        firstName: '',
+        lastName: '',
+        cellularPhone: '',
+        email: ''
+      };
+      this.contactEdit = false;
+    } else if (!this.existContact()) {
+      this.fields.contacts.value.push(this.contact);
+      this.contact = {
+        firstName: '',
+        lastName: '',
+        cellularPhone: '',
+        email: ''
+      };
+      this.contactEdit = false;
+    }
+  }
+  ,
+  editContact(data)
+  {
+    this.contactAux = Object.assign({}, data);
+    this.contactEdit = true;
+    this.contactExist = false;
+    var index = this.fields.contacts.value.indexOf(data);
+    this.fields.contacts.value.splice(index, 1);
+    this.contact = Object.assign({}, data);
+  }
+  ,
+  cancelContact()
+  {
+    this.$v.contact.$reset()
+    this.contactEdit = false;
+    this.fields.contacts.value.push(this.contactAux);
+    this.contact = {
+      firstName: '',
+      lastName: '',
+      cellularPhone: '',
+      email: ''
+    };
+  }
+  ,
+  existContact()
+  {
+    if (this.fields.contacts.value.find(item =>
+      item.firstName === this.contact.firstName
+      && item.lastName === this.contact.lastName
+      && item.cellularPhone === this.contact.cellularPhone
+      && item.email === this.contact.email))
+    {
+      this.contactExist = true;
+      return true;
+    }
+  else
+    this.contactExist = false;
+    return false;
+  }
+  ,
+  deleteContact(data)
+  {
+    this.fields.contacts.value.splice(data, 1);
+  }
+  ,
+  
+  submit()
+  {
+    //this.$v.$touch();
+    
+    if (this.$v.$error) {
+      alert.error('Please review your fields again.', 'bottom');
+    } else {
+      this.saveProfile();
+    }
+  }
+  ,
+  
+  saveProfile()
+  {
+    //this.loading = true;
+    console.warn(this.orderDataUpdate())
+    
+    let data = this.orderDataUpdate()
+    this.loading = true
+    profileService.crud.update('profile.users', this.form.id, data).then(response => {
+      
+      console.warn(response.data)
+    let params = {
+      params: {
+        include: 'roles,departments,settings,addresses,fields'
       }
     }
+    alert.success('Profile updated', 'top')
+    this.loading = false
+    profileService.crud.show('profile.users', this.form.id, params).then(userData => {
+      helper.storage.get.item('userData').then(response => {
+      userData.data['permissions'] = response.permissions;
+      userData.data['default_route'] = response.default_route;
+      helper.storage.set('userData', userData.data);
+    })
+    
+    
+  })
+    ;
+    
+  }).
+    catch(error => {
+      alert.error('Profile not updated', 'bottom')
+    this.loading = false;
+  })
+    ;
+    
+  }
+  ,
+  
+  orderDataUpdate()
+  {
+    
+    let birthday = {
+      name: 'birthday',
+      value: this.form.birthday
+    }
+    
+    let identification = {
+      name: 'identification',
+      value: this.form.identification
+    }
+    
+    let mainImage = {
+      name: 'mainImage',
+      value: this.form.mainImage
+    }
+    
+    let data = {
+      id: this.form.id,
+      activated: this.form.activated,
+      firstName: this.form.firstName,
+      lastName: this.form.lastName,
+      email: this.form.email,
+      fields: helper.convertToBackField(this.fields),
+      addresses: this.form.addresses,
+    }
+    
+    
+    return data
+  }
+  }
   }
 
 </script>

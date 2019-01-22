@@ -23,7 +23,7 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
         helper.storage.set('depSelected', deparmentSelected)
 
         helper.storage.set('userData', data.userData).then(response => {
-          auth.hasAccess('iprofile.api.login').then(can => {
+          auth.hasAccess('profile.api.login').then(can => {
             if (can) {
               dispatch("AUTH_SUCCESS", {
                 userToken: data.userToken,

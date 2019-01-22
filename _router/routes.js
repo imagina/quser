@@ -27,17 +27,17 @@ Route.view('/users', home)
   .children(() => {
       Route.view('/index', require('../_layouts/index').default).options({
         name: 'user.users.index',
-        meta: {permission: 'iprofile.api.user.index'},
+        meta: {permission: 'profile.api.user.index'},
         guard: access
       });
       Route.view('/create', require('../_layouts/form').default).options({
         name: 'user.users.create',
-        meta: {permission: 'iprofile.api.user.create'},
+        meta: {permission: 'profile.api.user.create'},
         guard: access
       });
       Route.view('/:id/edit', require('../_layouts/form').default).options({
         name: 'user.users.edit',
-        meta: {permission: 'iprofile.api.user.edit'},
+        meta: {permission: 'profile.api.user.edit'},
         guard: access
       });
   
@@ -51,7 +51,7 @@ Route.view('/users', home)
       
       Route.view('/department', vueCrud).options({
         name: 'user.department',
-        meta: {permission: 'iprofile.api.user.department'},
+        meta: {permission: 'profile.api.user.department'},
         guard: access,
         props: (route) => {
           return {
