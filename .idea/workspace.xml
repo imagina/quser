@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/profileForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/profileForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/_router/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_store/auth/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/_store/auth/actions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -278,7 +274,7 @@
       <workItem from="1547732321060" duration="599000" />
       <workItem from="1547819714470" duration="781000" />
       <workItem from="1548110304443" duration="5563000" />
-      <workItem from="1548164482858" duration="4053000" />
+      <workItem from="1548164482858" duration="4746000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -343,11 +339,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548113420056</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="+Update 22/01/2019 16:50">
+      <created>1548193659386</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1548193659386</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23363000" />
+    <option name="totallyTimeSpent" value="24056000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -401,7 +404,8 @@
     <MESSAGE value="+Update: standard" />
     <MESSAGE value="+Update: 21/01/2018" />
     <MESSAGE value="+Fix: include" />
-    <option name="LAST_COMMIT_MESSAGE" value="+Fix: include" />
+    <MESSAGE value="+Update 22/01/2019 16:50" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Update 22/01/2019 16:50" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">

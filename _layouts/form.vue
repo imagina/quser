@@ -277,7 +277,7 @@
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
             }).catch(error => {
-              
+              this.loading = false;
               let errorMessage = error ? error : 'User not created';
               alert.error(errorMessage, 'bottom')
               
