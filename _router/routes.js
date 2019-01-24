@@ -46,7 +46,7 @@ Route.view('/users', home)
     });
   
     Route.view('/me/profile/customer', require('../_layouts/profileForm').default).options({
-      name: 'user.profile.me'
+      name: 'user.profile.customer'
     });
       
       Route.view('/department', vueCrud).options({
