@@ -367,24 +367,24 @@
             this.form = response.data;
           
           this.form.roles.forEach((element, index) => {
-            roles.push(element.id.toString())
+            roles.push(element.id)
           })
           
           this.form.roles = roles;
             this.form.activated == 0 ? this.form.activated = false : this.form.activated = true;
  
             this.form.departments.forEach((element, index) => {
-              departments.push(element.id.toString())
+              departments.push(element.id)
             })
             this.form.departments = departments;
   
           this.form.branchOffices.forEach((element, index) => {
-            branchOffices.push(element.id.toString())
+            branchOffices.push(element.id)
         })
           this.form.branchOffices = branchOffices;
   
           this.form.sources.forEach((element, index) => {
-            sources.push(element.id.toString())
+            sources.push(element.id)
         })
           this.form.sources = sources;
   
