@@ -176,7 +176,6 @@
     components: {},
     watch: {},
     mounted() {
-      console.warn(this.$q);
       this.$nextTick(function () {
         if (auth.hasAccess('fhia.roles.dept-manager')) {
           this.getData({pagination:this.pagination,filter:this.filter});
