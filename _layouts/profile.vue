@@ -481,7 +481,7 @@
   export default {
     mounted() {
       this.$nextTick(function () {
-        this.image = 'assets/image/default.jpg';
+        this.image = 'profile/img/default.jpg';
         this.getData();
       })
     },
@@ -1088,21 +1088,6 @@
   
   orderDataUpdate()
   {
-    
-    let birthday = {
-      name: 'birthday',
-      value: this.form.birthday
-    }
-    
-    let identification = {
-      name: 'identification',
-      value: this.form.identification
-    }
-    
-    let mainImage = {
-      name: 'mainImage',
-      value: this.form.mainImage
-    }
     
     let data = {
       id: this.form.id,

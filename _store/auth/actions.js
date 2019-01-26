@@ -98,10 +98,11 @@ export const AUTH_ERROR = ({commit, dispatch}) => {
 }
 
 export const AUTH_LOGOUT = ({commit, dispatch}) => {
-
+//ESTE IF SE COMENTO TEMPORALMENTE MIENTRAS SE UTILIZAN AMBOS SISTEMAS SINCRONIZADOS
+  /*
   if (navigator.onLine)
     profileService.auth.logout();
-
+*/
   dispatch("AUTH_CLEAR");
 };
 

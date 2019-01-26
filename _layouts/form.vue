@@ -1,5 +1,5 @@
 <template>
-  <div id="users-edit"
+  <div id="userForm"
        class="q-layout-page row justify-center layout-padding relative-position">
     <q-inner-loading :visible="loading" style="z-index:1001; max-height: 100vh">
       <q-spinner-hourglass size="50px" color="primary"/>
@@ -13,111 +13,240 @@
       • {{title}}
     </div>
   
-    <q-card class="q-box no-shadow col-12 relative-position">
+    <!-- General Information -->
+    <q-card class="q-box no-shadow col-12">
     
-      <q-card-title class="q-box-title q-pa-none bg-grey-2">
-        <div class="q-subheading float-left text-primary q-px-sm">
-        Information
+      <q-card-title class="no-border q-py-none bg-grey-2">
+        <div class="row justify-between">
+          <div class="q-subheading text-primary">
+            General Information
+          </div>
+          <q-toggle
+            v-model="generalInfoToggle"
+            checked-icon="visibility"
+            unchecked-icon="visibility_off"
+            style="margin-left: 25px"
+          />
         </div>
+    
       </q-card-title>
-      <div class="row form-container q-py-md">
-        <div class="col-md-12 order-xs-last">
-          <div class="row">
-            <!-- First Name -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.firstName.$error"
-                error-label="This field is required"
-              >
-                <q-input type="text"
-                         v-model="form.firstName"
-                         float-label="First Name*:"
-                />
-              </q-field>
-            </div>
-
-            <!-- Last Name -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.lastName.$error"
-                error-label="This field is required"
-              >
-                <q-input v-model="form.lastName" float-label="Last Name*:"/>
-              </q-field>
-            </div>
-
-            <!-- User Name -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.email.$error"
-                error-label="This field is required"
-              >
-                <q-input v-model="form.email" type="text" float-label="User Name*:"/>
-              </q-field>
-            </div>
-
-            <!-- Password -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.password.$error"
-                error-label="This field must have 7 seven characters"
-              >
-                <q-input v-model="form.password" type="password" float-label="Password*:"/>
-              </q-field>
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :error="$v.form.passwordConfirmation.$error"
-                error-label="This field is required"
-              >
-                <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm*:"/>
-              </q-field>
-            </div>
-
-            <!-- Deparments -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                :disabled="departmentsLoading"
-                :error="$v.form.departments.$error"
-                error-label="This field is required"
-              >
-                <q-select
-                  multiple chips
-                  float-label="Departments"
-                  v-model="form.departments"
-                  :options="departments"
-                  
-                />
-              </q-field>
-            </div>
-
-            <!-- Roles -->
-            <div class="item_form col-12 col-md-4 q-px-sm">
-              <q-field
-                v-if="roles.length"
-                :disabled="rolesLoading"
-                :error="$v.form.roles.$error"
-                error-label="This field is required"
-              >
-                <q-select
-                  float-label="Role*:"
-                  v-model="form.roles"
-                  :options="roles"
-                  @input="changeRole()"
-                />
-              </q-field>
-            </div>
-
-            <!--Activated -->
-            <div class="col-12 col-md-8 text-right q-pa-lg">
-              <q-toggle v-model="form.activated" label="Activated" />
+      <q-collapsible header-style="display: none" v-model="generalInfoToggle">
+        <div class="row form-container">
+        
+          <div class="col-12 ">
+            <div class="row gutter-xs">
+              <!-- First Name -->
+              <div class=" col-12 col-md-4 ">
+                <q-field
+                  :error="$v.form.firstName.$error"
+                  error-label="This field is required"
+                >
+                  <q-input type="text"
+                           v-model="form.firstName"
+                           float-label="First Name *"
+                  />
+                </q-field>
+              </div>
+            
+              <!-- Last Name -->
+              <div class=" col-12 col-md-4">
+                <q-field
+                  :error="$v.form.lastName.$error"
+                  error-label="This field is required"
+                >
+                  <q-input v-model="form.lastName" float-label="Last Name *"/>
+                </q-field>
+              </div>
+            
+              <!-- User Name -->
+              <div class=" col-12 col-md-4">
+                <q-field
+                  :error="$v.form.email.$error"
+                  error-label="This field is required"
+                >
+                  <q-input v-model="form.email" type="text" float-label="User Name *"/>
+                </q-field>
+              </div>
+            
+              <!-- Password -->
+              <div class=" col-12 col-md-4">
+                <q-field
+                  :error="$v.form.password.$error"
+                  error-label="This field must have 7 seven characters"
+                >
+                  <q-input v-model="form.password" type="password" float-label="Password *"/>
+                </q-field>
+              </div>
+            
+              <!-- Confirm Password -->
+              <div class=" col-12 col-md-4">
+                <q-field
+                  :error="$v.form.passwordConfirmation.$error"
+                  error-label="This field is required"
+                >
+                  <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm *"/>
+                </q-field>
+              </div>
+            
+           
+            
+              <!-- Roles -->
+              <div class=" col-12 col-md-4">
+                <q-field
+                  v-if="roles.length"
+                  :disabled="rolesLoading"
+                  :error="$v.form.roles.$error"
+                  error-label="This field is required"
+                >
+                  <q-select
+                    float-label="Role *"
+                    v-model="form.roles"
+                    :options="roles"
+                    multiple chips
+                    @input="changeRole()"
+                  />
+                </q-field>
+              </div>
+            
+              <!--Activated -->
+              <div class="col-12 text-right q-pa-lg">
+                <q-toggle v-model="form.activated" label="Enabled" />
+              </div>
             </div>
           </div>
+      
         </div>
-      </div>
+      </q-collapsible>
     </q-card>
+  
+    <!-- Relations -->
+    <q-card class="q-box no-shadow col-12 ">
+    
+      <q-card-title class="no-border  q-py-none bg-grey-2">
+        <div class="row justify-between">
+          <div class="q-subheading text-primary">
+            Relations
+          </div>
+          <q-toggle
+            v-model="relationsToggle"
+            checked-icon="visibility"
+            unchecked-icon="visibility_off"
+            style="margin-left: 25px"
+          />
+        </div>
+    
+      </q-card-title>
+      <q-collapsible header-style="display: none" v-model="relationsToggle">
+      
+        <div class="row gutter-sm">
+          <!-- Sources -->
+          <div class="col-12 col-md-4">
+            <div class="caption text-weight-regular text-grey-6 ellipsis">
+             Sources
+            </div>
+            <treeselect
+              :multiple="true"
+              :append-to-body="true"
+              :options="$store.getters['fhia/sourcesSelect']"
+              :value-consists-of="valueConsistsOf"
+              v-model="form.sources"
+              placeholder=""
+            />
+          </div>
+        
+        
+          <!-- Deparments -->
+          <div class=" col-12 col-md-4 ">
+            <q-field
+              :disabled="departmentsLoading"
+            >
+              <q-select
+                multiple chips
+                float-label="Departments"
+                v-model="form.departments"
+                :options="departments"
+            
+              />
+            </q-field>
+          </div>
+        
+        
+          <!-- Branch Offices -->
+          <div class="col-12 col-md-4">
+          
+            <q-select
+              v-model="form.branchOffices"
+              float-label="Branch Office"
+              filter multiple chips
+              :disable="!$store.getters['fhia/branchOfficeSelect'].length"
+              :options="$store.getters['fhia/branchOfficeSelect']"
+            />
+        
+          </div>
+        </div>
+    
+      </q-collapsible>
+    </q-card>
+  
+    <!-- Settings -->
+    <q-card class="q-box no-shadow col-12 ">
+    
+      <q-card-title class="no-border q-py-none bg-grey-2">
+        <div class="row justify-between ">
+          <div class="q-subheading text-primary">
+            Settings
+          </div>
+          <q-toggle
+            v-model="settingsToggle"
+            checked-icon="visibility"
+            unchecked-icon="visibility_off"
+            style="margin-left: 25px"
+          />
+        </div>
+    
+      </q-card-title>
+      <q-collapsible header-style="display: none" v-model="settingsToggle">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <div class="row gutter-sm">
+              <div class="q-caption">
+                Advanced Settings
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+        <div class="row gutter-sm">
+          <div class="q-caption">
+            Others
+          </div>
+          <div class="col-12">
+            <q-toggle
+              v-model="settings.showHomePage.value"
+              label="Show Homepage"
+            />
+          </div>
+  
+          <div class="col-12">
+            <q-toggle
+              v-model="settings.showAdvancedOrganizer.value"
+              label="Show Advanced Organizer Functions"
+            />
+          </div>
+  
+          <div class="col-12">
+            <q-toggle
+              v-model="settings.includeInCollectedJobs.value"
+              label="Include in WAR Queue"
+            />
+          </div>
+          
+        </div>
+        </div>
+        </div>
+      </q-collapsible>
+    </q-card>
+    
+    
     <!--=== SAVE ===-->
     <div class="col-12 q-px-sm text-center">
       <!-- Activated -->
@@ -136,12 +265,18 @@
   /*Plugins*/
   import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
   import {alert} from '@imagina/qhelper/_plugins/alert'
+  import {helper} from '@imagina/qhelper/_plugins/helper';
   import auth from '../_plugins/auth'
   
+  
+  /*Components*/
+  import Treeselect from '@riophae/vue-treeselect';
+  import '@riophae/vue-treeselect/dist/vue-treeselect.css';
+
 
   export default {
     props: {},
-    components: {},
+    components: {Treeselect},
     watch: {
       '$route'(to, from) {
         this.form = this.initializeData();
@@ -175,6 +310,7 @@
     data() {
       return {
         title: 'NEW USER',
+        valueConsistsOf: 'BRANCH_PRIORITY',
         id: null,
         form: this.initializeData(),
         loading: false,
@@ -182,7 +318,16 @@
         departments: [],
         dep: [],
         rolesLoading: false,
-        departmentsLoading: false
+        departmentsLoading: false,
+        generalInfoToggle:true,
+        relationsToggle:false,
+        settingsToggle:false,
+        settings: {
+          showHomePage: false,
+          showAdvancedOrganizer: false,
+          includeInCollectedJobs: false,
+
+        },
       }
     },
     methods: {
@@ -191,29 +336,59 @@
         this.title = this.$route.params.id ? 'EDIT USER' : 'NEW USER'
         this.roles = []
         this.departments = []
-        this.dep = []
+        
         return {
           firstName: '',
           departments: [],
+          branchOffices:[],
+          sources:[],
           email: '',
           lastName: '',
-          roles: '',
+          roles: [],
           activated: true
         }
       },
       getData() {
         this.loading = true;
+  
+        let settings = [
+          {name: 'showHomePage', value: false},
+          {name: 'showAdvancedOrganizer', value: false},
+          {name: 'includeInCollectedJobs', value: false}
+        ]
+        
         if (this.id) {
-          this.dep = [];
-          profileService.crud.show('profile.users',this.id,{params:{include:'roles,departments'}}).then(response => {
-            console.warn(response.data)
+          let departments = [];
+          let branchOffices = [];
+          let sources = [];
+          let roles = [];
+          profileService.crud.show('profile.users',this.id,{params:{include:'roles,departments,settings,sources,branchOffices'}}).then(response => {
+        
             this.form = response.data;
-            this.form.roles = (this.form.roles && this.form.roles.length) ? this.form.roles[0].id.toString() : ''
+          
+          this.form.roles.forEach((element, index) => {
+            roles.push(element.id.toString())
+          })
+          
+          this.form.roles = roles;
             this.form.activated == 0 ? this.form.activated = false : this.form.activated = true;
+ 
             this.form.departments.forEach((element, index) => {
-              this.dep.push(element.id.toString())
+              departments.push(element.id.toString())
             })
-            this.form.departments = this.dep;
+            this.form.departments = departments;
+  
+          this.form.branchOffices.forEach((element, index) => {
+            branchOffices.push(element.id.toString())
+        })
+          this.form.branchOffices = branchOffices;
+  
+          this.form.sources.forEach((element, index) => {
+            sources.push(element.id.toString())
+        })
+          this.form.sources = sources;
+  
+          this.settings = helper.convertToFrontField(settings, this.form.settings);
             this.loading = false;
           }).catch(error => {
             let errorMessage = error.response.data.error ? error.response.data.error : 'Profile not Found';
@@ -236,12 +411,7 @@
           this.departmentsLoading = false
         })
       },
-      changeRole() {
-        this.roles.forEach((element, index) => {
-          if (this.form.roles == element.id)
-            this.form.roles = element.id;
-        })
-      },
+      
       changeDepartment() {
         this.form.departments = []
         this.departments.forEach((element, index) => {
@@ -255,16 +425,16 @@
         this.$v.$touch();//validate all fields from form
 
         if (!this.$v.$error) {
-          this.loading = true;
+          //this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
-          data.roles = [data.roles];
-          
+          data.settings = helper.convertToBackField(this.settings)
+ 
           if (this.id) {
             
             profileService.crud.update('profile.users',data.id,data).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
-              this.$router.push({name: 'user.users.index'})
+              //this.$router.push({name: 'user.users.index'})
             }).catch(error => {
               let errorMessage = error ?
                 error : 'User not updated';
@@ -275,7 +445,7 @@
             profileService.crud.create('profile.users',data).then(response => {
               alert.success('User created', 'top')
               this.loading = false;
-              this.$router.push({name: 'user.users.index'})
+              //this.$router.push({name: 'user.users.index'})
             }).catch(error => {
               this.loading = false;
               let errorMessage = error ? error : 'User not created';
@@ -293,18 +463,17 @@
 </script>
 <style lang="stylus">
   @import "~variables";
-
-  .q-card
-    border 1px solid $grey-4
-    margin-bottom 15px
-
-  .form-user-data {
-    border 1px solid $grey-4
-    margin-top 0 !important
-    .form-title {
-      margin 0 !important
-      border none !important
-      border-bottom 1px solid $grey-4 !important
+  #userForm
+    .q-card
+      margin-bottom 15px
+    .q-card-title
+      border 0
+    .form-user-data {
+      margin-top 0 !important
+      .form-title {
+        margin 0 !important
+        border none !important
+        border-bottom 1px solid $grey-4 !important
+      }
     }
-  }
 </style>
