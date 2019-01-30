@@ -82,6 +82,9 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
       axios.defaults.headers.common['Authorization'] = response;
 
       commit('AUTH_SUCCESS', data);
+      dispatch('SET_DEPARTMENT')//Dispatch department selected
+      dispatch('SET_ROLE')//Dispatch role selected
+
       if (router.currentRoute.path == "/auth/login") {
         router.push(data.userData.default_route)
       }
@@ -115,22 +118,27 @@ export const AUTH_CLEAR = async ({commit, dispatch}) => {
   commit('AUTH_LOGOUT');
 };
 
-export const AUTH_LOGIN_AGAIN = async ({commit, dispatch}) => {
-  let data = {//Get data from user
-    userToken: store.state.auth.userToken,
-    userId: store.state.auth.userId,
-    userData: store.state.auth.userData,
-    offRequests : await helper.storage.get.item("offlineRequests"),
-    notifications : await helper.storage.get.item("notifications") || []
+export const SET_DEPARTMENT = async ({commit, dispatch}, data = false) => {
+  let nameInCache = 'auth.department.id'
+
+  if (data) {
+    helper.storage.set(nameInCache, data)
+    commit('CHANGE_DEPARTMENT', data)
+  } else {
+    let departmentId = await helper.storage.get.item(nameInCache)
+    commit('CHANGE_DEPARTMENT', departmentId)
   }
-
-  //Clear cache
-  await helper.storage.clear();
-
-  //Restore cache
-  helper.storage.set('userToken', data.userToken)
-  helper.storage.set('userId', data.userId)
-  helper.storage.set('userData', data.userData)
-  helper.storage.set('offlineRequests', data.offRequests)
-  helper.storage.set('notifications', data.notifications)
 }
+
+export const SET_ROLE = async ({commit, dispatch}, data = false) => {
+  let nameInCache = 'auth.role.id'
+
+  if (data) {
+    helper.storage.set(nameInCache, data)
+    commit('CHANGE_ROLE', data)
+  } else {
+    let roleId = await helper.storage.get.item(nameInCache)
+    commit('CHANGE_ROLE', roleId)
+  }
+}
+

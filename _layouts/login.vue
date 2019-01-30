@@ -82,8 +82,8 @@
     data() {
       return {
         form: {
-          username: null,
-          password: null
+          username: '',
+          password: ''
         },
         rememberData: true,
         loading_login: false
