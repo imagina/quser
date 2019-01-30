@@ -97,13 +97,12 @@ export const AUTH_ERROR = ({commit, dispatch}) => {
 
 }
 
-export const AUTH_LOGOUT = ({commit, dispatch}) => {
-//ESTE IF SE COMENTO TEMPORALMENTE MIENTRAS SE UTILIZAN AMBOS SISTEMAS SINCRONIZADOS
-  /*
+export const AUTH_LOGOUT = async ({commit, dispatch}) => {
   if (navigator.onLine)
     profileService.auth.logout();
-*/
-  dispatch("AUTH_CLEAR");
+
+  await dispatch("AUTH_CLEAR");
+  router.push({name: 'auth.login'});
 };
 
 export const AUTH_CLEAR = async ({commit, dispatch}) => {
@@ -114,6 +113,24 @@ export const AUTH_CLEAR = async ({commit, dispatch}) => {
   await helper.storage.set('offlineRequests', offRqsts);
   await helper.storage.set('notifications', notifications) ;
   commit('AUTH_LOGOUT');
-  router.push({name: 'auth.login'});
-
 };
+
+export const AUTH_LOGIN_AGAIN = async ({commit, dispatch}) => {
+  let data = {//Get data from user
+    userToken: store.state.auth.userToken,
+    userId: store.state.auth.userId,
+    userData: store.state.auth.userData,
+    offRequests : await helper.storage.get.item("offlineRequests"),
+    notifications : await helper.storage.get.item("notifications") || []
+  }
+
+  //Clear cache
+  await helper.storage.clear();
+
+  //Restore cache
+  helper.storage.set('userToken', data.userToken)
+  helper.storage.set('userId', data.userId)
+  helper.storage.set('userData', data.userData)
+  helper.storage.set('offlineRequests', data.offRequests)
+  helper.storage.set('notifications', data.notifications)
+}
