@@ -31,7 +31,7 @@
     
       </q-card-title>
       <q-collapsible header-style="display: none" v-model="generalInfoToggle">
-        <div class="row form-container">
+        <div class="row">
         
           <div class="col-12 ">
             <div class="row gutter-xs">
@@ -91,7 +91,7 @@
            
             
               <!-- Roles -->
-              <div class=" col-12 col-md-4">
+              <div class="col-12">
                 <q-field
                   v-if="roles.length"
                   :disabled="rolesLoading"
@@ -99,11 +99,10 @@
                   error-label="This field is required"
                 >
                   <q-select
-                    float-label="Role *"
+                    float-label="Roles *"
                     v-model="form.roles"
                     :options="roles"
                     multiple chips
-                    @input="changeRole()"
                   />
                 </q-field>
               </div>
@@ -206,16 +205,166 @@
     
       </q-card-title>
       <q-collapsible header-style="display: none" v-model="settingsToggle">
-        <div class="row">
+        <div class="row gutter-sm">
+          
           <div class="col-12 col-md-8">
-            <div class="row gutter-sm">
+            
+            <div class="row">
               <div class="q-caption">
                 Advanced Settings
               </div>
+                <div class="col-12 relative-position">
+                  <q-tabs
+                    animated
+                    swipeable
+                    inverted
+                    color="primary"
+                    align="justify"
+                    v-model="settingTab"
+                  >
+                <!-- Tabs - notice slot="title" -->
+                <q-tab label="list" slot="title" default name="list" />
+                <q-tab label="assignedSources" slot="title" name="assignedSources" />
+                <q-tab label="assignedRoles" slot="title" name="assignedRoles" />
+                <q-tab label="assignedDepartments" slot="title" name="assignedDepartments" />
+    
+                <!-- Targets -->
+                <q-tab-pane keep-alive name="list">
+  
+                  <q-list link no-border separator>
+       
+                    
+                    <!-- item assigned sources settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Manage sources under following sources</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedSources'" />
+                      </q-item-side>
+                    </q-item>
+  
+                    <!-- item assigned roles settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Manage users with following roles</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedRoles'" />
+                      </q-item-side>
+                    </q-item>
+  
+                    <!-- item assigned departments settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Manage departments under following departments</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedDepartments'" />
+                      </q-item-side>
+                    </q-item>
+                    <q-item-separator />
+                  </q-list>
+                  
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedSources">
+                  <div class="row">
+                  
+                    <!-- Sources -->
+                    <div class="col-12">
+                      <div class="caption text-weight-regular text-grey-6 ellipsis">
+                        Assigned Sources
+                      </div>
+                      <treeselect
+                        :multiple="true"
+                        :append-to-body="true"
+                        :options="$store.getters['fhia/sourcesSelect']"
+                        :value-consists-of="valueConsistsOf"
+                        v-model="settings.assignedSources.value"
+                        placeholder=""
+                      />
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedRoles">
+                  <div class="row">
+  
+                    <!-- Roles -->
+                    <div class=" col-12">
+                      <q-field
+                        v-if="roles.length"
+                        :disabled="rolesLoading"
+                      >
+                        <q-select
+                          float-label="Assigned Roles"
+                          v-model="settings.assignedRoles.value"
+                          :options="roles"
+                          multiple chips
+                        />
+                      </q-field>
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+    
+                    </div>
+                  </div>
+                  
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedDepartments">
+  
+                  <div class="row">
+  
+                    <!-- Deparments -->
+                    <div class=" col-12">
+                      <q-field
+                        :disabled="departmentsLoading"
+                      >
+                        <q-select
+                          multiple chips
+                          float-label="Assigned Departments"
+                          v-model="settings.assignedDepartments.value"
+                          :options="departments"
+      
+                        />
+                      </q-field>
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+    
+                    </div>
+                  </div>
+                  
+             
+                </q-tab-pane>
+
+              </q-tabs>
+                </div>
             </div>
           </div>
           <div class="col-12 col-md-4">
-        <div class="row gutter-sm">
+        <div class="row gutter-xs">
           <div class="q-caption">
             Others
           </div>
@@ -326,8 +475,11 @@
           showHomePage: false,
           showAdvancedOrganizer: false,
           includeInCollectedJobs: false,
-
+          assignedSources:[],
+          assignedRoles:[],
+          assignedDepartments:[]
         },
+        settingTab:'list'
       }
     },
     methods: {
@@ -351,11 +503,16 @@
       getData() {
         this.loading = true;
   
+        // initial settings
         let settings = [
           {name: 'showHomePage', value: false},
           {name: 'showAdvancedOrganizer', value: false},
-          {name: 'includeInCollectedJobs', value: false}
+          {name: 'includeInCollectedJobs', value: false},
+          {name: 'assignedSources', value: []},
+          {name: 'assignedRoles', value: []},
+          {name: 'assignedDepartments', value: []}
         ]
+        this.settings = helper.convertToFrontField(settings, this.form.settings);
         
         if (this.id) {
           let departments = [];
@@ -389,7 +546,8 @@
           this.form.sources = sources;
   
           this.settings = helper.convertToFrontField(settings, this.form.settings);
-            this.loading = false;
+          this.loading = false;
+          
           }).catch(error => {
             let errorMessage = error.response.data.error ? error.response.data.error : 'Profile not Found';
             alert.error(errorMessage, 'bottom')
@@ -397,7 +555,10 @@
           })
         } else
           this.loading = false;
-
+  
+          
+        
+        
         this.rolesLoading = true
         profileService.crud.index('profile.roles').then(response => {
           this.roles = this.$helper.array.select(response.data);
@@ -425,7 +586,7 @@
         this.$v.$touch();//validate all fields from form
 
         if (!this.$v.$error) {
-          //this.loading = true;
+          this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
           data.settings = helper.convertToBackField(this.settings)
  
@@ -434,7 +595,7 @@
             profileService.crud.update('profile.users',data.id,data).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
-              //this.$router.push({name: 'user.users.index'})
+              this.$router.push({name: 'user.users.index'})
             }).catch(error => {
               let errorMessage = error ?
                 error : 'User not updated';
@@ -445,7 +606,7 @@
             profileService.crud.create('profile.users',data).then(response => {
               alert.success('User created', 'top')
               this.loading = false;
-              //this.$router.push({name: 'user.users.index'})
+              this.$router.push({name: 'user.users.index'})
             }).catch(error => {
               this.loading = false;
               let errorMessage = error ? error : 'User not created';
@@ -464,6 +625,15 @@
 <style lang="stylus">
   @import "~variables";
   #userForm
+    .q-item
+      padding 0 10px
+    .q-tabs
+      .q-tabs-head
+        display none
+      .q-tabs-panes
+        border 0
+      .q-tab-pane
+        padding 0
     .q-card
       margin-bottom 15px
     .q-card-title

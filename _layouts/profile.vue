@@ -128,7 +128,7 @@
               
               <q-tabs animated swipeable inverted color="secondary" align="justify">
                 
-                <q-tab name="address" slot="title" label="Addresses"/>
+                <q-tab default name="address" slot="title" label="Addresses"/>
                 <q-tab name="contacts" slot="title" label="Contacts"/>
                 <q-tab name="socials" slot="title" label="Social Networks"/>
                 <!--<q-tab default name="fields" slot="title" label="Fields"/>-->
