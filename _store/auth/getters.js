@@ -18,3 +18,7 @@ export const getSettings = (state) => {
   return state.settings;
 };
 
+export const getFullName = (state) => {
+  return state.userData.fullName;
+};
+
