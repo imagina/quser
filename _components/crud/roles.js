@@ -13,16 +13,14 @@ export const crudTable = {
   inline: null,
   headers: [
     { text: 'Id', value: 'id' },
-    { text: 'Title', value: 'title' },
-    { text: 'Updated At', value: 'updatedAt', type: 'datetime' },
-    { text: 'Created At', value: 'createdAt', type: 'datetime' }
+    { text: 'Name', value: 'name' }
   ],
 
 }
 
 
 export const crudActions = {
-  permission: 'fhia.departments',
+  permission: 'profile.roleapis',
   actionsData:{
     add: {
       icon: 'add',
@@ -50,10 +48,10 @@ export const crudActions = {
 
 export const crudFields = {
   fieldsData:{
-    title: {
+    name: {
       type: 'text',
-      label: 'Department Title',
-      name: 'title',
+      label: 'Role Name',
+      name: 'name',
       placeHolder: '',
       viewPosition: 'left',
       rules: {
@@ -80,10 +78,10 @@ export const crudFilter = {
 
 export const crudForm = {
   FormVue: () => ({
-    //component: import('./departmentForm.vue')
+    component: import('@imagina/quser/_layouts/roleForm')
   }),
   defaultRec: () => ({ // you can use function to initialize record as well
-    title: ''
+    name: ''
     // created: format(new Date(), 'YYYY-MM-DD HH:mm:ss'), // example for date format
   })
 }
@@ -100,16 +98,15 @@ export const crudOps = { // CRUD
       headers.push(element.value);
     })
 
-      let params = {
-        params:{
-          filter:filter,
-          fields:'id,title'
-        }
-      }
-
-
     let headerData = [];
-    await service.crud.index('profile.departments',params)
+
+    let params = {
+      params:{
+        filter:filter,
+        fields:'id,name'
+      }
+    }
+      await service.crud.index('profile.roles',params)
       .then((response) =>{
 
         response.data.forEach((element,index) => {
@@ -118,12 +115,12 @@ export const crudOps = { // CRUD
         })
 
         const data = headerData
-        const fileName = 'Departments'
+        const fileName = 'Roles'
         const exportType = 'xls'
         exportFromJSON({ data, fileName, exportType })
       })
       .catch((error) => {
-        let errorMessage = error ? error : 'No Departments found';
+        let errorMessage = error ? error : 'No Roles found';
         alert.error(errorMessage, 'bottom')
       })
   },
@@ -132,9 +129,9 @@ export const crudOps = { // CRUD
   delete: async (payload) => {
     let {id, ...attributes} = payload
 
-    await service.crud.delete('profile.departments',id)
+    await service.crud.delete('profile.roles',id)
       .then((response) => {
-        alert.success('Department Deleted', 'top')
+        alert.success('Role Deleted', 'top')
       }).catch(error => {
         let errorMessage = error ? error: 'Delete failed';
         alert.error(errorMessage, 'bottom')
@@ -155,15 +152,15 @@ export const crudOps = { // CRUD
           filter:filter,
           page: pagination.page ? pagination.page : 1,
           take: 10,
-          fields:'id,title,updated_at,created_at'
+          fields:'id,name,updated_at,created_at'
         }
       }
     
-      await service.crud.index('profile.departments',params)
+      await service.crud.index('profile.roles',params)
         .then((response) => {
           data = response;
       }).catch(error => {
-        let errorMessage = error ? error : 'No departments found';
+        let errorMessage = error ? error : 'No roles found';
         alert.error(errorMessage, 'bottom')
       })
     return {records:data.data,pagination:data.meta}
@@ -175,14 +172,15 @@ export const crudOps = { // CRUD
     let record = { }
     let params = {
         params:{
-          fields:'id,title,updated_at,created_at'
+          fields:'id,name,slug,permissions,updated_at,created_at',
+          include: 'settings'
         }
     }
-    await service.crud.show('profile.departments',id,params)
+    await service.crud.show('profile.roles',id,params)
       .then((response) => {
         record = response.data;
       }).catch(error => {
-        let errorMessage = error ? error : 'department not found';
+        let errorMessage = error ? error : 'role not found';
         alert.error(errorMessage, 'bottom')
       })
     return record
@@ -192,9 +190,9 @@ export const crudOps = { // CRUD
   create: async (payload) => {
     const {record: {id, ...attributes}} = payload
    
-    await service.crud.create('profile.departments',attributes)
+    await service.crud.create('profile.roles',attributes)
       .then((response) => {
-        alert.success('Department Created', 'top')
+        alert.success('Role Created', 'top')
       }).catch(error => {
         let errorMessage = error ? error : 'Create failed';
         alert.error(errorMessage, 'bottom')
@@ -205,9 +203,9 @@ export const crudOps = { // CRUD
   update: async (payload) => {
     let {record: {id, ...attributes}} = payload
     attributes["id"] = id;
-    await service.crud.update('profile.departments',id,attributes)
+    await service.crud.update('profile.roles',id,attributes)
       .then((response) => {
-        alert.success('Department Updated', 'top')
+        alert.success('Role Updated', 'top')
       }).catch(error => {
         let errorMessage = error ? error : 'Update failed';
         alert.error(errorMessage, 'bottom')

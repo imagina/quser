@@ -1,4 +1,5 @@
 import {helper} from '@imagina/qhelper/_plugins/helper';
+import store from 'src/store/index'
 
 class Auth {
   constructor() {
@@ -13,11 +14,22 @@ class Auth {
    * @param can
    * @returns {Promise<boolean>}
    */
-  async hasAccess(can) {
-    let userPermissions = await helper.storage.get.item("userData")
-    let access = userPermissions.permissions[can]
+  hasAccess(can) {
+    let userPermissions = store.getters["auth/getPermissions"]
 
+    let access = userPermissions[can]
+  
     return access == null ? false : access
+  }
+  
+  
+  hasSetting(name) {
+    
+    let userSettings = store.getters["auth/getSettings"]
+
+    let setting = userSettings.find(setting => setting.name === name)
+    
+    return setting ? setting :false
   }
 }
 

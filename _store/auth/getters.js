@@ -7,5 +7,14 @@ export const user = (state) => {
 };
 
 export const isAuthenticated = (state) => {
-    return (state.userToken !== null);
+  return (state.userToken !== null);
 };
+
+export const getPermissions = (state) => {
+  return state.permissions;
+};
+
+export const getSettings = (state) => {
+  return state.settings;
+};
+

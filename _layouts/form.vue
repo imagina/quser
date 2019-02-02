@@ -237,7 +237,7 @@
                     <!-- item assigned sources settings -->
                     <q-item tag="label">
                       <q-item-main>
-                        <q-item-tile label>Manage sources under following sources</q-item-tile>
+                        <q-item-tile label>Can Manage sources under following sources</q-item-tile>
                       </q-item-main>
                       <q-item-side right>
                         <q-btn color="primary"
@@ -251,7 +251,7 @@
                     <!-- item assigned roles settings -->
                     <q-item tag="label">
                       <q-item-main>
-                        <q-item-tile label>Manage users with following roles</q-item-tile>
+                        <q-item-tile label>Can manage users with following roles</q-item-tile>
                       </q-item-main>
                       <q-item-side right>
                         <q-btn color="primary"
@@ -265,7 +265,7 @@
                     <!-- item assigned departments settings -->
                     <q-item tag="label">
                       <q-item-main>
-                        <q-item-tile label>Manage departments under following departments</q-item-tile>
+                        <q-item-tile label>Can manage departments under following departments</q-item-tile>
                       </q-item-main>
                       <q-item-side right>
                         <q-btn color="primary"
@@ -377,7 +377,7 @@
   
           <div class="col-12">
             <q-toggle
-              v-model="settings.showAdvancedOrganizer.value"
+              v-model="settings.showAdvancedOrganizerFunctions.value"
               label="Show Advanced Organizer Functions"
             />
           </div>
@@ -473,7 +473,7 @@
         settingsToggle:false,
         settings: {
           showHomePage: false,
-          showAdvancedOrganizer: false,
+          showAdvancedOrganizerFunctions: false,
           includeInCollectedJobs: false,
           assignedSources:[],
           assignedRoles:[],
@@ -506,7 +506,7 @@
         // initial settings
         let settings = [
           {name: 'showHomePage', value: false},
-          {name: 'showAdvancedOrganizer', value: false},
+          {name: 'showAdvancedOrganizerFunctions', value: false},
           {name: 'includeInCollectedJobs', value: false},
           {name: 'assignedSources', value: []},
           {name: 'assignedRoles', value: []},
@@ -615,7 +615,7 @@
             })
           }
         } else {
-          alert.error('Please review fields again. asd', 'bottom')
+          alert.error('Please review fields again.', 'bottom')
         }
       }
     }

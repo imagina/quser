@@ -12,6 +12,9 @@ import blank from 'src/layouts/blank'
 /*CRUD DEPARTMENT CONFIGURATIONS*/
 import * as departments from '../_components/crud/departments'
 
+/*CRUD ROLE CONFIGURATIONS*/
+import * as roles from '../_components/crud/roles'
+
 
 //Routes for auth
 Route.view('/auth', blank)
@@ -63,7 +66,22 @@ Route.view('/users', home)
           }
         },
       });
-      
+
+      Route.view('/roles', vueCrud).options({
+        name: 'user.roles',
+        meta: {permission: 'profile.roleapis.index'},
+        guard: access,
+        props: (route) => {
+        return {
+          storeName: 'profile.roles',
+          singularName: 'role',
+          pluralName: 'roles',
+          parentId: route.params.parentId || null, ...roles,
+        doPage: false
+      }
+      },
+      });
+    
     }
   )
 

@@ -7,39 +7,37 @@ export const AUTH_SUCCESS = (state, data) => {
 };
 
 export const AUTH_LOGOUT = (state) => {
-    state.userToken = null;
-    state.userId = null;
-    state.userData = null;
+  state.userToken = null;
+  state.userId = null;
+  state.userData = null;
+};
+
+export const SET_PERMISSIONS = (state, permissions) => {
+  state.permissions = permissions;
+  
+};
+
+export const SET_SETTINGS = (state, settings) => {
+  state.settings = settings;
+  
 };
 
 //Set department id
 export function CHANGE_DEPARTMENT (state,data) {
-    let userData = state.userData
-    let departmentId = data
 
-    //If there isn't data, set by default, first department in userData
-    if(!data && userData.departments.length)
-        departmentId = userData.departments[0].id
-
-    state.departmentId = departmentId
-    UPDATE_AXIOS_PARAMS(state)
+    state.departmentId = data
+    UpdateAxiosParams(state)
 }
 
 //Set role id
 export function CHANGE_ROLE (state,data) {
-    let userData = state.userData
-    let roleId = data
-
-    //If there isn't data, set by default, first role in userData
-    if(!data && userData.roles.length)
-        roleId = userData.roles[0].id
-
-    state.roleId = roleId
-    UPDATE_AXIOS_PARAMS(state)
+    
+    state.roleId = data
+    UpdateAxiosParams(state)
 }
 
 //Update axios default params
-function UPDATE_AXIOS_PARAMS (state){
+function UpdateAxiosParams (state){
     axios.defaults.params = {
         setting :{
             departmentId : state.departmentId,
