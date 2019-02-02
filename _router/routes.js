@@ -18,71 +18,71 @@ import * as roles from '../_components/crud/roles'
 
 //Routes for auth
 Route.view('/auth', blank)
-  .children(() => {
-      Route.view('/login', require('../_layouts/login').default).name('auth.login').guard(guest)
-      Route.view('/logout', require('../_layouts/logout').default).name('auth.logout')
-    }
-  )
+	.children(() => {
+			Route.view('/login', require('../_layouts/login').default).name('auth.login').guard(guest)
+			Route.view('/logout', require('../_layouts/logout').default).name('auth.logout')
+		}
+	)
 
 //Routes for users
 Route.view('/users', home)
-  .guard(auth)
-  .children(() => {
-      Route.view('/index', require('../_layouts/index').default).options({
-        name: 'user.users.index',
-        meta: {permission: 'profile.api.user.index'},
-        guard: access
-      });
-      Route.view('/create', require('../_layouts/form').default).options({
-        name: 'user.users.create',
-        meta: {permission: 'profile.api.user.create'},
-        guard: access
-      });
-      Route.view('/:id/edit', require('../_layouts/form').default).options({
-        name: 'user.users.edit',
-        meta: {permission: 'profile.api.user.edit'},
-        guard: access
-      });
-  
-    Route.view('/me/profile', require('../_layouts/profile').default).options({
-      name: 'user.profile.me'
-    });
-  
-    Route.view('/me/profile/customer', require('../_layouts/profileForm').default).options({
-      name: 'user.profile.customer'
-    });
-      
-      Route.view('/department', vueCrud).options({
-        name: 'user.department',
-        meta: {permission: 'profile.api.user.department'},
-        guard: access,
-        props: (route) => {
-          return {
-            storeName: 'profile.departments',
-            singularName: 'department',
-            pluralName: 'departments',
-            parentId: route.params.parentId || null, ...departments,
-            doPage: false
-          }
-        },
-      });
+	.guard(auth)
+	.children(() => {
+			Route.view('/index', require('../_layouts/index').default).options({
+				name: 'user.users.index',
+				meta: {permission: 'profile.api.user.index'},
+				guard: access
+			});
+			Route.view('/create', require('../_layouts/form').default).options({
+				name: 'user.users.create',
+				meta: {permission: 'profile.api.user.create'},
+				guard: access
+			});
+			Route.view('/:id/edit', require('../_layouts/form').default).options({
+				name: 'user.users.edit',
+				meta: {permission: 'profile.api.user.edit'},
+				guard: access
+			});
 
-      Route.view('/roles', vueCrud).options({
-        name: 'user.roles',
-        meta: {permission: 'profile.roleapis.index'},
-        guard: access,
-        props: (route) => {
-        return {
-          storeName: 'profile.roles',
-          singularName: 'role',
-          pluralName: 'roles',
-          parentId: route.params.parentId || null, ...roles,
-        doPage: false
-      }
-      },
-      });
-    
-    }
-  )
+			Route.view('/me/profile', require('../_layouts/profile').default).options({
+				name: 'user.profile.me'
+			});
+
+			Route.view('/me/profile/customer', require('../_layouts/profileForm').default).options({
+				name: 'user.profile.customer'
+			});
+
+			Route.view('/department', vueCrud).options({
+				name: 'user.department',
+				meta: {permission: 'profile.api.user.department'},
+				guard: access,
+				props: (route) => {
+					return {
+						storeName: 'profile.departments',
+						singularName: 'department',
+						pluralName: 'departments',
+						parentId: route.params.parentId || null, ...departments,
+						doPage: false
+					}
+				},
+			});
+
+			Route.view('/roles', vueCrud).options({
+				name: 'user.roles',
+				meta: {permission: 'profile.roleapis.index'},
+				guard: access,
+				props: (route) => {
+					return {
+						storeName: 'profile.roles',
+						singularName: 'role',
+						pluralName: 'roles',
+						parentId: route.params.parentId || null, ...roles,
+						doPage: false
+					}
+				},
+			});
+
+		}
+	)
 
 export default Route.all()
