@@ -1,6 +1,7 @@
 /*
 export const someGetter = (state) => {}
 */
+import {helper} from '@imagina/qhelper/_plugins/helper'
 
 export const user = (state) => {
     return state.userData;
@@ -18,7 +19,10 @@ export const getSettings = (state) => {
   return state.settings;
 };
 
-export const getFullName = (state) => {
+export const fullName = (state) => {
   return state.userData.fullName;
 };
 
+export const departmentsSelect =  (state) => (type) => {
+  return helper.array.tree(state.departments);
+};

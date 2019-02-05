@@ -36,6 +36,9 @@ export function CHANGE_ROLE (state,data) {
     UpdateAxiosParams(state)
 }
 
+export function OBTAINED_DEPARTMENTS (state,data) {
+  state.departments = data
+}
 //Update axios default params
 function UpdateAxiosParams (state){
     axios.defaults.params = {
@@ -45,3 +48,4 @@ function UpdateAxiosParams (state){
         }
     }
 }
+

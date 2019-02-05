@@ -6,6 +6,7 @@ import {helper} from '@imagina/qhelper/_plugins/helper';
 import axios from 'axios';
 import config from 'src/config/index'
 import store from 'src/store/index'
+import profileServices from '@imagina/quser/_services/profile/index'
 
 export const AUTH_REQUEST = async ({commit, dispatch}, authData) => {
   if (navigator.onLine)
@@ -235,3 +236,19 @@ export const SET_SETTINGS = ({dispatch, commit, state}, data = false) => {
 })
 }
 
+/**
+ * GET Branch Office
+ *
+ * @param commit
+ * @param dispatch
+ * @returns {Promise<any>}
+ * @constructor
+ */
+export const GET_DEPARTMENTS = ({commit, dispatch}) => {
+  let configName = 'profile.departments'
+  profileServices.crud.index(configName).then(response => {
+    commit('OBTAINED_DEPARTMENTS',response.data)
+}).catch(error => {
+    console.error('Error Store fhia getting Departments:', error)
+})
+}

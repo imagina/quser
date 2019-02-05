@@ -3,6 +3,8 @@ import exportFromJSON from 'export-from-json'
 import {alert} from '@imagina/qhelper/_plugins/alert'
 import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
 import _pick from 'lodash.pick'
+
+// change this import for which you are going to use
 import service from '../../_services/profile/index'
 
 /**
@@ -17,12 +19,13 @@ export const crudTable = {
     { text: 'Updated At', value: 'updatedAt', type: 'datetime' },
     { text: 'Created At', value: 'createdAt', type: 'datetime' }
   ],
-
+  
 }
 
 
 export const crudActions = {
-  permission: 'fhia.departments',
+  // base permission to make crud, example 'fhia.departments' + '.create' or + '.index' or + '.destroy' or + '.edit'
+  permission: 'profile.departments',
   actionsData:{
     add: {
       icon: 'add',
@@ -45,7 +48,7 @@ export const crudActions = {
       //permission:''
     }
   }
-
+  
 }
 
 export const crudFields = {
@@ -64,155 +67,160 @@ export const crudFields = {
 }
 
 export const crudFilter = {
-  FilterVue: () => ({
+    FilterVue: () => ({// you can set your custom filter view
     //component: import('./departmentFilter.vue')
   }),
   filterData: {
-    search: {
-      type: 'text',
+  search: {
+    type: 'text',
       label:'',
       placeHolder: 'Text Search',
       value: '',
       cols:'4'
-    }
   }
+}
 }
 
 export const crudForm = {
-  FormVue: () => ({
+    FormVue: () => ({
     //component: import('./departmentForm.vue')
   }),
   defaultRec: () => ({ // you can use function to initialize record as well
-    title: ''
-    // created: format(new Date(), 'YYYY-MM-DD HH:mm:ss'), // example for date format
-  })
+  title: ''
+  // created: format(new Date(), 'YYYY-MM-DD HH:mm:ss'), // example for date format
+})
 }
 
 export const crudOps = { // CRUD
-  export: async (payload) => {
-    const {filterData,crudTable} = payload // pagination
-    let filter = {};
-    for (var key in filterData)
-      filter[key] = filterData[key].value
+  
+  export: async (payload, configNames) => {
+  const {filterData,crudTable} = payload // pagination
+  let filter = {};
+for (var key in filterData)
+  filter[key] = filterData[key].value
 
-    let headers = []
-    crudTable.headers.forEach(element => {
-      headers.push(element.value);
-    })
+let headers = []
+crudTable.headers.forEach(element => {
+  headers.push(element.value);
+})
 
-      let params = {
-        params:{
-          filter:filter,
-          fields:'id,title'
-        }
-      }
-
-
-    let headerData = [];
-    await service.crud.index('profile.departments',params)
-      .then((response) =>{
-
-        response.data.forEach((element,index) => {
-
-          headerData.push(_pick(element, headers))
-        })
-
-        const data = headerData
-        const fileName = 'Departments'
-        const exportType = 'xls'
-        exportFromJSON({ data, fileName, exportType })
-      })
-      .catch((error) => {
-        let errorMessage = error ? error : 'No Departments found';
-        alert.error(errorMessage, 'bottom')
-      })
-  },
-
-
-  delete: async (payload) => {
-    let {id, ...attributes} = payload
-
-    await service.crud.delete('profile.departments',id)
-      .then((response) => {
-        alert.success('Department Deleted', 'top')
-      }).catch(error => {
-        let errorMessage = error ? error: 'Delete failed';
-        alert.error(errorMessage, 'bottom')
-      })
-
-  },
-
-  index: async (payload) => {
-    let data = []
-    const {pagination, filterData} = payload
-    let filter = {};
-
-    for (var key in filterData)
-      filter[key] = filterData[key].value
-
-      let params = {
-        params:{
-          filter:filter,
-          page: pagination.page ? pagination.page : 1,
-          take: 10,
-          fields:'id,title,updated_at,created_at'
-        }
-      }
-    
-      await service.crud.index('profile.departments',params)
-        .then((response) => {
-          data = response;
-      }).catch(error => {
-        let errorMessage = error ? error : 'No departments found';
-        alert.error(errorMessage, 'bottom')
-      })
-    return {records:data.data,pagination:data.meta}
-  },
-
-
-  show: async (payload) => {
-    const {id} = payload
-    let record = { }
-    let params = {
-        params:{
-          fields:'id,title,updated_at,created_at'
-        }
-    }
-    await service.crud.show('profile.departments',id,params)
-      .then((response) => {
-        record = response.data;
-      }).catch(error => {
-        let errorMessage = error ? error : 'department not found';
-        alert.error(errorMessage, 'bottom')
-      })
-    return record
-  },
-
-
-  create: async (payload) => {
-    const {record: {id, ...attributes}} = payload
-   
-    await service.crud.create('profile.departments',attributes)
-      .then((response) => {
-        alert.success('Department Created', 'top')
-      }).catch(error => {
-        let errorMessage = error ? error : 'Create failed';
-        alert.error(errorMessage, 'bottom')
-      })
-
-  },
-
-  update: async (payload) => {
-    let {record: {id, ...attributes}} = payload
-    attributes["id"] = id;
-    await service.crud.update('profile.departments',id,attributes)
-      .then((response) => {
-        alert.success('Department Updated', 'top')
-      }).catch(error => {
-        let errorMessage = error ? error : 'Update failed';
-        alert.error(errorMessage, 'bottom')
-      })
-
+let params = {
+  params:{
+    filter:filter,
+    fields:'id,title'
   }
+}
+
+
+let headerData = [];
+await service.crud.index(configNames.storeName,params)
+  .then((response) =>{
+  
+  response.data.forEach((element,index) => {
+  
+  headerData.push(_pick(element, headers))
+})
+
+const data = headerData
+const fileName = configNames.pluralName
+const exportType = 'xls'
+exportFromJSON({ data, fileName, exportType })
+})
+.catch((error) => {
+  let errorMessage = error ? error : 'No '+ configNames.pluralName +' found';
+alert.error(errorMessage, 'bottom')
+})
+},
+
+
+delete: async (payload, configNames) => {
+  let {id, ...attributes} = payload
+  
+  await service.crud.delete(configNames.storeName,id)
+    .then((response) => {
+    alert.success(configNames.singularName +' Deleted', 'top')
+}).catch(error => {
+    let errorMessage = error ? error: 'Delete failed';
+  alert.error(errorMessage, 'bottom')
+})
+
+},
+
+index: async (payload, configNames) => {
+  let data = []
+  const {pagination, filterData} = payload
+  let filter = {};
+  
+  for (var key in filterData)
+    filter[key] = filterData[key].value
+  
+  let params = {
+    params:{
+      filter:filter,
+      page: pagination.page ? pagination.page : 1,
+      take: 10,
+      fields:'id,title,updated_at,created_at'
+    }
+  }
+  
+  await service.crud.index(configNames.storeName,params)
+    .then((response) => {
+    data = response;
+}).catch(error => {
+    let errorMessage = error ? error : 'No '+configNames.pluralName+' found';
+  alert.error(errorMessage, 'bottom')
+})
+  return {records:data.data,pagination:data.meta}
+},
+
+
+show: async (payload, configNames) => {
+  const {id} = payload
+  let record = { }
+  let params = {
+    params:{
+      fields:'id,title,updated_at,created_at'
+    }
+  }
+  await service.crud.show(configNames.storeName,id,params)
+    .then((response) => {
+    record = response.data;
+}).catch(error => {
+    let errorMessage = error ? error : configNames.singularName+' not found';
+  alert.error(errorMessage, 'bottom')
+})
+  return record
+},
+
+
+create: async (payload, configNames) => {
+  const {record: {id, ...attributes}} = payload
+  
+  await service.crud.create(configNames.storeName,attributes)
+    .then((response) => {
+    alert.success(configNames.singularName+' Created', 'top')
+}).catch(error => {
+    let errorMessage = error ? error : 'Create failed';
+  alert.error(errorMessage, 'bottom')
+})
+
+},
+
+update: async (payload, configNames) => {
+  let {record: {id, ...attributes}} = payload
+  attributes["id"] = id;
+  await service.crud.update(configNames.storeName,id,attributes)
+    .then((response) => {
+    alert.success(configNames.singularName+' Updated', 'top')
+}).catch(error => {
+    let errorMessage = error ? error : 'Update failed';
+  alert.error(errorMessage, 'bottom')
+})
 
 }
+
+}
+
+
+
+

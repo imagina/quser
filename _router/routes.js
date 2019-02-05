@@ -54,7 +54,7 @@ Route.view('/users', home)
 
 			Route.view('/department', vueCrud).options({
 				name: 'user.department',
-				meta: {permission: 'profile.api.user.department'},
+				meta: {permission: 'profile.departments.index'},
 				guard: access,
 				props: (route) => {
 					return {

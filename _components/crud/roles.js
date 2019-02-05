@@ -87,7 +87,7 @@ export const crudForm = {
 }
 
 export const crudOps = { // CRUD
-  export: async (payload) => {
+  export: async (payload, configNames) => {
     const {filterData,crudTable} = payload // pagination
     let filter = {};
     for (var key in filterData)
@@ -126,7 +126,7 @@ export const crudOps = { // CRUD
   },
 
 
-  delete: async (payload) => {
+  delete: async (payload, configNames) => {
     let {id, ...attributes} = payload
 
     await service.crud.delete('profile.roles',id)
@@ -139,7 +139,7 @@ export const crudOps = { // CRUD
 
   },
 
-  index: async (payload) => {
+  index: async (payload, configNames) => {
     let data = []
     const {pagination, filterData} = payload
     let filter = {};
@@ -167,7 +167,7 @@ export const crudOps = { // CRUD
   },
 
 
-  show: async (payload) => {
+  show: async (payload, configNames) => {
     const {id} = payload
     let record = { }
     let params = {
@@ -187,7 +187,7 @@ export const crudOps = { // CRUD
   },
 
 
-  create: async (payload) => {
+  create: async (payload, configNames) => {
     const {record: {id, ...attributes}} = payload
    
     await service.crud.create('profile.roles',attributes)
@@ -200,7 +200,7 @@ export const crudOps = { // CRUD
 
   },
 
-  update: async (payload) => {
+  update: async (payload, configNames) => {
     let {record: {id, ...attributes}} = payload
     attributes["id"] = id;
     await service.crud.update('profile.roles',id,attributes)
