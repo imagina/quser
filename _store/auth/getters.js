@@ -23,6 +23,6 @@ export const fullName = (state) => {
   return state.userData.fullName;
 };
 
-export const departmentsSelect =  (state) => (type) => {
+export const departmentsSelect = (state) => {
   return helper.array.tree(state.departments);
 };

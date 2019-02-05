@@ -119,7 +119,7 @@
         </q-card-title>
         
         <q-collapsible header-style="display: none" v-model="settingsToggle">
-          <div class="row">
+          <div class="row gutter-sm">
             <div class="col-12">
               <q-field>
   
@@ -130,6 +130,159 @@
                 />
 
               </q-field>
+            </div>
+  
+  
+   
+            <div class="col-12 relative-position">
+              <q-tabs
+                animated
+                swipeable
+                inverted
+                color="primary"
+                align="justify"
+                v-model="settingTab"
+              >
+                <!-- Tabs - notice slot="title" -->
+                <q-tab label="list" slot="title" default name="list" />
+                <q-tab label="assignedSources" slot="title" name="assignedSources" />
+                <q-tab label="assignedRoles" slot="title" name="assignedRoles" />
+                <q-tab label="assignedDepartments" slot="title" name="assignedDepartments" />
+        
+                <!-- Targets -->
+                <q-tab-pane keep-alive name="list">
+          
+                  <q-list link no-border separator>
+            
+            
+                    <!-- item assigned sources settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Can Manage sources under following sources</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedSources'" />
+                      </q-item-side>
+                    </q-item>
+            
+                    <!-- item assigned roles settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Can manage users with following roles</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedRoles'" />
+                      </q-item-side>
+                    </q-item>
+            
+                    <!-- item assigned departments settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Can manage departments under following departments</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedDepartments'" />
+                      </q-item-side>
+                    </q-item>
+                    <q-item-separator />
+                  </q-list>
+        
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedSources">
+                  <div class="row">
+            
+                    <!-- Sources -->
+                    <div class="col-12">
+                      <div class="caption text-weight-regular text-grey-6 ellipsis">
+                        Assigned Sources
+                      </div>
+                      <treeselect
+                        :multiple="true"
+                        :append-to-body="true"
+                        :options="$store.getters['fhia/sourcesSelect']"
+                        :value-consists-of="valueConsistsOf"
+                        v-model="settings.assignedSources.value"
+                        placeholder=""
+                      />
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+            
+                    </div>
+                  </div>
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedRoles">
+                  <div class="row">
+            
+                    <!-- Roles -->
+                    <div class=" col-12">
+                      <q-field
+                        v-if="roles.length"
+                        :disabled="rolesLoading"
+                      >
+                        <q-select
+                          float-label="Assigned Roles"
+                          v-model="settings.assignedRoles.value"
+                          :options="roles"
+                          multiple chips
+                        />
+                      </q-field>
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+            
+                    </div>
+                  </div>
+        
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedDepartments">
+          
+                  <div class="row">
+            
+                    <!-- Deparments -->
+                    <div class=" col-12">
+                      <q-field
+                        :disabled="departmentsLoading"
+                      >
+                        <treeselect
+                          :multiple="true"
+                          :append-to-body="true"
+                          :options="$store.getters['auth/departmentsSelect']"
+                          :value-consists-of="valueConsistsOf"
+                          v-model="settings.assignedDepartments.value"
+                          placeholder=""
+                        />
+                       
+                      </q-field>
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+            
+                    </div>
+                  </div>
+        
+        
+                </q-tab-pane>
+      
+              </q-tabs>
             </div>
           </div>
         </q-collapsible>
@@ -149,13 +302,19 @@
   </div>
 </template>
 <script>
+  
+  /*Plugins*/
   import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
-  
-  import {alert} from '@imagina/qhelper/_plugins/alert'
+  import {alert} from '@imagina/qhelper/_plugins/alert';
   import {helper} from '@imagina/qhelper/_plugins/helper';
-  import config from 'src/config/index'
+  import config from 'src/config/index';
   
-  import profileService from '@imagina/quser/_services/profile/index'
+  /*Services*/
+  import profileService from '@imagina/quser/_services/profile/index';
+
+  /*Components*/
+  import Treeselect from '@riophae/vue-treeselect';
+  import '@riophae/vue-treeselect/dist/vue-treeselect.css';
   
   export default {
   props: {
@@ -173,9 +332,10 @@
       default: () => {
         return {}
       },
-    },
+    }
   },
   components: {
+    Treeselect
   },
   watch: {
     record(){
@@ -209,6 +369,12 @@
       permissionsBackend:'',
       loading: false,
       preleadForms:[],
+      roles: [],
+      departments: [],
+      rolesLoading: false,
+      departmentsLoading: false,
+      valueConsistsOf: 'BRANCH_PRIORITY',
+      settingTab:'list',
       form: {
         name: '',
         slug: '',
@@ -218,26 +384,56 @@
         }
       },
       settings:{
-        defaultPreleadForm:{}
+        defaultPreleadForm:{},
+        showHomePage: false,
+        showAdvancedOrganizerFunctions: false,
+        includeInCollectedJobs: false,
+        assignedSources:[],
+        assignedRoles:[],
+        assignedDepartments:[]
       }
     }
   },
   methods: {
     initializeData(){
+      console.warn (this.$store.getters['auth/departmentsSelect'])
+      
       profileService.role.getPermissions().then(response => {
         this.permissionsBackend = response.data
-      })
-      let settings = [
-        {name: 'defaultPreleadForm', value: ''}
-      ];
-
+      });
+  
       this.permissionsOptions = []
       this.form = JSON.parse(JSON.stringify(this.record))
       this.convertPermissions('front');
-    
+      
+  
+      let settings = [
+        {name: 'defaultPreleadForm', value: ''},
+        {name: 'showHomePage', value: false},
+        {name: 'showAdvancedOrganizerFunctions', value: false},
+        {name: 'includeInCollectedJobs', value: false},
+        {name: 'assignedSources', value: []},
+        {name: 'assignedRoles', value: []},
+        {name: 'assignedDepartments', value: []}
+      ]
+      
       this.settings = helper.convertToFrontField(settings, this.form.settings);
       
       this.preleadForms = config('app.preleadForms')
+    
+      this.rolesLoading = true
+      profileService.crud.index('profile.roles').then(response => {
+        this.roles = this.$helper.array.select(response.data);
+      this.rolesLoading = false;
+    });
+    
+      this.departmentsLoading = true
+    
+      profileService.crud.index('profile.departments',{}).then(response => {
+        this.departments = this.$helper.array.select(response.data)
+      this.departmentsLoading = false
+    })
+    
     },
     
     setAllPermissions(value){
@@ -349,4 +545,18 @@
 </script>
 <style lang="stylus">
   @import "~variables";
+  #roleForm
+    .q-item
+      padding 0 10px
+    .q-tabs
+      .q-tabs-head
+        display none
+      .q-tabs-panes
+        border 0
+      .q-tab-pane
+        padding 0
+    .q-card
+      margin-bottom 15px
+    .q-card-title
+      border 0
 </style>

@@ -159,13 +159,18 @@
             <q-field
               :disabled="departmentsLoading"
             >
-              <q-select
-                multiple chips
-                float-label="Departments"
+              <div class="caption text-weight-regular text-grey-6 ellipsis">
+                Departments
+              </div>
+              <treeselect
+                :multiple="true"
+                :append-to-body="true"
+                :options="$store.getters['auth/departmentsSelect']"
+                :value-consists-of="valueConsistsOf"
                 v-model="form.departments"
-                :options="departments"
-            
+                placeholder=""
               />
+              
             </q-field>
           </div>
         
@@ -339,12 +344,16 @@
                       <q-field
                         :disabled="departmentsLoading"
                       >
-                        <q-select
-                          multiple chips
-                          float-label="Assigned Departments"
+                        <div class="caption text-weight-regular text-grey-6 ellipsis">
+                          Assigned Departments
+                        </div>
+                        <treeselect
+                          :multiple="true"
+                          :append-to-body="true"
+                          :options="$store.getters['auth/departmentsSelect']"
+                          :value-consists-of="valueConsistsOf"
                           v-model="settings.assignedDepartments.value"
-                          :options="departments"
-      
+                          placeholder=""
                         />
                       </q-field>
                       <div class="q-py-xs">
@@ -385,7 +394,7 @@
           <div class="col-12">
             <q-toggle
               v-model="settings.includeInCollectedJobs.value"
-              label="Include in WAR Queue"
+              label="Include in Collected Jobs"
             />
           </div>
           
