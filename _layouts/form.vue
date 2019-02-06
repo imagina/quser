@@ -569,14 +569,14 @@
         
         
         this.rolesLoading = true
-        profileService.crud.index('profile.roles').then(response => {
+        profileService.crud.index('profile.roles',{params:{filter:{}}}).then(response => {
           this.roles = this.$helper.array.select(response.data);
           this.rolesLoading = false;
         });
 
         this.departmentsLoading = true
        
-        profileService.crud.index('profile.departments',{}).then(response => {
+        profileService.crud.index('profile.departments',{params:{filter:{}}}).then(response => {
           this.departments = this.$helper.array.select(response.data)
           this.departmentsLoading = false
         })

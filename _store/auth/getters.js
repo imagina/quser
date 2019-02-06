@@ -20,9 +20,9 @@ export const getSettings = (state) => {
 };
 
 export const fullName = (state) => {
-  return state.userData.fullName;
+  let userData = state.userData
+  return (userData && userData.fullName) ? userData.fullName : '';
 };
-
 export const departmentsSelect = (state) => {
   return helper.array.tree(state.departments);
 };

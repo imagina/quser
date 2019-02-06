@@ -246,7 +246,7 @@ export const SET_SETTINGS = ({dispatch, commit, state}, data = false) => {
  */
 export const GET_DEPARTMENTS = ({commit, dispatch}) => {
   let configName = 'profile.departments'
-  profileServices.crud.index(configName).then(response => {
+  profileServices.crud.index(configName,{params:{filter:{}}}).then(response => {
     commit('OBTAINED_DEPARTMENTS',response.data)
 }).catch(error => {
     console.error('Error Store fhia getting Departments:', error)

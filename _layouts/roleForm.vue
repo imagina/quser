@@ -120,17 +120,7 @@
         
         <q-collapsible header-style="display: none" v-model="settingsToggle">
           <div class="row gutter-sm">
-            <div class="col-12">
-              <q-field>
-  
-                <q-select
-                  v-model="settings.defaultPreleadForm.value"
-                  :options="preleadForms"
-                  float-label="Default View for Pre - Lead Creation"
-                />
-
-              </q-field>
-            </div>
+         
   
   
    
@@ -153,8 +143,21 @@
                 <q-tab-pane keep-alive name="list">
           
                   <q-list link no-border separator>
-            
-            
+  
+                    <!-- item assigned sources settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Default View for Pre - Lead Creation</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'defaultViewPreleadForm'" />
+                      </q-item-side>
+                    </q-item>
+                    
                     <!-- item assigned sources settings -->
                     <q-item tag="label">
                       <q-item-main>
@@ -182,7 +185,7 @@
                                @click="settingTab = 'assignedRoles'" />
                       </q-item-side>
                     </q-item>
-            
+  
                     <!-- item assigned departments settings -->
                     <q-item tag="label">
                       <q-item-main>
@@ -196,9 +199,42 @@
                                @click="settingTab = 'assignedDepartments'" />
                       </q-item-side>
                     </q-item>
+  
+                    <!-- item assigned product groups categories settings -->
+                    <q-item tag="label">
+                      <q-item-main>
+                        <q-item-tile label>Can see only the following products categories</q-item-tile>
+                      </q-item-main>
+                      <q-item-side right>
+                        <q-btn color="primary"
+                               flat round
+                               icon="arrow_forward"
+                               size="sm"
+                               @click="settingTab = 'assignedProductGroupsCategories'" />
+                      </q-item-side>
+                    </q-item>
                     <q-item-separator />
                   </q-list>
         
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="defaultViewPreleadForm">
+                  <div class="row">
+      
+                    <!-- Sources -->
+                    <div class="col-12">
+                      <q-select
+                        v-model="settings.defaultPreleadForm.value"
+                        :options="preleadForms"
+                        float-label="Default View for Pre - Lead Creation"
+                      />
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+      
+                    </div>
+                  </div>
                 </q-tab-pane>
                 <q-tab-pane keep-alive name="assignedSources">
                   <div class="row">
@@ -280,6 +316,31 @@
                   </div>
         
         
+                </q-tab-pane>
+                <q-tab-pane keep-alive name="assignedProductGroupsCategories">
+                  <div class="row">
+      
+                    <!-- product groups categories -->
+                    <div class=" col-12">
+                   
+                        <q-select
+                          float-label="Product *:"
+                          filter clearable
+                          v-model="settings.assignedProductGroupsCategories.value"
+                          :disable="!$store.getters['icommerce/categoriesSelect'].length"
+                          :options="$store.getters['icommerce/categoriesSelect']"
+                          multiple chips
+                        />
+            
+                      <div class="q-py-xs">
+                        <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm" >
+                          go back
+                        </q-btn>
+                      </div>
+      
+                    </div>
+                  </div>
+  
                 </q-tab-pane>
       
               </q-tabs>
@@ -390,7 +451,8 @@
         includeInCollectedJobs: false,
         assignedSources:[],
         assignedRoles:[],
-        assignedDepartments:[]
+        assignedDepartments:[],
+        assignedProductGroupsCategories:[]
       }
     }
   },
@@ -414,7 +476,8 @@
         {name: 'includeInCollectedJobs', value: false},
         {name: 'assignedSources', value: []},
         {name: 'assignedRoles', value: []},
-        {name: 'assignedDepartments', value: []}
+        {name: 'assignedDepartments', value: []},
+        {name: 'assignedProductGroupsCategories', value: []}
       ]
       
       this.settings = helper.convertToFrontField(settings, this.form.settings);
