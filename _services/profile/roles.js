@@ -4,14 +4,14 @@ import http from "axios"
 import {remember} from '@imagina/qhelper/_plugins/remember'
 
 export default {
-  
-  getPermissions() {
-    return new Promise((resolve, reject) => {
-      return http.get(config('profile.roles') + '/permissions').then(response => {
-      resolve(response.data);
-  }).catch(error => {
-      reject([]);
-  });
-  });
-  }
+
+	getPermissions() {
+		return new Promise((resolve, reject) => {
+			return http.get(config('profile.roles') + '/permissions').then(response => {
+				resolve(response.data);
+			}).catch(error => {
+				reject([]);
+			});
+		});
+	}
 }

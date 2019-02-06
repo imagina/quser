@@ -137,13 +137,12 @@ export const SET_DEPARTMENT = ({dispatch, commit, state}, data = false) => {
 export const SET_ROLE = ({dispatch, commit, state}, data = false) => {
   return new Promise(async (resolve)=> {
     let nameInCache = 'auth.role.id'
-    
+
     if (data) {
       helper.storage.set(nameInCache, data)
       commit('CHANGE_ROLE', data)
     } else {
       let roleId = await helper.storage.get.item(nameInCache)
-      
       //If there isn't data, set by default, first role in userData
       if(!roleId && state.userData.roles.length)
         roleId = state.userData.roles[0].id
@@ -236,14 +235,15 @@ export const SET_SETTINGS = ({dispatch, commit, state}, data = false) => {
 })
 }
 
-/**
- * GET Branch Office
- *
- * @param commit
- * @param dispatch
- * @returns {Promise<any>}
- * @constructor
- */
+export const AUTH_RELOAD = ({dispatch, commit, state}) => {
+  return new Promise(resolve => {
+    helper.storage.restore()//Restore all cache
+    dispatch('AUTH_TRYAUTOLOGIN').then(response => {
+      helper.reloadApp()
+    })
+  })
+}
+
 export const GET_DEPARTMENTS = ({commit, dispatch}) => {
   let configName = 'profile.departments'
   profileServices.crud.index(configName).then(response => {

@@ -4,25 +4,26 @@ export const someGetter = (state) => {}
 import {helper} from '@imagina/qhelper/_plugins/helper'
 
 export const user = (state) => {
-    return state.userData;
+	return state.userData;
 };
 
 export const isAuthenticated = (state) => {
-  return (state.userToken !== null);
+	return (state.userToken !== null);
 };
 
 export const getPermissions = (state) => {
-  return state.permissions;
+	return state.permissions;
 };
 
 export const getSettings = (state) => {
-  return state.settings;
+	return state.settings;
 };
 
 export const fullName = (state) => {
-  return state.userData.fullName;
+	let userData = state.userData
+	return (userData && userData.fullName) ? userData.fullName : '';
 };
 
-export const departmentsSelect =  (state) => (type) => {
-  return helper.array.tree(state.departments);
+export const departmentsSelect = (state) => (type) => {
+	return helper.array.tree(state.departments);
 };
