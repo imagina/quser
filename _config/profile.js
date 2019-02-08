@@ -5,15 +5,16 @@
 const baseApiUrl = env('BASE_URL', 'http://localhost:8000') + '/api';
 const moduleName = 'profile';
 const moduleVersion = 'v1';
+const urlBase = baseApiUrl + '/' + moduleName + '/' + moduleVersion
 
 export default {
 	version: moduleVersion,
-	authLogin: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/auth/login',
-	authLogout: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/auth/logout',
-	addresses: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/addresses',
-	departments: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/departments',
-	departmentsSettings: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/departments/settings',
-	fields: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/fields',
-	users: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/users',
-  roles: baseApiUrl + '/' + moduleName + '/' + moduleVersion + '/roles'
+	authLogin: urlBase + '/auth/login',
+	authLogout: urlBase + '/auth/logout',
+	addresses: urlBase + '/addresses',
+	departments: urlBase + '/departments',
+	departmentsSettings: urlBase + '/departments/settings',
+	fields: urlBase + '/fields',
+	users: urlBase + '/users',
+  roles: urlBase + '/roles'
 }
