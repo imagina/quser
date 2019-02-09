@@ -68,7 +68,7 @@
                         
   
                       </div>
-                      
+                      <!-- Branch Offices -->
                       <div class="col-12 col-md-2 col-sm-3">
                         <q-select
                           v-model="branchOfficeSelected"
@@ -79,7 +79,20 @@
                           placeholder="All Branch Offices"
                           @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
                         />
-                      
+  
+                      </div>
+  
+                      <!-- Roles -->
+                      <div class="col-12 col-md-2 col-sm-3">
+                        <q-select
+                          placeholder="All Roles"
+                          :hide-underline="true"
+                          clearable
+                          v-model="rolesSelected"
+                          :options="options.roles"
+                          @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
+                        />
+  
                       </div>
                       
                       <q-table-columns
@@ -224,9 +237,11 @@
       return {
         branchOfficeSelected: null,
         departmentSelected: null,
+        rolesSelected: null,
         valueConsistsOf: 'BRANCH_PRIORITY',
         options: {
-          branchOffices: []
+          branchOffices: [],
+          roles:[]
         },
         pagination: {
           page: 1,
@@ -286,8 +301,12 @@
     },
     methods: {
       initialize() {
+  
 
-        
+        profileService.crud.index('profile.roles',{params:{filter:{}}}).then(response => {
+          this.options.roles = this.$helper.array.select(response.data);
+
+        });
       },
       getData({pagination, search}) {
         
@@ -304,6 +323,10 @@
         //set branchOffice filter
         if(this.branchOfficeSelected)
           filter.branchOffice = this.branchOfficeSelected
+  
+        //set roles filter
+        if(this.rolesSelected)
+          filter.roles = [this.rolesSelected]
   
         //set branchOffice filter
         if(this.departmentSelected)

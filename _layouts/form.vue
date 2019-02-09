@@ -157,6 +157,9 @@
           <!-- Deparments -->
           <div class=" col-12 col-md-4 ">
             <q-field
+              :error="$v.form.departments.$error"
+              error-label="This field is required"
+       
               :disabled="departmentsLoading"
             >
               <div class="caption text-weight-regular text-grey-6 ellipsis">
@@ -590,7 +593,9 @@
       },
       submit() {
         this.$v.$touch();//validate all fields from form
-
+        if (this.$v.form.departments.$error)
+          this.relationsToggle = true
+        
         if (!this.$v.$error) {
           this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
@@ -631,6 +636,8 @@
 <style lang="stylus">
   @import "~variables";
   #userForm
+    .q-field-bottom
+      margin -1px
     .q-item
       padding 0 10px
     .q-tabs

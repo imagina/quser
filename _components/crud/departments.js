@@ -1,6 +1,8 @@
 import {format} from 'date-fns'
 import exportFromJSON from 'export-from-json'
 import {alert} from '@imagina/qhelper/_plugins/alert'
+import {array} from '@imagina/qhelper/_plugins/array'
+import store from 'src/store/index'
 import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
 import _pick from 'lodash.pick'
 
@@ -62,6 +64,33 @@ export const crudFields = {
       rules: {
         required,
       }
+    },
+    parentId: {
+      type: 'treeselect',
+      label: 'Parent',
+      name: 'parentId',
+      filter: true,
+      valueConsistsOf: 'BRANCH_PRIORITY',
+      placeHolder: 'Parent Department',
+      viewPosition: 'right',
+      optionsFn: async () =>{
+        let params = {
+          params:{
+            fields:'id,title,parent_id,updated_at,created_at'
+          }
+        }
+        let data;
+        await service.crud.index('profile.departments',params)
+          .then((response) => {
+            data = array.tree(response.data);
+          }).catch(error => {
+            let errorMessage = error ? error : 'No departments found';
+            alert.error(errorMessage, 'bottom')
+          })
+        return data;
+      },
+      rules: {
+      }
     }
   }
 }
@@ -86,7 +115,8 @@ export const crudForm = {
     //component: import('./departmentForm.vue')
   }),
   defaultRec: () => ({ // you can use function to initialize record as well
-  title: ''
+    title: '',
+    parentId: null
   // created: format(new Date(), 'YYYY-MM-DD HH:mm:ss'), // example for date format
 })
 }
@@ -159,7 +189,7 @@ index: async (payload, configNames) => {
       filter:filter,
       page: pagination.page ? pagination.page : 1,
       take: 10,
-      fields:'id,title,updated_at,created_at'
+      fields:'id,title,parent_id,updated_at,created_at'
     }
   }
   
@@ -179,7 +209,7 @@ show: async (payload, configNames) => {
   let record = { }
   let params = {
     params:{
-      fields:'id,title,updated_at,created_at'
+      fields:'id,title,parent_id,updated_at,created_at'
     }
   }
   await service.crud.show(configNames.storeName,id,params)
