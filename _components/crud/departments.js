@@ -112,7 +112,7 @@ export const crudFilter = {
 
 export const crudForm = {
     FormVue: () => ({
-    //component: import('./departmentForm.vue')
+      component: import('@imagina/quser/_layouts/departmentForm')
   }),
   defaultRec: () => ({ // you can use function to initialize record as well
     title: '',
@@ -209,7 +209,8 @@ show: async (payload, configNames) => {
   let record = { }
   let params = {
     params:{
-      fields:'id,title,parent_id,updated_at,created_at'
+      fields:'id,title,parent_id,updated_at,created_at',
+      include:'settings'
     }
   }
   await service.crud.show(configNames.storeName,id,params)

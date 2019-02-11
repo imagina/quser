@@ -19,6 +19,11 @@ export const getSettings = (state) => {
   return state.settings;
 };
 
+export const getDepartmentBy = (state) => (field,value) => {
+  let results = state.departments.filter(department => department[field] == value)
+  return results
+};
+
 export const fullName = (state) => {
   let userData = state.userData
   return (userData && userData.fullName) ? userData.fullName : '';

@@ -458,7 +458,7 @@
   },
   methods: {
     initializeData(){
-      console.warn (this.$store.getters['auth/departmentsSelect'])
+
       
       profileService.role.getPermissions().then(response => {
         this.permissionsBackend = response.data
