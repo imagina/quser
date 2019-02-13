@@ -20,7 +20,7 @@
             <div class="col-12">
               <div class="row content-end">
                 <div class=" text-center col-12 col-md-6 ">
-                  <img v-if="fields.mainImage.value==''" src="assets/image/default.jpg" alt="" style="border-radius: 50%; max-height: 280px">
+                  <img v-if="fields.mainImage.value==''" src="/modules/profile/img/default.jpg" alt="" style="border-radius: 50%; max-height: 280px">
                   <img v-if="fields.mainImage.value!=''" :src="getImageUrl" alt="" style="border-radius: 50%; max-height: 280px">
                   <div class="row justify-center q-pa-sm">
                     

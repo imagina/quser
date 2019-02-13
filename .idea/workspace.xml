@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/form.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_layouts/profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/profileForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/profileForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/roleForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/roleForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_store/auth/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/_store/auth/actions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,195 +29,215 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="profile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_config/profile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="13" column="11" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="form.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="172" column="42" selection-start-line="172" selection-start-column="42" selection-end-line="172" selection-end-column="42" />
-              <folding>
-                <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-field#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-field#0;n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-field#0;n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-field#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item-main#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item-main#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-select#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#treeselect#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-toggle#0;n#div#1;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-toggle#0;n#div#2;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#15012#15061#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="departments.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_components/crud/departments.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="202" column="48" selection-start-line="202" selection-start-column="48" selection-end-line="202" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="roles.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_components/crud/roles.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="152" column="30" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profileForm.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="683" column="13" selection-start-line="683" selection-start-column="13" selection-end-line="683" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="94" column="33" selection-start-line="94" selection-start-column="33" selection-end-line="94" selection-end-column="33" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#21805#21881#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="widget-user.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_components/widget-user.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="69" column="20" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="departmentForm.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/departmentForm.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="339" column="36" lean-forward="true" selection-start-line="339" selection-start-column="36" selection-end-line="339" selection-end-column="36" />
-              <folding>
-                <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.4605103">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="profile.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_config/profile.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="170">
+                  <caret line="13" column="11" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="form.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="742" column="1" selection-start-line="742" selection-start-column="1" selection-end-line="742" selection-end-column="1" />
+                  <folding>
+                    <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-field#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-select#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#1;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#2;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="e#15012#15061#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="663">
+                  <caret line="174" column="2" lean-forward="true" selection-start-line="174" selection-start-column="2" selection-end-line="174" selection-end-column="2" />
+                  <folding>
+                    <element signature="e#0#38#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mutations.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="570">
+                  <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="roles.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_components/crud/roles.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2499">
+                  <caret line="152" column="30" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="profileForm.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="11577">
+                  <caret line="683" column="13" selection-start-line="683" selection-start-column="13" selection-end-line="683" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="profile.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-51">
+                  <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+                  <folding>
+                    <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="login.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-688">
+                  <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="widget-user.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_components/widget-user.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="departmentForm.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_layouts/departmentForm.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="5049">
+                  <caret line="339" column="36" lean-forward="true" selection-start-line="339" selection-start-column="36" selection-end-line="339" selection-end-column="36" />
+                  <folding>
+                    <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="roleForm.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="550">
+                  <caret line="468" column="29" selection-start-line="468" selection-start-column="11" selection-end-line="468" selection-end-column="29" />
+                  <folding>
+                    <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -283,7 +302,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/_store/auth/actions.js" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/_store/auth/actions.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/_store/auth/state.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/_layouts/profile.vue" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/_layouts/roleForm.vue" root0="SKIP_INSPECTION" />
@@ -311,9 +330,7 @@
         <option value="$PROJECT_DIR$/_store/auth/mutations.js" />
         <option value="$PROJECT_DIR$/_router/routes.js" />
         <option value="$PROJECT_DIR$/../qhelper/_plugins/helper.js" />
-        <option value="$PROJECT_DIR$/_store/auth/actions.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/_layouts/form.vue" />
         <option value="$PROJECT_DIR$/_layouts/index.vue" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/_store/auth/getters.js" />
@@ -322,8 +339,10 @@
         <option value="$PROJECT_DIR$/_layouts/roleForm.vue" />
         <option value="$PROJECT_DIR$/_layouts/profileForm.vue" />
         <option value="$PROJECT_DIR$/_config/profile.js" />
-        <option value="$PROJECT_DIR$/_layouts/profile.vue" />
         <option value="$PROJECT_DIR$/_layouts/login.vue" />
+        <option value="$PROJECT_DIR$/_layouts/profile.vue" />
+        <option value="$PROJECT_DIR$/_store/auth/actions.js" />
+        <option value="$PROJECT_DIR$/_layouts/form.vue" />
       </list>
     </option>
   </component>
@@ -380,6 +399,17 @@
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
               <item name="quser" type="462c0819:PsiDirectoryNode" />
               <item name="_layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quser" type="462c0819:PsiDirectoryNode" />
+              <item name="_store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quser" type="462c0819:PsiDirectoryNode" />
+              <item name="_store" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -460,6 +490,7 @@
       <workItem from="1549891945910" duration="253000" />
       <workItem from="1549892654061" duration="599000" />
       <workItem from="1549895682957" duration="12251000" />
+      <workItem from="1550065701964" duration="10004000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -601,11 +632,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549676815613</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="+update: profile form, saving mainImage, change Email by User Name, add Email field&#10;+update: role source setting view">
+      <created>1550021820945</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1550021820945</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194716000" />
+    <option name="totallyTimeSpent" value="204826000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -620,42 +658,30 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.06982943" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12260128" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Database" order="4" weight="0.3976546" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.38346884" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3845316" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.2647059" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.1725" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12153518" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3845316" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Command Line Tools Console" order="11" visible="true" weight="0.32903227" />
-      <window_info anchor="right" id="Database" order="4" weight="0.3976546" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.2647059" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.911875" weight="0.15505913" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="11" visible="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.911875" weight="0.15505913" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="14" />
-      <window_info id="Favorites" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -668,20 +694,20 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32897604" />
-      <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3850385" />
+      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" visible="true" weight="0.32903227" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3850385" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="File Transfer" order="13" sideWeight="0.911875" weight="0.15505913" />
-      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +735,8 @@
     <MESSAGE value="+update: profile config" />
     <MESSAGE value="+add: filters on user list" />
     <MESSAGE value="+update: crud departments, parent id added&#10;+add: filters on index view&#10;+add: permission to manage permissions" />
-    <option name="LAST_COMMIT_MESSAGE" value="+update: crud departments, parent id added&#10;+add: filters on index view&#10;+add: permission to manage permissions" />
+    <MESSAGE value="+update: profile form, saving mainImage, change Email by User Name, add Email field&#10;+update: role source setting view" />
+    <option name="LAST_COMMIT_MESSAGE" value="+update: profile form, saving mainImage, change Email by User Name, add Email field&#10;+update: role source setting view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -838,6 +865,7 @@
             <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
@@ -852,6 +880,7 @@
             <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
@@ -916,21 +945,14 @@
             <element signature="n#q-toggle#0;n#div#2;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#15012#15061#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_store/auth/getters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
       <provider selected="true" editor-type-id="text-editor">
@@ -1030,13 +1052,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../qhelper/_plugins/helper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="944">
@@ -1067,7 +1082,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_components/crud/departments.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="3332">
           <caret line="202" column="48" selection-start-line="202" selection-start-column="48" selection-end-line="202" selection-end-column="48" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -1077,14 +1092,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_components/crud/roles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
+        <state relative-caret-position="2499">
           <caret line="152" column="30" selection-start-line="152" selection-start-column="30" selection-end-line="152" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/departmentForm.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
+        <state relative-caret-position="5049">
           <caret line="339" column="36" lean-forward="true" selection-start-line="339" selection-start-column="36" selection-end-line="339" selection-end-column="36" />
           <folding>
             <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
@@ -1099,16 +1114,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-          <folding>
-            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_components/widget-user.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1120,16 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="73" selection-start-line="22" selection-start-column="73" selection-end-line="22" selection-end-column="73" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1150,14 +1145,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11577">
+          <caret line="683" column="13" selection-start-line="683" selection-start-column="13" selection-end-line="683" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-688">
+          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="174" column="2" lean-forward="true" selection-start-line="174" selection-start-column="2" selection-end-line="174" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="468" column="29" selection-start-line="468" selection-start-column="11" selection-end-line="468" selection-end-column="29" />
+          <folding>
+            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="172" column="42" selection-start-line="172" selection-start-column="42" selection-end-line="172" selection-end-column="42" />
+        <state relative-caret-position="315">
+          <caret line="742" column="1" selection-start-line="742" selection-start-column="1" selection-end-line="742" selection-end-column="1" />
           <folding>
             <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
@@ -1172,6 +1220,7 @@
             <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
@@ -1236,36 +1285,9 @@
             <element signature="n#q-toggle#0;n#div#2;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#15012#15061#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="683" column="13" selection-start-line="683" selection-start-column="13" selection-end-line="683" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="94" column="33" selection-start-line="94" selection-start-column="33" selection-end-line="94" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#21805#21881#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
         </state>
       </provider>
     </entry>
