@@ -20,15 +20,16 @@
             <div class="col-12">
               <div class="row content-end">
                 <div class=" text-center col-12 col-md-6 ">
-                  <img :src="image" alt="" style="border-radius: 50%; max-height: 280px">
+                  <img v-if="fields.mainImage.value==''" src="assets/image/default.jpg" alt="" style="border-radius: 50%; max-height: 280px">
+                  <img v-if="fields.mainImage.value!=''" :src="getImageUrl" alt="" style="border-radius: 50%; max-height: 280px">
                   <div class="row justify-center q-pa-sm">
                     
                     <div class="col-12 col-md-6 ">
                       <q-uploader url="" inverted
-                                  v-model="image"
+                                  v-model="fields.mainImage.value"
                                   hide-upload-button
                                   @add="getSignedUrl"
-                                  @remove:cancel="image='assets/image/default.jpg'"
+                                  @remove:cancel="fields.mainImage.value=''"
                                   color="primary"
                                   extensions=".jpg"
                                   float-label="Change Photo"/>
@@ -44,7 +45,7 @@
                                error-label="This field is required"
                       >
                         <q-input v-model="form.firstName"
-                                 clearable float-label="First Name:"/>
+                                 clearable float-label="First Name *:"/>
                       </q-field>
                     </div>
                     
@@ -53,41 +54,58 @@
                                error-label="This field is required"
                       >
                         <q-input v-model="form.lastName"
-                                 clearable float-label="Last Name:"
+                                 clearable float-label="Last Name *:"
                         />
                       </q-field>
                     </div>
-                    
                     <div class="item-form col-12">
                       <q-field
-                        :error="$v.form.cellularPhone.$error"
+                        :error="$v.form.email.$error"
+                        error-label="This field is required"
+                        icon-color="primary"
+                        icon="fas fa-user"
+                      >
+      
+                        <q-input
+                          clearable
+                          v-model="form.email"
+                          float-label="User Name *:"/>
+                      </q-field>
+  
+                    </div>
+                    <div class="item-form col-12">
+                      <q-field
+                        :error="$v.fields.email.value.$error"
+                        error-label="Invalid email address"
+                        icon-color="primary"
+                        icon="far fa-envelope"
+                      >
+      
+                        <q-input
+                          clearable
+                          v-model="fields.email.value"
+                          float-label="Email:"/>
+                      </q-field>
+  
+                    </div>
+                    <div class="item-form col-12">
+                      <q-field
+                        :error="$v.fields.cellularPhone.value.$error"
                         error-label="This field is required"
                         :count="14"
                         icon-color="primary"
                         icon="fa fa-phone"
                       >
                         <q-input type="text" clearable v-model="fields.cellularPhone.value"
-                                 :maxlength="14"
+                                 @input="fields.cellularPhone.value = $helper.maskPhone(fields.cellularPhone.value)"
+                                 :maxlength="14" inputmode="numeric"
                                  float-label="Cellular Phone *:"
                         />
-                      </q-field>
-                    </div>
-                    
-                    <div class="item-form col-12">
-                      <q-field
-                        :error="$v.form.email.$error"
-                        error-label="This field is required"
-                        icon-color="primary"
-                        icon="email"
-                      >
                         
-                        <q-input
-                          clearable
-                          v-model="form.email"
-                          float-label="Email:"/>
                       </q-field>
-                    
                     </div>
+                    
+                   
                     <div class="col-12">
                       <q-field
                         icon="cake"
@@ -584,6 +602,8 @@
         fields: {
           cellularPhone: {value: ''},
           birthday: {value: ''},
+          mainImage: {value: ''},
+          email: {value: ''},
           identification: {value: ''},
           contacts: {value: []},
           socialNetworks: {value: []},
@@ -591,9 +611,6 @@
         loading: false,
         profile: '',
         form: {
-          cellularPhone: '',
-          birthday: '',
-          identification: '',
           firstName: '',
           lastName: '',
           mainImage: '',
@@ -618,7 +635,6 @@
       form: {
         firstName: {required},
         lastName: {required},
-        cellularPhone: {required},
         password: {
           
           minLength: minLength(7)
@@ -628,8 +644,16 @@
           minLength: minLength(7),
           sameAsPassword: sameAs('password')
         },
-        email: {email, required},
+        email: {required},
         
+      },
+      fields:{
+        email:{
+          value:{email}
+        },
+        cellularPhone:{
+          value:{required}
+        }
       },
       field: {
         name: {required},
@@ -652,6 +676,15 @@
         zipCode: {required}
       },
     },
+    computed:{
+      getImageUrl(){
+        let image = this.fields.mainImage.value;
+        if(this.fields.mainImage.value.indexOf('data:image')<0)
+          image = config('api.base_url')+'/'+this.fields.mainImage.value;
+        
+        return image;
+      },
+    },
     methods: {
       getData() {
         
@@ -660,13 +693,13 @@
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
           {name: 'mainImage', value: ''},
+          {name: 'email', value: ''},
           {name: 'socialNetworks', value: []},
           {name: 'contacts', value: []}
         ]
         
         helper.storage.get.item('userData').then(response => {
           
-          console.warn(fields, response.fields, helper.convertToFrontField(fields, response.fields))
         
         this.userData = response;
         this.form = response;
@@ -676,15 +709,13 @@
       })
       },
       
-      async getSignedUrl(files)
-  {
-    setTimeout(() => {
-      this.image = this.form.mainimage = files[0].__img.src;
-  },
-    500
-  )
-  }
-  ,
+    async getSignedUrl(files){
+      setTimeout(() => {
+        this.fields.mainImage.value = this.form.mainimage = files[0].__img.src;
+      },500)
+    },
+  
+    
   
   addSocial: function () {
     if (!this.profile.social) {
@@ -954,9 +985,17 @@
     return false;
   }
   ,
-  deleteAddress(data)
-  {
-    this.form.addresses.splice(data, 1);
+  deleteAddress(index) {
+    let address = this.form.addresses.splice(index, 1)[0];
+    if (address.id) {
+      this.loading = true
+      profileService.crud.delete('profile.addresses', address.id).then(userData => {
+        alert.success("address deleted", "top")
+        helper.storage.set('userData', this.userData);
+        this.loading = false
+      
+      })
+    }
   }
   ,
   //-------------------------------------------- CONTACTS
@@ -1038,9 +1077,10 @@
   
   submit()
   {
-    //this.$v.$touch();
+    this.$v.form.$touch();
+    this.$v.fields.$touch();
     
-    if (this.$v.$error) {
+    if (this.$v.form.$error || this.$v.fields.$error) {
       alert.error('Please review your fields again.', 'bottom');
     } else {
       this.saveProfile();
@@ -1050,14 +1090,12 @@
   
   saveProfile()
   {
-    //this.loading = true;
-    console.warn(this.orderDataUpdate())
-    
+ 
     let data = this.orderDataUpdate()
     this.loading = true
     profileService.crud.update('profile.users', this.form.id, data).then(response => {
       
-      console.warn(response.data)
+   
     let params = {
       params: {
         include: 'roles,departments,settings,addresses,fields'

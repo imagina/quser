@@ -434,7 +434,7 @@
       departments: [],
       rolesLoading: false,
       departmentsLoading: false,
-      valueConsistsOf: 'BRANCH_PRIORITY',
+      valueConsistsOf: 'ALL',
       settingTab:'list',
       form: {
         name: '',

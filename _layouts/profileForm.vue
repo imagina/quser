@@ -592,7 +592,7 @@
         };
       },
       existAddress(){
-        console.log('hola')
+  
         if(this.addresses.find( item => item.address === this.address.address )){
           this.addressExist=true;
           return true;
@@ -602,6 +602,7 @@
       },
       deleteAddress(data) {
         this.addresses.splice(data, 1);
+        
       },
       //-------------------------------------------- CONTACTS
       addContact(){
@@ -657,7 +658,7 @@
       },
       //----------------------- SUBMIT
       submit(){
-        console.log('Se hizo clic en el boton save');
+    
         //console.log(this.form);
         //console.log(this.address);
 
