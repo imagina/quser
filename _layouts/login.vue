@@ -27,7 +27,7 @@
                    type="text"
                    :before="[{icon: 'person'}]"
                    @keyup.enter="authenticate()"
-                   float-label="Email"
+                   float-label="User Name"
           />
         </q-field>
         <!-- PASS -->

@@ -1,6 +1,6 @@
 {
-  "_from": "@imagina/quser@0.0.42",
-  "_id": "@imagina/quser@0.0.42",
+  "_from": "@imagina/quser@0.0.43",
+  "_id": "@imagina/quser@0.0.43",
   "_inBundle": false,
   "_integrity": "sha512-0kyPlzZHQzB/m86Bo6iM8XaYE+rMoLblecTtwSYinlsqgFxnBErzXoOBRhC/LtsKmjUnbQQIp32V9/k4PlzUYA==",
   "_location": "/@imagina/quser",
@@ -13,7 +13,7 @@
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@imagina/quser@0.0.42",
+    "raw": "@imagina/quser@0.0.43",
     "name": "@imagina/quser",
     "escapedName": "@imagina%2fquser",
     "scope": "@imagina",
@@ -28,7 +28,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.41.tgz",
   "_shasum": "60a4e950a11b108e3f0374bd96c82f19c1f75f3b",
-  "_spec": "@imagina/quser@0.0.42",
+  "_spec": "@imagina/quser@0.0.43",
   "_where": "C:\\imagina\\html\\fhaproducts2018_frontend",
   "author": {
     "name": "http://imaginacolombia.com/"
@@ -67,5 +67,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.42"
+  "version": "0.0.43"
 }

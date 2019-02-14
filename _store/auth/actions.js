@@ -165,11 +165,13 @@ export const SET_PERMISSIONS = ({dispatch, commit, state}, data = false) => {
     role = data.roles.find(role => role.id === roleId);
     userPermissions = data.permissions;
   }
-  let rolePermissions = role.permissions;
+  let rolePermissions = JSON.parse(JSON.stringify(role.permissions));
   
   for (const permission in userPermissions) {
-    rolePermissions[permissions] = userPermissions[permission]
+
+    rolePermissions[permission] = userPermissions[permission]
   }
+ 
   
   commit('SET_PERMISSIONS', rolePermissions)
   

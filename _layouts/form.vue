@@ -406,8 +406,72 @@
         </div>
       </q-collapsible>
     </q-card>
+  
+    <!-- Permissions -->
+    <q-card class="q-box no-shadow col-12 q-mb-sm" v-if="$auth.hasAccess('profile.api.user.permission')">
     
+      <q-card-title class="no-border q-py-none bg-grey-2">
+        <div class="row justify-between">
+          <div class="q-subheading text-primary">
+            <q-icon name="fas fa-check-double"></q-icon>
+            Permissions
+          </div>
+          <q-toggle
+            v-model="permissionsToggle"
+            checked-icon="visibility"
+            unchecked-icon="visibility_off"
+            style="margin-left: 25px"
+          />
+        </div>
     
+      </q-card-title>
+    
+      <q-collapsible header-style="display: none" v-model="permissionsToggle">
+      
+      
+        <div class="row full-width justify-end" >
+        
+          <q-btn-group class="float-right">
+            <q-btn size="sm" label="Allow all" @click="setAllPermissions(true)"/>
+          
+            <q-btn size="sm" label="Deny all" @click="setAllPermissions(false)"/>
+          </q-btn-group>
+      
+        </div>
+      
+        <q-collapsible v-for="(permissionBackend,i) in permissionsBackend" :key="i" icon="fas fa-check" :label="i" style="border-bottom: 1px solid whitesmoke" >
+          <q-collapsible popup v-for="(permissionDetail,j) in permissionBackend" :key="j" icon="fas fa-code-branch" :label="j">
+            <div class="row q-py-xs q-my-xs justify-between" style="border-bottom: 1px solid whitesmoke" v-for="(permission,k) in permissionDetail" :key="k" :label="k">
+              <div class="col-12 col-md-4">
+                <span label>{{k}}</span>
+              </div>
+              <div class="col-12 col-md-4 text-right">
+                <q-btn-group>
+                  <q-btn size="sm" label="Allow" :color="getPermissionValue(j+'.'+k) ? 'green':''" @click="setPermission(j+'.'+k,true)"/>
+                  <q-btn size="sm" label="Inherit" :color="getPermissionValue(j+'.'+k) == null ? 'green':''" @click="setPermission(j+'.'+k,null)"/>
+                  <q-btn size="sm" label="Deny" :color="getPermissionValue(j+'.'+k) != null && getPermissionValue(j+'.'+k) == false ? 'green':''" @click="setPermission(j+'.'+k,false)"/>
+                </q-btn-group>
+              </div>
+            </div>
+        
+          </q-collapsible>
+      
+      
+        </q-collapsible>
+      
+      
+        <div class="row full-width justify-end">
+        
+          <q-btn-group class="float-right">
+            <q-btn size="sm" label="Allow all" @click="setAllPermissions(true)"/>
+          
+            <q-btn size="sm" label="Deny all" @click="setAllPermissions(false)"/>
+          </q-btn-group>
+      
+        </div>
+    
+      </q-collapsible>
+    </q-card>
     <!--=== SAVE ===-->
     <div class="col-12 q-px-sm text-center">
       <!-- Activated -->
@@ -483,6 +547,9 @@
         generalInfoToggle:true,
         relationsToggle:false,
         settingsToggle:false,
+        permissionsToggle: false,
+        permissionsBackend:'',
+        permissionsOptions: [],
         settings: {
           showHomePage: false,
           showAdvancedOrganizerFunctions: false,
@@ -496,6 +563,14 @@
     },
     methods: {
       initializeData() {
+  
+        profileService.role.getPermissions().then(response => {
+          this.permissionsBackend = response.data
+         
+        });
+        
+        
+        
         this.id = this.$route.params.id ? this.$route.params.id : null
         this.title = this.$route.params.id ? 'EDIT USER' : 'NEW USER'
         this.roles = []
@@ -505,6 +580,7 @@
           firstName: '',
           departments: [],
           branchOffices:[],
+          permissions: {},
           sources:[],
           email: '',
           lastName: '',
@@ -534,7 +610,9 @@
           profileService.crud.show('profile.users',this.id,{params:{include:'roles,departments,settings,sources,branchOffices'}}).then(response => {
         
             this.form = response.data;
-          
+            this.permissionsOptions = []
+            this.convertPermissions('front');
+            
           this.form.roles.forEach((element, index) => {
             roles.push(element.id)
           })
@@ -561,8 +639,6 @@
           this.loading = false;
           
           }).catch(error => {
-            let errorMessage = error.response.data.error ? error.response.data.error : 'Profile not Found';
-            alert.error(errorMessage, 'bottom')
             this.loading = false;
           })
         } else
@@ -591,11 +667,76 @@
 
         })
       },
+  
+      setAllPermissions(value){
+    
+        for (const module in this.permissionsBackend) {
+          let moduleData = this.permissionsBackend[module]
+          for (const permissions in moduleData) {
+            let permissionsData = moduleData[permissions]
+            for (const permission in permissionsData) {
+              let perm = this.permissionsOptions.find( perm => perm.label === permissions+'.'+permission );
+              if(perm){
+                perm.value = value;
+              }else
+                this.permissionsOptions.push({label:permissions+'.'+permission,value:value})
+            }
+          }
+        }
+    
+      },
+  
+      setPermission(label,val){
+        let permission = this.permissionsOptions.find( perm => perm.label === label );
+        if(permission){
+          permission.value = val;
+        }else
+          this.permissionsOptions.push({label:label,value:val})
+      },
+  
+      getPermissionValue(label){
+        let permission = this.permissionsOptions.find( perm => perm.label === label );
+    
+        return permission == undefined ? null : permission.value;
+      },
+      
+      convertPermissions(to){
+
+        switch(to){
+          case 'front':
+            for (const module in this.permissionsBackend) {
+              let moduleData = this.permissionsBackend[module]
+              for (const permissions in moduleData) {
+                let permissionsData = moduleData[permissions]
+                for (const permission in permissionsData) {
+                  let value = this.form.permissions[permissions + '.' + permission];
+                  this.permissionsOptions.push(
+                    {
+                      label:permissions + '.' + permission,
+                      value: value == undefined ? null : value
+                    })
+        
+                }
+              }
+            }
+            break;
+      
+          case 'back':
+            this.form.permissions = {}
+            this.permissionsOptions.forEach(element => {
+              if(element.value != null)
+                this.form.permissions[element.label] = element.value
+            })
+            break;
+        }
+      },
+      
       submit() {
         this.$v.$touch();//validate all fields from form
         if (this.$v.form.departments.$error)
           this.relationsToggle = true
-        
+        this.convertPermissions('back');
+ 
         if (!this.$v.$error) {
           this.loading = true;
           let data = JSON.parse(JSON.stringify(this.form));
