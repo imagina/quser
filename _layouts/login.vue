@@ -20,7 +20,7 @@
           error-label="This field is required"
           class="q-mb-md"
         >
-          <q-input name="email"
+          <q-input name="username"
                    autofocus
                    autocomplete="off"
                    v-model="form.username"
