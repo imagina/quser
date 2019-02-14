@@ -612,6 +612,7 @@
             this.form = response.data;
             this.permissionsOptions = []
             this.convertPermissions('front');
+            
           this.form.roles.forEach((element, index) => {
             roles.push(element.id)
           })
