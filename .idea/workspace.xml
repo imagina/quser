@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="" />
+    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="+Update: component search-users to current api routes&#10;+Update: after login redirect to config page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +152,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,7 +180,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,6 +260,7 @@
       <workItem from="1550152050567" duration="599000" />
       <workItem from="1550161102315" duration="2631000" />
       <workItem from="1550173026383" duration="1265000" />
+      <workItem from="1550539552115" duration="104000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -413,11 +416,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550091246660</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="+Update: component search-users to current api routes&#10;+Update: after login redirect to config page">
+      <created>1550539629909</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1550539629909</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211334000" />
+    <option name="totallyTimeSpent" value="211438000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -429,9 +439,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="0" width="1936" height="1056" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15458423" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15618336" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -444,7 +454,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.41067538" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3845316" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.3839384" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="11" visible="true" weight="0.32903227" />
       <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.911875" weight="0.15505913" />
@@ -507,7 +517,8 @@
     <MESSAGE value="+update: crud departments, parent id added&#10;+add: filters on index view&#10;+add: permission to manage permissions" />
     <MESSAGE value="+update: profile form, saving mainImage, change Email by User Name, add Email field&#10;+update: role source setting view" />
     <MESSAGE value="+add: user permissions manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="+add: user permissions manager" />
+    <MESSAGE value="+Update: component search-users to current api routes&#10;+Update: after login redirect to config page" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Update: component search-users to current api routes&#10;+Update: after login redirect to config page" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_router/middlewares/auth.js">
@@ -814,6 +825,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config/routes.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
