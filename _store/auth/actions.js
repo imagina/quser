@@ -79,7 +79,8 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
     //check if user have permission for login in app
     if(auth.hasAccess('profile.api.login')){
       if (router.currentRoute.path == "/auth/login") {
-        router.push(data.userData.default_route)
+        //router.push(data.userData.default_route)
+        router.push({name : 'config'})
       }
     }else{//Remove data if user have not permission for login
       alert.error("User without access", "top");
@@ -235,15 +236,6 @@ export const SET_SETTINGS = ({dispatch, commit, state}, data = false) => {
   
   resolve(true)
 })
-}
-
-export const AUTH_RELOAD = ({dispatch, commit, state}) => {
-  return new Promise(resolve => {
-    helper.storage.restore()//Restore all cache
-    dispatch('AUTH_TRYAUTOLOGIN').then(response => {
-      helper.reloadApp()
-    })
-  })
 }
 
 export const GET_DEPARTMENTS = ({commit, dispatch}) => {
