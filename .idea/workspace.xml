@@ -4,7 +4,7 @@
     <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_layouts/form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/form.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_store/auth/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/_store/auth/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/roleForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/roleForm.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,23 +28,23 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.33313033">
+    <splitter split-orientation="horizontal" split-proportion="0.5349265">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="profile.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_config/profile.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="13" column="11" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="11" />
+                <state relative-caret-position="272">
+                  <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="form.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="form.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5899">
-                  <caret line="742" column="1" selection-start-line="742" selection-start-column="1" selection-end-line="742" selection-end-column="1" />
+                <state relative-caret-position="1533">
+                  <caret line="608" column="80" lean-forward="true" selection-start-line="608" selection-start-column="80" selection-end-line="608" selection-end-column="80" />
                   <folding>
                     <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
@@ -130,16 +130,18 @@
                     <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="e#17447#17523#0" expanded="true" />
+                    <element signature="e#17702#17751#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="actions.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="516">
-                  <caret line="182" column="40" lean-forward="true" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
+                <state relative-caret-position="992">
+                  <caret line="198" column="2" lean-forward="true" selection-start-line="198" selection-start-column="2" selection-end-line="198" selection-end-column="2" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -221,13 +223,13 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="roleForm.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="roleForm.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3689">
-                  <caret line="468" column="29" selection-start-line="468" selection-start-column="11" selection-end-line="468" selection-end-column="29" />
+                <state relative-caret-position="367">
+                  <caret line="516" column="6" lean-forward="true" selection-start-line="516" selection-start-column="6" selection-end-line="516" selection-end-column="6" />
                   <folding>
-                    <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="e#13668#13744#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -251,7 +253,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="getters.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="getters.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_store/auth/getters.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="17">
@@ -273,7 +275,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>departmentService</find>
       <find>orderDataUpdate</find>
       <find>.0.37</find>
       <find>sources</find>
@@ -303,6 +304,7 @@
       <find>form.email</find>
       <find>SAVE</find>
       <find>cellularPhone</find>
+      <find>con</find>
     </findStrings>
     <replaceStrings>
       <replace>30</replace>
@@ -361,14 +363,14 @@
         <option value="$PROJECT_DIR$/_store/auth/getters.js" />
         <option value="$PROJECT_DIR$/_components/crud/departments.js" />
         <option value="$PROJECT_DIR$/_layouts/departmentForm.vue" />
-        <option value="$PROJECT_DIR$/_layouts/roleForm.vue" />
         <option value="$PROJECT_DIR$/_layouts/profileForm.vue" />
         <option value="$PROJECT_DIR$/_config/profile.js" />
         <option value="$PROJECT_DIR$/_layouts/login.vue" />
         <option value="$PROJECT_DIR$/_layouts/profile.vue" />
-        <option value="$PROJECT_DIR$/_layouts/form.vue" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/_store/auth/actions.js" />
+        <option value="$PROJECT_DIR$/_layouts/roleForm.vue" />
+        <option value="$PROJECT_DIR$/_layouts/form.vue" />
       </list>
     </option>
   </component>
@@ -413,18 +415,23 @@
             <path>
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
               <item name="quser" type="462c0819:PsiDirectoryNode" />
-              <item name="_components" type="462c0819:PsiDirectoryNode" />
-              <item name="crud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="quser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quser" type="462c0819:PsiDirectoryNode" />
               <item name="_config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
               <item name="quser" type="462c0819:PsiDirectoryNode" />
               <item name="_layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quser" type="462c0819:PsiDirectoryNode" />
+              <item name="_services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="quser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quser" type="462c0819:PsiDirectoryNode" />
+              <item name="_services" type="462c0819:PsiDirectoryNode" />
+              <item name="profile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
@@ -520,7 +527,9 @@
       <workItem from="1550097271948" duration="1245000" />
       <workItem from="1550152050567" duration="599000" />
       <workItem from="1550161102315" duration="2631000" />
-      <workItem from="1550173026383" duration="1265000" />
+      <workItem from="1550173026383" duration="3034000" />
+      <workItem from="1550238350674" duration="599000" />
+      <workItem from="1550500860225" duration="6445000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -676,11 +685,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550091246660</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="+clear: console log and warn">
+      <created>1550179896327</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1550179896327</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211319000" />
+    <option name="totallyTimeSpent" value="220132000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -693,52 +709,53 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12793177" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08742005" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Database" order="4" weight="0.3976546" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3845316" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3845316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.41067538" />
-      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.1725" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Command Line Tools Console" order="11" visible="true" weight="0.32903227" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.911875" weight="0.15505913" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="11" visible="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.911875" weight="0.15505913" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="14" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3850385" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.1725" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1337953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32897604" />
+      <window_info anchor="bottom" id="Run" order="3" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" visible="true" weight="0.32903227" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32897604" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3850385" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="File Transfer" order="13" sideWeight="0.911875" weight="0.15505913" />
       <window_info anchor="bottom" id="Message" order="1" />
@@ -773,11 +790,12 @@
     <MESSAGE value="+update: crud departments, parent id added&#10;+add: filters on index view&#10;+add: permission to manage permissions" />
     <MESSAGE value="+update: profile form, saving mainImage, change Email by User Name, add Email field&#10;+update: role source setting view" />
     <MESSAGE value="+add: user permissions manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="+add: user permissions manager" />
+    <MESSAGE value="+clear: console log and warn" />
+    <option name="LAST_COMMIT_MESSAGE" value="+clear: console log and warn" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -786,7 +804,7 @@
         <state relative-caret-position="3689">
           <caret line="468" column="29" selection-start-line="468" selection-start-column="11" selection-end-line="468" selection-end-column="29" />
           <folding>
-            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#13668#13744#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -993,6 +1011,8 @@
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#17447#17523#0" expanded="true" />
+            <element signature="e#17702#17751#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1057,13 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_services/profile/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1133,13 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_config/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_components/widget-user.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1196,20 +1202,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3689">
-          <caret line="468" column="29" selection-start-line="468" selection-start-column="11" selection-end-line="468" selection-end-column="29" />
+        <state relative-caret-position="1173">
+          <caret line="69" column="20" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/state.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/getters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_services/profile/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="992">
+          <caret line="198" column="2" lean-forward="true" selection-start-line="198" selection-start-column="2" selection-end-line="198" selection-end-column="2" />
           <folding>
-            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5899">
-          <caret line="742" column="1" selection-start-line="742" selection-start-column="1" selection-end-line="742" selection-end-column="1" />
+        <state relative-caret-position="1533">
+          <caret line="608" column="80" lean-forward="true" selection-start-line="608" selection-start-column="80" selection-end-line="608" selection-end-column="80" />
           <folding>
             <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
@@ -1295,37 +1336,18 @@
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#17447#17523#0" expanded="true" />
+            <element signature="e#17702#17751#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="20" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/state.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/getters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="182" column="40" lean-forward="true" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
+        <state relative-caret-position="367">
+          <caret line="516" column="6" lean-forward="true" selection-start-line="516" selection-start-column="6" selection-end-line="516" selection-end-column="6" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#13668#13744#0" expanded="true" />
           </folding>
         </state>
       </provider>
