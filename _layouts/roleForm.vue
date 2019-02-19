@@ -564,17 +564,21 @@
       this.$v.$touch();//validate all fields from form
 
       if (!this.$v.$error) {
+
         this.loading = true;
         this.convertPermissions('back');
         this.form.settings = helper.convertToBackField(this.settings)
         if(this.form.id) {
+
           profileService.crud.update('profile.roles', this.form.id, this.form).then(response => {
+    
             this.loading = false;
             this.$emit("clearCache")
             this.$emit("getRecords")
             this.$emit("closeModal")
             alert.success("Role Updated", 'top');
           }).catch(error => {
+
               let errorMessage = error ?
                 error : 'Role not updated';
             this.$emit("closeModal")
