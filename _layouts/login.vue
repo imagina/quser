@@ -86,7 +86,8 @@
           password: ''
         },
         rememberData: true,
-        loading_login: false
+        loading_login: false,
+        inRequest : false
       }
     },
     validations: {
@@ -97,17 +98,20 @@
     },
     methods: {
       async authenticate() {
-        this.$v.$touch();
-
-        if (this.$v.$error) {
-          alert.error('Please review fields again.', 'bottom');
-        } else {
-          this.loading_login = !this.loading_login;
-          const {username, password} = this.form;
-
-          this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
+        if(!this.inRequest){
+          this.inRequest = true
+          this.$v.$touch();
+          if (this.$v.$error) {
+            alert.error('Please review fields again.', 'bottom');
+          } else {
             this.loading_login = !this.loading_login;
-          });
+            const {username, password} = this.form;
+
+            this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
+              this.loading_login = !this.loading_login;
+              this.inRequest = false
+            });
+          }
         }
       },
 
