@@ -310,15 +310,19 @@
       }else{
         canAssignParentDepartment = true;
       }
-
+    
 
       if(!canAssignParentDepartment)
         this.$v.form.parentId.$touch()
       
       if (!this.$v.form.title.$error && canAssignParentDepartment) {
-  
         this.loading = true;
         this.form.settings = helper.convertToBackField(this.settings)
+        
+        // set null to parent id if is undefined (empty), because undefined values are not included by axios
+        if(this.form.parentId == undefined && canAssignParentDepartment)
+          this.form.parentId = null;
+        
         if(this.form.id) {
           profileService.crud.update('profile.departments', this.form.id, this.form).then(response => {
             this.loading = false;
