@@ -13,7 +13,7 @@ export const AUTH_REQUEST = async ({commit, dispatch}, authData) => {
 		return profileService.auth.login(authData.username, authData.password).then((response) => {
 			dispatch('AUTH_SUCCESS', response.data);
 		}).catch(error => {
-			dispatch("AUTH_ERROR");
+			dispatch("AUTH_ERROR",error);
 		});
 	else
 		alert.error("Network Conection Error", "top");
@@ -91,10 +91,9 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
 	})
 }
 
-export const AUTH_ERROR = ({commit, dispatch}) => {
-
-	alert.error("Email or password incorrect.", "top");
-
+export const AUTH_ERROR = ({commit, dispatch},error) => {
+	if(error.response.status == 401)
+		alert.error("Email or password incorrect.", "top");
 }
 
 export const AUTH_LOGOUT = async ({commit, dispatch}) => {
@@ -130,9 +129,10 @@ export const SET_DEPARTMENT = ({getters,dispatch, commit, state}, data = false) 
 				departmentId = state.userData.departments[0].id
 
 			//Check if departmen is in departments of user
-			/*let inDepartments = state.departments.find((department) => department.id == departmentId)
-			if(!inDepartments) departmentId = state.departments[0].id*/
-
+			if(state.departments.length){
+				let inDepartments = state.departments.find((department) => department.id == departmentId)
+				if(!inDepartments) departmentId = state.departments[0].id
+			}
 
 			commit('CHANGE_DEPARTMENT', departmentId)
 		}

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="+Fix: action GET_DEPARTMENTS, return a promise" />
+    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="+Fix: Blocked sending request login, if already exist request in login page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/login.vue" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,6 +263,7 @@
       <workItem from="1550173026383" duration="1265000" />
       <workItem from="1550539552115" duration="104000" />
       <workItem from="1550608325378" duration="74000" />
+      <workItem from="1550674010108" duration="72000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -429,11 +433,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550608376683</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="+Fix: Blocked sending request login, if already exist request in login page">
+      <created>1550674076400</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1550674076400</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211512000" />
+    <option name="totallyTimeSpent" value="211584000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -447,7 +458,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1056" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15778251" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15938166" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -525,7 +536,8 @@
     <MESSAGE value="+add: user permissions manager" />
     <MESSAGE value="+Update: component search-users to current api routes&#10;+Update: after login redirect to config page" />
     <MESSAGE value="+Fix: action GET_DEPARTMENTS, return a promise" />
-    <option name="LAST_COMMIT_MESSAGE" value="+Fix: action GET_DEPARTMENTS, return a promise" />
+    <MESSAGE value="+Fix: Blocked sending request login, if already exist request in login page" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Fix: Blocked sending request login, if already exist request in login page" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_router/middlewares/auth.js">
