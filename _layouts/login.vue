@@ -18,7 +18,6 @@
         <q-field
           :error="$v.form.username.$error"
           error-label="This field is required"
-          class="q-mb-md"
         >
           <q-input name="username"
                    autofocus
@@ -27,14 +26,13 @@
                    type="text"
                    :before="[{icon: 'person'}]"
                    @keyup.enter="authenticate()"
-                   float-label="User Name"
+                   float-label="Username or Email"
           />
         </q-field>
         <!-- PASS -->
         <q-field
           :error="$v.form.password.$error"
           error-label="This field is required"
-          class="q-my-md"
         >
           <q-input v-model="form.password"
                    type="password"
@@ -47,7 +45,7 @@
 
 
         <!--=== LOGIN ===-->
-        <div class="text-center q-pt-lg">
+        <div class="text-center">
           <q-btn :loading="loading_login"
                  color="primary"
                  name="submit"
@@ -60,12 +58,12 @@
           </q-btn>
         </div>
 
-        <!--
-        <div class="q-subheading text-center text-primary q-pt-md" link>
-          Forgot your password?
+        <!--Button actions-->
+        <div class="full-width text-center q-pt-lg">
+          <q-btn flat color="primary" label="Change password"
+                 :to="{name : 'auth.password.change'}">
+          </q-btn>
         </div>
-        -->
-
       </div>
     </div>
 

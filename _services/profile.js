@@ -1,8 +1,11 @@
 import {Cookies, LocalStorage} from 'quasar'
 import config from 'src/config/index'
 import http from "axios";
+import crud from '@imagina/qhelper/_services/baseService'
+import {helper} from "@imagina/qhelper/_plugins/helper";
 
 export default {
+  crud,
   update(id, data) {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
@@ -26,5 +29,20 @@ export default {
           reject(error);
         });
     });
-  }
+  },
+
+  //Change password
+  changePassword(data) {
+    return new Promise((resolve, reject) => {
+      //Validations
+      if (!data) return reject('Data is required')
+      let urlApi = config('profile.changePassword')//Get url from config
+      //Request
+      http.put(urlApi, {attributes : data}).then(response => {
+        resolve(response.data)//Successful response
+      }).catch(error => {
+        reject(error.response.data.errors)//Failed response
+      })
+    })
+  },
 }

@@ -11,10 +11,12 @@ export default {
 	version: moduleVersion,
 	authLogin: urlBase + '/auth/login',
 	authLogout: urlBase + '/auth/logout',
+	authLogoutAll: urlBase + '/auth/logout-all',
 	addresses: urlBase + '/addresses',
 	departments: urlBase + '/departments',
 	departmentsSettings: urlBase + '/departments/settings',
 	fields: urlBase + '/fields',
 	users: urlBase + '/users',
+	changePassword: urlBase + '/users/change-password',
   roles: urlBase + '/roles'
 }
