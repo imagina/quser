@@ -127,10 +127,10 @@
 		data() {
 			return {
 				form: {
-					email: 'msolanoimagina',
-					password: '96072301487Ma@',
-					newPassword: '96072301487Ma@',
-					confirmNewPassword: '96072301487Ma@',
+					email: '',
+					password: '',
+					newPassword: '',
+					confirmNewPassword: '',
 				},
 				login: false,
 				inRequest: false,
