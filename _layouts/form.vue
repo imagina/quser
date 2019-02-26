@@ -1,9 +1,5 @@
 <template>
-  <div id="userForm"
-       class="q-layout-page row justify-center layout-padding relative-position">
-    <q-inner-loading :visible="loading" style="z-index:1001; max-height: 100vh">
-      <q-spinner-hourglass size="50px" color="primary"/>
-    </q-inner-loading>
+  <div id="userForm" class="q-layout-page row justify-center layout-padding">
     
     <div class="text_title text-blue-9 col-xs-12 q-title text-right">
       <span>USER</span>
@@ -12,483 +8,490 @@
     <div class="q-py-sm q-title col-12 text-negative">
       • {{title}}
     </div>
-    
-    <!-- General Information -->
-    <q-card class="q-box no-shadow col-12">
-      
-      <q-card-title class="no-border q-py-none bg-grey-2">
-        <div class="row justify-between">
-          <div class="q-subheading text-primary">
-            General Information
-          </div>
-          <q-toggle
-            v-model="generalInfoToggle"
-            checked-icon="visibility"
-            unchecked-icon="visibility_off"
-            style="margin-left: 25px"
-          />
-        </div>
-      
-      </q-card-title>
-      <q-collapsible header-style="display: none" v-model="generalInfoToggle">
-        <div class="row">
-          
-          <div class="col-12 ">
-            <div class="row gutter-xs">
-              <!-- First Name -->
-              <div class=" col-12 col-md-4 ">
-                <q-field
-                  :error="$v.form.firstName.$error"
-                  error-label="This field is required"
-                >
-                  <q-input type="text"
-                           v-model="form.firstName"
-                           float-label="First Name *"
-                  />
-                </q-field>
-              </div>
-              
-              <!-- Last Name -->
-              <div class=" col-12 col-md-4">
-                <q-field
-                  :error="$v.form.lastName.$error"
-                  error-label="This field is required"
-                >
-                  <q-input v-model="form.lastName" float-label="Last Name *"/>
-                </q-field>
-              </div>
-              
-              <!-- User Name -->
-              <div class=" col-12 col-md-4">
-                <q-field
-                  :error="$v.form.email.$error"
-                  error-label="This field is required"
-                >
-                  <q-input v-model="form.email" type="text" float-label="User Name *"/>
-                </q-field>
-              </div>
-              
-              <!-- Password -->
-              <div class=" col-12 col-md-4">
-                <q-field
-                  :error="$v.form.password.$error"
-                  error-label="This field must have 7 seven characters"
-                >
-                  <q-input v-model="form.password" type="password" float-label="Password *"/>
-                </q-field>
-              </div>
-              
-              <!-- Confirm Password -->
-              <div class=" col-12 col-md-4">
-                <q-field
-                  :error="$v.form.passwordConfirmation.$error"
-                  error-label="This field is required"
-                >
-                  <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm *"/>
-                </q-field>
-              </div>
-              
-              
-              <!-- Roles -->
-              <div class="col-12">
-                <q-field
-                  v-if="roles.length"
-                  :disabled="rolesLoading"
-                  :error="$v.form.roles.$error"
-                  error-label="This field is required"
-                >
-                  <q-select
-                    float-label="Roles *"
-                    v-model="form.roles"
-                    :options="roles"
-                    multiple chips
-                  />
-                </q-field>
-              </div>
-              
-              <!--Activated -->
-              <div class="col-12 text-right q-pa-lg">
-                <q-toggle v-model="form.activated" label="Enabled"/>
-              </div>
+
+    <div class="full-width relative-position">
+      <!-- General Information -->
+      <q-card class="q-box no-shadow col-12">
+        <q-card-title class="no-border q-py-none bg-grey-2">
+          <div class="row justify-between">
+            <div class="q-subheading text-primary">
+              General Information
             </div>
-          </div>
-        
-        </div>
-      </q-collapsible>
-    </q-card>
-    
-    <!-- Relations -->
-    <q-card class="q-box no-shadow col-12 ">
-      
-      <q-card-title class="no-border  q-py-none bg-grey-2">
-        <div class="row justify-between">
-          <div class="q-subheading text-primary">
-            Relations
-          </div>
-          <q-toggle
-            v-model="relationsToggle"
-            checked-icon="visibility"
-            unchecked-icon="visibility_off"
-            style="margin-left: 25px"
-          />
-        </div>
-      
-      </q-card-title>
-      <q-collapsible header-style="display: none" v-model="relationsToggle">
-        
-        <div class="row gutter-sm">
-          <!-- Sources -->
-          <div class="col-12 col-md-4">
-            <div class="caption text-weight-regular text-grey-6 ellipsis">
-              Sources
-            </div>
-            <treeselect
-              :multiple="true"
-              :append-to-body="true"
-              :options="$store.getters['fhia/sourcesSelect']"
-              :value-consists-of="valueConsistsOf"
-              v-model="form.sources"
-              placeholder=""
+            <q-toggle
+              v-model="generalInfoToggle"
+              checked-icon="visibility"
+              unchecked-icon="visibility_off"
+              style="margin-left: 25px"
             />
           </div>
-          
-          
-          <!-- Deparments -->
-          <div class=" col-12 col-md-4 ">
-            <q-field
-              :error="$v.form.departments.$error"
-              error-label="This field is required"
-              
-              :disabled="departmentsLoading"
-            >
+
+        </q-card-title>
+        <q-collapsible header-style="display: none" v-model="generalInfoToggle">
+          <div class="row">
+
+            <div class="col-12 ">
+              <div class="row gutter-xs">
+                <!-- First Name -->
+                <div class=" col-12 col-md-4 ">
+                  <q-field
+                    :error="$v.form.firstName.$error"
+                    error-label="This field is required"
+                  >
+                    <q-input type="text"
+                             v-model="form.firstName"
+                             float-label="First Name *"
+                    />
+                  </q-field>
+                </div>
+
+                <!-- Last Name -->
+                <div class=" col-12 col-md-4">
+                  <q-field
+                    :error="$v.form.lastName.$error"
+                    error-label="This field is required"
+                  >
+                    <q-input v-model="form.lastName" float-label="Last Name *"/>
+                  </q-field>
+                </div>
+
+                <!-- User Name -->
+                <div class=" col-12 col-md-4">
+                  <q-field
+                    :error="$v.form.email.$error"
+                    error-label="This field is required"
+                  >
+                    <q-input v-model="form.email" type="text" float-label="User Name *"/>
+                  </q-field>
+                </div>
+
+                <!-- Password -->
+                <div class=" col-12 col-md-4">
+                  <q-field
+                    :error="$v.form.password.$error"
+                    error-label="This field must have 7 seven characters"
+                  >
+                    <q-input v-model="form.password" type="password" float-label="Password *"/>
+                  </q-field>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class=" col-12 col-md-4">
+                  <q-field
+                    :error="$v.form.passwordConfirmation.$error"
+                    error-label="This field is required"
+                  >
+                    <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm *"/>
+                  </q-field>
+                </div>
+
+
+                <!-- Roles -->
+                <div class="col-12">
+                  <q-field
+                    v-if="roles.length"
+                    :disabled="rolesLoading"
+                    :error="$v.form.roles.$error"
+                    error-label="This field is required"
+                  >
+                    <q-select
+                      float-label="Roles *"
+                      v-model="form.roles"
+                      :options="roles"
+                      multiple chips
+                    />
+                  </q-field>
+                </div>
+
+                <!--Activated -->
+                <div class="col-12 text-right q-pa-lg">
+                  <q-toggle v-model="form.activated" label="Enabled"/>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </q-collapsible>
+      </q-card>
+
+      <!-- Relations -->
+      <q-card class="q-box no-shadow col-12 ">
+
+        <q-card-title class="no-border q-py-none bg-grey-2">
+          <div class="row justify-between">
+            <div class="q-subheading text-primary">
+              Relations
+            </div>
+            <q-toggle
+              v-model="relationsToggle"
+              checked-icon="visibility"
+              unchecked-icon="visibility_off"
+              style="margin-left: 25px"
+            />
+          </div>
+
+        </q-card-title>
+        <q-collapsible header-style="display: none" v-model="relationsToggle">
+
+          <div class="row gutter-sm">
+            <!-- Sources -->
+            <div class="col-12 col-md-4">
               <div class="caption text-weight-regular text-grey-6 ellipsis">
-                Departments
+                Sources
               </div>
               <treeselect
                 :multiple="true"
                 :append-to-body="true"
-                :options="$store.getters['auth/departmentsSelect']"
-                value-consists-of="ALL"
-                v-model="form.departments"
+                :options="$store.getters['fhia/sourcesSelect']"
+                :value-consists-of="valueConsistsOf"
+                v-model="form.sources"
                 placeholder=""
               />
-            
-            </q-field>
+            </div>
+
+
+            <!-- Deparments -->
+            <div class=" col-12 col-md-4 ">
+              <q-field
+                :error="$v.form.departments.$error"
+                error-label="This field is required"
+
+                :disabled="departmentsLoading"
+              >
+                <div class="caption text-weight-regular text-grey-6 ellipsis">
+                  Departments
+                </div>
+                <treeselect
+                  :multiple="true"
+                  :append-to-body="true"
+                  :options="$store.getters['auth/departmentsSelect']"
+                  value-consists-of="ALL"
+                  v-model="form.departments"
+                  placeholder=""
+                />
+
+              </q-field>
+            </div>
+
+
+            <!-- Branch Offices -->
+            <div class="col-12 col-md-4">
+
+              <q-select
+                v-model="form.branchOffices"
+                float-label="Branch Office"
+                filter multiple chips
+                :disable="!$store.getters['fhia/branchOfficeSelect'].length"
+                :options="$store.getters['fhia/branchOfficeSelect']"
+              />
+
+            </div>
           </div>
-          
-          
-          <!-- Branch Offices -->
-          <div class="col-12 col-md-4">
-            
-            <q-select
-              v-model="form.branchOffices"
-              float-label="Branch Office"
-              filter multiple chips
-              :disable="!$store.getters['fhia/branchOfficeSelect'].length"
-              :options="$store.getters['fhia/branchOfficeSelect']"
+
+        </q-collapsible>
+      </q-card>
+
+      <!-- Settings -->
+      <q-card class="q-box no-shadow col-12 ">
+        <q-card-title class="no-border q-py-none bg-grey-2">
+          <div class="row justify-between ">
+            <div class="q-subheading text-primary">
+              Settings
+            </div>
+            <q-toggle
+              v-model="settingsToggle"
+              checked-icon="visibility"
+              unchecked-icon="visibility_off"
+              style="margin-left: 25px"
             />
-          
           </div>
-        </div>
-      
-      </q-collapsible>
-    </q-card>
-    
-    <!-- Settings -->
-    <q-card class="q-box no-shadow col-12 ">
-      
-      <q-card-title class="no-border q-py-none bg-grey-2">
-        <div class="row justify-between ">
-          <div class="q-subheading text-primary">
-            Settings
-          </div>
-          <q-toggle
-            v-model="settingsToggle"
-            checked-icon="visibility"
-            unchecked-icon="visibility_off"
-            style="margin-left: 25px"
-          />
-        </div>
-      
-      </q-card-title>
-      <q-collapsible header-style="display: none" v-model="settingsToggle">
-        <div class="row gutter-sm">
-          
-          <div class="col-12 col-md-8">
-            
-            <div class="row">
-              <div class="q-caption">
-                Advanced Settings
-              </div>
-              <div class="col-12 relative-position">
-                <q-tabs
-                  animated
-                  swipeable
-                  inverted
-                  color="primary"
-                  align="justify"
-                  v-model="settingTab"
-                >
-                  <!-- Tabs - notice slot="title" -->
-                  <q-tab label="list" slot="title" default name="list"/>
-                  <q-tab label="assignedSources" slot="title" name="assignedSources"/>
-                  <q-tab label="assignedRoles" slot="title" name="assignedRoles"/>
-                  <q-tab label="assignedDepartments" slot="title" name="assignedDepartments"/>
-                  
-                  <!-- Targets -->
-                  <q-tab-pane keep-alive name="list">
-                    
-                    <q-list link no-border separator>
-                      
-                      
-                      <!-- item assigned sources settings -->
-                      <q-item tag="label">
-                        <q-item-main>
-                          <q-item-tile label>Can Manage sources under following sources</q-item-tile>
-                        </q-item-main>
-                        <q-item-side right>
-                          <q-btn color="primary"
-                                 flat round
-                                 icon="arrow_forward"
-                                 size="sm"
-                                 @click="settingTab = 'assignedSources'"/>
-                        </q-item-side>
-                      </q-item>
-                      
-                      <!-- item assigned roles settings -->
-                      <q-item tag="label">
-                        <q-item-main>
-                          <q-item-tile label>Can manage users with following roles</q-item-tile>
-                        </q-item-main>
-                        <q-item-side right>
-                          <q-btn color="primary"
-                                 flat round
-                                 icon="arrow_forward"
-                                 size="sm"
-                                 @click="settingTab = 'assignedRoles'"/>
-                        </q-item-side>
-                      </q-item>
-                      
-                      <!-- item assigned departments settings -->
-                      <q-item tag="label">
-                        <q-item-main>
-                          <q-item-tile label>Can manage departments under following departments</q-item-tile>
-                        </q-item-main>
-                        <q-item-side right>
-                          <q-btn color="primary"
-                                 flat round
-                                 icon="arrow_forward"
-                                 size="sm"
-                                 @click="settingTab = 'assignedDepartments'"/>
-                        </q-item-side>
-                      </q-item>
-                      <q-item-separator/>
-                    </q-list>
-                  
-                  </q-tab-pane>
-                  <q-tab-pane keep-alive name="assignedSources">
-                    <div class="row">
-                      
-                      <!-- Sources -->
-                      <div class="col-12">
-                        <div class="caption text-weight-regular text-grey-6 ellipsis">
-                          Assigned Sources
-                        </div>
-                        <treeselect
-                          :multiple="true"
-                          :append-to-body="true"
-                          :options="$store.getters['fhia/sourcesSelect']"
-                          value-consists-of="ALL"
-                          v-model="settings.assignedSources.value"
-                          placeholder=""
-                        />
-                        <div class="q-py-xs">
-                          <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm">
-                            go back
-                          </q-btn>
-                        </div>
-                      
-                      </div>
-                    </div>
-                  </q-tab-pane>
-                  <q-tab-pane keep-alive name="assignedRoles">
-                    <div class="row">
-                      
-                      <!-- Roles -->
-                      <div class=" col-12">
-                        <q-field
-                          v-if="roles.length"
-                          :disabled="rolesLoading"
-                        >
-                          <q-select
-                            float-label="Assigned Roles"
-                            v-model="settings.assignedRoles.value"
-                            :options="roles"
-                            multiple chips
-                          />
-                        </q-field>
-                        <div class="q-py-xs">
-                          <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm">
-                            go back
-                          </q-btn>
-                        </div>
-                      
-                      </div>
-                    </div>
-                  
-                  </q-tab-pane>
-                  <q-tab-pane keep-alive name="assignedDepartments">
-                    
-                    <div class="row">
-                      
-                      <!-- Deparments -->
-                      <div class=" col-12">
-                        <q-field
-                          :disabled="departmentsLoading"
-                        >
+
+        </q-card-title>
+        <q-collapsible header-style="display: none" v-model="settingsToggle">
+          <div class="row gutter-sm">
+
+            <div class="col-12 col-md-8">
+
+              <div class="row">
+                <div class="q-caption">
+                  Advanced Settings
+                </div>
+                <div class="col-12 relative-position">
+                  <q-tabs
+                    animated
+                    swipeable
+                    inverted
+                    color="primary"
+                    align="justify"
+                    v-model="settingTab"
+                  >
+                    <!-- Tabs - notice slot="title" -->
+                    <q-tab label="list" slot="title" default name="list"/>
+                    <q-tab label="assignedSources" slot="title" name="assignedSources"/>
+                    <q-tab label="assignedRoles" slot="title" name="assignedRoles"/>
+                    <q-tab label="assignedDepartments" slot="title" name="assignedDepartments"/>
+
+                    <!-- Targets -->
+                    <q-tab-pane keep-alive name="list">
+
+                      <q-list link no-border separator>
+
+
+                        <!-- item assigned sources settings -->
+                        <q-item tag="label">
+                          <q-item-main>
+                            <q-item-tile label>Can Manage sources under following sources</q-item-tile>
+                          </q-item-main>
+                          <q-item-side right>
+                            <q-btn color="primary"
+                                   flat round
+                                   icon="arrow_forward"
+                                   size="sm"
+                                   @click="settingTab = 'assignedSources'"/>
+                          </q-item-side>
+                        </q-item>
+
+                        <!-- item assigned roles settings -->
+                        <q-item tag="label">
+                          <q-item-main>
+                            <q-item-tile label>Can manage users with following roles</q-item-tile>
+                          </q-item-main>
+                          <q-item-side right>
+                            <q-btn color="primary"
+                                   flat round
+                                   icon="arrow_forward"
+                                   size="sm"
+                                   @click="settingTab = 'assignedRoles'"/>
+                          </q-item-side>
+                        </q-item>
+
+                        <!-- item assigned departments settings -->
+                        <q-item tag="label">
+                          <q-item-main>
+                            <q-item-tile label>Can manage departments under following departments</q-item-tile>
+                          </q-item-main>
+                          <q-item-side right>
+                            <q-btn color="primary"
+                                   flat round
+                                   icon="arrow_forward"
+                                   size="sm"
+                                   @click="settingTab = 'assignedDepartments'"/>
+                          </q-item-side>
+                        </q-item>
+                        <q-item-separator/>
+                      </q-list>
+
+                    </q-tab-pane>
+                    <q-tab-pane keep-alive name="assignedSources">
+                      <div class="row">
+
+                        <!-- Sources -->
+                        <div class="col-12">
                           <div class="caption text-weight-regular text-grey-6 ellipsis">
-                            Assigned Departments
+                            Assigned Sources
                           </div>
                           <treeselect
                             :multiple="true"
                             :append-to-body="true"
-                            :options="$store.getters['auth/departmentsSelect']"
+                            :options="$store.getters['fhia/sourcesSelect']"
                             value-consists-of="ALL"
-                            v-model="settings.assignedDepartments.value"
+                            v-model="settings.assignedSources.value"
                             placeholder=""
                           />
-                        </q-field>
-                        <div class="q-py-xs">
-                          <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm">
-                            go back
-                          </q-btn>
+                          <div class="q-py-xs">
+                            <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm">
+                              go back
+                            </q-btn>
+                          </div>
+
                         </div>
-                      
                       </div>
-                    </div>
-                  
-                  
-                  </q-tab-pane>
-                
-                </q-tabs>
+                    </q-tab-pane>
+                    <q-tab-pane keep-alive name="assignedRoles">
+                      <div class="row">
+
+                        <!-- Roles -->
+                        <div class=" col-12">
+                          <q-field
+                            v-if="roles.length"
+                            :disabled="rolesLoading"
+                          >
+                            <q-select
+                              float-label="Assigned Roles"
+                              v-model="settings.assignedRoles.value"
+                              :options="roles"
+                              multiple chips
+                            />
+                          </q-field>
+                          <div class="q-py-xs">
+                            <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm">
+                              go back
+                            </q-btn>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </q-tab-pane>
+                    <q-tab-pane keep-alive name="assignedDepartments">
+
+                      <div class="row">
+
+                        <!-- Deparments -->
+                        <div class=" col-12">
+                          <q-field
+                            :disabled="departmentsLoading"
+                          >
+                            <div class="caption text-weight-regular text-grey-6 ellipsis">
+                              Assigned Departments
+                            </div>
+                            <treeselect
+                              :multiple="true"
+                              :append-to-body="true"
+                              :options="$store.getters['auth/departmentsSelect']"
+                              value-consists-of="ALL"
+                              v-model="settings.assignedDepartments.value"
+                              placeholder=""
+                            />
+                          </q-field>
+                          <div class="q-py-xs">
+                            <q-btn color="primary" rounded flat icon="arrow_back" @click="settingTab = 'list'" size="sm">
+                              go back
+                            </q-btn>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                    </q-tab-pane>
+
+                  </q-tabs>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="row gutter-xs">
+                <div class="q-caption">
+                  Others
+                </div>
+                <div class="col-12">
+                  <q-toggle
+                    v-model="settings.showHomePage.value"
+                    label="Show Homepage"
+                  />
+                </div>
+
+                <div class="col-12">
+                  <q-toggle
+                    v-model="settings.showAdvancedOrganizerFunctions.value"
+                    label="Show Advanced Organizer Functions"
+                  />
+                </div>
+
+                <div class="col-12">
+                  <q-toggle
+                    v-model="settings.includeInCollectedJobs.value"
+                    label="Include in Collected Jobs"
+                  />
+                </div>
+
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-4">
-            <div class="row gutter-xs">
-              <div class="q-caption">
-                Others
-              </div>
-              <div class="col-12">
-                <q-toggle
-                  v-model="settings.showHomePage.value"
-                  label="Show Homepage"
-                />
-              </div>
-              
-              <div class="col-12">
-                <q-toggle
-                  v-model="settings.showAdvancedOrganizerFunctions.value"
-                  label="Show Advanced Organizer Functions"
-                />
-              </div>
-              
-              <div class="col-12">
-                <q-toggle
-                  v-model="settings.includeInCollectedJobs.value"
-                  label="Include in Collected Jobs"
-                />
-              </div>
-            
-            </div>
-          </div>
-        </div>
-      </q-collapsible>
-    </q-card>
-    
-    <!-- Permissions -->
-    <q-card class="q-box no-shadow col-12 q-mb-sm" v-if="$auth.hasAccess('profile.api.user.permission')">
-      
-      <q-card-title class="no-border q-py-none bg-grey-2">
-        <div class="row justify-between">
-          <div class="q-subheading text-primary">
-            <q-icon name="fas fa-check-double"></q-icon>
-            Permissions
-          </div>
-          <q-toggle
-            v-model="permissionsToggle"
-            checked-icon="visibility"
-            unchecked-icon="visibility_off"
-            style="margin-left: 25px"
-          />
-        </div>
-      
-      </q-card-title>
-      
-      <q-collapsible header-style="display: none" v-model="permissionsToggle">
-        
-        
-        <div class="row full-width justify-end">
-          
-          <q-btn-group class="float-right">
-            <q-btn size="sm" label="Allow all" @click="setAllPermissions(true)"/>
-            
-            <q-btn size="sm" label="Deny all" @click="setAllPermissions(false)"/>
-          </q-btn-group>
-        
-        </div>
-        
-        <q-collapsible v-for="(permissionBackend,i) in permissionsBackend" :key="i" icon="fas fa-check" :label="i"
-                       style="border-bottom: 1px solid whitesmoke">
-          <q-collapsible popup v-for="(permissionDetail,j) in permissionBackend" :key="j" icon="fas fa-code-branch"
-                         :label="j">
-            <div class="row q-py-xs q-my-xs justify-between" style="border-bottom: 1px solid whitesmoke"
-                 v-for="(permission,k) in permissionDetail" :key="k" :label="k">
-              <div class="col-12 col-md-4">
-                <span label>{{k}}</span>
-              </div>
-              <div class="col-12 col-md-4 text-right">
-                <q-btn-group>
-                  <q-btn size="sm" label="Allow" :color="getPermissionValue(j+'.'+k) ? 'green':''"
-                         @click="setPermission(j+'.'+k,true)"/>
-                  <q-btn size="sm" label="Inherit" :color="getPermissionValue(j+'.'+k) == null ? 'green':''"
-                         @click="setPermission(j+'.'+k,null)"/>
-                  <q-btn size="sm" label="Deny"
-                         :color="getPermissionValue(j+'.'+k) != null && getPermissionValue(j+'.'+k) == false ? 'green':''"
-                         @click="setPermission(j+'.'+k,false)"/>
-                </q-btn-group>
-              </div>
-            </div>
-          
-          </q-collapsible>
-        
-        
         </q-collapsible>
-        
-        
-        <div class="row full-width justify-end">
-          
-          <q-btn-group class="float-right">
-            <q-btn size="sm" label="Allow all" @click="setAllPermissions(true)"/>
-            
-            <q-btn size="sm" label="Deny all" @click="setAllPermissions(false)"/>
-          </q-btn-group>
-        
+      </q-card>
+
+      <!-- Permissions -->
+      <q-card class="q-box no-shadow col-12 q-mb-sm" v-if="$auth.hasAccess('profile.api.user.permission')">
+
+        <q-card-title class="no-border q-py-none bg-grey-2">
+          <div class="row justify-between">
+            <div class="q-subheading text-primary">
+              <q-icon name="fas fa-check-double"></q-icon>
+              Permissions
+            </div>
+            <q-toggle
+              v-model="permissionsToggle"
+              checked-icon="visibility"
+              unchecked-icon="visibility_off"
+              style="margin-left: 25px"
+            />
+          </div>
+
+        </q-card-title>
+
+        <q-collapsible header-style="display: none" v-model="permissionsToggle">
+
+
+          <div class="row full-width justify-end">
+
+            <q-btn-group class="float-right">
+              <q-btn size="sm" label="Allow all" @click="setAllPermissions(true)"/>
+
+              <q-btn size="sm" label="Deny all" @click="setAllPermissions(false)"/>
+            </q-btn-group>
+
+          </div>
+
+          <q-collapsible v-for="(permissionBackend,i) in permissionsBackend" :key="i" icon="fas fa-check" :label="i"
+                         style="border-bottom: 1px solid whitesmoke">
+            <q-collapsible popup v-for="(permissionDetail,j) in permissionBackend" :key="j" icon="fas fa-code-branch"
+                           :label="j">
+              <div class="row q-py-xs q-my-xs justify-between" style="border-bottom: 1px solid whitesmoke"
+                   v-for="(permission,k) in permissionDetail" :key="k" :label="k">
+                <div class="col-12 col-md-4">
+                  <span label>{{k}}</span>
+                </div>
+                <div class="col-12 col-md-4 text-right">
+                  <q-btn-group>
+                    <q-btn size="sm" label="Allow" :color="getPermissionValue(j+'.'+k) ? 'green':''"
+                           @click="setPermission(j+'.'+k,true)"/>
+                    <q-btn size="sm" label="Inherit" :color="getPermissionValue(j+'.'+k) == null ? 'green':''"
+                           @click="setPermission(j+'.'+k,null)"/>
+                    <q-btn size="sm" label="Deny"
+                           :color="getPermissionValue(j+'.'+k) != null && getPermissionValue(j+'.'+k) == false ? 'green':''"
+                           @click="setPermission(j+'.'+k,false)"/>
+                  </q-btn-group>
+                </div>
+              </div>
+
+            </q-collapsible>
+
+
+          </q-collapsible>
+
+
+          <div class="row full-width justify-end">
+
+            <q-btn-group class="float-right">
+              <q-btn size="sm" label="Allow all" @click="setAllPermissions(true)"/>
+
+              <q-btn size="sm" label="Deny all" @click="setAllPermissions(false)"/>
+            </q-btn-group>
+
+          </div>
+
+        </q-collapsible>
+      </q-card>
+
+      <!--=== SAVE ===-->
+      <div class="col-12 q-mb-md text-center">
+        <!-- Activated -->
+        <q-btn :loading="loading"
+               color="primary"
+               @click="submit">
+          Save
+        </q-btn>
+      </div>
+
+      <!--Inner loading-->
+      <q-inner-loading :visible="loading">
+        <div class="q-box-inner-loading">
+          <q-spinner-hourglass size="50px" color="primary"/>
+          <h6 class="q-ma-none text-primary q-title">Loading...</h6>
         </div>
-      
-      </q-collapsible>
-    </q-card>
-    
-    <!--=== SAVE ===-->
-    <div class="col-12 q-px-sm text-center">
-      <!-- Activated -->
-      <q-btn :loading="loading"
-             color="primary"
-             @click="submit">
-        Save
-      </q-btn>
+      </q-inner-loading>
     </div>
-    
   </div>
 </template>
 <script>
