@@ -95,6 +95,6 @@ export default {
     //By default we'll be working only with LocalStorage
     //Are we going to implement more storages?
   },
-
-
+  
+  
 }
