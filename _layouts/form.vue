@@ -168,7 +168,7 @@
                 :multiple="true"
                 :append-to-body="true"
                 :options="$store.getters['auth/departmentsSelect']"
-                :value-consists-of="valueConsistsOf"
+                value-consists-of="ALL"
                 v-model="form.departments"
                 placeholder=""
               />
@@ -298,7 +298,7 @@
                           :multiple="true"
                           :append-to-body="true"
                           :options="$store.getters['fhia/sourcesSelect']"
-                          :value-consists-of="valueConsistsOf"
+                          value-consists-of="ALL"
                           v-model="settings.assignedSources.value"
                           placeholder=""
                         />
@@ -353,7 +353,7 @@
                             :multiple="true"
                             :append-to-body="true"
                             :options="$store.getters['auth/departmentsSelect']"
-                            :value-consists-of="valueConsistsOf"
+                            value-consists-of="ALL"
                             v-model="settings.assignedDepartments.value"
                             placeholder=""
                           />
@@ -478,6 +478,7 @@
       
       </q-collapsible>
     </q-card>
+    
     <!--=== SAVE ===-->
     <div class="col-12 q-px-sm text-center">
       <!-- Activated -->
@@ -487,6 +488,7 @@
         Save
       </q-btn>
     </div>
+    
   </div>
 </template>
 <script>
@@ -733,7 +735,6 @@
                 }
               }
             }
-
             break;
           
           case 'back':

@@ -125,7 +125,7 @@
                       :multiple="true"
                       :append-to-body="true"
                       :options="$store.getters['fhia/sourcesSelect']"
-                      :value-consists-of="valueConsistsOf"
+                      value-consists-of="ALL"
                       v-model="settings.assignedSources.value"
                       placeholder=""
                     />

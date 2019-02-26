@@ -11,7 +11,7 @@ import profileServices from '@imagina/quser/_services/profile/index'
 export const AUTH_REQUEST = async ({commit, dispatch}, authData) => {
 	if (navigator.onLine)
 		return profileService.auth.login(authData.username, authData.password).then((response) => {
-			dispatch('AUTH_SUCCESS', response.data);
+			dispatch('AUTH_SUCCESS', response.data.data);
 		}).catch(error => {
 			dispatch("AUTH_ERROR",error);
 		});
