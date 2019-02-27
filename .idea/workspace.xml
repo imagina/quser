@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="+Fix: change password">
+    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="+Fix: all inner loading&#10;+Update: in page login, show a alert with message error from backend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/login.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,8 +62,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="256">
-                  <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+                <state relative-caret-position="253">
+                  <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
                   <folding>
                     <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
                   </folding>
@@ -201,13 +202,13 @@
         <option value="$PROJECT_DIR$/_components/crud/departments.js" />
         <option value="$PROJECT_DIR$/_layouts/profileForm.vue" />
         <option value="$PROJECT_DIR$/_config/profile.js" />
-        <option value="$PROJECT_DIR$/_layouts/login.vue" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/_layouts/roleForm.vue" />
         <option value="$PROJECT_DIR$/_layouts/profile.vue" />
         <option value="$PROJECT_DIR$/_layouts/form.vue" />
         <option value="$PROJECT_DIR$/_layouts/departmentForm.vue" />
         <option value="$PROJECT_DIR$/_store/auth/actions.js" />
+        <option value="$PROJECT_DIR$/_layouts/login.vue" />
       </list>
     </option>
   </component>
@@ -325,6 +326,8 @@
       <workItem from="1550840736867" duration="2461000" />
       <workItem from="1551114011409" duration="6767000" />
       <workItem from="1551195408050" duration="619000" />
+      <workItem from="1551205407454" duration="65000" />
+      <workItem from="1551289456507" duration="17000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -508,11 +511,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551195422259</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="+Fix: all inner loading&#10;+Update: in page login, show a alert with message error from backend">
+      <created>1551205465745</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1551205465745</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236114000" />
+    <option name="totallyTimeSpent" value="236196000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,10 +534,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17217484" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17537314" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -607,7 +617,8 @@
     <MESSAGE value="+fix: profile image styles" />
     <MESSAGE value="+fix: department parent id set null before to send, because axios not included undefined values&#10;+fix: default url profile" />
     <MESSAGE value="+Fix: change password" />
-    <option name="LAST_COMMIT_MESSAGE" value="+Fix: change password" />
+    <MESSAGE value="+Fix: all inner loading&#10;+Update: in page login, show a alert with message error from backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Fix: all inner loading&#10;+Update: in page login, show a alert with message error from backend" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_router/middlewares/auth.js">
@@ -966,23 +977,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+        <state relative-caret-position="161">
+          <caret line="120" column="26" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="26" />
           <folding>
+            <element signature="n#template#0;n#!!top" />
+            <element signature="n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
@@ -992,8 +997,20 @@
             <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
           </folding>
         </state>
       </provider>
