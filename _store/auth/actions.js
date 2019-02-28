@@ -93,7 +93,7 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
 
 export const AUTH_ERROR = ({commit, dispatch},error) => {
 	if(error.response.status == 401)
-		alert.error("Email or password incorrect.", "top");
+		alert.error(error.response.data.errors, "top");
 }
 
 export const AUTH_LOGOUT = async ({commit, dispatch}) => {

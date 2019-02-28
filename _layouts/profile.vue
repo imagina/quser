@@ -467,13 +467,12 @@
               </q-tabs>
             </div>
           </div>
-          <!-- Pre-Loading -->
-          <q-inner-loading :visible="loading" style="background-color: rgba(255, 255, 255, 0.89)">
-            <q-spinner-hourglass size="50px" color="primary">
-            </q-spinner-hourglass>
-            <span class="text-faded">
-              Updating your profile...
-            </span>
+          <!--Loading-->
+          <q-inner-loading :visible="loading">
+            <div class="q-box-inner-loading">
+              <q-spinner-hourglass size="50px" color="primary"/>
+              <h6 class="q-ma-none text-primary q-title">Updating your profile...</h6>
+            </div>
           </q-inner-loading>
         </div>
         <!--=== SAVE ===-->

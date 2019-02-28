@@ -59,11 +59,11 @@
         </div>
 
         <!--Button actions-->
-        <div class="full-width text-center q-pt-lg">
+        <!--<div class="full-width text-center q-pt-lg">
           <q-btn flat color="primary" label="Change password"
                  :to="{name : 'auth.password.change'}">
           </q-btn>
-        </div>
+        </div>-->
       </div>
     </div>
 

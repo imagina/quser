@@ -1,9 +1,5 @@
 <template>
-  <div id="userForm"
-       class="q-layout-page row justify-center layout-padding relative-position">
-    <q-inner-loading :visible="loading" style="z-index:1001; max-height: 100vh">
-      <q-spinner-hourglass size="50px" color="primary"/>
-    </q-inner-loading>
+  <div id="userForm" class="q-layout-page row justify-center layout-padding">
     
     <div class="text_title text-blue-9 col-xs-12 q-title text-right">
       <span>USER</span>
