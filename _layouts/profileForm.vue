@@ -532,7 +532,7 @@
         this.field = Object.assign({},data);
       },
       deleteField(data,pos){
-        console.log(data);
+    
         if(data.name=='evening_phone'){
           this.selectOptions[0].disable=false;
         }else
@@ -674,13 +674,12 @@
           addresses:this.addresses
         }
 
-        console.log(params);
 
         this.$v.form.$touch()
 
         if (this.$v.form.$error) {
           alert.error('Please review the fields again.');
-          console.log('Hay error');
+     
           return
         }
 

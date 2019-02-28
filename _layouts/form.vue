@@ -146,7 +146,7 @@
               :multiple="true"
               :append-to-body="true"
               :options="$store.getters['fhia/sourcesSelect']"
-              :value-consists-of="valueConsistsOf"
+              value-consists-of="ALL_WITH_INDETERMINATE"
               v-model="form.sources"
               placeholder=""
             />
@@ -168,7 +168,7 @@
                 :multiple="true"
                 :append-to-body="true"
                 :options="$store.getters['auth/departmentsSelect']"
-                value-consists-of="ALL"
+                :value-consists-of="valueConsistsOf"
                 v-model="form.departments"
                 placeholder=""
               />
