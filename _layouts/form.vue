@@ -1,5 +1,7 @@
 <template>
   <div id="userForm" class="q-layout-page row justify-center layout-padding">
+  
+    
     
     <div class="text_title text-blue-9 col-xs-12 q-title text-right">
       <span>USER</span>
@@ -164,7 +166,7 @@
                 :multiple="true"
                 :append-to-body="true"
                 :options="$store.getters['auth/departmentsSelect']"
-                :value-consists-of="valueConsistsOf"
+                value-consists-of="ALL"
                 v-model="form.departments"
                 placeholder=""
               />
@@ -474,6 +476,8 @@
       
       </q-collapsible>
     </q-card>
+  
+    
     
     <!--=== SAVE ===-->
     <div class="col-12 q-px-sm text-center">
@@ -484,7 +488,10 @@
         Save
       </q-btn>
     </div>
-    
+  
+    <q-inner-loading :visible="loading">
+      <q-spinner-hourglass size="50px" color="primary"/>
+    </q-inner-loading>
   </div>
 </template>
 <script>

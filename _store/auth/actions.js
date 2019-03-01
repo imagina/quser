@@ -123,7 +123,7 @@ export const SET_DEPARTMENT = ({getters,dispatch, commit, state}, data = false) 
 			commit('CHANGE_DEPARTMENT', data)
 		} else {
 			let departmentId = await helper.storage.get.item(nameInCache)
-
+   
 			//If there isn't data, set by default, first role in userData
 			if (!departmentId && state.userData.departments.length)
 				departmentId = state.userData.departments[0].id
@@ -133,7 +133,7 @@ export const SET_DEPARTMENT = ({getters,dispatch, commit, state}, data = false) 
 				let inDepartments = state.departments.find((department) => department.id == departmentId)
 				if(!inDepartments) departmentId = state.departments[0].id
 			}
-
+ 
 			commit('CHANGE_DEPARTMENT', departmentId)
 		}
 		resolve(true)
