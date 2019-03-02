@@ -4,7 +4,6 @@
     <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_layouts/form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/form.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/profileForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/profileForm.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,39 +39,42 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="form.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="form.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
+                <state relative-caret-position="629">
+                  <caret line="796" column="8" lean-forward="true" selection-start-line="796" selection-start-column="8" selection-end-line="796" selection-end-column="8" />
                   <folding>
-                    <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-field#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#0;n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#0;n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-select#0;n#q-field#0;n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#q-field#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#2;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-select#0;n#div#2;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -87,7 +89,11 @@
                     <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -98,7 +104,6 @@
                     <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -109,9 +114,78 @@
                     <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-card#3;n#div#0;n#template#0;n#!!top" />
-                    <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn-group#0;n#div#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#1;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#2;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn-group#0;n#div#1;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="e#18154#18166#0" />
+                    <element signature="e#18242#18253#0" />
+                    <element signature="e#18256#18332#0" expanded="true" />
+                    <element signature="e#18538#18552#0" />
+                    <element signature="e#18555#18604#0" expanded="true" />
+                    <element signature="e#18746#18855#0" />
+                    <element signature="e#18773#18849#0" />
+                    <element signature="e#19275#19391#0" />
+                    <element signature="e#19310#19384#0" />
+                    <element signature="e#19908#20134#0" />
+                    <element signature="e#20289#20361#0" />
+                    <element signature="e#20952#21280#0" />
+                    <element signature="e#21916#21968#0" />
+                    <element signature="e#22205#22263#0" />
+                    <element signature="e#22404#22464#0" />
+                    <element signature="e#22603#22657#0" />
+                    <element signature="e#22887#22934#0" />
+                    <element signature="e#23117#23230#0" />
+                    <element signature="e#23388#23511#0" />
+                    <element signature="e#23554#23784#0" />
+                    <element signature="e#23644#23775#0" />
+                    <element signature="e#23824#24459#0" />
+                    <element signature="e#23889#24442#0" />
+                    <element signature="e#23998#24432#0" />
+                    <element signature="e#24112#24420#0" />
+                    <element signature="e#24248#24301#0" />
+                    <element signature="e#24500#24736#0" />
+                    <element signature="e#24611#24656#0" />
+                    <element signature="e#24777#24946#0" />
+                    <element signature="e#25099#25708#0" />
+                    <element signature="e#25216#25694#0" />
+                    <element signature="e#25338#25678#0" />
+                    <element signature="e#25493#25640#0" />
+                    <element signature="e#25856#25981#0" />
+                    <element signature="e#26458#26941#0" />
+                    <element signature="e#26561#26724#0" />
+                    <element signature="e#26741#26928#0" />
+                    <element signature="e#26947#27405#0" />
+                    <element signature="e#27028#27190#0" />
+                    <element signature="e#27207#27392#0" />
+                    <element signature="e#27873#28048#0" />
+                    <element signature="e#27923#28042#0" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/_router/routes.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="859">
+                  <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -119,8 +193,8 @@
           <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+                <state relative-caret-position="2023">
+                  <caret line="119" selection-start-line="119" selection-end-line="119" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -130,23 +204,30 @@
           </file>
           <file leaf-file-name="passwordChange.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
-              <provider selected="true" editor-type-id="text-editor" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="238">
+                  <caret line="145" column="16" lean-forward="true" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="16" />
+                </state>
+              </provider>
             </entry>
           </file>
           <file leaf-file-name="mutations.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="646">
-                  <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+                <state relative-caret-position="493">
+                  <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="profileForm.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="profileForm.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="661" column="17" selection-start-line="661" selection-start-column="10" selection-end-line="661" selection-end-column="17" />
+                <state relative-caret-position="306">
+                  <caret line="355" column="9" lean-forward="true" selection-start-line="355" selection-start-column="9" selection-end-line="355" selection-end-column="9" />
+                  <folding>
+                    <element signature="e#13758#13811#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -154,8 +235,8 @@
           <file leaf-file-name="profile.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="18904">
-                  <caret line="1114" column="8" selection-start-line="1114" selection-start-column="8" selection-end-line="1114" selection-end-column="8" />
+                <state relative-caret-position="264">
+                  <caret line="469" column="10" selection-start-line="469" selection-start-column="10" selection-end-line="475" selection-end-column="28" />
                   <folding>
                     <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
@@ -173,19 +254,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="login.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="departmentForm.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_layouts/departmentForm.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
+                <state relative-caret-position="-371">
                   <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
                   <folding>
                     <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
@@ -271,13 +343,156 @@
           <file leaf-file-name="roleForm.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="497">
-                  <caret line="250" column="25" selection-start-line="250" selection-start-column="25" selection-end-line="250" selection-end-column="25" />
+                <state relative-caret-position="340">
+                  <caret line="364" column="7" lean-forward="true" selection-start-line="364" selection-start-column="7" selection-end-line="364" selection-end-column="7" />
                   <folding>
+                    <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn-group#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn-group#0;n#div#1;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-main#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-item-side#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-select#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
                     <element signature="n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-                    <element signature="e#13668#13744#0" expanded="true" />
+                    <element signature="n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-select#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#treeselect#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-select#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+                    <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+                    <element signature="e#13654#13665#0" />
+                    <element signature="e#13907#13919#0" />
+                    <element signature="e#13994#14008#0" />
+                    <element signature="e#14141#20432#0" />
+                    <element signature="e#14152#14366#0" />
+                    <element signature="e#14166#14219#0" />
+                    <element signature="e#14189#14214#0" />
+                    <element signature="e#14235#14288#0" />
+                    <element signature="e#14258#14283#0" />
+                    <element signature="e#14305#14362#0" />
+                    <element signature="e#14328#14355#0" />
+                    <element signature="e#14382#14402#0" />
+                    <element signature="e#14413#14500#0" />
+                    <element signature="e#14427#14496#0" />
+                    <element signature="e#14517#14619#0" />
+                    <element signature="e#14529#14615#0" />
+                    <element signature="e#14543#14569#0" />
+                    <element signature="e#14583#14609#0" />
+                    <element signature="e#14632#14733#0" />
+                    <element signature="e#14665#14728#0" />
+                    <element signature="e#14743#15560#0" />
+                    <element signature="e#14756#15556#0" />
+                    <element signature="e#15118#15249#0" />
+                    <element signature="e#15198#15241#0" />
+                    <element signature="e#15266#15550#0" />
+                    <element signature="e#15573#20423#0" />
+                    <element signature="e#15595#16920#0" />
+                    <element signature="e#15665#15722#0" />
+                    <element signature="e#15892#16317#0" />
+                    <element signature="e#16567#16670#0" />
+                    <element signature="e#16795#16908#0" />
+                    <element signature="e#16955#17546#0" />
+                    <element signature="e#17016#17533#0" />
+                    <element signature="e#17121#17525#0" />
+                    <element signature="e#17231#17515#0" />
+                    <element signature="e#17359#17408#0" />
+                    <element signature="e#17581#17801#0" />
+                    <element signature="e#17688#17729#0" />
+                    <element signature="e#17837#17981#0" />
+                    <element signature="e#18014#18954#0" />
+                    <element signature="e#18029#18948#0" />
+                    <element signature="e#18049#18689#0" />
+                    <element signature="e#18119#18672#0" />
+                    <element signature="e#18232#18660#0" />
+                    <element signature="e#18350#18646#0" />
+                    <element signature="e#18499#18629#0" />
+                    <element signature="e#18701#18940#0" />
+                    <element signature="e#18804#18922#0" />
+                    <element signature="e#18973#20414#0" />
+                    <element signature="e#19058#20332#0" />
+                    <element signature="e#19226#19785#0" />
+                    <element signature="e#19325#19538#0" />
+                    <element signature="e#19555#19774#0" />
+                    <element signature="e#19789#20317#0" />
+                    <element signature="e#19873#20079#0" />
+                    <element signature="e#20096#20306#0" />
+                    <element signature="e#20338#20408#0" />
+                    <element signature="n#style#0;n#!!top" />
+                    <element signature="e#20505#20728#0" />
+                    <element signature="e#20552#20658#0" />
                   </folding>
                 </state>
               </provider>
@@ -323,9 +538,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>asigned</find>
-      <find>relations</find>
-      <find>submit</find>
       <find>showAdvancedOrganizer</find>
       <find>reset</find>
       <find>manage</find>
@@ -353,6 +565,9 @@
       <find>info</find>
       <find>RELOAD_REPORTS</find>
       <find>console</find>
+      <find>password</find>
+      <find>q-inner</find>
+      <find>loading</find>
     </findStrings>
     <replaceStrings>
       <replace>30</replace>
@@ -414,12 +629,12 @@
         <option value="$PROJECT_DIR$/_config/profile.js" />
         <option value="$PROJECT_DIR$/_layouts/login.vue" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/_layouts/profile.vue" />
         <option value="$PROJECT_DIR$/_layouts/departmentForm.vue" />
+        <option value="$PROJECT_DIR$/_layouts/profileForm.vue" />
         <option value="$PROJECT_DIR$/_store/auth/actions.js" />
+        <option value="$PROJECT_DIR$/_layouts/profile.vue" />
         <option value="$PROJECT_DIR$/_layouts/roleForm.vue" />
         <option value="$PROJECT_DIR$/_layouts/form.vue" />
-        <option value="$PROJECT_DIR$/_layouts/profileForm.vue" />
       </list>
     </option>
   </component>
@@ -467,12 +682,12 @@
             <path>
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
               <item name="quser" type="462c0819:PsiDirectoryNode" />
-              <item name="_config" type="462c0819:PsiDirectoryNode" />
+              <item name="_layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
               <item name="quser" type="462c0819:PsiDirectoryNode" />
-              <item name="_layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="_router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
@@ -511,12 +726,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\imagina\html\fhaproducts2018_frontend\node_modules\@imagina\quser\_services\profile" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\imagina\html\fhaproducts2018_frontend\node_modules\@imagina\quser\_layouts" />
       <recent name="C:\imagina\html\fhaproducts2018_frontend\node_modules\@imagina\quser\_components\crud" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\imagina\html\fhaproducts2018_frontend\node_modules\@imagina\quser\_services\profile" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -761,11 +976,25 @@
       <option name="project" value="LOCAL" />
       <updated>1550789694280</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="+update: tree departments and sources select">
+      <created>1551313921482</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1551313921482</updated>
+    </task>
+    <task id="LOCAL-00027" summary="+update: fix user form loading and added 'ALL' value consists of on departments tree select">
+      <created>1551398784377</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1551398784377</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240768000" />
+    <option name="totallyTimeSpent" value="261028000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -777,10 +1006,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14395887" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11940298" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -900,11 +1129,13 @@
     <MESSAGE value="+clear: console log and warn" />
     <MESSAGE value="+fix: profile image styles" />
     <MESSAGE value="+fix: department parent id set null before to send, because axios not included undefined values&#10;+fix: default url profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="+fix: department parent id set null before to send, because axios not included undefined values&#10;+fix: default url profile" />
+    <MESSAGE value="+update: tree departments and sources select" />
+    <MESSAGE value="+update: fix user form loading and added 'ALL' value consists of on departments tree select" />
+    <option name="LAST_COMMIT_MESSAGE" value="+update: fix user form loading and added 'ALL' value consists of on departments tree select" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -1032,33 +1263,36 @@
         <state relative-caret-position="663">
           <caret line="170" column="38" selection-start-line="170" selection-start-column="38" selection-end-line="170" selection-end-column="38" />
           <folding>
-            <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-field#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#q-field#0;n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-field#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#div#2;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -1073,7 +1307,11 @@
             <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -1084,7 +1322,6 @@
             <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -1095,8 +1332,68 @@
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#1;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#2;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#18154#18166#0" />
+            <element signature="e#18242#18253#0" />
+            <element signature="e#18256#18332#0" expanded="true" />
+            <element signature="e#18538#18552#0" />
+            <element signature="e#18555#18604#0" expanded="true" />
+            <element signature="e#18746#18855#0" />
+            <element signature="e#18773#18849#0" />
+            <element signature="e#19275#19391#0" />
+            <element signature="e#19310#19384#0" />
+            <element signature="e#19908#20134#0" />
+            <element signature="e#20289#20361#0" />
+            <element signature="e#20952#21280#0" />
+            <element signature="e#21916#21968#0" />
+            <element signature="e#22205#22263#0" />
+            <element signature="e#22404#22464#0" />
+            <element signature="e#22603#22657#0" />
+            <element signature="e#22887#22934#0" />
+            <element signature="e#23117#23230#0" />
+            <element signature="e#23388#23511#0" />
+            <element signature="e#23554#23784#0" />
+            <element signature="e#23644#23775#0" />
+            <element signature="e#23824#24459#0" />
+            <element signature="e#23889#24442#0" />
+            <element signature="e#23998#24432#0" />
+            <element signature="e#24112#24420#0" />
+            <element signature="e#24248#24301#0" />
+            <element signature="e#24500#24736#0" />
+            <element signature="e#24611#24656#0" />
+            <element signature="e#24777#24946#0" />
+            <element signature="e#25099#25708#0" />
+            <element signature="e#25216#25694#0" />
+            <element signature="e#25338#25678#0" />
+            <element signature="e#25493#25640#0" />
+            <element signature="e#25856#25981#0" />
+            <element signature="e#26458#26941#0" />
+            <element signature="e#26561#26724#0" />
+            <element signature="e#26741#26928#0" />
+            <element signature="e#26947#27405#0" />
+            <element signature="e#27028#27190#0" />
+            <element signature="e#27207#27392#0" />
+            <element signature="e#27873#28048#0" />
+            <element signature="e#27923#28042#0" />
           </folding>
         </state>
       </provider>
@@ -1186,10 +1483,153 @@
         <state relative-caret-position="2431">
           <caret line="219" selection-start-line="219" selection-end-line="219" />
           <folding>
+            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#13668#13744#0" expanded="true" />
+            <element signature="n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#13654#13665#0" />
+            <element signature="e#13907#13919#0" />
+            <element signature="e#13994#14008#0" />
+            <element signature="e#14141#20432#0" />
+            <element signature="e#14152#14366#0" />
+            <element signature="e#14166#14219#0" />
+            <element signature="e#14189#14214#0" />
+            <element signature="e#14235#14288#0" />
+            <element signature="e#14258#14283#0" />
+            <element signature="e#14305#14362#0" />
+            <element signature="e#14328#14355#0" />
+            <element signature="e#14382#14402#0" />
+            <element signature="e#14413#14500#0" />
+            <element signature="e#14427#14496#0" />
+            <element signature="e#14517#14619#0" />
+            <element signature="e#14529#14615#0" />
+            <element signature="e#14543#14569#0" />
+            <element signature="e#14583#14609#0" />
+            <element signature="e#14632#14733#0" />
+            <element signature="e#14665#14728#0" />
+            <element signature="e#14743#15560#0" />
+            <element signature="e#14756#15556#0" />
+            <element signature="e#15118#15249#0" />
+            <element signature="e#15198#15241#0" />
+            <element signature="e#15266#15550#0" />
+            <element signature="e#15573#20423#0" />
+            <element signature="e#15595#16920#0" />
+            <element signature="e#15665#15722#0" />
+            <element signature="e#15892#16317#0" />
+            <element signature="e#16567#16670#0" />
+            <element signature="e#16795#16908#0" />
+            <element signature="e#16955#17546#0" />
+            <element signature="e#17016#17533#0" />
+            <element signature="e#17121#17525#0" />
+            <element signature="e#17231#17515#0" />
+            <element signature="e#17359#17408#0" />
+            <element signature="e#17581#17801#0" />
+            <element signature="e#17688#17729#0" />
+            <element signature="e#17837#17981#0" />
+            <element signature="e#18014#18954#0" />
+            <element signature="e#18029#18948#0" />
+            <element signature="e#18049#18689#0" />
+            <element signature="e#18119#18672#0" />
+            <element signature="e#18232#18660#0" />
+            <element signature="e#18350#18646#0" />
+            <element signature="e#18499#18629#0" />
+            <element signature="e#18701#18940#0" />
+            <element signature="e#18804#18922#0" />
+            <element signature="e#18973#20414#0" />
+            <element signature="e#19058#20332#0" />
+            <element signature="e#19226#19785#0" />
+            <element signature="e#19325#19538#0" />
+            <element signature="e#19555#19774#0" />
+            <element signature="e#19789#20317#0" />
+            <element signature="e#19873#20079#0" />
+            <element signature="e#20096#20306#0" />
+            <element signature="e#20338#20408#0" />
+            <element signature="n#style#0;n#!!top" />
+            <element signature="e#20505#20728#0" />
+            <element signature="e#20552#20658#0" />
           </folding>
         </state>
       </provider>
@@ -1260,13 +1700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_router/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../qhelper/_plugins/helper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="944">
@@ -1326,13 +1759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
@@ -1361,17 +1787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18904">
-          <caret line="1114" column="8" selection-start-line="1114" selection-start-column="8" selection-end-line="1114" selection-end-column="8" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_components/crud/departments.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -1381,7 +1796,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/departmentForm.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="-371">
           <caret line="17" column="10" lean-forward="true" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
           <folding>
             <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
@@ -1459,28 +1874,186 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
+    <entry file="file://$PROJECT_DIR$/_router/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+        <state relative-caret-position="859">
+          <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/profile.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="469" column="10" selection-start-line="469" selection-start-column="10" selection-end-line="475" selection-end-column="28" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="355" column="9" lean-forward="true" selection-start-line="355" selection-start-column="9" selection-end-line="355" selection-end-column="9" />
+          <folding>
+            <element signature="e#13758#13811#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="250" column="25" selection-start-line="250" selection-start-column="25" selection-end-line="250" selection-end-column="25" />
+        <state relative-caret-position="340">
+          <caret line="364" column="7" lean-forward="true" selection-start-line="364" selection-start-column="7" selection-end-line="364" selection-end-column="7" />
           <folding>
+            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#1;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#3;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-main#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-item-side#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#4;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="e#13668#13744#0" expanded="true" />
+            <element signature="n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#4;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#5;n#q-tabs#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#13654#13665#0" />
+            <element signature="e#13907#13919#0" />
+            <element signature="e#13994#14008#0" />
+            <element signature="e#14141#20432#0" />
+            <element signature="e#14152#14366#0" />
+            <element signature="e#14166#14219#0" />
+            <element signature="e#14189#14214#0" />
+            <element signature="e#14235#14288#0" />
+            <element signature="e#14258#14283#0" />
+            <element signature="e#14305#14362#0" />
+            <element signature="e#14328#14355#0" />
+            <element signature="e#14382#14402#0" />
+            <element signature="e#14413#14500#0" />
+            <element signature="e#14427#14496#0" />
+            <element signature="e#14517#14619#0" />
+            <element signature="e#14529#14615#0" />
+            <element signature="e#14543#14569#0" />
+            <element signature="e#14583#14609#0" />
+            <element signature="e#14632#14733#0" />
+            <element signature="e#14665#14728#0" />
+            <element signature="e#14743#15560#0" />
+            <element signature="e#14756#15556#0" />
+            <element signature="e#15118#15249#0" />
+            <element signature="e#15198#15241#0" />
+            <element signature="e#15266#15550#0" />
+            <element signature="e#15573#20423#0" />
+            <element signature="e#15595#16920#0" />
+            <element signature="e#15665#15722#0" />
+            <element signature="e#15892#16317#0" />
+            <element signature="e#16567#16670#0" />
+            <element signature="e#16795#16908#0" />
+            <element signature="e#16955#17546#0" />
+            <element signature="e#17016#17533#0" />
+            <element signature="e#17121#17525#0" />
+            <element signature="e#17231#17515#0" />
+            <element signature="e#17359#17408#0" />
+            <element signature="e#17581#17801#0" />
+            <element signature="e#17688#17729#0" />
+            <element signature="e#17837#17981#0" />
+            <element signature="e#18014#18954#0" />
+            <element signature="e#18029#18948#0" />
+            <element signature="e#18049#18689#0" />
+            <element signature="e#18119#18672#0" />
+            <element signature="e#18232#18660#0" />
+            <element signature="e#18350#18646#0" />
+            <element signature="e#18499#18629#0" />
+            <element signature="e#18701#18940#0" />
+            <element signature="e#18804#18922#0" />
+            <element signature="e#18973#20414#0" />
+            <element signature="e#19058#20332#0" />
+            <element signature="e#19226#19785#0" />
+            <element signature="e#19325#19538#0" />
+            <element signature="e#19555#19774#0" />
+            <element signature="e#19789#20317#0" />
+            <element signature="e#19873#20079#0" />
+            <element signature="e#20096#20306#0" />
+            <element signature="e#20338#20408#0" />
+            <element signature="n#style#0;n#!!top" />
+            <element signature="e#20505#20728#0" />
+            <element signature="e#20552#20658#0" />
           </folding>
         </state>
       </provider>
@@ -1492,38 +2065,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="145" column="16" lean-forward="true" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/form.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="148" column="55" selection-start-line="148" selection-start-column="55" selection-end-line="148" selection-end-column="55" />
+        <state relative-caret-position="629">
+          <caret line="796" column="8" lean-forward="true" selection-start-line="796" selection-start-column="8" selection-end-line="796" selection-end-column="8" />
           <folding>
-            <element signature="n#q-inner-loading#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-input#0;n#q-field#0;n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-field#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#2;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#3;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#4;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#q-field#0;n#div#5;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-field#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-select#0;n#div#2;n#div#0;n#q-collapsible#0;n#q-card#1;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-item#0;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -1538,7 +2138,11 @@
             <element signature="n#q-item-main#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-btn#0;n#q-item-side#0;n#q-item#2;n#q-list#0;n#q-tab-pane#0;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#treeselect#0;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-btn#0;n#div#1;n#div#0;n#div#0;n#q-tab-pane#1;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -1549,7 +2153,6 @@
             <element signature="n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#2;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#q-field#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#q-btn#0;n#div#0;n#div#0;n#div#0;n#q-tab-pane#3;n#q-tabs#0;n#div#1;n#div#0;n#div#0;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
@@ -1560,16 +2163,69 @@
             <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-toggle#0;n#div#3;n#div#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-card#2;n#div#0;n#template#0;n#!!top" />
             <element signature="n#q-card#3;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-toggle#0;n#div#0;n#q-card-title#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#1;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#2;n#q-btn-group#0;n#div#1;n#div#0;n#q-collapsible#0;n#q-collapsible#0;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#1;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn-group#0;n#div#1;n#q-collapsible#0;n#q-card#3;n#div#0;n#template#0;n#!!top" />
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#q-btn#0;n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="e#18154#18166#0" />
+            <element signature="e#18242#18253#0" />
+            <element signature="e#18256#18332#0" expanded="true" />
+            <element signature="e#18538#18552#0" />
+            <element signature="e#18555#18604#0" expanded="true" />
+            <element signature="e#18746#18855#0" />
+            <element signature="e#18773#18849#0" />
+            <element signature="e#19275#19391#0" />
+            <element signature="e#19310#19384#0" />
+            <element signature="e#19908#20134#0" />
+            <element signature="e#20289#20361#0" />
+            <element signature="e#20952#21280#0" />
+            <element signature="e#21916#21968#0" />
+            <element signature="e#22205#22263#0" />
+            <element signature="e#22404#22464#0" />
+            <element signature="e#22603#22657#0" />
+            <element signature="e#22887#22934#0" />
+            <element signature="e#23117#23230#0" />
+            <element signature="e#23388#23511#0" />
+            <element signature="e#23554#23784#0" />
+            <element signature="e#23644#23775#0" />
+            <element signature="e#23824#24459#0" />
+            <element signature="e#23889#24442#0" />
+            <element signature="e#23998#24432#0" />
+            <element signature="e#24112#24420#0" />
+            <element signature="e#24248#24301#0" />
+            <element signature="e#24500#24736#0" />
+            <element signature="e#24611#24656#0" />
+            <element signature="e#24777#24946#0" />
+            <element signature="e#25099#25708#0" />
+            <element signature="e#25216#25694#0" />
+            <element signature="e#25338#25678#0" />
+            <element signature="e#25493#25640#0" />
+            <element signature="e#25856#25981#0" />
+            <element signature="e#26458#26941#0" />
+            <element signature="e#26561#26724#0" />
+            <element signature="e#26741#26928#0" />
+            <element signature="e#26947#27405#0" />
+            <element signature="e#27028#27190#0" />
+            <element signature="e#27207#27392#0" />
+            <element signature="e#27873#28048#0" />
+            <element signature="e#27923#28042#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/profileForm.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="661" column="17" selection-start-line="661" selection-start-column="10" selection-end-line="661" selection-end-column="17" />
         </state>
       </provider>
     </entry>
