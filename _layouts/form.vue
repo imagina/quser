@@ -62,17 +62,24 @@
                   :error="$v.form.email.$error"
                   error-label="This field is required"
                 >
-                  <q-input v-model="form.email" type="text" float-label="User Name *"/>
+                  <q-input autocomplete="off"
+                           v-model="form.email"
+                           type="text"
+                           float-label="User Name *"/>
                 </q-field>
               </div>
               
               <!-- Password -->
+             
               <div class=" col-12 col-md-4">
                 <q-field
                   :error="$v.form.password.$error"
-                  error-label="This field must have 7 seven characters"
+         
                 >
-                  <q-input v-model="form.password" type="password" float-label="Password *"/>
+                  <q-input v-model="form.password"
+                           type="password"
+                           float-label="Password *"
+                           autocomplete="off"/>
                 </q-field>
               </div>
               
@@ -80,9 +87,13 @@
               <div class=" col-12 col-md-4">
                 <q-field
                   :error="$v.form.passwordConfirmation.$error"
-                  error-label="This field is required"
+                
                 >
-                  <q-input v-model="form.passwordConfirmation" type="password" float-label="Password Confirm *"/>
+                  <q-input
+                    autocomplete="off"
+                    v-model="form.passwordConfirmation"
+                    type="password"
+                    float-label="Password Confirm *"/>
                 </q-field>
               </div>
               
@@ -527,17 +538,16 @@
         departments: {required},
         lastName: {required},
         password: {
-          minLength: minLength(7)
+          minLength: minLength(8)
         },
         passwordConfirmation: {
-          
-          minLength: minLength(7),
-          sameAsPassword: sameAs('password')
+          minLength: minLength(8)
         },
         email: {required},
         
       }
     },
+ 
     mounted() {
       this.$nextTick(function () {
         this.form = this.initializeData()
@@ -574,6 +584,7 @@
       }
     },
     methods: {
+     
       initializeData() {
         
         profileService.role.getPermissions().then(response => {
@@ -596,7 +607,9 @@
           email: '',
           lastName: '',
           roles: [],
-          activated: true
+          activated: true,
+          password: '',
+          passwordConfirmation: ''
         }
       },
       getData() {
@@ -652,7 +665,10 @@
               sources.push(element.id)
             })
             this.form.sources = sources;
-            
+  
+            //setting empty passwords
+            this.form.password = ''
+            this.form.passwordConfirmation = ''
             
             this.settings = helper.convertToFrontField(settings, this.form.settings);
             this.loading = false;
@@ -751,14 +767,37 @@
       },
       
       submit() {
+        let error = 'Please review fields again.'
+        
+        //this.$v.$reset();// reseting errors
         this.$v.$touch();//validate all fields from form
+
         if (this.$v.form.departments.$error)
           this.relationsToggle = true
+        
         this.convertPermissions('back');
         
-        if (!this.$v.$error) {
+        let data =_cloneDeep(this.form);
+        
+        //deleting password if is empty
+        if(!data.password.length)
+          delete data.password;
+  
+        
+        //deleting passwordConfirmation if is empty
+        if(!data.passwordConfirmation.length)
+          delete data.passwordConfirmation;
+        
+        //validate passwords
+        let samePasswords = !data.password || data.password == data.passwordConfirmation
+        if(!samePasswords) error = 'Password and Confirm Password don\'t match'
+  
+        let complexity = !data.password || helper.checkPassword(data.password)
+        if(!complexity) error = 'The password must be at least 8 characters and contain a at least 1 lowercase character, at least 1 uppercase character and a number.'
+        
+        if (!this.$v.$error && samePasswords && complexity) {
           this.loading = true;
-          let data = JSON.parse(JSON.stringify(this.form));
+          
           data.settings = helper.convertToBackField(this.settings)
           
           if (this.id) {
@@ -786,7 +825,7 @@
             })
           }
         } else {
-          alert.error('Please review fields again.', 'bottom')
+          alert.error(error, 'bottom')
         }
       }
     }
