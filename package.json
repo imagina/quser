@@ -41,6 +41,7 @@
     "@imagina/qcrud": ">=0.0.11",
     "@imagina/qhelper": ">=0.0.7",
     "@imagina/qoffline": ">=0.0.2",
+    "@imagina/qnotification": ">=0.0.2",
     "@riophae/vue-treeselect": "0.0.31",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",

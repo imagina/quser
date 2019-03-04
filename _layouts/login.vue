@@ -4,7 +4,7 @@
     <div class="row shadow-3 q-mx-md" style="width: 550px">
       <div id="form-login-left" class="col-12 col-md-5">
         <div class="bg-color flex flex-center">
-          <img src="../../../../src/assets/image/logo-login.png" style="width: auto; max-height: 100px">
+          <img src="assets/image/logo-login.png" style="width: auto; max-height: 100px">
         </div>
       </div>
       <div id="form-login-right"
@@ -71,11 +71,11 @@
 </template>
 
 <script>
-  /*Plugins*/
+  //Plugins
   import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
-  import {alert} from '@imagina/qhelper/_plugins/alert'
-  import {helper} from '@imagina/qhelper/_plugins/helper'
+  //Services
   import authService from '@imagina/quser/_services/profile/index';
+
   export default {
     data() {
       return {
@@ -99,13 +99,14 @@
         if(!this.inRequest){
           this.inRequest = true
           this.$v.$touch();
-          if (this.$v.$error) {
-            alert.error('Please review fields again.', 'bottom');
-          } else {
+          if (!this.$v.$error) {
             this.loading_login = !this.loading_login;
             const {username, password} = this.form;
-
             this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
+              this.loading_login = !this.loading_login;
+              this.inRequest = false
+              this.$router.push({name:'config'})
+            }).catch(error => {
               this.loading_login = !this.loading_login;
               this.inRequest = false
             });

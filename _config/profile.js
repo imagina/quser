@@ -9,6 +9,7 @@ const urlBase = baseApiUrl + '/' + moduleName + '/' + moduleVersion
 
 export default {
 	version: moduleVersion,
+	me: urlBase + '/auth/me',
 	authLogin: urlBase + '/auth/login',
 	authLogout: urlBase + '/auth/logout',
 	authLogoutAll: urlBase + '/auth/logout-all',

@@ -28,6 +28,19 @@ export const fullName = (state) => {
   let userData = state.userData
   return (userData && userData.fullName) ? userData.fullName : '';
 };
+
 export const departmentsSelect = (state) => {
   return helper.array.tree(state.departments);
 };
+
+export const userRolesSelect = (state) => {
+  let userData = state.userData
+  let roles = userData ? userData.roles : []
+  return helper.array.select(roles)
+}
+
+export const userDepartmentsSelect = (state) => {
+  let userData = state.userData
+  let departments = userData ? userData.departments : []
+  return helper.array.tree(departments)
+}

@@ -16,10 +16,12 @@ class Auth {
    */
   hasAccess(can) {
     let userPermissions = store.getters["auth/getPermissions"]
-
-    let access = userPermissions[can]
-  
-    return access == null ? false : access
+    if(userPermissions && Object.keys(userPermissions).length){
+      let access = userPermissions[can]
+      return access == null ? false : access
+    }else{
+      return false
+    }
   }
   
   
