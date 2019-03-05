@@ -323,6 +323,8 @@
       <workItem from="1550840736867" duration="2461000" />
       <workItem from="1551114011409" duration="6767000" />
       <workItem from="1551398850382" duration="138000" />
+      <workItem from="1551745106295" duration="611000" />
+      <workItem from="1551793106554" duration="622000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -503,7 +505,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240848000" />
+    <option name="totallyTimeSpent" value="242111000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -517,7 +519,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17857143" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18550107" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -747,16 +749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_store/auth/mutations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -900,28 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/roleForm.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
@@ -1020,6 +990,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="661" column="17" selection-start-line="661" selection-start-column="10" selection-end-line="661" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
