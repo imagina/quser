@@ -31,17 +31,17 @@ Route.view('/users', home)
 	.children(() => {
 			Route.view('/index', require('../_layouts/index').default).options({
 				name: 'user.users.index',
-				meta: {permission: 'profile.api.user.index'},
+				meta: {permission: 'profile.user.index'},
 				guard: access
 			});
 			Route.view('/create', require('../_layouts/form').default).options({
 				name: 'user.users.create',
-				meta: {permission: 'profile.api.user.create'},
+				meta: {permission: 'profile.user.create'},
 				guard: access
 			});
 			Route.view('/:id/edit', require('../_layouts/form').default).options({
 				name: 'user.users.edit',
-				meta: {permission: 'profile.api.user.edit'},
+				meta: {permission: 'profile.user.edit'},
 				guard: access
 			});
 
@@ -70,7 +70,7 @@ Route.view('/users', home)
 
 			Route.view('/roles', vueCrud).options({
 				name: 'user.roles',
-				meta: {permission: 'profile.roleapis.index'},
+				meta: {permission: 'profile.role.manage'},
 				guard: access,
 				props: (route) => {
 					return {

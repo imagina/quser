@@ -20,7 +20,7 @@ export const crudTable = {
 
 
 export const crudActions = {
-  permission: 'profile.roleapis',
+  permission: 'profile.role',
   actionsData:{
     add: {
       icon: 'add',
