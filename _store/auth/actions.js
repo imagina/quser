@@ -17,7 +17,7 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
 					resolve(true)
 				});
 			}).catch(error => {
-				alert.error(error.response.data.errors, "top");
+				alert.error(error.response.data.errors, "top",false,2500);
 				reject(error.response.data.errors)
 			});
 		}else{
