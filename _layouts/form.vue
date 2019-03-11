@@ -73,7 +73,6 @@
              
               <div class="col-12 col-md-4">
                 <q-field
-                  :error="$v.form.password.$error"
          
                 >
                   <q-input v-model="form.password"
@@ -87,7 +86,6 @@
               <!-- Confirm Password -->
               <div class="col-12 col-md-4">
                 <q-field
-                  :error="$v.form.passwordConfirmation.$error"
     
                 >
                   <q-input
@@ -554,12 +552,6 @@
         roles: {required},
         departments: {required},
         lastName: {required},
-        password: {
-          minLength: minLength(8)
-        },
-        passwordConfirmation: {
-          minLength: minLength(8)
-        },
         email: {required},
         
       }
@@ -783,8 +775,9 @@
             break;
         }
       },
-      
+     
       submit() {
+     
         let error = 'Please review fields again.'
         
         //this.$v.$reset();// reseting errors
