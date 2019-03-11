@@ -416,7 +416,7 @@
     </q-card>
     
     <!-- Permissions -->
-    <q-card class="q-box no-shadow col-12 q-mb-sm" v-if="$auth.hasAccess('profile.api.user.permission')">
+    <q-card class="q-box no-shadow col-12 q-mb-sm" v-if="$auth.hasAccess('profile.permissions.manage')">
       
       <q-card-title class="no-border q-py-none bg-grey-2">
         <div class="row justify-between">

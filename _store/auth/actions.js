@@ -109,48 +109,56 @@ export const AUTH_UPDATE = ({commit, dispatch}) => {
 
 export const SET_PERMISSIONS = ({dispatch, commit, state}) => {
 	return new Promise(async (resolve) => {
-		const roleId = await helper.storage.get.item('auth.role.id')//Get role selected
-		const role = state.userData.roles.find(role => role.id === roleId)//Get role
-		const rolePermissions = JSON.parse(JSON.stringify(role.permissions))//Get role permissions
-		const userPermissions = (await helper.storage.get.item('userData')).permissions//Get user permissions
-
-		//Merge permissions
-		for (const permission in userPermissions) {
-			rolePermissions[permission] = userPermissions[permission]
-		}
-
-		//Save in store permissions
-		commit('SET_PERMISSIONS', rolePermissions)
-		resolve(true)//Resolve
+	  try {
+      const roleId = await helper.storage.get.item('auth.role.id')//Get role selected
+      const role = state.userData.roles.find(role => role.id === roleId)//Get role
+      const rolePermissions = JSON.parse(JSON.stringify(role.permissions))//Get role permissions
+      const userPermissions = (await helper.storage.get.item('userData')).permissions//Get user permissions
+    
+      //Merge permissions
+      for (const permission in userPermissions) {
+        rolePermissions[permission] = userPermissions[permission]
+      }
+    
+      //Save in store permissions
+      commit('SET_PERMISSIONS', rolePermissions)
+      resolve(true)//Resolve
+    }catch (error) {
+      router.push({name : 'auth.logout'})
+    }
 	})
 }
 
 export const SET_SETTINGS = ({dispatch, commit, state}) => {
 	return new Promise(async (resolve) => {
-		const departmentId = await helper.storage.get.item('auth.department.id')//Get department selected
-		const department = state.userData.departments.find(dep => dep.id === departmentId)//Get department selected
-		const roleId = await helper.storage.get.item('auth.role.id')//Get role selected
-		const role = state.userData.roles.find(role => role.id === roleId)//Get role
-		const departmentSettings = department.settings//Get department settings
-		const userSettings = state.userData.settings//Get user settings
-		const roleSettings = role.settings ? role.settings : []//Get role settings
-		let settings = {}//All settings
-
-		//Merge settings
-		const mergeSettings = (data) => {
-			data.forEach((item) => {
-				settings[item.name] = item
-			})
-		}
-
-		//Merge in order of priority the settings
-		mergeSettings(roleSettings)
-		mergeSettings(departmentSettings)
-		mergeSettings(userSettings)
-
-		//Save in store the settins
-		commit('SET_SETTINGS', Object.values(settings))
-		resolve(true)//Resolve
+	  try{
+      const departmentId = await helper.storage.get.item('auth.department.id')//Get department selected
+      const department = state.userData.departments.find(dep => dep.id === departmentId)//Get department selected
+      const roleId = await helper.storage.get.item('auth.role.id')//Get role selected
+      const role = state.userData.roles.find(role => role.id === roleId)//Get role
+      const departmentSettings = department.settings//Get department settings
+      const userSettings = state.userData.settings//Get user settings
+      const roleSettings = role.settings ? role.settings : []//Get role settings
+      let settings = {}//All settings
+    
+      //Merge settings
+      const mergeSettings = (data) => {
+        data.forEach((item) => {
+          settings[item.name] = item
+        })
+      }
+    
+      //Merge in order of priority the settings
+      mergeSettings(roleSettings)
+      mergeSettings(departmentSettings)
+      mergeSettings(userSettings)
+    
+      //Save in store the settins
+      commit('SET_SETTINGS', Object.values(settings))
+      resolve(true)//Resolve
+    }catch (e) {
+      router.push({name:'auth.logout'})
+    }
 	})
 }
 
