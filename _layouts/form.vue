@@ -412,7 +412,7 @@
               
               <div class="col-12">
                 <q-toggle
-                  v-model="settings.showAdvancedOrganizerFunctions.value"
+                  v-model="settings.showAdvancedOrganizer.value"
                   label="Show Advanced Organizer Functions"
                 />
               </div>
@@ -592,7 +592,7 @@
         changePassword: this.id ? false : true,
         settings: {
           showHomePage: false,
-          showAdvancedOrganizerFunctions: false,
+          showAdvancedOrganizer: false,
           includeInCollectedJobs: false,
           assignedSources: [],
           assignedRoles: [],
@@ -636,7 +636,7 @@
         // initial settings
         let settings = [
           {name: 'showHomePage', value: false},
-          {name: 'showAdvancedOrganizerFunctions', value: false},
+          {name: 'showAdvancedOrganizer', value: false},
           {name: 'includeInCollectedJobs', value: false},
           {name: 'assignedSources', value: []},
           {name: 'assignedRoles', value: []},
@@ -828,7 +828,7 @@
             profileService.crud.update('profile.users', data.id, data).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
-              //this.$router.push({name: 'user.users.index'})
+              this.$router.push({name: 'user.users.index'})
             }).catch(error => {
               let errorMessage = error ?
                 error : 'User not updated';
