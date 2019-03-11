@@ -31,10 +31,10 @@
       <q-collapsible header-style="display: none" v-model="generalInfoToggle">
         <div class="row">
           
-          <div class="col-12 ">
-            <div class="row gutter-xs">
+          <div class="col-12">
+            <div class="row gutter-xs items-center">
               <!-- First Name -->
-              <div class=" col-12 col-md-4 ">
+              <div class="col-12 col-md-4 ">
                 <q-field
                   :error="$v.form.firstName.$error"
                   error-label="This field is required"
@@ -47,7 +47,7 @@
               </div>
               
               <!-- Last Name -->
-              <div class=" col-12 col-md-4">
+              <div class="col-12 col-md-4">
                 <q-field
                   :error="$v.form.lastName.$error"
                   error-label="This field is required"
@@ -57,12 +57,12 @@
               </div>
               
               <!-- User Name -->
-              <div class=" col-12 col-md-4">
+              <div class="col-12 col-md-4">
                 <q-field
                   :error="$v.form.email.$error"
                   error-label="This field is required"
                 >
-                  <q-input autocomplete="off"
+                  <q-input autocomplete="false"
                            v-model="form.email"
                            type="text"
                            float-label="User Name *"/>
@@ -71,29 +71,44 @@
               
               <!-- Password -->
              
-              <div class=" col-12 col-md-4">
+              <div class="col-12 col-md-4">
                 <q-field
                   :error="$v.form.password.$error"
          
                 >
                   <q-input v-model="form.password"
+                           :disable="!changePassword"
                            type="password"
                            float-label="Password *"
-                           autocomplete="off"/>
+                           autocomplete="false"/>
                 </q-field>
               </div>
-              
+  
               <!-- Confirm Password -->
-              <div class=" col-12 col-md-4">
+              <div class="col-12 col-md-4">
                 <q-field
                   :error="$v.form.passwordConfirmation.$error"
-                
+    
                 >
                   <q-input
                     autocomplete="off"
+                    :disable="!changePassword"
                     v-model="form.passwordConfirmation"
                     type="password"
                     float-label="Password Confirm *"/>
+                </q-field>
+              </div>
+  
+              <!-- Confirm Password -->
+              <div class="col-12 col-md-4">
+                <q-field
+                
+                >
+                  <q-toggle
+                    v-if="id"
+                    v-model="changePassword"
+                    label="Change Password"/>
+                  
                 </q-field>
               </div>
               
@@ -527,7 +542,9 @@
     components: {Treeselect},
     watch: {
       '$route'(to, from) {
+        this.$v.$reset();
         this.form = this.initializeData();
+        this.changePassword = this.id ? false : true,
         this.getData();
       }
     },
@@ -572,6 +589,7 @@
         permissionsToggle: false,
         permissionsBackend: '',
         permissionsOptions: [],
+        changePassword: this.id ? false : true,
         settings: {
           showHomePage: false,
           showAdvancedOrganizerFunctions: false,
@@ -783,6 +801,8 @@
         if(!data.password.length)
           delete data.password;
   
+        let passwordRequired = this.id == null && !data.password
+        if(passwordRequired) error = 'The password is required'
         
         //deleting passwordConfirmation if is empty
         if(!data.passwordConfirmation.length)
@@ -795,7 +815,10 @@
         let complexity = !data.password || helper.checkPassword(data.password)
         if(!complexity) error = 'The password must be at least 8 characters and contain a at least 1 lowercase character, at least 1 uppercase character and a number.'
         
-        if (!this.$v.$error && samePasswords && complexity) {
+        if(this.$v.$error)
+          error = 'Please, review the fields again.'
+        
+        if (!this.$v.$error && samePasswords && complexity && !passwordRequired) {
           this.loading = true;
           
           data.settings = helper.convertToBackField(this.settings)
@@ -805,7 +828,7 @@
             profileService.crud.update('profile.users', data.id, data).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
-              this.$router.push({name: 'user.users.index'})
+              //this.$router.push({name: 'user.users.index'})
             }).catch(error => {
               let errorMessage = error ?
                 error : 'User not updated';
