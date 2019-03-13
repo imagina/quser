@@ -404,21 +404,21 @@
               <div class="col-12">
                 <q-toggle
                   v-model="settings.showHomePage.value"
-                  label="Show Homepage"
+                  label="Show Homepage?"
                 />
               </div>
               
               <div class="col-12">
                 <q-toggle
                   v-model="settings.showAdvancedOrganizer.value"
-                  label="Show Advanced Organizer Functions"
+                  label="Show Advanced Organizer Functions?"
                 />
               </div>
               
               <div class="col-12">
                 <q-toggle
                   v-model="settings.includeInCollectedJobs.value"
-                  label="Include in Collected Jobs"
+                  label="Include in WAR Queue?"
                 />
               </div>
             
