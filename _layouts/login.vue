@@ -98,9 +98,9 @@
     methods: {
       async authenticate() {
         if(!this.inRequest){
-          this.inRequest = true
           this.$v.$touch();
           if (!this.$v.$error) {
+            this.inRequest = true
             this.loading_login = !this.loading_login;
             const {username, password} = this.form;
             this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
