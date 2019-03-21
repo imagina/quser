@@ -226,6 +226,7 @@ show: async (payload, configNames) => {
 
 create: async (payload, configNames) => {
   const {record: {id, ...attributes}} = payload
+
   
   await service.crud.create(configNames.storeName,attributes)
     .then((response) => {

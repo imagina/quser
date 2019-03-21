@@ -188,6 +188,7 @@
   import {alert} from '@imagina/qhelper/_plugins/alert';
   import {helper} from '@imagina/qhelper/_plugins/helper';
   import config from 'src/config/index';
+  import _cloneDeep from 'lodash.clonedeep'
   
   /*Services*/
   import profileService from '@imagina/quser/_services/profile/index';
@@ -290,18 +291,20 @@
 
     
     submit(){
+      let data = _cloneDeep(this.form);
+      
       this.$v.form.title.$touch()
       
       let canAssignParentDepartment = false;
       let assignedDepartments = this.$auth.hasSetting('assignedDepartments')
       if(assignedDepartments){
         assignedDepartments.value.forEach(element => {
-          if(this.form.parentId == element)
+          if(data.parentId == element)
             canAssignParentDepartment = true;
           else{
             let departments = this.$store.getters['auth/getDepartmentBy']('parentId',element)
             if(departments.length){
-              let department = departments.find(department => department.id == this.form.parentId)
+              let department = departments.find(department => department.id == data.parentId)
               if(department)
                 canAssignParentDepartment = true;
             }
@@ -317,14 +320,14 @@
       
       if (!this.$v.form.title.$error && canAssignParentDepartment) {
         this.loading = true;
-        this.form.settings = helper.convertToBackField(this.settings)
-        
+        data.settings = helper.convertToBackField(this.settings)
+  
         // set null to parent id if is undefined (empty), because undefined values are not included by axios
-        if(this.form.parentId == undefined && canAssignParentDepartment)
-          this.form.parentId = null;
+        if((data.parentId == null || data.parentId == undefined) && canAssignParentDepartment)
+          data.parentId = 0;
         
-        if(this.form.id) {
-          profileService.crud.update('profile.departments', this.form.id, this.form).then(response => {
+        if(data.id) {
+          profileService.crud.update('profile.departments', data.id, data).then(response => {
             this.loading = false;
             this.$emit("clearCache")
             this.$emit("getRecords")
@@ -338,7 +341,7 @@
             this.loading = false;
           })
         }else{
-          profileService.crud.create('profile.departments', this.form).then(response => {
+          profileService.crud.create('profile.departments', data).then(response => {
             this.loading = false;
             this.$emit("clearCache")
             this.$emit("getRecords")
