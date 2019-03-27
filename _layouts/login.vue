@@ -101,14 +101,14 @@
           this.$v.$touch();
           if (!this.$v.$error) {
             this.inRequest = true
-            this.loading_login = !this.loading_login;
+            this.loading_login = true;
             const {username, password} = this.form;
             this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
-              this.loading_login = !this.loading_login;
+              this.loading_login = false;
               this.inRequest = false
               this.$router.push({name:'config'})
             }).catch(error => {
-              this.loading_login = !this.loading_login;
+              this.loading_login = false;
               this.inRequest = false
             });
           }

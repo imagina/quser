@@ -15,6 +15,8 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
 			profileService.auth.login(authData.username, authData.password).then((response) => {
 				dispatch('AUTH_SUCCESS', response.data.data).then(() => {
 					resolve(true)
+				}).catch((error) => {
+					reject(error)
 				});
 			}).catch(error => {
 				alert.error(error.response.data.errors, "top",false,2500);
@@ -86,11 +88,15 @@ export const AUTH_LOGOUT = async ({commit, dispatch}) => {
 			await store.dispatch('app/RESET_STORE')//Reset Store
 			notification.leave()
 			clearData()
+			router.push({name: 'auth.login'});
 		}).catch(async (error) => {
 			await store.dispatch('app/RESET_STORE')//Reset Store
 			notification.leave()
 			clearData()
+			router.push({name: 'auth.login'});
 		})
+	}else{
+
 	}
 }
 

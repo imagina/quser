@@ -20,8 +20,7 @@
 					:error="$v.form.email.$error"
 					error-label="This field is required"
 				>
-					<q-input name="email"
-					         autofocus
+					<q-input ref="email"
 					         autocomplete="off"
 					         v-model="form.email"
 					         type="text"
@@ -36,11 +35,11 @@
 					error-label="This field is required"
 				>
 					<q-input v-model="form.password"
-					         type="password"
+					         type="password" ref="currentPassword"
 					         autocomplete="off"
 					         :before="[{icon: 'lock'}]"
 					         @keyup.enter="changePassword()"
-					         float-label="Old Password"
+					         float-label="Current Password"
 					/>
 				</q-field>
 				<!-- NEW PASS -->
@@ -73,12 +72,12 @@
 				</q-field>
 
 				<!--=== LOGIN ===-->
-				<div class="text-center">
+				<div class="text-center q-mt-md">
 					<q-btn :loading="login"
 					       color="primary"
 					       name="submit"
 					       @click="changePassword()">
-						Save
+						Change Password
 						<span slot="loading">
                 <q-spinner-hourglass class="on-left"/>
                 VALIDATING...
@@ -87,11 +86,11 @@
 				</div>
 
 				<!--Button actions-->
-				<div class="full-width text-center q-pt-lg">
+				<!--<div class="full-width text-center q-pt-lg">
 					<q-btn flat color="primary" label="Login"
 					       :to="{name : 'auth.login'}">
 					</q-btn>
-				</div>
+				</div>-->
 			</div>
 		</div>
 		<!--Dialog-->
@@ -109,6 +108,25 @@
 			<!-- This or use "message" prop on <q-dialog> -->
 			<span slot="message">
 				Do you want to close all your active sessions?
+			</span>
+		</q-dialog>
+
+		<!--like must will be the password-->
+		<q-dialog
+			v-model="dialogPassword"
+			prevent-close
+		>
+			<!-- This or use "message" prop on <q-dialog> -->
+			<span slot="message">
+				<h1 class="q-title text-warning">
+					<q-icon name="warning"></q-icon>
+					The new password must contain
+				</h1>
+				- Minimum eight (8) characters <br>
+				- One character uppercase <br>
+				- One character lowercase <br>
+				- One number <br><br>
+				Example: (MyPass435)
 			</span>
 		</q-dialog>
 	</q-page>
@@ -136,6 +154,7 @@
 				login: false,
 				inRequest: false,
 				showDialog: false,
+				dialogPassword: false,
 				userId: false
 			}
 		},
@@ -146,6 +165,11 @@
 				newPassword: {required, minLength: minLength(8)},
 				confirmNewPassword: {required, minLength: minLength(8)}
 			}
+		},
+		mounted() {
+			this.$nextTick(function () {
+				this.setFocus()
+			})
 		},
 		methods: {
 			//change password
@@ -173,19 +197,38 @@
 			//Check if new password is same with confirmation
 			checkNewPassword() {
 				if (this.form.newPassword != this.form.confirmNewPassword) {
-					alert.error("Password confirmation is wrong")
+					alert.error('Password confirmation is wrong')
 					return false
 				}
+
+				if (!this.$helper.checkPassword(this.form.newPassword)) {
+					this.dialogPassword = true
+					return false
+				}
+
 				return true
 			},
-			//get out form form
+			//get out form
 			getOut(closeSessions = false) {
 				if (closeSessions) {
 					const params = {remember: false, params: {userId: this.userId}}
 					profileServices.crud.index('profile.authLogoutAll', params)
 				}
-				this.$router.push({name: 'auth.login'})
+
+				//Redirect
+				if (this.$route.params.redirectToNew) this.$router.push({name: 'auth.login'})
+				else window.location.href = config('api.fha_login')
 			},
+			//set focus and username in form
+			setFocus() {
+				let username = this.$route.query.username
+				if (username) {
+					this.form.email = username
+					this.$refs.currentPassword.focus()
+				} else {
+					this.$refs.email.focus()
+				}
+			}
 		}
 	}
 </script>
@@ -206,6 +249,7 @@
 			background-color $primary
 			height 100%
 			width 100%
+
 			img
 				filter: brightness(0) invert(1);
 </style>
