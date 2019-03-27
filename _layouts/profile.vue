@@ -688,7 +688,8 @@
           {name: 'mainImage', value: ''},
           {name: 'email', value: ''},
           {name: 'socialNetworks', value: []},
-          {name: 'contacts', value: []}
+          {name: 'contacts', value: []},
+          {name: 'products', value: []}
         ]
         
         helper.storage.get.item('userData').then(response => {

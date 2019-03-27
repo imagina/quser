@@ -159,6 +159,30 @@
       <q-collapsible header-style="display: none" v-model="relationsToggle">
         
         <div class="row gutter-sm">
+  
+          <!-- Deparments -->
+          <div class=" col-12 col-md-4 ">
+            <q-field
+              :error="$v.form.departments.$error"
+              error-label="This field is required"
+      
+              :disabled="departmentsLoading"
+            >
+              <div class="caption text-weight-regular text-grey-6 ellipsis">
+                Departments
+              </div>
+              <treeselect
+                :multiple="true"
+                :append-to-body="true"
+                :options="$store.getters['auth/departmentsSelect']"
+                value-consists-of="ALL"
+                v-model="form.departments"
+                placeholder=""
+              />
+    
+            </q-field>
+          </div>
+          
           <!-- Sources -->
           <div class="col-12 col-md-4">
             <div class="caption text-weight-regular text-grey-6 ellipsis">
@@ -174,31 +198,6 @@
             />
           </div>
           
-          
-          <!-- Deparments -->
-          <div class=" col-12 col-md-4 ">
-            <q-field
-              :error="$v.form.departments.$error"
-              error-label="This field is required"
-              
-              :disabled="departmentsLoading"
-            >
-              <div class="caption text-weight-regular text-grey-6 ellipsis">
-                Departments
-              </div>
-              <treeselect
-                :multiple="true"
-                :append-to-body="true"
-                :options="$store.getters['auth/departmentsSelect']"
-                value-consists-of="ALL"
-                v-model="form.departments"
-                placeholder=""
-              />
-            
-            </q-field>
-          </div>
-          
-          
           <!-- Branch Offices -->
           <div class="col-12 col-md-4">
             
@@ -210,6 +209,22 @@
               :options="$store.getters['fhia/branchOfficeSelect']"
             />
           
+          </div>
+          
+          <!-- Product Groups-->
+          <div class="col-12 col-md-4">
+            <q-field
+              
+              error-label="This field is required"
+            >
+              <q-select
+                v-model="fields.products.value"
+                float-label="Products"
+                filter clearable multiple chips
+                :disable="!$store.getters['icommerce/categoriesSelect'].length"
+                :options="$store.getters['icommerce/categoriesSelect']"
+              />
+            </q-field>
           </div>
         </div>
       
@@ -590,6 +605,16 @@
           assignedRoles: [],
           assignedDepartments: []
         },
+        fields: {
+          cellularPhone: {value: ''},
+          birthday: {value: ''},
+          mainImage: {value: ''},
+          email: {value: ''},
+          identification: {value: ''},
+          contacts: {value: []},
+          socialNetworks: {value: []},
+          products: {value: []},
+        },
         settingTab: 'list'
       }
     },
@@ -619,7 +644,9 @@
           roles: [],
           activated: true,
           password: '',
-          passwordConfirmation: ''
+          passwordConfirmation: '',
+          settings: [],
+          fields: []
         }
       },
       getData() {
@@ -634,14 +661,27 @@
           {name: 'assignedRoles', value: []},
           {name: 'assignedDepartments', value: []}
         ]
+        let fields = [
+          {name: 'cellularPhone', value: ''},
+          {name: 'birthday', value: ''},
+          {name: 'identification', value: ''},
+          {name: 'mainImage', value: ''},
+          {name: 'email', value: ''},
+          {name: 'socialNetworks', value: []},
+          {name: 'contacts', value: []},
+          {name: 'products', value: []}
+        ]
+        
         this.settings = helper.convertToFrontField(settings, this.form.settings);
+  
+        this.fields = helper.convertToFrontField(fields, this.form.fields);
         
         if (this.id) {
           let departments = [];
           let branchOffices = [];
           let sources = [];
           let roles = [];
-          profileService.crud.show('profile.users', this.id, {params: {include: 'roles,departments,settings,sources,branchOffices'}})
+          profileService.crud.show('profile.users', this.id, {params: {include: 'roles,departments,settings,fields,sources,branchOffices'}})
             .then(response => {
 
             
@@ -679,8 +719,9 @@
             //setting empty passwords
             this.form.password = ''
             this.form.passwordConfirmation = ''
-            
-            this.settings = helper.convertToFrontField(settings, this.form.settings);
+  
+              this.settings = helper.convertToFrontField(settings, this.form.settings);
+              this.fields = helper.convertToFrontField(fields, this.form.fields);
             this.loading = false;
             
           }).catch(error => {
@@ -813,9 +854,9 @@
         
         if (!this.$v.$error && samePasswords && complexity && !passwordRequired) {
           this.loading = true;
-          
+  
           data.settings = helper.convertToBackField(this.settings)
-          
+          data.fields = helper.convertToBackField(this.fields)
           if (this.id) {
             
             profileService.crud.update('profile.users', data.id, data).then(response => {
