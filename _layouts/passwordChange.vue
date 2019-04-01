@@ -15,6 +15,11 @@
 				    style="border-bottom: 2px solid #f1f1f1">
 					Change Password
 				</h4>
+				<div class="q-body-1 text-center text-warning q-pb-md q-mb-md"
+				     style="border-bottom: 2px solid #f1f1f1" v-if="hasUserName">
+					<q-icon name="warning"></q-icon>
+					For security reasons, you must change your password.
+				</div>
 				<!-- USER -->
 				<q-field
 					:error="$v.form.email.$error"
@@ -151,6 +156,7 @@
 					newPassword: '',
 					confirmNewPassword: '',
 				},
+				hasUserName : false,
 				login: false,
 				inRequest: false,
 				showDialog: false,
@@ -216,14 +222,17 @@
 				}
 
 				//Redirect
-				if (this.$route.params.redirectToNew) this.$router.push({name: 'auth.login'})
+				if (this.$route.query.redirectTo) this.$router.push({name: 'auth.login'})
 				else window.location.href = config('api.fha_login')
 			},
 			//set focus and username in form
 			setFocus() {
-				let username = this.$route.query.username
-				if (username) {
-					this.form.email = username
+				//Check if exist username in url
+				let queryUserName = this.$route.query.username
+				if(queryUserName) this.hasUserName = queryUserName
+
+				if (this.hasUserName) {
+					this.form.email = this.hasUserName
 					this.$refs.currentPassword.focus()
 				} else {
 					this.$refs.email.focus()

@@ -29,8 +29,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="120" column="26" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="26" />
+                <state>
+                  <caret column="9" selection-start-column="9" selection-end-column="9" />
                   <folding>
                     <element signature="n#template#0;n#!!top" />
                     <element signature="n#q-page#0;n#template#0;n#!!top" />
@@ -89,6 +89,7 @@
                     <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
                     <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
                     <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+                    <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
                     <element signature="n#style#0;n#!!top" />
                   </folding>
                 </state>
@@ -208,8 +209,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1920" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -579,7 +581,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295813000" />
+    <option name="totallyTimeSpent" value="295830000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -593,7 +595,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20042644" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20469083" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -832,6 +834,7 @@
             <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#!!top" />
           </folding>
         </state>

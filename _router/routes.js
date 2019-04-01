@@ -21,7 +21,7 @@ Route.view('/auth', blank)
 	.children(() => {
 			Route.view('/login', require('../_layouts/login').default).name('auth.login').guard(guest)
 			Route.view('/logout', require('../_layouts/logout').default).name('auth.logout')
-			Route.view('/change-password', require('../_layouts/passwordChange').default).name('auth.password.change')
+			Route.view('/change-password', require('../_layouts/passwordChange').default).name('auth.change.password')
 		}
 	)
 
