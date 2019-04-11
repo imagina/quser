@@ -3,7 +3,7 @@ import exportFromJSON from 'export-from-json'
 import {alert} from '@imagina/qhelper/_plugins/alert'
 import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
 import _pick from 'lodash.pick'
-import service from '../../_services/profile/index'
+import service from '@imagina/quser/_services/profile/index'
 
 /**
  *
@@ -106,7 +106,7 @@ export const crudOps = { // CRUD
         fields:'id,name'
       }
     }
-      await service.crud.index('profile.roles',params)
+      await service.crud.index('api.profile.roles',params)
       .then((response) =>{
 
         response.data.forEach((element,index) => {
@@ -129,7 +129,7 @@ export const crudOps = { // CRUD
   delete: async (payload, configNames) => {
     let {id, ...attributes} = payload
 
-    await service.crud.delete('profile.roles',id)
+    await service.crud.delete('api.profile.roles',id)
       .then((response) => {
         alert.success('Role Deleted', 'top')
       }).catch(error => {
@@ -156,7 +156,7 @@ export const crudOps = { // CRUD
         }
       }
     
-      await service.crud.index('profile.roles',params)
+      await service.crud.index('api.profile.roles',params)
         .then((response) => {
           data = response;
       }).catch(error => {
@@ -176,7 +176,7 @@ export const crudOps = { // CRUD
           include: 'settings'
         }
     }
-    await service.crud.show('profile.roles',id,params)
+    await service.crud.show('api.profile.roles',id,params)
       .then((response) => {
         record = response.data;
       }).catch(error => {
@@ -190,7 +190,7 @@ export const crudOps = { // CRUD
   create: async (payload, configNames) => {
     const {record: {id, ...attributes}} = payload
    
-    await service.crud.create('profile.roles',attributes)
+    await service.crud.create('api.profile.roles',attributes)
       .then((response) => {
         alert.success('Role Created', 'top')
       }).catch(error => {
@@ -203,7 +203,7 @@ export const crudOps = { // CRUD
   update: async (payload, configNames) => {
     let {record: {id, ...attributes}} = payload
     attributes["id"] = id;
-    await service.crud.update('profile.roles',id,attributes)
+    await service.crud.update('api.profile.roles',id,attributes)
       .then((response) => {
         alert.success('Role Updated', 'top')
       }).catch(error => {

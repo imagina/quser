@@ -466,7 +466,8 @@
   
       this.permissionsOptions = []
       this.form = JSON.parse(JSON.stringify(this.record))
-      this.convertPermissions('front');
+      if(this.record.id)
+        this.convertPermissions('front');
       
   
       let settings = [
@@ -485,14 +486,14 @@
       this.preleadForms = config('app.preleadForms')
     
       this.rolesLoading = true
-      profileService.crud.index('profile.roles').then(response => {
+      profileService.crud.index('api.profile.roles').then(response => {
         this.roles = this.$helper.array.select(response.data);
       this.rolesLoading = false;
     });
     
       this.departmentsLoading = true
     
-      profileService.crud.index('profile.departments',{}).then(response => {
+      profileService.crud.index('api.profile.departments',{}).then(response => {
         this.departments = this.$helper.array.select(response.data)
       this.departmentsLoading = false
     })
@@ -570,7 +571,7 @@
         this.form.settings = helper.convertToBackField(this.settings)
         if(this.form.id) {
 
-          profileService.crud.update('profile.roles', this.form.id, this.form).then(response => {
+          profileService.crud.update('api.profile.roles', this.form.id, this.form).then(response => {
     
             this.loading = false;
             this.$emit("clearCache")
@@ -586,7 +587,7 @@
             this.loading = false;
           })
         }else{
-          profileService.crud.create('profile.roles', this.form).then(response => {
+          profileService.crud.create('api.profile.roles', this.form).then(response => {
             this.loading = false;
             this.$emit("clearCache")
             this.$emit("getRecords")

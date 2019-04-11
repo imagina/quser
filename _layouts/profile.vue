@@ -963,7 +963,7 @@
         let address = this.form.addresses.splice(index, 1)[0];
         if (address.id) {
           this.loading = true
-          profileService.crud.delete('profile.addresses', address.id).then(userData => {
+          profileService.crud.delete('api.profile.addresses', address.id).then(userData => {
             alert.success("address deleted", "top")
             helper.storage.set('userData', this.userData);
             this.loading = false
@@ -1059,7 +1059,7 @@
         
         let data = this.orderDataUpdate()
         this.loading = true
-        profileService.crud.update('profile.users', this.form.id, data).then(response => {
+        profileService.crud.update('api.profile.users', this.form.id, data).then(response => {
           
           
           let params = {
@@ -1069,7 +1069,7 @@
           }
           alert.success('Profile updated', 'top')
           this.loading = false
-          profileService.crud.show('profile.users', this.form.id, params).then(userData => {
+          profileService.crud.show('api.profile.users', this.form.id, params).then(userData => {
             helper.storage.get.item('userData').then(response => {
               userData.data['permissions'] = response.permissions;
               userData.data['default_route'] = response.default_route;
@@ -1109,9 +1109,9 @@
         if (!url) {
           image = this.fields.mainImage.value;
           if (this.fields.mainImage.value.indexOf('data:image') < 0)
-            image = config('api.base_url') + '/' + this.fields.mainImage.value;
+            image = config('api.api.base_url') + '/' + this.fields.mainImage.value;
         } else
-          image = config('api.base_url') + '/' + url;
+          image = config('api.api.base_url') + '/' + url;
         
         return image;
       },

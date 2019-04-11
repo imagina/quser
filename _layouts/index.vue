@@ -208,7 +208,7 @@
 </template>
 <script>
   /*Services*/
-  import profileService from '../_services/profile/index'
+  import profileService from '@imagina/quser/_services/profile/index'
   
   /*Plugins*/
   import {alert} from '@imagina/qhelper/_plugins/alert'
@@ -303,7 +303,7 @@
       initialize() {
   
 
-        profileService.crud.index('profile.roles',{params:{filter:{}}}).then(response => {
+        profileService.crud.index('api.profile.roles',{params:{filter:{}}}).then(response => {
           this.options.roles = this.$helper.array.select(response.data);
 
         });
@@ -341,7 +341,7 @@
             include: 'roles'
           }
         }
-        profileService.crud.index('profile.users', params)
+        profileService.crud.index('api.profile.users', params)
           .then((response) => {
             this.dataUsers = response.data;
             this.pagination.rowsPerPage = response.meta.page.perPage;
@@ -377,7 +377,7 @@
           id: this.userToChange.id,
           activated: this.statusToChange,
         };
-        profileService.crud.update('profile.users', datax.id, datax)
+        profileService.crud.update('api.profile.users', datax.id, datax)
           .then(response => {
             this.loading = false;
             let user = this.dataUsers.find(item => item.id == datax.id);

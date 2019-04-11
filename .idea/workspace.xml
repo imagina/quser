@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="" />
+    <list default="true" id="f23b5c69-adf4-4f84-bf09-b7a3333b04e2" name="Default" comment="+Update: change password">
+      <change afterPath="$PROJECT_DIR$/_config/pages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_components/crud/departments.js" beforeDir="false" afterPath="$PROJECT_DIR$/_components/crud/departments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_components/crud/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/_components/crud/roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_components/search-users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_components/search-users.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/departmentForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/departmentForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/form.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/passwordChange.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/passwordChange.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/roleForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/roleForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/_router/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/departments.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/departments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/profile/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/profile/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/profile/departments.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/profile/departments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/profile/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/profile/roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_services/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/_services/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_store/auth/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/_store/auth/actions.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,82 +46,27 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="9" selection-start-column="9" selection-end-column="9" />
-                  <folding>
-                    <element signature="n#template#0;n#!!top" />
-                    <element signature="n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#style#0;n#!!top" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="299">
-                  <caret line="63" column="61" selection-start-line="63" selection-start-column="61" selection-end-line="63" selection-end-column="61" />
-                  <folding>
-                    <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
-                  <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
-                  <folding>
-                    <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-                    <element signature="n#style#0;n#!!top" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_services/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_layouts/logout.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-210" />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -221,7 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,15 +196,11 @@
               <item name="quser" type="b2602c69:ProjectViewProjectNode" />
               <item name="quser" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="quser" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quser" type="462c0819:PsiDirectoryNode" />
-              <item name="_plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,6 +287,8 @@
       <workItem from="1551114011409" duration="6767000" />
       <workItem from="1551882668236" duration="26077000" />
       <workItem from="1553123507028" duration="1205000" />
+      <workItem from="1554162624444" duration="29000" />
+      <workItem from="1554391639109" duration="793000" />
     </task>
     <task id="LOCAL-00001" summary="+Update: fields date, formate with i18n in frontend">
       <created>1541715568501</created>
@@ -577,11 +542,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552438030545</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="+Update: change password">
+      <created>1554162641355</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1554162641355</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295830000" />
+    <option name="totallyTimeSpent" value="296652000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -595,7 +567,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20469083" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20895523" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -608,7 +580,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.41067538" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.38283828" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.38283828" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="11" visible="true" weight="0.32903227" />
       <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.911875" weight="0.15505913" />
@@ -692,7 +664,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Update 24/01/19" />
     <MESSAGE value="Update 26/01/19" />
     <MESSAGE value="Update 26/01/19 14:00" />
     <MESSAGE value="+ADD: global user permissions, global user settings, roles manage" />
@@ -717,7 +688,8 @@
     <MESSAGE value="+update: settings form" />
     <MESSAGE value="+update: password validation" />
     <MESSAGE value="+update: rename setting: 'Include in Collected Jobs' by 'Include in WAR Queue?'" />
-    <option name="LAST_COMMIT_MESSAGE" value="+update: rename setting: 'Include in Collected Jobs' by 'Include in WAR Queue?'" />
+    <MESSAGE value="+Update: change password" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Update: change password" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_router/middlewares/auth.js">
@@ -818,28 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#span#0;n#q-btn#0;n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_config/profile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -854,30 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_plugins/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1190">
           <caret line="70" column="20" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="63" column="61" selection-start-line="63" selection-start-column="61" selection-end-line="63" selection-end-column="61" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1154,6 +1084,63 @@
             <element signature="n#style#0;n#!!top" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/passwordChange.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#h4#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#1;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#2;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#q-input#0;n#q-field#3;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_plugins/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="63" column="61" selection-start-line="63" selection-start-column="61" selection-end-line="63" selection-end-column="61" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#q-page#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_services/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/logout.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-210" />
       </provider>
     </entry>
   </component>

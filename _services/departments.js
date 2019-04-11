@@ -12,7 +12,7 @@ export default {
     key = key==":null" ? "" : key;
     return new Promise((resolve, reject) => {
       remember.async("departments"+key, 3600 * 3, () => {
-        return http.get(config('api.api_url') + '/departments', {
+        return http.get(config('api.api.api_url') + '/departments', {
           params: {
             filter: filter,
             take: take,
@@ -36,7 +36,7 @@ export default {
     let key = JSON.stringify(filter + fields + include + id);
     return new Promise((resolve, reject) => {
       //remember.async(key, 3600 * 3, () => {
-        return http.get(config('api.api_url') + '/departments/' + id, {
+        return http.get(config('api.api.api_url') + '/departments/' + id, {
           params: {
             filter: filter,
             fields: fields,
@@ -54,7 +54,7 @@ export default {
 
   update(data,id) {
     return new Promise((resolve, reject) => {
-      http.put(config('api.api_url') + '/departments/'+id, data)
+      http.put(config('api.api.api_url') + '/departments/'+id, data)
         .then(response => {
           resolve(response);
         })
@@ -67,7 +67,7 @@ export default {
   create(data) {
     console.log(data)
     return new Promise((resolve, reject) => {
-      http.post(config('api.api_url') + '/departments', data)
+      http.post(config('api.api.api_url') + '/departments', data)
         .then(response => {
           resolve(response);
         })
@@ -79,7 +79,7 @@ export default {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      http.delete(config('api.api_url') + '/departments/'+id)
+      http.delete(config('api.api.api_url') + '/departments/'+id)
         .then(response => {
           resolve(response);
         })
@@ -92,7 +92,7 @@ export default {
   getSettings(data) {
 
     return new Promise((resolve, reject) => {
-        return http.get(config('api.api_url') + '/departments/settings', {
+        return http.get(config('api.api.api_url') + '/departments/settings', {
           params: data
       }).then(response => {
         resolve(response);

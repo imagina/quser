@@ -218,12 +218,12 @@
 			getOut(closeSessions = false) {
 				if (closeSessions) {
 					const params = {remember: false, params: {userId: this.userId}}
-					profileServices.crud.index('profile.authLogoutAll', params)
+					profileServices.crud.index('api.profile.authLogoutAll', params)
 				}
 
 				//Redirect
 				if (this.$route.query.redirectTo) this.$router.push({name: 'auth.login'})
-				else window.location.href = config('api.fha_login')
+				else window.location.href = config('api.api.fha_login')
 			},
 			//set focus and username in form
 			setFocus() {

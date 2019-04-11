@@ -2,16 +2,20 @@ import store from 'src/store/index'
 
 export default async function (to, from, next) {
   try {
-    var isAuthenticated = store.getters['auth/isAuthenticated'];
+    //Check if is authenticated
+    const isAuthenticated = store.getters['auth/isAuthenticated'];
+    //If not is authenticated, try login again
     isAuthenticated ? true : await store.dispatch('auth/AUTH_TRYAUTOLOGIN');
 
-    //Can we call getters differently for store modules ? //TODO
+    //Redirect if is authenticated
     if (store.getters['auth/isAuthenticated']) {
-      next();
-    } else {
-      next('/auth/login');
+      // Redirect to home, if page is login
+      (to.name == 'auth.login') ? next({name:'app.home'}) : next()
+    } else {//Redirect if is not authenticated
+      // will not Redirect if page is login
+      (to.name == 'auth.login') ? next() : next({name: 'auth.login'})
     }
   } catch (error) {
-      next();
+    next();
   }
 }

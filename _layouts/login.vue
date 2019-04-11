@@ -1,6 +1,5 @@
 <template>
   <q-page class="flex flex-center">
-
     <div class="row shadow-3 q-mx-md" style="width: 550px">
       <div id="form-login-left" class="col-12 col-md-5">
         <div class="bg-color flex flex-center">
@@ -106,7 +105,7 @@
             this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
               this.loading_login = false;
               this.inRequest = false
-              this.$router.push({name:'config'})
+              this.$router.push({name:'app.config'})
             }).catch(error => {
               this.loading_login = false;
               this.inRequest = false

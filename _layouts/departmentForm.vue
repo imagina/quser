@@ -281,7 +281,7 @@
       
       this.departmentsLoading = true
     
-      profileService.crud.index('profile.departments',{}).then(response => {
+      profileService.crud.index('api.profile.departments',{}).then(response => {
         this.departments = this.$helper.array.select(response.data)
       this.departmentsLoading = false
     })
@@ -327,7 +327,7 @@
           data.parentId = 0;
         
         if(data.id) {
-          profileService.crud.update('profile.departments', data.id, data).then(response => {
+          profileService.crud.update('api.profile.departments', data.id, data).then(response => {
             this.loading = false;
             this.$emit("clearCache")
             this.$emit("getRecords")
@@ -341,7 +341,7 @@
             this.loading = false;
           })
         }else{
-          profileService.crud.create('profile.departments', data).then(response => {
+          profileService.crud.create('api.profile.departments', data).then(response => {
             this.loading = false;
             this.$emit("clearCache")
             this.$emit("getRecords")

@@ -7,7 +7,7 @@ import {required, email, sameAs, minLength} from 'vuelidate/lib/validators';
 import _pick from 'lodash.pick'
 
 // change this import for which you are going to use
-import service from '../../_services/profile/index'
+import service from '@imagina/quser/_services/profile/index'
 
 /**
  *
@@ -80,7 +80,7 @@ export const crudFields = {
           }
         }
         let data;
-        await service.crud.index('profile.departments',params)
+        await service.crud.index('api.profile.departments',params)
           .then((response) => {
             data = array.tree(response.data);
           }).catch(error => {

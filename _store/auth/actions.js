@@ -32,19 +32,20 @@ export const AUTH_REQUEST = ({commit, dispatch}, authData) => {
 export const AUTH_TRYAUTOLOGIN = ({commit, dispatch}) => {
 	return new Promise(async (resolve, reject) => {
 		let userToken = await helper.storage.get.item('userToken')
-		if (!userToken) resolve(false) //Close if there isn't token
+		if (!userToken) return resolve(false) //Close if there isn't token
 
 		//Check if sesion is expired
 		let expirationDate = await helper.storage.get.item('expirationDate')
 		const now = new Date();
 		if (now.getTime >= expirationDate) {
 			dispatch("AUTH_LOGOUT");
-			resolve(false)
+			return resolve(false)
 		}
 
 		//Set user data to store
 		let userId = await helper.storage.get.item('userId')
 		let userData = await helper.storage.get.item('userData')
+		if (!userData || !userId) return resolve(false) //Close
 		await dispatch('AUTH_SUCCESS', {
 			userToken: userToken,
 			userId: userId,
@@ -78,6 +79,8 @@ export const AUTH_LOGOUT = async ({commit, dispatch}) => {
 	if (navigator.onLine){
 		//Clear Data
 		const clearData = async () =>{
+			await store.dispatch('app/RESET_STORE')//Reset Store
+			notification.leave()
 			let offRqsts = await helper.storage.get.item("offlineRequests");
 			await helper.storage.clear();
 			await helper.storage.set('offlineRequests', offRqsts);
@@ -85,18 +88,10 @@ export const AUTH_LOGOUT = async ({commit, dispatch}) => {
 		}
 		//Request to Logout
 		profileService.auth.logout().then(async () => {
-			await store.dispatch('app/RESET_STORE')//Reset Store
-			notification.leave()
 			clearData()
-			router.push({name: 'auth.login'});
 		}).catch(async (error) => {
-			await store.dispatch('app/RESET_STORE')//Reset Store
-			notification.leave()
 			clearData()
-			router.push({name: 'auth.login'});
 		})
-	}else{
-
 	}
 }
 
@@ -104,7 +99,7 @@ export const AUTH_UPDATE = ({commit, dispatch}) => {
 	return new Promise(async (resolve, reject, state) => {
 		await helper.storage.restore()//Restore storage
 		//Get userData
-		let response = await profileService.crud.index('profile.me',{remember:false})
+		let response = await profileService.crud.index('api.profile.me',{remember:false})
 		let userData = response.data.userData
 		//Set userData in store and storage
 		await helper.storage.set('userData', userData)
@@ -170,7 +165,7 @@ export const SET_SETTINGS = ({dispatch, commit, state}) => {
 
 export const GET_DEPARTMENTS = ({commit, dispatch}) => {
 	return new Promise((resolve, reject) => {
-		let configName = 'profile.departments'
+		let configName = 'api.profile.departments'
 		profileServices.crud.index(configName, {params: {filter: {}}}).then(response => {
 			commit('OBTAINED_DEPARTMENTS', response.data)
 			resolve(true)

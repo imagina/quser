@@ -8,7 +8,7 @@ export default {
   logout() {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
-      Http.get(Config('api.logout_url'))
+      Http.get(Config('api.api.logout_url'))
         .then(response => {
           resolve(response);
         })
@@ -28,7 +28,7 @@ export default {
     // We merge grant type and client secret stored in configuration
     Object.assign(data, Config('auth.auth'));
     return new Promise((resolve, reject) => {
-      Http.post(Config('api.login_url'), data)
+      Http.post(Config('api.api.login_url'), data)
         .then((response) => {
           resolve(response);
         })
@@ -50,7 +50,7 @@ export default {
             })
           else
             return new Promise((resolve, reject) => {
-              Http.get(Config('api.current_user_url'))
+              Http.get(Config('api.api.current_user_url'))
                 .then(response => {
                   resolve(response);
                 })

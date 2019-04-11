@@ -681,7 +681,7 @@
           let branchOffices = [];
           let sources = [];
           let roles = [];
-          profileService.crud.show('profile.users', this.id, {params: {include: 'roles,departments,settings,fields,sources,branchOffices'}})
+          profileService.crud.show('api.profile.users', this.id, {params: {include: 'roles,departments,settings,fields,sources,branchOffices'}})
             .then(response => {
 
             
@@ -731,14 +731,14 @@
           this.loading = false;
         
         this.rolesLoading = true
-        profileService.crud.index('profile.roles', {params: {filter: {}}}).then(response => {
+        profileService.crud.index('api.profile.roles', {params: {filter: {}}}).then(response => {
           this.roles = this.$helper.array.select(response.data);
           this.rolesLoading = false;
         });
         
         this.departmentsLoading = true
         
-        profileService.crud.index('profile.departments', {params: {filter: {}}}).then(response => {
+        profileService.crud.index('api.profile.departments', {params: {filter: {}}}).then(response => {
           this.departments = this.$helper.array.select(response.data)
           this.departmentsLoading = false
         })
@@ -859,7 +859,7 @@
           data.fields = helper.convertToBackField(this.fields)
           if (this.id) {
             
-            profileService.crud.update('profile.users', data.id, data).then(response => {
+            profileService.crud.update('api.profile.users', data.id, data).then(response => {
               alert.success('User updated', 'top');
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
@@ -870,7 +870,7 @@
               this.loading = false;
             })
           } else {
-            profileService.crud.create('profile.users', data).then(response => {
+            profileService.crud.create('api.profile.users', data).then(response => {
               alert.success('User created', 'top')
               this.loading = false;
               this.$router.push({name: 'user.users.index'})
