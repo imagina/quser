@@ -1,6 +1,5 @@
 <template>
   <div id="userForm" class="q-layout-page row justify-center layout-padding">
-  
     
     
     <div class="text_title text-blue-9 col-xs-12 q-title text-right">
@@ -70,10 +69,10 @@
               </div>
               
               <!-- Password -->
-             
+              
               <div class="col-12 col-md-4">
                 <q-field
-         
+                
                 >
                   <q-input v-model="form.password"
                            :disable="!changePassword"
@@ -82,11 +81,11 @@
                            autocomplete="false"/>
                 </q-field>
               </div>
-  
+              
               <!-- Confirm Password -->
               <div class="col-12 col-md-4">
                 <q-field
-    
+                
                 >
                   <q-input
                     autocomplete="off"
@@ -96,7 +95,7 @@
                     float-label="Password Confirm *"/>
                 </q-field>
               </div>
-  
+              
               <!-- Confirm Password -->
               <div class="col-12 col-md-4">
                 <q-field
@@ -106,7 +105,7 @@
                     v-if="id"
                     v-model="changePassword"
                     label="Change Password"/>
-                  
+                
                 </q-field>
               </div>
               
@@ -124,6 +123,7 @@
                     v-model="form.roles"
                     :options="roles"
                     multiple chips
+                    filter
                   />
                 </q-field>
               </div>
@@ -136,6 +136,143 @@
           </div>
         
         </div>
+      </q-collapsible>
+    </q-card>
+    
+    <!-- Extra Fields -->
+    <q-card class="q-box no-shadow col-12 ">
+      
+      <q-card-title class="no-border  q-py-none bg-grey-2">
+        <div class="row justify-between">
+          <div class="q-subheading text-primary">
+            Extra Fields
+          </div>
+          <q-toggle
+            v-model="extraFieldsToggle"
+            checked-icon="visibility"
+            unchecked-icon="visibility_off"
+            style="margin-left: 25px"
+          />
+        </div>
+      
+      </q-card-title>
+      <q-collapsible header-style="display: none" v-model="extraFieldsToggle">
+        
+        <div class="row gutter-sm">
+          
+          <div class="item-form col-12 col-md-3">
+            
+            <q-field
+              error-label="This field must be contain at least 14 numbers"
+              :count="14"
+              :error="$v.fields.cellularPhone.value.$error"
+            >
+              <q-input
+                type="text"
+                v-model="fields.cellularPhone.value"
+                @input="fields.cellularPhone.value = $helper.maskPhone(fields.cellularPhone.value)"
+                :maxlength="14"
+                inputmode="numeric"
+                float-label="Cellular Phone"
+                :before="[{icon: 'phone'}]"
+              />
+            
+            </q-field>
+          </div>
+          
+          <div class="item-form col-12 col-md-3">
+            <q-field
+              error-label="This field must be contain at least 14 numbers"
+              :count="14"
+            
+            >
+              <q-input
+                type="text" v-model="fields.homePhone.value"
+                @input="fields.homePhone.value = $helper.maskPhone(fields.homePhone.value)"
+                :maxlength="14"
+                inputmode="numeric"
+                float-label="Home Phone"
+                :before="[{icon: 'phone'}]"
+              />
+            
+            </q-field>
+          </div>
+          
+          <div class="item-form col-12 col-md-3">
+            <q-field
+              error-label="This field must be contain at least 14 numbers"
+              :count="14"
+            
+            >
+              <q-input
+                :before="[{icon: 'phone'}]" type="text" v-model="fields.workPhone.value"
+                @input="fields.workPhone.value = $helper.maskPhone(fields.workPhone.value)"
+                :maxlength="14"
+                inputmode="numeric"
+                float-label="Work Phone"
+              />
+            
+            </q-field>
+          </div>
+          
+          <div class="item-form col-12 col-md-3">
+            <q-field
+              :error="$v.fields.email.value.$error"
+              error-label="Invalid email address"
+    
+            >
+      
+              <q-input
+                clearable
+                v-model="fields.email.value"
+                :before="[{icon: 'far fa-envelope'}]"
+                float-label="Email:"/>
+            </q-field>
+  
+          </div>
+          <div class="item-form col-12 col-md-3">
+            <q-field
+            >
+              <q-datetime class="no-shadow"
+                          :before="[{icon: 'cake'}]"
+                          v-model="fields.birthday.value"
+                          float-label="Birthday"
+                          format="MM/DD/YYYY"
+                          clearable>
+              </q-datetime>
+            </q-field>
+          </div>
+          <div class="item-form col-12 col-md-3" v-if="form.roles.find(item => [10,20,28,32].indexOf(item) > -1)">
+            <q-field>
+              <q-input
+                :before="[{icon: 'fas fa-chart-pie'}]"
+                type="number"
+                v-model="fields.comission.value"
+                :maxlength="14"
+                inputmode="numeric"
+                float-label="Comission"
+              />
+            
+            </q-field>
+          </div>
+  
+          <div class="item-form col-12 col-md-3" v-if="form.roles.find(item => [10,20,32].indexOf(item) > -1)">
+            <q-select
+              :before="[{icon: 'fas fa-boxes'}]"
+              float-label="Product Type"
+              v-model="fields.productType.value"
+              :options="[
+                { label: 'Kitchen (K)', value: 'K' },
+                { label: 'Windows/Doors (WD)', value: 'WD' },
+                { label: 'BOTH', value: 'BOTH' }
+              ]"
+              chips
+            />
+          </div>
+          
+         
+        </div>
+      
       </q-collapsible>
     </q-card>
     
@@ -159,13 +296,13 @@
       <q-collapsible header-style="display: none" v-model="relationsToggle">
         
         <div class="row gutter-sm">
-  
+          
           <!-- Deparments -->
           <div class=" col-12 col-md-4 ">
             <q-field
               :error="$v.form.departments.$error"
               error-label="This field is required"
-      
+              
               :disabled="departmentsLoading"
             >
               <div class="caption text-weight-regular text-grey-6 ellipsis">
@@ -179,7 +316,7 @@
                 v-model="form.departments"
                 placeholder=""
               />
-    
+            
             </q-field>
           </div>
           
@@ -429,11 +566,18 @@
                   label="Show Advanced Organizer Functions?"
                 />
               </div>
-              
+  
               <div class="col-12">
                 <q-toggle
                   v-model="settings.includeInCollectedJobs.value"
                   label="Include in WAR Queue?"
+                />
+              </div>
+  
+              <div class="col-12" v-if="form.roles.find(item => [10,20,32].indexOf(item) > -1)">
+                <q-toggle
+                  v-model="settings.activeSchedule.value"
+                  label="Active Schedule?"
                 />
               </div>
             
@@ -515,7 +659,6 @@
       
       </q-collapsible>
     </q-card>
-  
     
     
     <!--=== SAVE ===-->
@@ -527,7 +670,7 @@
         Save
       </q-btn>
     </div>
-  
+    
     <q-inner-loading :visible="loading">
       <q-spinner-hourglass size="50px" color="primary"/>
     </q-inner-loading>
@@ -558,7 +701,7 @@
         this.$v.$reset();
         this.form = this.initializeData();
         this.changePassword = this.id ? false : true,
-        this.getData();
+          this.getData();
       }
     },
     validations: {
@@ -569,9 +712,19 @@
         lastName: {required},
         email: {required},
         
-      }
+      },
+      fields: {
+        cellularPhone: {
+          value:{
+            minLength: minLength(7)
+          }
+        },
+        email: {
+          value: {email}
+        }
+      },
     },
- 
+    
     mounted() {
       this.$nextTick(function () {
         this.form = this.initializeData()
@@ -592,6 +745,7 @@
         departmentsLoading: false,
         generalInfoToggle: true,
         relationsToggle: false,
+        extraFieldsToggle: false,
         settingsToggle: false,
         permissionsToggle: false,
         permissionsBackend: '',
@@ -601,12 +755,17 @@
           showHomePage: false,
           showAdvancedOrganizer: false,
           includeInCollectedJobs: false,
+          activeSchedule: false,
           assignedSources: [],
           assignedRoles: [],
           assignedDepartments: []
         },
         fields: {
           cellularPhone: {value: ''},
+          homePhone: {value: ''},
+          workPhone: {value: ''},
+          comission: {value: ''},
+          productType: {value: ''},
           birthday: {value: ''},
           mainImage: {value: ''},
           email: {value: ''},
@@ -619,7 +778,7 @@
       }
     },
     methods: {
-     
+      
       initializeData() {
         
         profileService.role.getPermissions().then(response => {
@@ -657,12 +816,17 @@
           {name: 'showHomePage', value: false},
           {name: 'showAdvancedOrganizer', value: false},
           {name: 'includeInCollectedJobs', value: false},
+          {name: 'activeSchedule', value: false},
           {name: 'assignedSources', value: []},
           {name: 'assignedRoles', value: []},
           {name: 'assignedDepartments', value: []}
         ]
         let fields = [
           {name: 'cellularPhone', value: ''},
+          {name: 'homePhone', value: ''},
+          {name: 'workPhone', value: ''},
+          {name: 'comission', value: ''},
+          {name: 'productType', value: ''},
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
           {name: 'mainImage', value: ''},
@@ -673,7 +837,7 @@
         ]
         
         this.settings = helper.convertToFrontField(settings, this.form.settings);
-  
+        
         this.fields = helper.convertToFrontField(fields, this.form.fields);
         
         if (this.id) {
@@ -683,48 +847,48 @@
           let roles = [];
           profileService.crud.show('api.profile.users', this.id, {params: {include: 'roles,departments,settings,fields,sources,branchOffices'}})
             .then(response => {
-
-            
-            this.form = _cloneDeep(response.data);
-            this.permissionsOptions = []
-            
-            this.convertPermissions('front');
-            
-
-            this.form.roles.forEach((element, index) => {
-              roles.push(element.id)
-            })
-            
-            this.form.roles = roles;
-            this.form.activated == 0 ? this.form.activated = false : this.form.activated = true;
-            
-            
-            this.form.departments.forEach((element, index) => {
-              departments.push(element.id)
-            })
-            this.form.departments = departments;
-            
-            
-            this.form.branchOffices.forEach((element, index) => {
-              branchOffices.push(element.id)
-            })
-            this.form.branchOffices = branchOffices;
-            
-            
-            this.form.sources.forEach((element, index) => {
-              sources.push(element.id)
-            })
-            this.form.sources = sources;
-  
-            //setting empty passwords
-            this.form.password = ''
-            this.form.passwordConfirmation = ''
-  
+              
+              
+              this.form = _cloneDeep(response.data);
+              this.permissionsOptions = []
+              
+              this.convertPermissions('front');
+              
+              
+              this.form.roles.forEach((element, index) => {
+                roles.push(element.id)
+              })
+              
+              this.form.roles = roles;
+              this.form.activated == 0 ? this.form.activated = false : this.form.activated = true;
+              
+              
+              this.form.departments.forEach((element, index) => {
+                departments.push(element.id)
+              })
+              this.form.departments = departments;
+              
+              
+              this.form.branchOffices.forEach((element, index) => {
+                branchOffices.push(element.id)
+              })
+              this.form.branchOffices = branchOffices;
+              
+              
+              this.form.sources.forEach((element, index) => {
+                sources.push(element.id)
+              })
+              this.form.sources = sources;
+              
+              //setting empty passwords
+              this.form.password = ''
+              this.form.passwordConfirmation = ''
+              
               this.settings = helper.convertToFrontField(settings, this.form.settings);
               this.fields = helper.convertToFrontField(fields, this.form.fields);
-            this.loading = false;
-            
-          }).catch(error => {
+              this.loading = false;
+              
+            }).catch(error => {
             this.loading = false;
           })
         } else
@@ -816,45 +980,45 @@
             break;
         }
       },
-     
+      
       submit() {
-     
+        
         let error = 'Please review fields again.'
         
         //this.$v.$reset();// reseting errors
         this.$v.$touch();//validate all fields from form
-
+        
         if (this.$v.form.departments.$error)
           this.relationsToggle = true
         
         this.convertPermissions('back');
         
-        let data =_cloneDeep(this.form);
+        let data = _cloneDeep(this.form);
         
         //deleting password if is empty
-        if(!data.password.length)
+        if (!data.password.length)
           delete data.password;
-  
+        
         let passwordRequired = this.id == null && !data.password
-        if(passwordRequired) error = 'The password is required'
+        if (passwordRequired) error = 'The password is required'
         
         //deleting passwordConfirmation if is empty
-        if(!data.passwordConfirmation.length)
+        if (!data.passwordConfirmation.length)
           delete data.passwordConfirmation;
         
         //validate passwords
         let samePasswords = !data.password || data.password == data.passwordConfirmation
-        if(!samePasswords) error = 'Password and Confirm Password don\'t match'
-  
-        let complexity = !data.password || helper.checkPassword(data.password)
-        if(!complexity) error = 'The password must be at least 8 characters and contain a at least 1 lowercase character, at least 1 uppercase character and a number.'
+        if (!samePasswords) error = 'Password and Confirm Password don\'t match'
         
-        if(this.$v.$error)
+        let complexity = !data.password || helper.checkPassword(data.password)
+        if (!complexity) error = 'The password must be at least 8 characters and contain a at least 1 lowercase character, at least 1 uppercase character and a number.'
+        
+        if (this.$v.$error)
           error = 'Please, review the fields again.'
         
         if (!this.$v.$error && samePasswords && complexity && !passwordRequired) {
           this.loading = true;
-  
+          
           data.settings = helper.convertToBackField(this.settings)
           data.fields = helper.convertToBackField(this.fields)
           if (this.id) {

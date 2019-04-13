@@ -103,7 +103,35 @@
                                  :maxlength="14" inputmode="numeric"
                                  float-label="Cellular Phone *:"
                         />
-                      
+    
+                      </q-field>
+                    </div>
+                    <div class="item-form col-12">
+                      <q-field
+                        :count="14"
+                        icon-color="primary"
+                        icon="fa fa-phone"
+                      >
+                        <q-input type="text" clearable v-model="fields.workPhone.value"
+                                 @input="fields.workPhone.value = $helper.maskPhone(fields.workPhone.value)"
+                                 :maxlength="14" inputmode="numeric"
+                                 float-label="Work Phone:"
+                        />
+    
+                      </q-field>
+                    </div>
+                    <div class="item-form col-12">
+                      <q-field
+                        :count="14"
+                        icon-color="primary"
+                        icon="fa fa-phone"
+                      >
+                        <q-input type="text" clearable v-model="fields.homePhone.value"
+                                 @input="fields.homePhone.value = $helper.maskPhone(fields.homePhone.value)"
+                                 :maxlength="14" inputmode="numeric"
+                                 float-label="Home Phone:"
+                        />
+    
                       </q-field>
                     </div>
                     
@@ -602,6 +630,8 @@
         
         fields: {
           cellularPhone: {value: ''},
+          homePhone: {value: ''},
+          workPhone: {value: ''},
           birthday: {value: ''},
           mainImage: {value: ''},
           email: {value: ''},
@@ -683,6 +713,8 @@
         
         let fields = [
           {name: 'cellularPhone', value: ''},
+          {name: 'homePhone', value: ''},
+          {name: 'workPhone', value: ''},
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
           {name: 'mainImage', value: ''},
