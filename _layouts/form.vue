@@ -255,22 +255,7 @@
             
             </q-field>
           </div>
-  
-          <div class="item-form col-12 col-md-3" v-if="form.roles.find(item => [10,20,32].indexOf(item) > -1)">
-            <q-select
-              :before="[{icon: 'fas fa-boxes'}]"
-              float-label="Product Type"
-              v-model="fields.productType.value"
-              :options="[
-                { label: 'Kitchen (K)', value: 'K' },
-                { label: 'Windows/Doors (WD)', value: 'WD' },
-                { label: 'BOTH', value: 'BOTH' }
-              ]"
-              chips
-            />
-          </div>
-          
-         
+
         </div>
       
       </q-collapsible>

@@ -48,7 +48,7 @@ export default {
 	},
 	//User Index
 	userIndex: {
-		permission: 'profile.user.index',
+		permission: 'profile.user.manage',
 		activated: true,
 		path: '/users/index',
 		name: 'user.users.index',
@@ -97,7 +97,7 @@ export default {
 	//User Profile customer
 	userProfileCustomer: {
 		permission: null,
-		activated: true,
+		activated: false,
 		path: '/users/profile/customer',
 		name: 'user.profile.customer',
 		layout: require('@imagina/quser/_layouts/profileForm').default,
@@ -108,7 +108,7 @@ export default {
 	},
 	//User Departments
 	userDepartments: {
-		permission: 'profile.departments.index',
+		permission: 'profile.departments.manage',
 		activated: true,
 		path: '/departments',
 		name: 'user.departments',
@@ -128,7 +128,7 @@ export default {
 	},
 	//User Roles
 	userRoles: {
-		permission: 'profile.role.index',
+		permission: 'profile.role.manage',
 		activated: true,
 		path: '/roles',
 		name: 'user.roles',
