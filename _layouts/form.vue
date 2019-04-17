@@ -256,17 +256,17 @@
             </q-field>
           </div>
   
-          <div class="item-form col-12 col-md-3" v-if="form.roles.find(item => [10,20,32].indexOf(item) > -1)">
+          <div class="item-form col-12 col-md-3">
             <q-select
-              :before="[{icon: 'fas fa-boxes'}]"
-              float-label="Product Type"
-              v-model="fields.productType.value"
+              :before="[{icon: 'fas fa-language'}]"
+              float-label="Language"
+              v-model="fields.language.value"
               :options="[
-                { label: 'Kitchen (K)', value: 'K' },
-                { label: 'Windows/Doors (WD)', value: 'WD' },
-                { label: 'BOTH', value: 'BOTH' }
+                { label: 'English', value: 1 },
+                { label: 'Spanish', value: 2 }
               ]"
               chips
+              multiple
             />
           </div>
           
@@ -337,7 +337,11 @@
           
           <!-- Branch Offices -->
           <div class="col-12 col-md-4">
-            
+            <q-field
+              :error="$v.form.branchOffices.$error"
+              error-label="This field is required"
+    
+            >
             <q-select
               v-model="form.branchOffices"
               float-label="Branch Office"
@@ -345,7 +349,7 @@
               :disable="!$store.getters['fhia/branchOfficeSelect'].length"
               :options="$store.getters['fhia/branchOfficeSelect']"
             />
-          
+            </q-field>
           </div>
           
           <!-- Product Groups-->
@@ -709,6 +713,7 @@
         firstName: {required},
         roles: {required},
         departments: {required},
+        branchOffices: {required},
         lastName: {required},
         email: {required},
         
@@ -755,7 +760,7 @@
           showHomePage: false,
           showAdvancedOrganizer: false,
           includeInCollectedJobs: false,
-          activeSchedule: false,
+          activeSchedule: true,
           assignedSources: [],
           assignedRoles: [],
           assignedDepartments: []
@@ -765,7 +770,7 @@
           homePhone: {value: ''},
           workPhone: {value: ''},
           comission: {value: ''},
-          productType: {value: ''},
+          language: {value: [1]},
           birthday: {value: ''},
           mainImage: {value: ''},
           email: {value: ''},
@@ -816,7 +821,7 @@
           {name: 'showHomePage', value: false},
           {name: 'showAdvancedOrganizer', value: false},
           {name: 'includeInCollectedJobs', value: false},
-          {name: 'activeSchedule', value: false},
+          {name: 'activeSchedule', value: true},
           {name: 'assignedSources', value: []},
           {name: 'assignedRoles', value: []},
           {name: 'assignedDepartments', value: []}
@@ -826,7 +831,7 @@
           {name: 'homePhone', value: ''},
           {name: 'workPhone', value: ''},
           {name: 'comission', value: ''},
-          {name: 'productType', value: ''},
+          {name: 'language', value: [1]},
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
           {name: 'mainImage', value: ''},
@@ -988,7 +993,7 @@
         //this.$v.$reset();// reseting errors
         this.$v.$touch();//validate all fields from form
         
-        if (this.$v.form.departments.$error)
+        if (this.$v.form.departments.$error || this.$v.form.branchOffices.$error)
           this.relationsToggle = true
         
         this.convertPermissions('back');
@@ -1046,7 +1051,7 @@
             })
           }
         } else {
-          alert.error(error, 'bottom')
+          alert.error(error, 'bottom',false,2500)
         }
       }
     }
