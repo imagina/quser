@@ -19,13 +19,18 @@
           <div class="row gutter-xs form-container q-py-sm">
             <div class="col-12">
               <div class="row content-end">
-                <div class=" text-center col-12 col-md-6 ">
-                  <img v-if="fields.mainImage.value==''" :src="getImageUrl('/modules/profile/img/default.jpg')" alt=""
-                       style="border-radius: 50%; max-height: 280px; max-width: 280px;">
-                  <img v-if="fields.mainImage.value!=''" :src="getImageUrl()" alt=""
-                       style="border-radius: 50%; max-height: 280px; max-width: 280px;">
-                  <div class="row justify-center q-pa-sm">
+                <div class=" text-center col-12 col-md-6" >
+                  <div class="col-12 col-md-6 photo"
+                       v-if="fields.mainImage.value!=''"
+                       :style="'background-image: url(\''+getImageUrl()+'\')'">
                     
+                  </div>
+                  <div class="col-12 col-md-6 photo"
+                       v-if="fields.mainImage.value==''"
+                       :style="'background-image: url(\''+getImageUrl('/modules/profile/img/default.jpg')+'\')'">
+                    
+                  </div>
+                  <div class="row justify-center q-pa-sm">
                     <div class="col-12 col-md-6 ">
                       <q-uploader url="" inverted
                                   v-model="fields.mainImage.value"
@@ -64,11 +69,10 @@
                       <q-field
                         :error="$v.form.email.$error"
                         error-label="This field is required"
-                        icon-color="primary"
-                        icon="fas fa-user"
                       >
                         
                         <q-input
+                          :before="[{icon:'fas fa-user'}]"
                           clearable
                           v-model="form.email"
                           float-label="User Name *:"/>
@@ -79,11 +83,11 @@
                       <q-field
                         :error="$v.fields.email.value.$error"
                         error-label="Invalid email address"
-                        icon-color="primary"
-                        icon="far fa-envelope"
+                       
                       >
                         
                         <q-input
+                          :before="[{icon:'far fa-envelope'}]"
                           clearable
                           v-model="fields.email.value"
                           float-label="Email:"/>
@@ -95,10 +99,9 @@
                         :error="$v.fields.cellularPhone.value.$error"
                         error-label="This field is required"
                         :count="14"
-                        icon-color="primary"
-                        icon="fa fa-phone"
                       >
-                        <q-input type="text" clearable v-model="fields.cellularPhone.value"
+                        <q-input :before="[{icon:'fa fa-phone'}]"
+                                 type="text" clearable v-model="fields.cellularPhone.value"
                                  @input="fields.cellularPhone.value = $helper.maskPhone(fields.cellularPhone.value)"
                                  :maxlength="14" inputmode="numeric"
                                  float-label="Cellular Phone *:"
@@ -109,13 +112,13 @@
                     <div class="item-form col-12">
                       <q-field
                         :count="14"
-                        icon-color="primary"
-                        icon="fa fa-phone"
                       >
-                        <q-input type="text" clearable v-model="fields.workPhone.value"
-                                 @input="fields.workPhone.value = $helper.maskPhone(fields.workPhone.value)"
-                                 :maxlength="14" inputmode="numeric"
-                                 float-label="Work Phone:"
+                        <q-input
+                          :before="[{icon:'fa fa-phone'}]"
+                          type="text" clearable v-model="fields.workPhone.value"
+                          @input="fields.workPhone.value = $helper.maskPhone(fields.workPhone.value)"
+                          :maxlength="14" inputmode="numeric"
+                          float-label="Work Phone:"
                         />
     
                       </q-field>
@@ -123,13 +126,13 @@
                     <div class="item-form col-12">
                       <q-field
                         :count="14"
-                        icon-color="primary"
-                        icon="fa fa-phone"
                       >
-                        <q-input type="text" clearable v-model="fields.homePhone.value"
-                                 @input="fields.homePhone.value = $helper.maskPhone(fields.homePhone.value)"
-                                 :maxlength="14" inputmode="numeric"
-                                 float-label="Home Phone:"
+                        <q-input
+                          :before="[{icon:'fa fa-phone'}]"
+                          type="text" clearable v-model="fields.homePhone.value"
+                          @input="fields.homePhone.value = $helper.maskPhone(fields.homePhone.value)"
+                          :maxlength="14" inputmode="numeric"
+                          float-label="Home Phone:"
                         />
     
                       </q-field>
@@ -138,10 +141,8 @@
                     
                     <div class="col-12">
                       <q-field
-                        icon="cake"
-                        icon-color="primary"
                       >
-                        <q-datetime class="no-shadow"
+                        <q-datetime :before="[{icon:'cake'}]" class="no-shadow"
                                     v-model="fields.birthday.value"
                                     float-label="Birthday"
                                     format="MM/DD/YYYY"
@@ -151,10 +152,8 @@
                     </div>
                     <div class=" col-12">
                       <q-field
-                        icon="chrome_reader_mode"
-                        icon-color="primary"
                       >
-                        <q-input type="text" v-model="fields.identification.value" float-label="Identification"/>
+                        <q-input :before="[{icon:'chrome_reader_mode'}]" type="text" v-model="fields.identification.value" float-label="Identification"/>
                       </q-field>
                     </div>
                   
@@ -1158,7 +1157,25 @@
     .form-user-data
       border 1px solid $grey-4
       border-top none
-  
+      
+  #profile
+    .photo
+      position: relative
+      width: 100%
+      border-radius 100%
+      max-width 300px
+      margin 0 auto
+      background-position center center
+      background-size cover
+      background-repeat no-repeat
+      /* desired width */
+     // margin: 5px
+    .photo:before
+      content: ""
+      display: block
+      padding-top: 100%
+      /* initial ratio of 1:1*/
+    
   /*=== FORM ===*/
   .form-user-data
     margin 0 0 25px auto !important

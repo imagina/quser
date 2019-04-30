@@ -97,6 +97,7 @@ export const AUTH_LOGOUT = async ({commit, dispatch}) => {
 
 export const AUTH_UPDATE = ({commit, dispatch}) => {
 	return new Promise(async (resolve, reject, state) => {
+		
 		await helper.storage.restore()//Restore storage
 		//Get userData
 		let response = await profileService.crud.index('api.profile.me',{remember:false})

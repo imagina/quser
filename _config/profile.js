@@ -20,5 +20,7 @@ export default {
 	fields: urlBase + '/fields',
 	users: urlBase + '/users',
 	changePassword: urlBase + '/users/change-password',
-  roles: urlBase + '/roles'
+  roles: urlBase + '/roles',
+  usersAssigned: urlBase + '/users/assigned'
+	
 }

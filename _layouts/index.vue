@@ -341,7 +341,7 @@
             include: 'roles'
           }
         }
-        profileService.crud.index('api.profile.users', params)
+        profileService.crud.index('api.profile.usersAssigned', params)
           .then((response) => {
             this.dataUsers = response.data;
             this.pagination.rowsPerPage = response.meta.page.perPage;
