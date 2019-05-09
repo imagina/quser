@@ -19,8 +19,10 @@ import * as roles from '../_components/crud/roles'
 //Routes for auth
 Route.view('/auth', blank)
 	.children(() => {
+        	Route.view('/register', require('../_layouts/register').default).name('auth.register').guard(guest)
 			Route.view('/login', require('../_layouts/login').default).name('auth.login').guard(guest)
 			Route.view('/logout', require('../_layouts/logout').default).name('auth.logout')
+			Route.view('/change-password', require('../_layouts/passwordChange').default).name('auth.change.password')
 		}
 	)
 
@@ -30,24 +32,22 @@ Route.view('/users', home)
 	.children(() => {
 			Route.view('/index', require('../_layouts/index').default).options({
 				name: 'user.users.index',
-				meta: {permission: 'profile.api.user.index'},
+				meta: {permission: 'profile.user.index'},
 				guard: access
 			});
 			Route.view('/create', require('../_layouts/form').default).options({
 				name: 'user.users.create',
-				meta: {permission: 'profile.api.user.create'},
+				meta: {permission: 'profile.user.create'},
 				guard: access
 			});
 			Route.view('/:id/edit', require('../_layouts/form').default).options({
 				name: 'user.users.edit',
-				meta: {permission: 'profile.api.user.edit'},
+				meta: {permission: 'profile.user.edit'},
 				guard: access
 			});
-
 			Route.view('/me/profile', require('../_layouts/profile').default).options({
 				name: 'user.profile.me'
 			});
-
 			Route.view('/me/profile/customer', require('../_layouts/profileForm').default).options({
 				name: 'user.profile.customer'
 			});
@@ -69,7 +69,7 @@ Route.view('/users', home)
 
 			Route.view('/roles', vueCrud).options({
 				name: 'user.roles',
-				meta: {permission: 'profile.roleapis.index'},
+				meta: {permission: 'profile.role.manage'},
 				guard: access,
 				props: (route) => {
 					return {

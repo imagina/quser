@@ -1,5 +1,6 @@
 import {helper} from '@imagina/qhelper/_plugins/helper';
-import store from 'src/store/index'
+import router from 'src/router/index';
+import store from 'src/store/index';
 
 class Auth {
   constructor() {
@@ -15,20 +16,20 @@ class Auth {
    * @returns {Promise<boolean>}
    */
   hasAccess(can) {
+    if(!can) return true
     let userPermissions = store.getters["auth/getPermissions"]
-
-    let access = userPermissions[can]
-  
-    return access == null ? false : access
+    if(userPermissions && Object.keys(userPermissions).length){
+      let access = userPermissions[can]
+      return access == null ? false : access
+    }else{
+      return true
+    }
   }
   
   
   hasSetting(name) {
-    
     let userSettings = store.getters["auth/getSettings"]
-
     let setting = userSettings.find(setting => setting.name === name)
-    
     return setting ? setting :false
   }
 }

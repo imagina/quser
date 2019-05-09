@@ -9,12 +9,19 @@ const urlBase = baseApiUrl + '/' + moduleName + '/' + moduleVersion
 
 export default {
 	version: moduleVersion,
+	appVersion: urlBase+'/app/version',
+	permissions: urlBase+'/app/permissions',
+	me: urlBase + '/auth/me',
+	mustChangePassword: urlBase + '/auth/must-change-password',
 	authLogin: urlBase + '/auth/login',
+    authRegister: urlBase + '/auth/register',
 	authLogout: urlBase + '/auth/logout',
+	authLogoutAll: urlBase + '/auth/logout-all',
 	addresses: urlBase + '/addresses',
 	departments: urlBase + '/departments',
 	departmentsSettings: urlBase + '/departments/settings',
 	fields: urlBase + '/fields',
 	users: urlBase + '/users',
+	changePassword: urlBase + '/users/change-password',
   roles: urlBase + '/roles'
 }

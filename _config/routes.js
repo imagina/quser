@@ -1,5 +1,6 @@
 export default {
 	login: {name: 'user.login'},
+    register: {name: 'user.register'},
 	logout: {name: 'user.logout'},
 	index : {name : 'user.users.index', permission:'profile.api.users.index'},
 	create : {name : 'user.users.create', permission:'profile.api.users.create'},

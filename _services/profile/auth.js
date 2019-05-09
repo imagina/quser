@@ -10,7 +10,7 @@ export default {
   logout() {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
-      Http.get(config('profile.authLogout'))
+      Http.get(config('apiRoutes.profile.authLogout'))
       .then(response => {
       resolve(response);
     }).catch(error => {
@@ -25,11 +25,12 @@ export default {
       username,
       password
     };
-    
+
     // We merge grant type and client secret stored in configuration
-    Object.assign(data, config('profile.authLogin'));
+    Object.assign(data, config('apiRoutes.profile.authLogin'));
+
     return new Promise((resolve, reject) => {
-      Http.post(config('profile.authLogin'), data)
+      Http.post(config('apiRoutes.profile.authLogin'), data)
       .then((response) => {
       resolve(response);
     }).catch((error) => {
