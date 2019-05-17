@@ -16,6 +16,6 @@ export default async function (to, from, next) {
       (to.name == 'auth.login') ? next() : next({name: 'auth.login'})
     }
   } catch (error) {
-    next();
+      next();
   }
 }

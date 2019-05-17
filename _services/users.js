@@ -10,7 +10,7 @@ export default {
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
       remember.async("users:" + key, 3600 * 3, () => {
-      return http.get(config('api.api.api_url') + '/users', {
+      return http.get(config('apiRoutes.api.api_url') + '/users', {
         params: {
           filter: filter,
           take: take,
@@ -30,7 +30,7 @@ export default {
 
   show(id) {
     return new Promise((resolve, reject) => {
-      return http.get(config('api.api.api_url') + '/users/' + id)
+      return http.get(config('apiRoutes.api.api_url') + '/users/' + id)
         .then(response => {
           resolve(response.data);
         })
@@ -48,7 +48,7 @@ export default {
 
     return new Promise((resolve, reject) => {
       remember.async('usersRep', 3600 * 3, () => {
-        return http.get(config('api.api.api_url') + '/users', {params: parameters})
+        return http.get(config('apiRoutes.api.api_url') + '/users', {params: parameters})
       }).then(response => {
         resolve(response.data)
       }).catch(error => {
@@ -59,7 +59,7 @@ export default {
 
   update(data, id) {
     return new Promise((resolve, reject) => {
-      http.put(config('api.api.api_url') + '/users/' + id, data)
+      http.put(config('apiRoutes.api.api_url') + '/users/' + id, data)
         .then(response => {
           resolve(response);
         })
@@ -71,7 +71,7 @@ export default {
 
   create(data) {
     return new Promise((resolve, reject) => {
-      http.post(config('api.api.api_url') + '/users', data)
+      http.post(config('apiRoutes.api.api_url') + '/users', data)
         .then(response => {
           resolve(response);
         })
@@ -86,7 +86,7 @@ export default {
     let key = JSON.stringify(filter + take + page + fields + include);
     return new Promise((resolve, reject) => {
       remember.async("roles:" + key, 3600 * 3, () => {
-        return http.get(config('api.api.api_url') + '/roles', {
+        return http.get(config('apiRoutes.api.api_url') + '/roles', {
           params: {
             filter: filter,
             take: take,

@@ -13,7 +13,7 @@ export default {
 
     return new Promise((resolve, reject) => {
       remember.async("roles"+key, 3600 * 3, () => {
-        return http.get(config('api.api.api_url') + '/roles', {
+        return http.get(config('apiRoutes.api.api_url') + '/roles', {
           params: {
             filter: filter,
             take: take,

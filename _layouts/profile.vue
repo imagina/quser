@@ -19,18 +19,13 @@
           <div class="row gutter-xs form-container q-py-sm">
             <div class="col-12">
               <div class="row content-end">
-                <div class=" text-center col-12 col-md-6" >
-                  <div class="col-12 col-md-6 photo"
-                       v-if="fields.mainImage.value!=''"
-                       :style="'background-image: url(\''+getImageUrl()+'\')'">
-                    
-                  </div>
-                  <div class="col-12 col-md-6 photo"
-                       v-if="fields.mainImage.value==''"
-                       :style="'background-image: url(\''+getImageUrl('/modules/profile/img/default.jpg')+'\')'">
-                    
-                  </div>
+                <div class=" text-center col-12 col-md-6 ">
+                  <img v-if="fields.mainImage.value==''" :src="getImageUrl('/modules/iprofile/img/default.jpg')" alt=""
+                       style="border-radius: 50%; max-height: 280px; max-width: 280px;">
+                  <img v-if="fields.mainImage.value!=''" :src="getImageUrl()" alt=""
+                       style="border-radius: 50%; max-height: 280px; max-width: 280px;">
                   <div class="row justify-center q-pa-sm">
+                    
                     <div class="col-12 col-md-6 ">
                       <q-uploader url="" inverted
                                   v-model="fields.mainImage.value"
@@ -69,10 +64,11 @@
                       <q-field
                         :error="$v.form.email.$error"
                         error-label="This field is required"
+                        icon-color="primary"
+                        icon="fas fa-user"
                       >
                         
                         <q-input
-                          :before="[{icon:'fas fa-user'}]"
                           clearable
                           v-model="form.email"
                           float-label="User Name *:"/>
@@ -83,11 +79,11 @@
                       <q-field
                         :error="$v.fields.email.value.$error"
                         error-label="Invalid email address"
-                       
+                        icon-color="primary"
+                        icon="far fa-envelope"
                       >
                         
                         <q-input
-                          :before="[{icon:'far fa-envelope'}]"
                           clearable
                           v-model="fields.email.value"
                           float-label="Email:"/>
@@ -99,50 +95,25 @@
                         :error="$v.fields.cellularPhone.value.$error"
                         error-label="This field is required"
                         :count="14"
+                        icon-color="primary"
+                        icon="fa fa-phone"
                       >
-                        <q-input :before="[{icon:'fa fa-phone'}]"
-                                 type="text" clearable v-model="fields.cellularPhone.value"
+                        <q-input type="text" clearable v-model="fields.cellularPhone.value"
                                  @input="fields.cellularPhone.value = $helper.maskPhone(fields.cellularPhone.value)"
                                  :maxlength="14" inputmode="numeric"
                                  float-label="Cellular Phone *:"
                         />
-    
-                      </q-field>
-                    </div>
-                    <div class="item-form col-12">
-                      <q-field
-                        :count="14"
-                      >
-                        <q-input
-                          :before="[{icon:'fa fa-phone'}]"
-                          type="text" clearable v-model="fields.workPhone.value"
-                          @input="fields.workPhone.value = $helper.maskPhone(fields.workPhone.value)"
-                          :maxlength="14" inputmode="numeric"
-                          float-label="Work Phone:"
-                        />
-    
-                      </q-field>
-                    </div>
-                    <div class="item-form col-12">
-                      <q-field
-                        :count="14"
-                      >
-                        <q-input
-                          :before="[{icon:'fa fa-phone'}]"
-                          type="text" clearable v-model="fields.homePhone.value"
-                          @input="fields.homePhone.value = $helper.maskPhone(fields.homePhone.value)"
-                          :maxlength="14" inputmode="numeric"
-                          float-label="Home Phone:"
-                        />
-    
+                      
                       </q-field>
                     </div>
                     
                     
                     <div class="col-12">
                       <q-field
+                        icon="cake"
+                        icon-color="primary"
                       >
-                        <q-datetime :before="[{icon:'cake'}]" class="no-shadow"
+                        <q-datetime class="no-shadow"
                                     v-model="fields.birthday.value"
                                     float-label="Birthday"
                                     format="MM/DD/YYYY"
@@ -152,8 +123,10 @@
                     </div>
                     <div class=" col-12">
                       <q-field
+                        icon="chrome_reader_mode"
+                        icon-color="primary"
                       >
-                        <q-input :before="[{icon:'chrome_reader_mode'}]" type="text" v-model="fields.identification.value" float-label="Identification"/>
+                        <q-input type="text" v-model="fields.identification.value" float-label="Identification"/>
                       </q-field>
                     </div>
                   
@@ -629,8 +602,6 @@
         
         fields: {
           cellularPhone: {value: ''},
-          homePhone: {value: ''},
-          workPhone: {value: ''},
           birthday: {value: ''},
           mainImage: {value: ''},
           email: {value: ''},
@@ -712,8 +683,6 @@
         
         let fields = [
           {name: 'cellularPhone', value: ''},
-          {name: 'homePhone', value: ''},
-          {name: 'workPhone', value: ''},
           {name: 'birthday', value: ''},
           {name: 'identification', value: ''},
           {name: 'mainImage', value: ''},
@@ -994,7 +963,7 @@
         let address = this.form.addresses.splice(index, 1)[0];
         if (address.id) {
           this.loading = true
-          profileService.crud.delete('api.profile.addresses', address.id).then(userData => {
+          profileService.crud.delete('apiRoutes.profile.addresses', address.id).then(userData => {
             alert.success("address deleted", "top")
             helper.storage.set('userData', this.userData);
             this.loading = false
@@ -1090,7 +1059,7 @@
         
         let data = this.orderDataUpdate()
         this.loading = true
-        profileService.crud.update('api.profile.users', this.form.id, data).then(response => {
+        profileService.crud.update('apiRoutes.profile.users', this.form.id, data).then(response => {
           
           
           let params = {
@@ -1100,7 +1069,7 @@
           }
           alert.success('Profile updated', 'top')
           this.loading = false
-          profileService.crud.show('api.profile.users', this.form.id, params).then(userData => {
+          profileService.crud.show('apiRoutes.profile.users', this.form.id, params).then(userData => {
             helper.storage.get.item('userData').then(response => {
               userData.data['permissions'] = response.permissions;
               userData.data['default_route'] = response.default_route;
@@ -1140,9 +1109,9 @@
         if (!url) {
           image = this.fields.mainImage.value;
           if (this.fields.mainImage.value.indexOf('data:image') < 0)
-            image = config('api.api.base_url') + '/' + this.fields.mainImage.value;
+            image = config('apiRoutes.api.base_url') + '/' + this.fields.mainImage.value;
         } else
-          image = config('api.api.base_url') + '/' + url;
+          image = config('apiRoutes.api.base_url') + '/' + url;
         
         return image;
       },
@@ -1157,25 +1126,7 @@
     .form-user-data
       border 1px solid $grey-4
       border-top none
-      
-  #profile
-    .photo
-      position: relative
-      width: 100%
-      border-radius 100%
-      max-width 300px
-      margin 0 auto
-      background-position center center
-      background-size cover
-      background-repeat no-repeat
-      /* desired width */
-     // margin: 5px
-    .photo:before
-      content: ""
-      display: block
-      padding-top: 100%
-      /* initial ratio of 1:1*/
-    
+  
   /*=== FORM ===*/
   .form-user-data
     margin 0 0 25px auto !important

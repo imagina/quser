@@ -1,16 +1,11 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="row shadow-3 q-mx-md" style="width: 550px">
-      <div id="form-login-left" class="col-12 col-md-5">
-        <div class="bg-color flex flex-center">
-          <img src="../../../../src/assets/image/logo-white.svg"
-               style="width: auto; max-height: 100px">
-        </div>
-      </div>
+  <q-page id="pageLogin" class="flex flex-center">
+
+    <div class="row shadow-3 q-mx-md" style="width: 350px">
       <div id="form-login-right"
-           class="col-12 col-md-7"
+           class="col-12"
            style="padding: 30px 25px">
-        <h4 class="text-primary text-center q-mt-none q-mb-md q-pb-sm"
+        <h4 class="text-blue-grey text-center q-mt-none q-mb-md q-pb-sm"
             style="border-bottom: 2px solid #f1f1f1; font-size: 34px">
           LOGIN
         </h4>
@@ -24,6 +19,7 @@
                    autocomplete="off"
                    v-model="form.username"
                    type="text"
+                   color="blue-grey"
                    :before="[{icon: 'person'}]"
                    @keyup.enter="authenticate()"
                    float-label="Username or Email"
@@ -37,18 +33,17 @@
           <q-input v-model="form.password"
                    type="password"
                    name="password"
+                   color="blue-grey"
                    :before="[{icon: 'lock'}]"
                    @keyup.enter="authenticate()"
                    float-label="Password"
           />
         </q-field>
 
-
         <!--=== LOGIN ===-->
         <div class="text-center">
           <q-btn :loading="loading_login"
-                 color="primary"
-                 name="submit"
+                 color="blue-grey" name="submit"
                  @click="authenticate()">
             LOGIN
             <span slot="loading">
@@ -57,16 +52,8 @@
               </span>
           </q-btn>
         </div>
-
-        <!--Button actions-->
-        <!--<div class="full-width text-center q-pt-lg">
-          <q-btn flat color="primary" label="Change password"
-                 :to="{name : 'auth.password.change'}">
-          </q-btn>
-        </div>-->
       </div>
     </div>
-
   </q-page>
 </template>
 
@@ -113,19 +100,18 @@
           }
         }
       },
-
     }
   }
 </script>
 <style lang="stylus">
   @import "~variables";
-  #form_login
-    width 240px
-
-  #form-login-left
-    min-height 150px
-    .bg-color
-      background-color $primary
-      height 100%
-      width 100%
+  #pageLogin
+    .q-btn
+      min-width 140px !important
+    #form-login-left
+      min-height 150px
+      .bg-color
+        background-color $blue-grey
+        height 100%
+        width 100%
 </style>

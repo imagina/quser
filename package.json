@@ -1,35 +1,34 @@
 {
-  "_from": "@imagina/quser@0.0.43",
-  "_id": "@imagina/quser@0.0.43",
+  "_args": [
+    [
+      "@imagina/quser@0.0.49",
+      "D:\\imagina\\projects\\baseQuasarFrontend\\front-end"
+    ]
+  ],
+  "_from": "@imagina/quser@0.0.49",
+  "_id": "@imagina/quser@0.0.49",
   "_inBundle": false,
-  "_integrity": "sha512-0kyPlzZHQzB/m86Bo6iM8XaYE+rMoLblecTtwSYinlsqgFxnBErzXoOBRhC/LtsKmjUnbQQIp32V9/k4PlzUYA==",
+  "_integrity": "sha512-jNlCs0xRwh2cPv+9pBDO1uE/prUbuT9AHmFl2+s2nn+B3o2YvkiR+IawKUpOrZjRHfjS+UpKAv1B6Bt1cDHWwg==",
   "_location": "/@imagina/quser",
-  "_phantomChildren": {
-    "easings-css": "1.0.0",
-    "fuzzysearch": "1.0.3",
-    "google-material-color": "1.3.1",
-    "lodash": "4.17.11"
-  },
+  "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@imagina/quser@0.0.43",
+    "raw": "@imagina/quser@0.0.49",
     "name": "@imagina/quser",
     "escapedName": "@imagina%2fquser",
     "scope": "@imagina",
-    "rawSpec": "0.0.35",
+    "rawSpec": "0.0.49",
     "saveSpec": null,
-    "fetchSpec": "0.0.35"
+    "fetchSpec": "0.0.49"
   },
   "_requiredBy": [
-    "#USER",
-    "/",
-    "/@imagina/qcrud"
+    "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.41.tgz",
-  "_shasum": "60a4e950a11b108e3f0374bd96c82f19c1f75f3b",
-  "_spec": "@imagina/quser@0.0.43",
-  "_where": "C:\\imagina\\html\\fhaproducts2018_frontend",
+  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.49.tgz",
+  "_shasum": "49d2b9cb2a28c11b372517e7c97c3f813be03553",
+  "_spec": "0.0.49",
+  "_where": "D:\\imagina\\projects\\baseQuasarFrontend\\front-end",
   "author": {
     "name": "http://imaginacolombia.com/"
   },
@@ -38,11 +37,8 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "@imagina/qcrud": ">=0.0.11",
-    "@imagina/qhelper": ">=0.0.7",
-    "@imagina/qoffline": ">=0.0.2",
-    "@imagina/qnotification": ">=0.0.2",
-    "@riophae/vue-treeselect": "0.0.31",
+    "@imagina/qcrud": "^0.0.25",
+    "@imagina/qhelper": "^0.0.24",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "export-from-json": "^1.0.15",
@@ -68,5 +64,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.43"
+  "version": "0.0.49"
 }

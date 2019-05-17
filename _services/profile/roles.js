@@ -7,7 +7,7 @@ export default {
 
 	getPermissions() {
 		return new Promise((resolve, reject) => {
-			return http.get(config('api.profile.roles') + '/permissions').then(response => {
+			return http.get(config('apiRoutes.profile.permissions')).then(response => {
 				resolve(response.data);
 			}).catch(error => {
 				reject([]);

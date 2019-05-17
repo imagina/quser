@@ -16,12 +16,13 @@ class Auth {
    * @returns {Promise<boolean>}
    */
   hasAccess(can) {
+    if(!can) return true
     let userPermissions = store.getters["auth/getPermissions"]
     if(userPermissions && Object.keys(userPermissions).length){
       let access = userPermissions[can]
       return access == null ? false : access
     }else{
-      return true
+      return false
     }
   }
   

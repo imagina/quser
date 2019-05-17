@@ -9,7 +9,7 @@ export default {
   update(id, data) {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
-      http.put(config('api.api.api_url') + '/profile/me', data)
+      http.put(config('apiRoutes.api.api_url') + '/profile/me', data)
         .then(response => {
           resolve(response.data);
         })
@@ -21,7 +21,7 @@ export default {
 
   edit(id) {
     return new Promise((resolve, reject) => {
-      http.get(config('api.api.api_url') + '/profiles/' + id)
+      http.get(config('apiRoutes.api.api_url') + '/profiles/' + id)
       /*})*/.then(response => {
         resolve(response.data);
       })
@@ -36,7 +36,7 @@ export default {
     return new Promise((resolve, reject) => {
       //Validations
       if (!data) return reject('Data is required')
-      let urlApi = config('api.profile.changePassword')//Get url from config
+      let urlApi = config('apiRoutes.profile.changePassword')//Get url from config
       //Request
       http.put(urlApi, {attributes : data}).then(response => {
         resolve(response.data)//Successful response

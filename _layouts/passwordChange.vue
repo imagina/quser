@@ -1,15 +1,9 @@
 <template>
-	<q-page id="FormChangePassword" class="flex flex-center">
+	<q-page id="pageChangePassword" class="flex flex-center">
 		<!--Form-->
-		<div class="row shadow-3 q-mx-md" style="width: 550px">
-			<div id="form-login-left" class="col-12 col-md-5">
-				<div class="bg-color flex flex-center">
-					<img src="../../../../src/assets/image/logo-white.svg"
-					     style="width: auto; max-height: 100px">
-				</div>
-			</div>
+		<div class="row shadow-3 q-mx-md" style="width: 350px">
 			<div id="form-login-right"
-			     class="col-12 col-md-7"
+			     class="col-12"
 			     style="padding: 30px 25px">
 				<h4 class="q-headline text-primary text-center q-mt-none q-mb-md q-pb-sm"
 				    style="border-bottom: 2px solid #f1f1f1">
@@ -218,12 +212,12 @@
 			getOut(closeSessions = false) {
 				if (closeSessions) {
 					const params = {remember: false, params: {userId: this.userId}}
-					profileServices.crud.index('api.profile.authLogoutAll', params)
+					profileServices.crud.index('apiRoutes.profile.authLogoutAll', params)
 				}
 
 				//Redirect
 				if (this.$route.query.redirectTo) this.$router.push({name: 'auth.login'})
-				else window.location.href = config('api.api.fha_login')
+				else window.location.href = config('apiRoutes.api.fha_login')
 			},
 			//set focus and username in form
 			setFocus() {
@@ -244,21 +238,15 @@
 
 <style lang="stylus">
 	@import "~variables";
-	#FormChangePassword
+	#pageChangePassword
 		.q-input
 			padding-top 15px
 
-	#form_login
-		width 240px
+		#form-login-left
+			min-height 150px
 
-	#form-login-left
-		min-height 150px
-
-		.bg-color
-			background-color $primary
-			height 100%
-			width 100%
-
-			img
-				filter: brightness(0) invert(1);
+			.bg-color
+				background-color $primary
+				height 100%
+				width 100%
 </style>

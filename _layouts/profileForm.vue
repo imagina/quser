@@ -297,43 +297,9 @@
           </div>
 
         </div>
-        <!--
-        
-        <div class="row" v-if="fields.length">
-
-          <div class="col-12 q-pa-lg">
-            <field-form v-for="(field, index) in fields" 
-                        :key="index"
-                        :data="field"
-                        :pos="index"
-                        @delete="deleteField"
-            >
-            </field-form>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12 q-pa-lg">
-            <q-btn class="float-right" color="primary" icon="add" label="Add Field" size="md" @click="addField" />
-          </div>
-        </div>
-        -->
       </div>
 
     </div>
-    <!--
-    <div class="border q-mt-md" v-if="addresses.length">
-    
-      <address-form v-for="(address, index) in addresses" 
-                    :key="index"
-                    :data="address"
-                    :pos="index"
-                    @delete="deleteAddress"
-      >
-      </address-form>
-
-    </div>
-    -->
     <div class="col-12 text-center q-py-lg">
       <q-btn 
         color="primary"
@@ -346,20 +312,12 @@
 </template>
 
 <script>
-  import addressFrom from 'src/components/addressForm'
-  import fieldForm from 'src/components/fields'
-
-  //services
-  import customersService from 'src/services/customers';
-
   //Plugins
   import {alert} from '@imagina/qhelper/_plugins/alert'
   import {required, email, numeric, minLength} from 'vuelidate/lib/validators'
 
   export default {
     components: {
-      'address-form' : addressFrom,
-      'field-form' : fieldForm,
     },
     data() {
       return {
@@ -682,16 +640,6 @@
      
           return
         }
-
-        /*
-        customersService.create(params).then(
-          response =>{
-            console.log('Se guardo', response);
-            //this.getCategories();
-            //alert.success('Category already added.');
-          }
-        );
-        */
       },
     }
   }
