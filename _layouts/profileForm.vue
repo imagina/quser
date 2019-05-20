@@ -63,7 +63,7 @@
         <div class="row">
 
           <div class="col-12 q-mb-md">
-            <q-tabs animated swipeable inverted color="secondary" align="justify">
+            <q-tabs animated swipeable inverted color="primary" align="justify">
 
               <q-tab default name="fields" slot="title" label="Fields" />
               <q-tab name="address" slot="title" label="Addresses" />
@@ -168,7 +168,7 @@
                         </q-item-main>
 
                         <q-item-side right>
-                          <q-btn round color="secondary" icon="edit"  
+                          <q-btn round color="positive" icon="edit"
                           @click="editField(field)" size="sm" v-if="!fieldEdit"/>
                           <q-btn round color="negative" icon="delete"  
                           @click="deleteField(field,index)" size="sm" class="q-ml-md"/>
@@ -226,7 +226,7 @@
                         </q-item-main>
 
                         <q-item-side right>
-                          <q-btn round color="secondary" icon="edit"  
+                          <q-btn round color="positive" icon="edit"
                           @click="editAddress(address)" size="sm" v-if="!addressEdit"/>
                           <q-btn round color="negative" icon="delete"  
                           @click="deleteAddress(index)" size="sm" class="q-ml-md"/>
@@ -282,7 +282,7 @@
                         </q-item-main>
 
                         <q-item-side right>
-                          <q-btn round color="secondary" icon="edit"  
+                          <q-btn round color="positive" icon="edit"
                           @click="editContact(contact)" size="sm" v-if="!contactEdit"/>
                           <q-btn round color="negative" icon="delete"  
                           @click="deleteContact(contact)" size="sm" class="q-ml-md"/>

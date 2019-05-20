@@ -9,8 +9,6 @@ const urlBase = baseApiUrl + '/' + moduleName + '/' + moduleVersion
 
 export default {
 	version: moduleVersion,
-	appVersion: urlBase+'/app/version',
-	permissions: urlBase+'/app/permissions',
 	me: urlBase + '/auth/me',
 	mustChangePassword: urlBase + '/auth/must-change-password',
 	authLogin: urlBase + '/auth/login',

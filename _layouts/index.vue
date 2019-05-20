@@ -20,7 +20,6 @@
                 :separator="separatorTable"
                 :pagination.sync="pagination"
                 row-key="name"
-                color="secondary"
                 @request="getData"
               >
                 <!--= Search =-->
@@ -28,7 +27,7 @@
                   <q-search
                     hide-underline
                     clearable
-                    color="secondary"
+                    color="primary"
                     v-model="filter.search"
                     @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
 
@@ -74,7 +73,7 @@
                     </div>
 
                     <q-table-columns
-                      color="secondary"
+                      color="primary"
                       class="q-mr-sm"
                       v-model="visibleColumns"
                       :columns="columnsTable"
@@ -103,7 +102,7 @@
                       slot-scope="props" :props="props">
                   <q-btn
                     size="sm" rounded
-                    icon="fas fa-user-edit" color="secondary"
+                    icon="fas fa-user-edit" color="positive"
                     :to="{name:'user.users.edit',params:{id:props.row.id}}">
                     <q-tooltip>
                       Edit
@@ -161,7 +160,7 @@
 
       <!-- CREATE USER -->
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
-        <q-btn fab-mini color="secondary"
+        <q-btn fab-mini color="positive"
                icon="add"
                @click="createUser">
           <q-tooltip>

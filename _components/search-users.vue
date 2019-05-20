@@ -32,7 +32,7 @@
 						/>
 						<!--Button Filter-->
 						<div class="col-12 q-mt-md">
-							<q-btn icon-right="fas fa-search" color="secondary"
+							<q-btn icon-right="fas fa-search" color="primary"
 							       @click="searchUsers()">
 								Search
 							</q-btn>
@@ -52,7 +52,7 @@
 									<q-item-side>
 										<q-checkbox v-if="!user.selected"
 										            v-model="userSelected" :val="user"/>
-										<q-icon v-else name="fas fa-check" color="secondary"></q-icon>
+										<q-icon v-else name="fas fa-check" color="positive"></q-icon>
 									</q-item-side>
 									<!--Name user-->
 									<q-item-main>
@@ -68,7 +68,7 @@
 								<q-icon name="far fa-sad-tear" size="40px"></q-icon>
 								<h6 class="q-my-sm q-subheading">Users not found</h6>
 								<!--Button refresh list users-->
-								<q-btn icon-right="fas fa-sync" color="secondary"
+								<q-btn icon-right="fas fa-sync" color="primary"
 								       @click="searchUsers()">
 									Refresh
 								</q-btn>

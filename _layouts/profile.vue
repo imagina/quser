@@ -146,7 +146,7 @@
           <div class="row gutter-xs q-px-sm">
             <div class="col-12">
               
-              <q-tabs animated swipeable inverted color="secondary" align="justify">
+              <q-tabs animated swipeable inverted color="primary" align="justify">
                 
                 <q-tab default name="address" slot="title" label="Addresses"/>
                 <q-tab name="contacts" slot="title" label="Contacts"/>
@@ -329,7 +329,7 @@
                           </q-item-main>
                           
                           <q-item-side right>
-                            <q-btn round color="secondary" icon="edit"
+                            <q-btn round color="positive" icon="edit"
                                    @click="editAddress(address)" size="sm" v-if="!addressEdit"/>
                             <q-btn round color="negative" icon="delete"
                                    @click="deleteAddress(index)" size="sm" class="q-ml-md"/>
@@ -395,7 +395,7 @@
                           </q-item-main>
                           
                           <q-item-side right>
-                            <q-btn round color="secondary" icon="edit"
+                            <q-btn round color="positive" icon="edit"
                                    @click="editContact(contact)" size="sm" v-if="!contactEdit"/>
                             <q-btn round color="negative" icon="delete"
                                    @click="deleteContact(contact)" size="sm" class="q-ml-md"/>
@@ -452,7 +452,7 @@
                           </q-item-main>
                           
                           <q-item-side right>
-                            <q-btn round color="secondary" icon="edit"
+                            <q-btn round color="positive" icon="edit"
                                    @click="editSocial(social)" size="sm" v-if="!socialEdit"/>
                             <q-btn round color="negative" icon="delete"
                                    @click="deleteSocial(social,index)" size="sm" class="q-ml-md"/>
