@@ -1,144 +1,145 @@
 <template>
   <q-page class="q-layout-page row justify-center layout-padding">
     <div class="q-container">
-      <!--- TITLE -->
-      <div class="text-title-border text-blue-9 col-xs-12 q-title text-right">
-        <span>USER LIST</span>
-      </div>
+      <!--TITLE-->
+      <h1 class="q-headline text-primary">
+        <q-icon name="fas fa-users"></q-icon>
+        User List
+      </h1>
 
       <!-- CONTENT -->
-      <div id="listUserContent" class="col-12 q-mt-lg round-borders">
-        <div class="row gutter-sm justify-center relative-position">
-          <!-- TABLE LIST USERS -->
-          <div class="col-12">
-            <div class="table-responsive" style="overflow-x: scroll">
-              <q-table
-                :loading="loading"
-                :data="dataUsers"
-                :visible-columns="visibleColumns"
-                :columns="columnsTable"
-                :separator="separatorTable"
-                :pagination.sync="pagination"
-                row-key="name"
-                @request="getData"
-              >
-                <!--= Search =-->
-                <template slot="top-left" slot-scope="props">
-                  <q-search
-                    hide-underline
-                    clearable
-                    color="primary"
-                    v-model="filter.search"
-                    @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
-
-                    class="col-6"
-                  />
-
-                </template>
-
-                <!--= Config Table =-->
-                <template slot="top-right" slot-scope="props">
-                  <div class="row gutter-sm justify-end items-center full-width">
-                    <!-- Deparments -->
-                    <div class="col-12 col-md-2 col-sm-3">
-                      <q-field
-
-                      >
-                        <treeselect
-
-                          :append-to-body="true"
-                          :options="$store.getters['auth/departmentsSelect']"
-                          :value-consists-of="valueConsistsOf"
-                          v-model="departmentSelected"
-                          placeholder="All Departments"
-                          @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
-                        />
-
-                      </q-field>
-
-
-                    </div>
-
-                    <!-- Roles -->
-                    <div class="col-12 col-md-2 col-sm-3">
-                      <q-select
-                        placeholder="All Roles"
-                        :hide-underline="true"
-                        clearable
-                        v-model="rolesSelected"
-                        :options="options.roles"
-                        @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
-                      />
-
-                    </div>
-
+      <div class="backend-page relative-position">
+        <!-- TABLE LIST USERS -->
+        <div class="col-12">
+          <q-table
+            :data="dataUsers"
+            :visible-columns="visibleColumns"
+            :columns="columnsTable"
+            :separator="separatorTable"
+            :pagination.sync="pagination"
+            row-key="name"
+            class="shadow-1 border-top-color"
+            @request="getData"
+          >
+            <!--Header Table-->
+            <template slot="top" slot-scope="props">
+              <div class="row full-width">
+                <!--Search-->
+                <div class="col-12 col-md-6 q-mt-sm">
+                  <div class="col-12 col-md-6">
+                    <q-search hide-underline clearable v-model="filter.search"
+                              @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"/>
+                  </div>
+                </div>
+                <!--Button Actions-->
+                <div class="col-12 col-md-6 q-mt-sm text-right">
+                  <!--Button new record-->
+                  <q-btn icon="fas fa-edit" color="positive" label="New Product"
+                         v-if="$auth.hasAccess('profile.user.create')"
+                         :to="{name: 'user.users.create'}" rounded />
+                  <!--Button refresh data-->
+                  <q-btn icon="fas fa-sync-alt" color="info" class="q-ml-xs"
+                         @click="getData({pagination:pagination,filter:filter} , true)" rounded>
+                    <q-tooltip :delay="300">Refresh Data</q-tooltip>
+                  </q-btn>
+                </div>
+                <!--Filters-->
+                <div class="col-12 q-mt-sm">
+                  <!--By Department-->
+                  <div class="cont-vue-tree">
+                    <div class="stack-label float-left">Department:</div>
+                    <treeselect
+                      :append-to-body="true"
+                      :options="$store.getters['auth/departmentsSelect']"
+                      :value-consists-of="valueConsistsOf"
+                      v-model="departmentSelected"
+                      placeholder="All Departments"
+                      @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
+                    />
+                  </div>
+                  <!--By Role-->
+                  <div class="cont-vue-tree">
+                    <div class="stack-label float-left">Role:</div>
+                    <treeselect
+                      :append-to-body="true"
+                      :options="options.roles"
+                      :value-consists-of="valueConsistsOf"
+                      v-model="rolesSelected"
+                      placeholder="All Roles"
+                      @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
+                    />
+                  </div>
+                  <!--Columns-->
+                  <div class="cont-vue-tree">
+                    <div class="stack-label float-left">Columns:</div>
                     <q-table-columns
                       color="primary"
                       class="q-mr-sm"
                       v-model="visibleColumns"
                       :columns="columnsTable"
                     />
-
-                    <q-toggle
-                      class="q-mx-sm"
-                      v-model="filter.deactivateds"
-                      @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
-                      label="Show disabled users"/>
-
-
                   </div>
-                </template>
+                  <!--Toogle status-->
+                  <q-toggle
+                    class="q-mx-sm"
+                    v-model="filter.deactivateds"
+                    @input="pagination.page = 1; getData({pagination:pagination,filter:filter})"
+                    label="Show disabled users"/>
+                </div>
+              </div>
+            </template>
 
-                <!--= Custom Columns =-->
-                <q-td slot="body-cell-role"
-                      slot-scope="props" :props="props">
-                  <q-chip
-                    color="primary"
-                    tag small>
-                    {{props.row.roles.length ? props.row.roles[0].name : ' - '}}
-                  </q-chip>
-                </q-td>
-                <q-td slot="body-cell-actions"
-                      slot-scope="props" :props="props">
-                  <q-btn
-                    size="sm" rounded
-                    icon="fas fa-user-edit" color="positive"
-                    :to="{name:'user.users.edit',params:{id:props.row.id}}">
-                    <q-tooltip>
-                      Edit
-                    </q-tooltip>
-                  </q-btn>
+            <!--= Custom Columns =-->
+            <q-td slot="body-cell-role"
+                  slot-scope="props" :props="props">
+              <q-chip
+                color="primary"
+                tag small>
+                {{props.row.roles.length ? props.row.roles[0].name : ' - '}}
+              </q-chip>
+            </q-td>
+            <q-td slot="body-cell-actions"
+                  slot-scope="props" :props="props">
+              <q-btn
+                size="sm" rounded
+                icon="fas fa-user-edit" color="positive"
+                :to="{name:'user.users.edit',params:{id:props.row.id}}">
+                <q-tooltip>
+                  Edit
+                </q-tooltip>
+              </q-btn>
 
-                  <q-btn
-                    size="sm" rounded
-                    class="q-ml-sm"
-                    v-if="props.row.activated=='1'"
-                    icon="fas fa-user-times"
-                    color="red"
-                    @click="dialogChangeStatus(props.row,0)"
-                  >
-                    <q-tooltip>
-                      Disable
-                    </q-tooltip>
-                  </q-btn>
+              <q-btn
+                size="sm" rounded
+                class="q-ml-sm"
+                v-if="props.row.activated=='1'"
+                icon="fas fa-user-times"
+                color="red"
+                @click="dialogChangeStatus(props.row,0)"
+              >
+                <q-tooltip>
+                  Disable
+                </q-tooltip>
+              </q-btn>
 
-                  <q-btn
-                    size="sm" rounded
-                    class="q-ml-sm"
-                    v-if="props.row.activated=='0'"
-                    icon="fas fa-user-check"
-                    color="primary"
-                    @click="dialogChangeStatus(props.row,1)"
-                  >
-                    <q-tooltip>
-                      Activate
-                    </q-tooltip>
-                  </q-btn>
-                </q-td>
-              </q-table>
-            </div>
-          </div>
+              <q-btn
+                size="sm" rounded
+                class="q-ml-sm"
+                v-if="props.row.activated=='0'"
+                icon="fas fa-user-check"
+                color="primary"
+                @click="dialogChangeStatus(props.row,1)"
+              >
+                <q-tooltip>
+                  Activate
+                </q-tooltip>
+              </q-btn>
+            </q-td>
+          </q-table>
         </div>
+
+        <!--Loading-->
+        <inner-loading :visible="loading"/>
       </div>
 
       <!-- CHANGE STATUS USER -->
@@ -157,17 +158,6 @@
           <q-btn flat label="Cancel" @click="userToChange = ''; deactivate = false"/>
         </template>
       </q-dialog>
-
-      <!-- CREATE USER -->
-      <q-page-sticky position="bottom-right" :offset="[18, 18]">
-        <q-btn fab-mini color="positive"
-               icon="add"
-               @click="createUser">
-          <q-tooltip>
-            New User
-          </q-tooltip>
-        </q-btn>
-      </q-page-sticky>
     </div>
   </q-page>
 </template>
@@ -181,15 +171,15 @@
   import _cloneDeep from 'lodash.clonedeep'
   import auth from '../_plugins/auth'
 
-
   /*Components*/
   import Treeselect from '@riophae/vue-treeselect';
   import '@riophae/vue-treeselect/dist/vue-treeselect.css';
+  import innerLoading from 'src/components/master/innerLoading'
 
   export default {
     props: {},
     components: {
-      Treeselect
+      Treeselect, innerLoading
     },
     watch: {},
     mounted() {
@@ -264,15 +254,11 @@
     },
     methods: {
       initialize() {
-
-
         profileService.crud.index('apiRoutes.profile.roles', {params: {filter: {}}}).then(response => {
-          this.options.roles = this.$helper.array.select(response.data);
-
+          this.options.roles = this.$helper.array.tree(response.data);
         });
       },
-      getData({pagination, search}) {
-
+      getData({pagination, search}, refresh = false) {
         this.loading = true;
 
         let filter = {};
@@ -292,6 +278,7 @@
           filter.department = this.departmentSelected
 
         let params = {
+          refresh : refresh,
           params: {
             filter: filter,
             take: pagination.rowsPerPage,

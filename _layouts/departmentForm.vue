@@ -7,10 +7,9 @@
         error-label="This field is required"
       >
         <q-input
-
           type="text"
           v-model="form.title"
-          float-label="Department Title *:"
+          stack-label="Department Title *:"
         />
       </q-field>
     </div>
@@ -35,10 +34,10 @@
     <!--=== SAVE ===-->
     <div class="col-12 text-center q-my-md">
       <q-btn :loading="loading"
-             color="primary"
-             @click="submit">
-        Save
-      </q-btn>
+             color="positive"
+             label="Save"
+             icon="fas fa-save"
+             @click="submit" />
     </div>
   </div>
 </template>

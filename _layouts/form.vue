@@ -1,12 +1,13 @@
 <template>
-  <div id="userForm" class="q-layout-page row justify-center layout-padding">
-    <!-- Title -->
-    <div class="text-title-border text-blue-9 col-xs-12 q-title text-right">
-      <span>{{title}}</span>
-    </div>
+  <div id="userForm" class="q-layout-page row layout-padding backend-page">
+    <!--TITLE-->
+    <h1 class="q-headline text-primary">
+      <q-icon name="fas fa-user"></q-icon>
+      {{title}}
+    </h1>
 
     <!-- General Information -->
-    <q-card class="round-borders no-shadow col-12 q-mt-lg">
+    <q-card class="shadow-1 col-12 border-top-color">
       <!--Title-->
       <q-card-title class="no-border q-py-none bg-grey-2">
         <div class="row justify-between">
@@ -35,7 +36,7 @@
                 >
                   <q-input type="text"
                            v-model="form.firstName"
-                           float-label="First Name *"
+                           stack-label="First Name *"
                   />
                 </q-field>
               </div>
@@ -45,7 +46,7 @@
                   :error="$v.form.lastName.$error"
                   error-label="This field is required"
                 >
-                  <q-input v-model="form.lastName" float-label="Last Name *"/>
+                  <q-input v-model="form.lastName" stack-label="Last Name *"/>
                 </q-field>
               </div>
               <!-- User Name -->
@@ -57,7 +58,7 @@
                   <q-input autocomplete="false"
                            v-model="form.email"
                            type="text"
-                           float-label="Email *"/>
+                           stack-label="Email *"/>
                 </q-field>
               </div>
               <!-- Password -->
@@ -66,7 +67,7 @@
                   <q-input v-model="form.password"
                            :disable="!changePassword"
                            type="password"
-                           float-label="Password *"
+                           stack-label="Password *"
                            autocomplete="false"/>
                 </q-field>
               </div>
@@ -78,7 +79,7 @@
                     :disable="!changePassword"
                     v-model="form.passwordConfirmation"
                     type="password"
-                    float-label="Password Confirm *"/>
+                    stack-label="Password Confirm *"/>
                 </q-field>
               </div>
               <div class="col-12 col-md-4">
@@ -99,7 +100,7 @@
     </q-card>
 
     <!-- Relations -->
-    <q-card class="round-borders no-shadow col-12 ">
+    <q-card class="shadow-1 col-12 border-top-color">
       <q-card-title class="no-border q-py-none bg-grey-2">
         <div class="row justify-between">
           <div class="q-subheading text-primary">
@@ -135,7 +136,7 @@
     </q-card>
 
     <!-- Settings -->
-    <q-card class="round-borders no-shadow col-12 ">
+    <q-card class="shadow-1 col-12 border-top-color">
       <q-card-title class="no-border q-py-none bg-grey-2">
         <div class="row justify-between ">
           <div class="q-subheading text-primary">
@@ -207,7 +208,7 @@
                       :disabled="rolesLoading"
                     >
                       <q-select
-                        float-label="Assigned Roles"
+                        stack-label="Assigned Roles"
                         v-model="settings.assignedRoles.value"
                         :options="roles"
                         multiple chips
@@ -250,7 +251,8 @@
     </q-card>
 
     <!-- Permissions -->
-    <q-card class="round-borders no-shadow col-12 q-mb-sm" v-if="$auth.hasAccess('profile.permissions.manage')">
+    <q-card class="shadow-1 col-12 border-top-color"
+            v-if="$auth.hasAccess('profile.permissions.manage')">
 
       <q-card-title class="no-border q-py-none bg-grey-2">
         <div class="row justify-between">
@@ -326,15 +328,13 @@
     <div class="col-12 q-px-sm text-center">
       <!-- Activated -->
       <q-btn :loading="loading"
-             color="primary"
-             @click="submit">
-        Save
-      </q-btn>
+             color="positive"
+             icon="fas fa-save"
+             label="Save"
+             @click="submit" />
     </div>
 
-    <q-inner-loading :visible="loading">
-      <q-spinner-hourglass size="50px" color="primary"/>
-    </q-inner-loading>
+    <inner-loading :visible="loading" />
   </div>
 </template>
 <script>
@@ -352,11 +352,12 @@
   import Treeselect from '@riophae/vue-treeselect';
   import '@riophae/vue-treeselect/dist/vue-treeselect.css';
   import recursiveList from 'src/components/master/recursiveListSelect'
+  import innerLoading from 'src/components/master/innerLoading'
 
 
   export default {
     props: {},
-    components: {Treeselect, recursiveList},
+    components: {Treeselect, recursiveList, innerLoading},
     watch: {
       '$route'(to, from) {
         this.$v.$reset();
@@ -426,7 +427,7 @@
           this.permissionsBackend = response.data
         });
         this.id = this.$route.params.id ? this.$route.params.id : null
-        this.title = this.$route.params.id ? ('EDIT USER ID ' + this.id) : 'NEW USER'
+        this.title = this.$route.params.id ? ('Edit User ID ' + this.id) : 'New User'
         this.roles = []
         this.departments = []
 

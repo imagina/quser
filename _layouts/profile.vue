@@ -468,12 +468,7 @@
             </div>
           </div>
           <!--Loading-->
-          <q-inner-loading :visible="loading">
-            <div class="q-box-inner-loading">
-              <q-spinner-hourglass size="50px" color="primary"/>
-              <h6 class="q-ma-none text-primary q-title">Updating your profile...</h6>
-            </div>
-          </q-inner-loading>
+          <inner-loading :visible="loading" label="Updating your profile..." />
         </div>
         <!--=== SAVE ===-->
         <div class="col-12 text-center q-py-lg">
@@ -489,6 +484,8 @@
 </template>
 
 <script>
+  //Components
+  import innerLoading from 'src/components/master/innerLoading'
   /*Services*/
   import profileService from '@imagina/quser/_services/profile/index';
   
@@ -498,6 +495,9 @@
   import {helper} from '@imagina/qhelper/_plugins/helper';
   
   export default {
+    components : {
+      innerLoading
+    },
     mounted() {
       this.$nextTick(function () {
         this.image = 'profile/img/default.jpg';

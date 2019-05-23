@@ -33,12 +33,12 @@ export const crudActions = {
       //permission:''
     },
     delete: {
-      icon: 'delete',
+      icon: 'fas fa-trash-alt',
       tooltip: '',
       //permission:''
     },
     edit: {
-      icon: 'edit',
+      icon: 'fas fa-pen',
       tooltip: '',
       //permission:''
     }

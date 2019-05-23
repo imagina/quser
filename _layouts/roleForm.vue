@@ -11,7 +11,7 @@
         <q-input
           type="text"
           v-model="form.name"
-          float-label="Role Name *:"
+          stack-label="Role Name *:"
 
         />
       </q-field>
@@ -24,7 +24,7 @@
         <q-input
           type="text"
           v-model="form.slug"
-          float-label="Slug *:"
+          stack-label="Slug *:"
         />
       </q-field>
     </div>
@@ -192,7 +192,7 @@
                       :disabled="rolesLoading"
                     >
                       <q-select
-                        float-label="Assigned Roles"
+                        stack-label="Assigned Roles"
                         v-model="settings.assignedRoles.value"
                         :options="roles"
                         multiple chips
@@ -277,10 +277,10 @@
     <!--=== SAVE ===-->
     <div class="col-12 text-center q-my-md">
       <q-btn :loading="loading"
-             color="primary"
-             @click="submit">
-        Save
-      </q-btn>
+             color="positive"
+             label="Save"
+             icon="fas fa-save"
+             @click="submit" />
     </div>
   </div>
 </template>
@@ -424,6 +424,7 @@
   
   
       },
+
       settingsToTree(modules){
         
         let tree = []
@@ -553,7 +554,6 @@
       }
 
     }
-
   }
 </script>
 <style lang="stylus">

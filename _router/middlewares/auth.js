@@ -6,7 +6,6 @@ export default async function (to, from, next) {
     const isAuthenticated = store.getters['auth/isAuthenticated'];
     //If not is authenticated, try login again
     isAuthenticated ? true : await store.dispatch('auth/AUTH_TRYAUTOLOGIN');
-
     //Redirect if is authenticated
     if (store.getters['auth/isAuthenticated']) {
       // Redirect to home, if page is login

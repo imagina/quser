@@ -54,8 +54,8 @@ export default {
 		name: 'user.users.index',
 		layout: require('@imagina/quser/_layouts/index').default,
 		containerLayout: master,
-		title: 'List/Search',
-		icon: 'fas fa-list-alt',
+		title: 'User List',
+		icon: 'fas fa-users',
 		middleware: [auth,access]
 	},
 	//User Create
@@ -116,7 +116,7 @@ export default {
 		containerLayout: master,
 		isCrud: true,
 		title: 'Departments',
-		icon: 'fas fa-cubes',
+		icon: 'fas fa-user-shield',
 		props : {
 			storeName: 'apiRoutes.profile.departments',
 			singularName: 'department',
@@ -136,7 +136,7 @@ export default {
 		containerLayout: master,
 		isCrud: true,
 		title: 'Roles',
-		icon: 'far fa-flag',
+		icon: 'fas fa-user-tag',
 		props : {
 			storeName: 'apiRoutes.profile.roles',
 			singularName: 'role',

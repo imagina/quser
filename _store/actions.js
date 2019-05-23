@@ -53,6 +53,8 @@ export const AUTH_TRYAUTOLOGIN = ({commit, dispatch, state}) => {
       userId: userId,
       userData: userData
     })
+    await dispatch('SET_PERMISSIONS')//Add permissions of user
+    await dispatch('SET_SETTINGS')//Add settings of user
 
     resolve(true)//Resolve
   })
