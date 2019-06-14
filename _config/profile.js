@@ -19,6 +19,7 @@ export default {
 	departmentsSettings: urlBase + '/departments/settings',
 	fields: urlBase + '/fields',
 	users: urlBase + '/users',
+	register: urlBase + '/users/register',
 	changePassword: urlBase + '/users/change-password',
   roles: urlBase + '/roles'
 }
