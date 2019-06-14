@@ -62,6 +62,8 @@ export const AUTH_TRYAUTOLOGIN = ({commit, dispatch, state}) => {
 
 export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
   return new Promise(async (resolve) => {
+    let roleUser = await helper.storage.get.item('auth.role.id')//Get role form storage
+    let departmentUser = await helper.storage.get.item('auth.department.id')//Get department form storage
     //Get timestamp to expirate sesion
     const now = new Date();
     const expirationDate = now.getTime() + ((env('DAYS_EXPIRE_SESSION') * 86400) * 1000)
@@ -72,6 +74,14 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
     await helper.storage.set('expirationDate', expirationDate)
     await helper.storage.set('userData', data.userData)
 
+    //Set role and departmen in axios
+    if (roleUser && departmentUser) {//Config rol and department
+      //Set in axios how default params
+      axios.defaults.params = {
+        setting: {departmentId: departmentUser, roleId: roleUser}
+      }
+    }
+
     //Register token by default in axios
     axios.defaults.headers.common['Authorization'] = data.userToken;
     commit('AUTH_SUCCESS', data);//commit userdata in store
@@ -80,20 +90,21 @@ export const AUTH_SUCCESS = ({commit, dispatch}, data) => {
 }
 
 export const AUTH_LOGOUT = async ({commit, dispatch}) => {
-  const clearData = async () => {
-    await store.dispatch('app/RESET_STORE')//Reset Store
-    if (env('PUSHER_ACTIVE') == 'true') notification.leave() //Close pusher
-    await helper.storage.clear(); //Clear Storage
-    router.push({name: 'auth.login'})//Redirect to Login
-  }
+  return new Promise((resolve, reject) => {
+    const clearData = async () => {
+      await store.dispatch('app/RESET_STORE')//Reset Store
+      if (env('PUSHER_ACTIVE') == 'true') notification.leave() //Close pusher
+      await helper.storage.restore(config('app.saveStorage.logout'))
+      resolve(true)
+    }
 
-  //Request to Logout in backend
-  profileServices.auth.logout().then(()=>{
-    clearData()
-  }).catch(()=>{
-    clearData()
+    //Request to Logout in backend
+    profileServices.auth.logout().then(()=>{
+      clearData()
+    }).catch(()=>{
+      clearData()
+    })
   })
-
 }
 
 export const AUTH_UPDATE = ({commit, dispatch}) => {
