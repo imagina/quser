@@ -1,8 +1,8 @@
 {
-  "_from": "@imagina/quser@0.0.51",
-  "_id": "@imagina/quser@0.0.51",
+  "_from": "@imagina/quser@^0.0.52",
+  "_id": "@imagina/quser@0.0.52",
   "_inBundle": false,
-  "_integrity": "sha512-ankDdLQGYlKAAvKnmCVhhvB9482dnVT3csICfFjoT5AUvBSMgjOGK0eXeYiGCl1yWbOIepQoGr8azsCLt+XlWg==",
+  "_integrity": "sha512-L4bIiKLz2g+QVHkzszOORyg/Wvofmvt9ruy1Y/zoe+kE1ERgSilvnxvabq2usA0S8Nrgw/knwziY87sqe57Opg==",
   "_location": "/@imagina/quser",
   "_phantomChildren": {
     "axios": "0.18.0",
@@ -18,24 +18,23 @@
     "vuelidate": "0.7.4"
   },
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@imagina/quser@0.0.51",
+    "raw": "@imagina/quser@^0.0.52",
     "name": "@imagina/quser",
     "escapedName": "@imagina%2fquser",
     "scope": "@imagina",
-    "rawSpec": "0.0.51",
+    "rawSpec": "^0.0.52",
     "saveSpec": null,
-    "fetchSpec": "0.0.51"
+    "fetchSpec": "^0.0.52"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.51.tgz",
-  "_shasum": "911e36954c3c7d3171e7f47b17769f8a13e46c35",
-  "_spec": "@imagina/quser@0.0.51",
-  "_where": "D:\\imagina\\projects\\baseQuasar\\back-end",
+  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.52.tgz",
+  "_shasum": "9107a338e726d9ff9ee73f19af042037b9369b6f",
+  "_spec": "@imagina/quser@^0.0.52",
+  "_where": "D:\\imagina\\projects\\backedpizza\\front-end",
   "author": {
     "name": "http://imaginacolombia.com/"
   },
@@ -72,5 +71,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.51"
+  "version": "0.0.52"
 }
