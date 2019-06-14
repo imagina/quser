@@ -1,117 +1,107 @@
 <template>
-  <q-page id="pageLogin" class="flex flex-center">
+  <q-page id="authLoginRegister" class="flex flex-center">
+    <div class="form-content shadow-1 q-px-md backend-page">
+      <!--Tabs to toogle between login and register form-->
+      <q-tabs inverted v-model="tabModel" align="justify" color="blue-grey">
+        <!-- Tabs Title -->
+        <q-tab slot="title" name="tab-login" label="Iniciar Sesión"
+               @select="metaTitle = 'Iniciar Sesión'"/>
+        <q-tab slot="title" name="tab-register" label="Crear Cuenta"
+               @select="metaTitle = 'Crear Cuenta'" v-if="withRegister"/>
 
-    <div class="row shadow-3 q-mx-md" style="width: 350px">
-      <div id="form-login-right"
-           class="col-12"
-           style="padding: 30px 25px">
-        <h4 class="text-blue-grey text-center q-mt-none q-mb-md q-pb-sm"
-            style="border-bottom: 2px solid #f1f1f1; font-size: 34px">
-          LOGIN
-        </h4>
-        <!-- USER -->
-        <q-field
-          :error="$v.form.username.$error"
-          error-label="This field is required"
-        >
-          <q-input name="username"
-                   autofocus
-                   autocomplete="off"
-                   v-model="form.username"
-                   type="text"
-                   color="blue-grey"
-                   :before="[{icon: 'person'}]"
-                   @keyup.enter="authenticate()"
-                   float-label="Username or Email"
-          />
-        </q-field>
-        <!-- PASS -->
-        <q-field
-          :error="$v.form.password.$error"
-          error-label="This field is required"
-        >
-          <q-input v-model="form.password"
-                   type="password"
-                   name="password"
-                   color="blue-grey"
-                   :before="[{icon: 'lock'}]"
-                   @keyup.enter="authenticate()"
-                   float-label="Password"
-          />
-        </q-field>
-
-        <!--=== LOGIN ===-->
-        <div class="text-center">
-          <q-btn :loading="loading_login"
-                 color="blue-grey" name="submit"
-                 @click="authenticate()">
-            LOGIN
-            <span slot="loading">
-                <q-spinner-hourglass class="on-left"/>
-                VALIDATING...
-              </span>
-          </q-btn>
-        </div>
-      </div>
+        <!-- Tab Pane Login -->
+        <q-tab-pane name="tab-login" keep-alive>
+          <login-form @logged="redirect()" :email="email" />
+        </q-tab-pane>
+        <!-- Tab Pane Register -->
+        <q-tab-pane name="tab-register" keep-alive v-if="withRegister">
+          <register-form v-model="email" @input="tabModel = 'tab-login'"/>
+        </q-tab-pane>
+      </q-tabs>
     </div>
   </q-page>
 </template>
 
 <script>
-  //Plugins
-  import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
-  //Services
-  import authService from '@imagina/quser/_services/profile/index';
+  //components
+  import loginForm from '@imagina/quser/_components/auth/login'
+  import registerForm from '@imagina/quser/_components/auth/register'
 
   export default {
-    data() {
+    meta() {
       return {
-        form: {
-          username: '',
-          password: ''
-        },
-        rememberData: true,
-        loading_login: false,
-        inRequest : false
+        title: this.metaTitle,
       }
     },
-    validations: {
-      form: {
-        username: {required},
-        password: {required}
+    props: {},
+    components: {
+      loginForm, registerForm
+    },
+    watch: {
+      $route(to, from) {
+        this.checkRedirect()
+      },
+    },
+    mounted() {
+      this.$nextTick(function () {
+        let configApp = config('app')
+        this.withRegister = configApp.registerUsers
+        this.checkRedirect()
+      })
+    },
+    data() {
+      return {
+        metaTitle : 'Iniciar Sesión',
+        tabModel : 'tab-login',
+        email : null,
+        withRegister : false,
+        redirectTo: false
       }
     },
     methods: {
-      async authenticate() {
-        if(!this.inRequest){
-          this.$v.$touch();
-          if (!this.$v.$error) {
-            this.inRequest = true
-            this.loading_login = true;
-            const {username, password} = this.form;
-            this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
-              this.loading_login = false;
-              this.inRequest = false
-              this.$router.push({name:'app.config'})
-            }).catch(error => {
-              this.loading_login = false;
-              this.inRequest = false
-            });
-          }
+      //check if redirect to route specific
+      async checkRedirect() {
+        let route = this.$route.params.from
+        if (route) {
+          this.redirectTo = route
+          //Save data of route in storage
+          this.$helper.storage.set('redirect.to.from.login', {
+            name: route.name,
+            fullPath: route.fullPath,
+            meta: route.meta,
+            params: route.params,
+            path: route.path,
+            query: route.query
+          })
+        } else {
+          //Search route in storage
+          let fromRoute = await this.$helper.storage.get.item('redirect.to.from.login')
+          if (fromRoute) this.redirectTo = fromRoute
         }
       },
+      //Redirect after login
+      redirect(){
+        this.$router.push({name: 'app.config', params: {redirectTo: this.redirectTo}})
+      }
     }
   }
 </script>
+
 <style lang="stylus">
   @import "~variables";
-  #pageLogin
-    .q-btn
-      min-width 140px !important
-    #form-login-left
-      min-height 150px
-      .bg-color
-        background-color $blue-grey
-        height 100%
-        width 100%
+  #authLoginRegister
+    .form-content
+      width 350px
+      .form-title
+        color $blue-grey
+        text-align center
+        border-bottom 2px solid #f1f1f1
+        font-size 34px
+        margin 0 0 10px 0
+      .input-title
+        font-size 16px
+        .q-icon
+          margin-right 5px
+      .q-btn
+        min-width 140px !important
 </style>

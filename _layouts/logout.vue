@@ -17,8 +17,9 @@
 <script>
 	export default {
 		mounted() {
-			this.$nextTick(function () {
-				this.$store.dispatch("auth/AUTH_LOGOUT")
+			this.$nextTick(async function () {
+				await this.$store.dispatch("auth/AUTH_LOGOUT")
+				this.$router.push({name : 'auth.login'})
 			})
 		}
 	}

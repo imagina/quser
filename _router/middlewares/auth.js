@@ -12,7 +12,7 @@ export default async function (to, from, next) {
       (to.name == 'auth.login') ? next({name:'app.home'}) : next()
     } else {//Redirect if is not authenticated
       // will not Redirect if page is login
-      (to.name == 'auth.login') ? next() : next({name: 'auth.login'})
+      (to.name == 'auth.login') ? next() : next({name: 'auth.login', params : {from : to}})
     }
   } catch (error) {
       next();
