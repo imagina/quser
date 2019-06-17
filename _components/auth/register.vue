@@ -85,7 +85,7 @@
       />
     </q-field>
     <!--captcha-->
-    <captcha v-model="form.captcha" ref="captcha" />
+    <captcha v-model="form.captcha" ref="captcha"/>
     <!-- Button login -->
     <div class="text-center q-mt-sm">
       <q-btn :loading="loading"
@@ -111,12 +111,12 @@
   import captcha from '@imagina/qsite/_components/captcha'
 
   export default {
-    components :{captcha},
+    components: {captcha},
     validations: {
       form: {
         firstName: {required},
         lastName: {required},
-        email: {required,email},
+        email: {required, email},
         password: {required, minLength: minLength(8)},
         passwordConfirmation: {required, sameAsPassword: sameAs('password')}
       }
@@ -127,10 +127,10 @@
     },
     data() {
       return {
-        loading : false,
+        loading: false,
         form: {
-          firstName : null,
-          lastName : null,
+          firstName: null,
+          lastName: null,
           email: null,
           password: null,
           passwordConfirmation: null,
@@ -138,11 +138,11 @@
         },
       }
     },
-    computed : {
-      initData(){
+    computed: {
+      initData() {
         return {
-          firstName : null,
-          lastName : null,
+          firstName: null,
+          lastName: null,
           email: null,
           password: null,
           passwordConfirmation: null
@@ -155,55 +155,62 @@
         if (!this.inRequest) {
           this.$v.$touch();
           if (!this.$v.$error) {
-            if(this.checkedCaptcha()){
+            if (this.checkedCaptcha()) {
               this.loading = true;
-              authServices.crud.create('apiRoutes.profile.register',this.form).then(response => {
-                this.callbackRequest()
+              authServices.crud.create('apiRoutes.profile.register', this.form).then(response => {
+                this.callbackRequest(true, response.data)
               }).catch(error => {
                 this.callbackRequest(false, error)
               })
             }
-          }else{
-            this.$helper.alert.error('Revise los campos inválidos','bottom')
+          } else {
+            this.$helper.alert.error('Revise los campos inválidos', 'bottom')
           }
         }
       },
       //check if captcha is defined
-      checkedCaptcha(){
+      checkedCaptcha() {
         let captcha = this.form.captcha
         let response = false
-        if(captcha && captcha.token) response = true
-        if(!response) this.$helper.alert.error('El reCaptcha es requerido','bottom')
+        if (captcha && captcha.token) response = true
+        if (!response) this.$helper.alert.error('El reCaptcha es requerido', 'bottom')
         return response
       },
       //Action after request
-      callbackRequest(success = true, error){
+      callbackRequest(success = true, response) {
         this.$v.$reset()//Reset validations
         this.loading = false
         this.$refs.captcha.reset()
+        let message = ''
 
-        if(success){
+        if (success) {
+          //Message to activate user with email
+          if (response.checkEmail)
+            message = 'Debe activar su cuenta a través de su e-mail ' + this.form.email
           //Dialog to go to iniciar sesión when id register
           this.$q.dialog({
             title: 'Registro exitoso!',
+            message : message,
             color: 'blue-grey',
             ok: 'Iniciar Sesion',
             cancel: false,
             noBackdropDismiss: true,
             noEscDismiss: true,
           }).then(async data => {
-            this.$emit('input',this.form.email)
+            this.$emit('registered', this.form.email)
+            this.$emit('input', this.form.email)
             let captcha = _cloneDeep(this.form.captcha)
             this.form = _cloneDeep(this.initData)//inti form
             this.form.captcha = captcha
-          }).catch(() => {})
-        }else{
-          console.error('[auth.register]',error)
-          if(error){//Message Vali
-            let errorMsg = JSON.parse(error)
-            if(errorMsg.email)
+          }).catch(() => {
+          })
+        } else {
+          console.error('[auth.register]', response)
+          if (response) {//Message Vali
+            let errorMsg = JSON.parse(response)
+            if (errorMsg.email)
               this.$helper.alert.error(
-                'El Email "'+this.form.email+'" ya está registrado',
+                'El Email "' + this.form.email + '" ya está registrado',
                 'top', false, 4000
               )
           }

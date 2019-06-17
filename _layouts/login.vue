@@ -1,42 +1,16 @@
 <template>
   <q-page id="authLoginRegister" class="flex flex-center">
-    <div class="form-content shadow-1 q-px-md backend-page">
-      <!--Tabs to toogle between login and register form-->
-      <q-tabs inverted v-model="tabModel" align="justify" color="blue-grey">
-        <!-- Tabs Title -->
-        <q-tab slot="title" name="tab-login" label="Iniciar Sesión"
-               @select="metaTitle = 'Iniciar Sesión'"/>
-        <q-tab slot="title" name="tab-register" label="Crear Cuenta"
-               @select="metaTitle = 'Crear Cuenta'" v-if="withRegister"/>
-
-        <!-- Tab Pane Login -->
-        <q-tab-pane name="tab-login" keep-alive>
-          <login-form @logged="redirect()" :email="email" />
-        </q-tab-pane>
-        <!-- Tab Pane Register -->
-        <q-tab-pane name="tab-register" keep-alive v-if="withRegister">
-          <register-form v-model="email" @input="tabModel = 'tab-login'"/>
-        </q-tab-pane>
-      </q-tabs>
-    </div>
+    <form-auth @logged="redirect()" />
   </q-page>
 </template>
 
 <script>
   //components
-  import loginForm from '@imagina/quser/_components/auth/login'
-  import registerForm from '@imagina/quser/_components/auth/register'
+  import formAuth from '@imagina/quser/_components/auth/form'
 
   export default {
-    meta() {
-      return {
-        title: this.metaTitle,
-      }
-    },
     props: {},
-    components: {
-      loginForm, registerForm
-    },
+    components: {formAuth},
     watch: {
       $route(to, from) {
         this.checkRedirect()
@@ -44,17 +18,11 @@
     },
     mounted() {
       this.$nextTick(function () {
-        let configApp = config('app')
-        this.withRegister = configApp.registerUsers
         this.checkRedirect()
       })
     },
     data() {
       return {
-        metaTitle : 'Iniciar Sesión',
-        tabModel : 'tab-login',
-        email : null,
-        withRegister : false,
         redirectTo: false
       }
     },
@@ -80,7 +48,7 @@
         }
       },
       //Redirect after login
-      redirect(){
+      redirect() {
         this.$router.push({name: 'app.config', params: {redirectTo: this.redirectTo}})
       }
     }
@@ -89,19 +57,4 @@
 
 <style lang="stylus">
   @import "~variables";
-  #authLoginRegister
-    .form-content
-      width 350px
-      .form-title
-        color $blue-grey
-        text-align center
-        border-bottom 2px solid #f1f1f1
-        font-size 34px
-        margin 0 0 10px 0
-      .input-title
-        font-size 16px
-        .q-icon
-          margin-right 5px
-      .q-btn
-        min-width 140px !important
 </style>

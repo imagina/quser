@@ -1,6 +1,6 @@
 {
-  "_from": "@imagina/quser@^0.0.52",
-  "_id": "@imagina/quser@0.0.52",
+  "_from": "@imagina/quser@^0.0.53",
+  "_id": "@imagina/quser@0.0.53",
   "_inBundle": false,
   "_integrity": "sha512-L4bIiKLz2g+QVHkzszOORyg/Wvofmvt9ruy1Y/zoe+kE1ERgSilvnxvabq2usA0S8Nrgw/knwziY87sqe57Opg==",
   "_location": "/@imagina/quser",
@@ -20,20 +20,20 @@
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@imagina/quser@^0.0.52",
+    "raw": "@imagina/quser@^0.0.53",
     "name": "@imagina/quser",
     "escapedName": "@imagina%2fquser",
     "scope": "@imagina",
-    "rawSpec": "^0.0.52",
+    "rawSpec": "^0.0.53",
     "saveSpec": null,
-    "fetchSpec": "^0.0.52"
+    "fetchSpec": "^0.0.53"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.52.tgz",
+  "_resolved": "https://registry.npmjs.org/@imagina/quser/-/quser-0.0.53.tgz",
   "_shasum": "9107a338e726d9ff9ee73f19af042037b9369b6f",
-  "_spec": "@imagina/quser@^0.0.52",
+  "_spec": "@imagina/quser@^0.0.53",
   "_where": "D:\\imagina\\projects\\backedpizza\\front-end",
   "author": {
     "name": "http://imaginacolombia.com/"
@@ -71,5 +71,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.52"
+  "version": "0.0.53"
 }
