@@ -1,6 +1,8 @@
 <template>
   <q-page id="authLoginRegister" class="flex flex-center">
-    <form-auth @logged="redirect()" />
+    <div class="q-px-md q-py-xl">
+      <form-auth :horizontal-extra-fields="true" @logged="redirect()" />
+    </div>
   </q-page>
 </template>
 
@@ -30,7 +32,7 @@
       //check if redirect to route specific
       async checkRedirect() {
         let route = this.$route.params.from
-        if (route) {
+        if (route && (route.name != 'auth.logout')) {
           this.redirectTo = route
           //Save data of route in storage
           this.$helper.storage.set('redirect.to.from.login', {

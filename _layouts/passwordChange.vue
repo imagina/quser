@@ -134,7 +134,7 @@
 <script>
 	/*Plugins*/
 	import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
-	import {alert} from '@imagina/qhelper/_plugins/alert'
+	import alert from '@imagina/qhelper/_plugins/alert'
 	import {helper} from '@imagina/qhelper/_plugins/helper'
 	import authService from '@imagina/quser/_services/profile/index';
 
@@ -177,7 +177,7 @@
 				if (!this.inRequest) {//Check is already is in request
 					this.$v.$touch();
 					if (this.$v.$error) {//Check if isn't errors in validate form
-						alert.error('Please review fields again.', 'bottom');
+						alert.error({message : 'Please review fields again.', pos : 'bottom'});
 					} else {
 						if (this.checkNewPassword()) {//Check if new password is same to confrimation
 							this.login = !this.login;
@@ -186,7 +186,7 @@
 								this.userId = response.data.userId
 								this.showDialog = true
 							}).catch(error => {
-								alert.error(error, 'top')
+								alert.error({message : error, pos : 'top'})
 								this.login = !this.login;
 								this.inRequest = false
 							})
@@ -197,7 +197,7 @@
 			//Check if new password is same with confirmation
 			checkNewPassword() {
 				if (this.form.newPassword != this.form.confirmNewPassword) {
-					alert.error('Password confirmation is wrong')
+					alert.error({message : 'Password confirmation is wrong'})
 					return false
 				}
 
@@ -212,7 +212,7 @@
 			getOut(closeSessions = false) {
 				if (closeSessions) {
 					const params = {remember: false, params: {userId: this.userId}}
-					profileServices.crud.index('apiRoutes.profile.authLogoutAll', params)
+					profileServices.crud.index('apiRoutes.quser.authLogoutAll', params)
 				}
 
 				//Redirect
