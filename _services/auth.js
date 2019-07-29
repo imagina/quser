@@ -26,7 +26,7 @@ export default {
     };
 
     // We merge grant type and client secret stored in configuration
-    Object.assign(data, Config('auth.auth'));
+    data = Object.assign({}, data, Config('auth.auth'));
     return new Promise((resolve, reject) => {
       Http.post(Config('apiRoutes.api.login_url'), data)
         .then((response) => {
@@ -37,34 +37,6 @@ export default {
           reject(error);
         });
     });
-  },
-
-  currentUser() {
-    helper.storage.get.item('userToken').then(response => {
-      if (response) {
-        helper.storage.get.item('userData').then(responseData => {
-          let userData = responseData;
-          if (userData)
-            return new Promise((resolve) => {
-              resolve(userData);
-            })
-          else
-            return new Promise((resolve, reject) => {
-              Http.get(Config('apiRoutes.api.current_user_url'))
-                .then(response => {
-                  resolve(response);
-                })
-                .catch(error => {
-                  if (error.response && (error.response.status === 401 || error.response.status === 429)) {
-                    this.logout()
-                  }
-                  reject(error)
-                })
-            })
-        })
-      }
-      return new Promise(resolve => resolve(null))
-    })
   },
 
   getAuthHeader() {
@@ -95,6 +67,4 @@ export default {
     //By default we'll be working only with LocalStorage
     //Are we going to implement more storages?
   },
-  
-  
 }

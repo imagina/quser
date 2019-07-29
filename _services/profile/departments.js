@@ -8,7 +8,7 @@ export default {
   getSettings(data) {
 
     return new Promise((resolve, reject) => {
-        return http.get(config('apiRoutes.profile.departmentsSettings'), {
+        return http.get(config('apiRoutes.quser.departmentsSettings'), {
           params: data
       }).then(response => {
         resolve(response);

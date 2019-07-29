@@ -36,7 +36,7 @@ export default {
     return new Promise((resolve, reject) => {
       //Validations
       if (!data) return reject('Data is required')
-      let urlApi = config('apiRoutes.profile.changePassword')//Get url from config
+      let urlApi = config('apiRoutes.quser.changePassword')//Get url from config
       //Request
       http.put(urlApi, {attributes : data}).then(response => {
         resolve(response.data)//Successful response

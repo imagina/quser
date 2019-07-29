@@ -1,89 +1,72 @@
-##Module User
-Module with CRUD for users, and profile admin.
+## QUSER  | 1.0.0
 
-##Required
+## Installation
 
-####Plugins
-- helper
-- vuelidate
-- axios
+`` npm i @imagina/quser@1.0.0 ``
 
+## API Routes
 
-##Usage
+| ENTITY  | ROUTE |
+| ------------- | ------------- |
+| Me | apiRoutes.quser.Me |
+| Must Change Password | apiRoutes.quser.mustChangePassword |
+| Login | apiRoutes.quser.authLogin |
+| Logout | apiRoutes.quser.authLogout |
+| Logout All | apiRoutes.quser.authLogoutAll |
+| Impersonate | apiRoutes.quser.impersonate |
+| Refresh Token | apiRoutes.quser.refreshToken |
+| Addresses | apiRoutes.quser.addresses |
+| Departments | apiRoutes.quser.departments |
+| Department Settings | apiRoutes.quser.departmentsSettings |
+| Fields | apiRoutes.quser.fields |
+| Users | apiRoutes.quser.users |
+| Register | apiRoutes.quser.register |
+| ChangePassword | apiRoutes.quser.changePassword |
+| Roles | apiRoutes.quser.roles |
 
-####Routes and Middleware
+## Pages
+- ### Front-End
 
-In file `src/router/routes` add:
-```js
-import user from '@imagina/quser/_router/routes' //Routes module
-import auth from '@imagina/quser/_router/middlewares/auth' //Middleware auth
-import access from '@imagina/quser/_router/middlewares/access' //Middleware access
-```
+  | PAGE | NAME |
+  | ------------- | ------------- |
+  | Login | auth.login |
+  | Logout | auth.logout |
+  | Change Password | auth.change.password |
+  | Profile | user.profile.me |
+  
+- ### Back-End
 
-####Stores
+  | PAGE | NAME |
+  | ------------- | ------------- |
+  | Users | quser.admin.users |
+  | Departments | quser.admin.departments |
+  | Roles | quser.admin.roles |
+  
+## Components  
 
-In file `src/store/index` add:
-```js
-import auth from '@imagina/quser/_store/auth/index'; //Import this file //Import this file
-Vue.use(Vuex)
-const store = new Vuex.Store({
-  modules: {
-    auth //Add authStore
-  }
-});
-```
-
-####Config
-
-In file `src/config/index` add:
-```js
-import auth from '@imagina/quser/_config/auth'; //Import this file
-```
-####Sidebar
-in file `src/config/slidebar` add:
-```js
-/*User*/
-user: {
-  title: 'Users',
-  icon: 'fas fa-users',
-  children: [
-    {
-      title: 'Create',
-      icon: 'fas fa-user-plus',
-      to: 'user.users.create',
-      can:'user.users.create'
-    },
-    {
-      title: 'List/Search',
-      icon: 'fas fa-list-alt',
-      to: 'user.users.index',
-      can:'user.users.index'
-    },
-    {
-      title: 'My profile',
-      icon: 'fas fa-user-tie',
-      to: 'user.profile.me'
-    },
-    {
-      title: 'Departments',
-      icon: 'fas fa-cube',
-      to: 'user.department'
-    }
-  ]
-},
-/*logout*/
-logout: {
-  title: 'Sign out',
-  icon: 'fas fa-sign-out-alt',
-  to: 'auth.logout'
-}
-```
-
-##Components
-- widget-use: component with route to my profile and sign out:
-
-`import WidgetUser from "@imagina/quser/_components/widget-user";`
-
-##Plugins
-- auth: plugin with method `hasAccess` for validate user permisions
-`import {authPlugin} from "@imagina/quser/_plugins/auth";` or define it in data like`auth: require('@imagina/quser/_plugins/auth').default`
+  | NAME | ROUTE |
+  | ------------- | ------------- |
+  | Serch Users | @imagina/quser/_components/search-users |
+  | Widget Users | @imagina/qblog/_components/widget-user |
+  | Widget User Department | @imagina/qblog/_components/widget-user-department |
+  | Auth Form | @imagina/qblog/_components/auth/form |
+  | Auth Login | @imagina/qblog/_components/auth/login |
+  | Auth Register | @imagina/qblog/_components/auth/register |
+  
+## Store VUEX  
+- #### States
+  - quserAuth.userToken  
+  - quserAuth.userId  
+  - quserAuth.userData  
+  - quserAuth.permissions  
+  - quserAuth.settings  
+  - quserAuth.departments  
+  
+## Plugins
+- #### Auth  
+    You can use this plugin, calling `$auth` in the template 
+    or `this.$auth` in scripts. Methods:
+    - ###### hasAccess('permission-name')
+        Validate if logged user has this permission
+    - ###### hasSetting('setting-name')
+        Validate if logged user has this setting

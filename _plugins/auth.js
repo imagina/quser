@@ -4,9 +4,6 @@ import store from 'src/store/index';
 
 class Auth {
   constructor() {
-    helper.storage.get.item("userData").then(user => {
-      this.user = user
-    })
   }
 
   /**
@@ -17,7 +14,7 @@ class Auth {
    */
   hasAccess(can) {
     if(!can) return true
-    let userPermissions = store.getters["auth/getPermissions"]
+    let userPermissions = store.getters["quserAuth/getPermissions"]
     if(userPermissions && Object.keys(userPermissions).length){
       let access = userPermissions[can]
       return access == null ? false : access
@@ -25,10 +22,10 @@ class Auth {
       return false
     }
   }
-  
-  
+
+
   hasSetting(name) {
-    let userSettings = store.getters["auth/getSettings"]
+    let userSettings = store.getters["quserAuth/getSettings"]
     let setting = userSettings.find(setting => setting.name === name)
     return setting ? setting :false
   }

@@ -1,50 +1,55 @@
 <template>
-  <div id="formLoginComponent">
-    <!-- User field -->
-    <q-field
-      :error="$v.form.username.$error"
-      error-label="Este campo es requerido"
-    >
-      <div class="input-title">
-        <q-icon name="fas fa-user"/>
-        Email
+  <div id="formLoginComponent" :style="'max-width: '+(horizontal ? '700px' : '300px')">
+    <div class="row gutter-x-sm">
+      <!-- User field -->
+      <div :class="columnsFieldsClass">
+        <q-field
+          :error="$v.form.username.$error"
+          :error-label="$tr('ui.message.fieldRequired')"
+        >
+          <div class="input-title">
+            <q-icon name="fas fa-user"/>{{$tr('ui.form.email')}}
+          </div>
+          <q-input name="username"
+                   autofocus
+                   ref="username"
+                   autocomplete="off"
+                   v-model="form.username"
+                   type="text"
+                   color="blue-grey"
+                   @keyup.enter="authenticate()"
+          />
+        </q-field>
       </div>
-      <q-input name="username"
-               autofocus
-               ref="username"
-               autocomplete="off"
-               v-model="form.username"
-               type="text"
-               color="blue-grey"
-               @keyup.enter="authenticate()"
-      />
-    </q-field>
-    <!-- Password field -->
-    <q-field
-      :error="$v.form.password.$error"
-      error-label="Este campo es requerido"
-    >
-      <div class="input-title">
-        <q-icon name="fas fa-lock"/>
-        Contraseña
+      <!-- Password field -->
+      <div :class="columnsFieldsClass">
+        <q-field
+          :error="$v.form.password.$error"
+          :error-label="$tr('ui.message.fieldRequired')"
+        >
+          <div class="input-title">
+            <q-icon name="fas fa-lock"/>
+            {{$tr('ui.form.password')}}
+          </div>
+          <q-input v-model="form.password"
+                   type="password"
+                   name="password"
+                   ref="password"
+                   color="blue-grey"
+                   @keyup.enter="authenticate()"
+          />
+        </q-field>
       </div>
-      <q-input v-model="form.password"
-               type="password"
-               name="password"
-               ref="password"
-               color="blue-grey"
-               @keyup.enter="authenticate()"
-      />
-    </q-field>
+    </div>
     <!-- Button login -->
     <div class="text-center q-mt-sm">
-      <q-btn :loading="loading_login"
+      <q-btn :loading="loading"
              color="blue-grey" name="submit"
              @click="authenticate()">
-        Entrar
+        {{$tr('quser.layout.label.login')}}
         <span slot="loading">
           <q-spinner-mat class="on-left"/>
-          Validando...
+          {{`${$tr('ui.label.validating')}...`}}
         </span>
       </q-btn>
     </div>
@@ -54,11 +59,11 @@
 <script>
   //Plugins
   import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
-  import _cloneDeep from 'lodash.clonedeep'
 
   export default {
     props: {
-      email: {default: null}
+      email: {default: null},
+      horizontal: {type: Boolean, default: false}
     },
     watch: {
       email() {
@@ -83,9 +88,15 @@
           password: ''
         },
         rememberData: true,
-        loading_login: false,
+        loading: false,
         inRequest: false,
         fromRoute: false
+      }
+    },
+    computed :{
+      columnsFieldsClass(){
+        if(this.horizontal) return 'col-12 col-md-6'
+        else return 'col-12'
       }
     },
     methods: {
@@ -95,25 +106,25 @@
           this.$v.$touch();
           if (!this.$v.$error) {
             this.inRequest = true
-            this.loading_login = true;
+            this.loading = true;
             const {username, password} = this.form;
-            this.$store.dispatch("auth/AUTH_REQUEST", {username, password}).then((response) => {
-              this.loading_login = false;
+            this.$store.dispatch("quserAuth/AUTH_REQUEST", {username, password}).then((response) => {
+              this.loading = false;
               this.inRequest = false
               this.$emit('logged')
             }).catch(error => {
-              this.loading_login = false;
+              this.loading = false;
               this.inRequest = false
             });
           } else {
-            this.$helper.alert.error('Revise los campos inválidos', 'bottom')
+            this.$alert.error({message: this.$tr('ui.message.formInvalid'), pos: 'bottom'})
           }
         }
       },
       //Set email
       setEmail() {
         if (this.email) {
-          this.form.username = _cloneDeep(this.email)
+          this.form.username = this.$clone(this.email)
           this.$refs.password.focus()
         } else this.$refs.username.focus()
       }

@@ -7,6 +7,4 @@ export default {
   },
   default_storage: env('DEFAULT_STORAGE', 'LocalStorage'), // Supported Types 'Cookies', 'Localstorage',
   auth_type: 'Bearer',
- 
-  
 }

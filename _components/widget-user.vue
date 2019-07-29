@@ -61,8 +61,8 @@
     },
     methods: {
       setData(){
-        helper.storage.get.item('userData').then(response => {
-          this.userData = response
+        helper.storage.get.item('sessionData').then(response => {
+          this.userData = response.userData
         })
       }
     }

@@ -1,20 +1,25 @@
 <template>
-  <div id="formAuthPage" class="form-content shadow-1 q-px-md backend-page">
+  <div id="formAuthPage"
+       class="form-content shadow-1 q-px-md backend-page">
     <!--Tabs to toogle between login and register form-->
     <q-tabs inverted v-model="tabModel" align="justify" color="blue-grey">
       <!-- Tabs Title -->
-      <q-tab slot="title" name="tab-login" label="Iniciar Sesión"
+      <q-tab slot="title" name="tab-login" :label="$tr('quser.layout.label.login')"
              @select="metaTitle = 'Iniciar Sesión'"/>
-      <q-tab slot="title" name="tab-register" label="Crear Cuenta"
+      <q-tab slot="title" name="tab-register" :label="$tr('quser.layout.label.createAccount')"
              @select="metaTitle = 'Crear Cuenta'" v-if="withRegister"/>
 
       <!-- Tab Pane Login -->
       <q-tab-pane name="tab-login" keep-alive>
-        <login-form @logged="emitCreate()" :email="email"/>
+        <login-form @logged="emitLogged()" :email="email"/>
       </q-tab-pane>
       <!-- Tab Pane Register -->
       <q-tab-pane name="tab-register" keep-alive v-if="withRegister">
-        <register-form v-model="email" @registered="emitRegister()"/>
+        <register-form :horizontal-extra-fields="horizontalExtraFields"
+                       :horizontal="horizontal"
+                       v-model="email"
+                       @logged="emitLogged()"
+                       @registered="emitRegister()"/>
       </q-tab-pane>
     </q-tabs>
   </div>
@@ -25,23 +30,19 @@
   import registerForm from '@imagina/quser/_components/auth/register'
 
   export default {
-    meta() {
-      return {
-        title: this.metaTitle,
-      }
+    props: {
+      horizontal: {type: Boolean, default: false},
+      horizontalExtraFields: {type: Boolean, default: false}
     },
-    props: {},
     components: {loginForm, registerForm},
     watch: {},
     mounted() {
       this.$nextTick(function () {
-        let configApp = config('app')
-        this.withRegister = configApp.registerUsers
       })
     },
     data() {
       return {
-        withRegister: false,
+        withRegister: this.$store.getters['qsiteSettings/getSettingValueByName']('iprofile::registerUsers'),
         metaTitle: 'Iniciar Sesión',
         tabModel: 'tab-login',
         email: null,
@@ -52,7 +53,7 @@
         this.tabModel = 'tab-login'
         this.$emit('registered',this.email)
       },
-      emitCreate(){
+      emitLogged(){
         this.$emit('logged')
       }
     }
@@ -63,7 +64,7 @@
   #authLoginRegister
     #formAuthPage
       &.form-content
-        width 350px
+        max-width 100%
 
         .form-title
           color $blue-grey

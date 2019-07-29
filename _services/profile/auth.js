@@ -4,13 +4,10 @@ import Http from "axios";
 import {helper} from '@imagina/qhelper/_plugins/helper'
 
 export default {
-  
-  
-  
   logout() {
     //let response = Http.get(Config('api.logout'));
     return new Promise((resolve, reject) => {
-      Http.get(config('apiRoutes.profile.authLogout'))
+      Http.get(config('apiRoutes.quser.authLogout'))
       .then(response => {
       resolve(response);
     }).catch(error => {
@@ -19,7 +16,7 @@ export default {
       });
     });
   },
-  
+
   login(username, password) {
     let data = {
       username,
@@ -27,10 +24,10 @@ export default {
     };
 
     // We merge grant type and client secret stored in configuration
-    Object.assign(data, config('apiRoutes.profile.authLogin'));
+    data = Object.assign({},data, config('auth.auth'));
 
     return new Promise((resolve, reject) => {
-      Http.post(config('apiRoutes.profile.authLogin'), data)
+      Http.post(config('apiRoutes.quser.authLogin'), data)
       .then((response) => {
       resolve(response);
     }).catch((error) => {
@@ -40,7 +37,6 @@ export default {
     });
   },
   
-  
   getAuthHeader() {
     if (helper.has('access_token')) {
       let access_token = this.getItem('access_token')
@@ -48,7 +44,4 @@ export default {
     }
     return null
   },
-  
-
-
 }

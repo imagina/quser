@@ -7,7 +7,7 @@ export default {
 
 	getPermissions() {
 		return new Promise((resolve, reject) => {
-			return http.get(config('apiRoutes.site.permissions')).then(response => {
+			return http.get(config('apiRoutes.qsite.permissions')).then(response => {
 				resolve(response.data);
 			}).catch(error => {
 				reject([]);

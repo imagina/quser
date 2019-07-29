@@ -194,7 +194,7 @@
 				this.filter.roles.length ? params.filter.roles = this.filter.roles : false
 
 				//Request users
-				profileService.crud.index('apiRoutes.profile.users', {params: params}).then(response => {
+				this.$crud.index('apiRoutes.quser.users', {params: params}).then(response => {
 					setTimeout(() => {
 						if (response.data.length) {//Load data
 							if (page > this.page) {
@@ -233,7 +233,7 @@
 
 			//Get Departments
 			getDepartments() {
-				profileService.crud.index('apiRoutes.profile.departments').then(response => {
+				this.$crud.index('apiRoutes.quser.departments').then(response => {
 					let departments = response.data
 					if (departments && departments.length) {
 						this.departmentsSelect = array.select(departments)
@@ -243,7 +243,7 @@
 
 			//Get Roles
 			getRoles() {
-				profileService.crud.index('apiRoutes.profile.roles').then(response => {
+				this.$crud.index('apiRoutes.quser.roles').then(response => {
 					let roles = response.data
 					if (roles && roles.length) {
 						this.rolesSelect = array.select(roles)

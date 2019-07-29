@@ -4,7 +4,7 @@ export const someGetter = (state) => {}
 import {helper} from '@imagina/qhelper/_plugins/helper'
 
 export const user = (state) => {
-    return state.userData;
+  return state.userData;
 };
 
 export const isAuthenticated = (state) => {
@@ -19,7 +19,7 @@ export const getSettings = (state) => {
   return state.settings;
 };
 
-export const getDepartmentBy = (state) => (field,value) => {
+export const getDepartmentBy = (state) => (field, value) => {
   let results = state.departments.filter(department => department[field] == value)
   return results
 };
@@ -36,7 +36,7 @@ export const departmentsSelect = (state) => {
 export const userRolesSelect = (state) => {
   let userData = state.userData
   let roles = userData ? userData.roles : []
-  return helper.array.select(roles)
+  return helper.array.tree(roles, {label: 'name', id: 'id'})
 }
 
 export const userDepartmentsSelect = (state) => {

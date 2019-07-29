@@ -57,8 +57,8 @@
        * set department selected
        */
       setData() {
-        helper.storage.get.item('userData').then(response => {
-          this.departments = response.departments
+        helper.storage.get.item('sessionData').then(response => {
+          this.departments = response.userData.departments
         })
         helper.storage.get.item("depSelected").then(response => {
           this.depSelected = response
