@@ -108,10 +108,16 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
   return new Promise(async (resolve, reject) => {
     //Get userData
     profileServices.crud.index('apiRoutes.quser.me', {remember: false}).then(async response => {
-      let userData = response.data.userData
-      await helper.storage.set('userData', userData)//Set userData in store and storage
+      let sessionData = await helper.storage.get.item('sessionData')//Get  session Data
+      let userData = response.data.userData//Get new user data
+
+      //Update session data in storage
+      sessionData.userData = userData
+      await helper.storage.set('sessionData', sessionData)
+
       commit('AUTH_USER_DATA', userData)//update userData
       await dispatch('AUTH_TRYAUTOLOGIN')//Re-login
+
       resolve(true)
     }).catch(error => {
       console.error('[AUTH_UPDATE] ', error)
@@ -267,7 +273,7 @@ export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
       //Request to refresh token
       profileServices.crud.index('apiRoutes.quser.refreshToken').then(response => {
         sesionData.expiresIn = response.data.expiresIn//Get expires in
-        helper.storage.set('sessionData',sesionData)//Update expiresIn in sessionData
+        helper.storage.set('sessionData', sesionData)//Update expiresIn in sessionData
       }).catch(error => {
         console.error('[REFRESH_TOKEN] ', error)
       })
