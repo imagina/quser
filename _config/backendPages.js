@@ -12,7 +12,7 @@ import frontendPages from '@imagina/quser/_config/frontendPages'
 let localPages = {
 	//User Index
 	userIndex: {
-		permission: 'profile.user.index',
+		permission: 'profile.user.manage',
 		activated: true,
 		path: '/users/index',
 		name: 'quser.admin.users',
