@@ -1,11 +1,5 @@
 <template>
-  <div id="pageId" class="q-layout-page layout-padding">
-    <!--TITLE-->
-    <h1 class="q-headline text-primary">
-      <q-icon v-if="$route.meta.icon" :name="$route.meta.icon"/>
-      {{$tr($route.meta.title)}}
-    </h1>
-
+  <div id="adminUsers">
     <!---Component CRUD-->
     <crud :crud-data="import('@imagina/quser/_crud/users')"/>
   </div>

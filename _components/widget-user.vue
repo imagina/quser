@@ -1,15 +1,9 @@
 <template>
   <!--= USER/LOGIN =-->
   <q-btn-dropdown
-    color="white"
-    split
-    flat
-    v-if="userData"
-    :label="userData.first_name"
-    id="user-dropdown"
-  >
+    color="white" split flat v-if="userData"
+    :label="userData.first_name" id="user-dropdown">
     <q-list>
-
       <q-item tag="label" :to="{name: 'user.profile.me'}">
         <q-item-side>
           <img :src="userData.profile.smallimage" width="32px" style="border-radius: 100%">
@@ -18,7 +12,6 @@
           <q-item-tile tag="a"
                        color="tertiary"
                        style="text-decoration: none">
-            Profile
           </q-item-tile>
         </q-item-main>
       </q-item>
@@ -56,11 +49,11 @@
     },
     data() {
       return {
-        userData : false
+        userData: false
       }
     },
     methods: {
-      setData(){
+      setData() {
         helper.storage.get.item('sessionData').then(response => {
           this.userData = response.userData
         })

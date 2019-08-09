@@ -53,7 +53,7 @@
       <!-- Phone field -->
       <div :class="columnsFieldsClass" v-if="form.fields.cellularPhone">
         <q-field
-          error-label="Debe contener al menos 10 digitos" :count="14"
+          :error-label="$tr('ui.message.fieldMinLeng', {num : 10})" :count="14"
           :error="$v.form.fields.cellularPhone ? $v.form.fields.cellularPhone.value.$error : false"
         >
           <div class="input-title">

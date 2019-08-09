@@ -78,7 +78,4 @@
 
           .q-icon
             margin-right 5px
-
-        .q-btn
-          min-width 140px !important
 </style>

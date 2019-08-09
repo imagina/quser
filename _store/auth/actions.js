@@ -107,7 +107,7 @@ export const AUTH_LOGOUT = async ({commit, dispatch}) => {
 export const AUTH_UPDATE = ({commit, dispatch, state}) => {
   return new Promise(async (resolve, reject) => {
     //Get userData
-    profileServices.crud.index('apiRoutes.quser.me', {remember: false}).then(async response => {
+    profileServices.crud.index('apiRoutes.quser.me', {refresh: true}).then(async response => {
       let sessionData = await helper.storage.get.item('sessionData')//Get  session Data
       let userData = response.data.userData//Get new user data
 
