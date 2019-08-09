@@ -5,6 +5,12 @@ export default {
   updateDepartment : 'Update Department',
   newRole : 'New Role',
   updateRole : 'Update Role',
+  newAddress : 'New Address',
+  updateAddress : 'Update Address',
+  newContact : 'New Contact',
+  updateContact : 'Update Contact',
+  newSocialNetwork : 'New Social Network',
+  updateSocialNetwork : 'Update Social Network',
   label : {
     login : 'Login',
     logout : 'Logout',

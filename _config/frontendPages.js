@@ -51,7 +51,7 @@ export default {
 		layout: require('@imagina/quser/_layouts/profile').default,
 		containerLayout: master,
 		title: 'quser.sidebar.meProfile',
-		icon: 'fas fa-chart-bar',
+		icon: 'fas fa-user',
 		middleware: [auth,access]
 	},
 }
