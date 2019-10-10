@@ -14,7 +14,13 @@ export default {
   label : {
     login : 'Login',
     logout : 'Logout',
-    createAccount : 'Create Account'
+    createAccount : 'Create Account',
+    resetPassword: 'Reset Password',
+    iremembered: 'I remembered my password',
+    iforgot: 'I forgot my password',
+    newpassword: 'New password',
+    confirmPassword: 'Confirm password',
+    changePassword: 'Change Password',
   },
   form : {
     lastLogin : 'Last login'
@@ -23,6 +29,10 @@ export default {
     emailExist : 'Email already exist',
     logout : 'Session ended',
     userOrPasswordInvalid : 'User or password invalid',
-    activateAccount : 'You must activate your account by email'
+    activateAccount : 'You must activate your account by email',
+    previousReset: 'To reset the password, complete this form:',
+    checkMail: 'check email to reset password',
+    passwordUpdated: 'Password updated!!',
+    closeSessions: 'Do you want to close all your active sessions?',
   }
 }

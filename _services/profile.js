@@ -45,4 +45,42 @@ export default {
       })
     })
   },
+
+  //Change password
+  resetPassword(data) {
+    return new Promise((resolve, reject) => {
+      //Validations
+      if (!data) return reject('Data is required')
+      let urlApi = config('apiRoutes.quser.resetPassword')//Get url from config
+      //Request
+      http.post(urlApi, data).then(response => {
+        resolve(response.data)//Successful response
+      }).catch(error => {
+        reject(error.response.data.errors)//Failed response
+      })
+    })
+  },
+
+  //Change password Completed
+  resetCompleted(data,id,code) {
+    return new Promise((resolve, reject) => {
+      //Validations
+      if (!data || !id || !code) return reject('Data, id and code are required')
+      let urlApi = config('apiRoutes.quser.resetCompleted')//Get url from config
+      
+      // Fix data to request
+      let data2 = {
+        "password" : data.confirmNewPassword,
+        "password_confirmation" : data.newPassword
+      }
+
+      //Request
+      http.post(urlApi + '/'+id+'/'+code, data2).then(response => {
+        resolve(response.data)//Successful response
+      }).catch(error => {
+        reject(error.response.data.errors)//Failed response
+      })
+    })
+  },
+
 }
