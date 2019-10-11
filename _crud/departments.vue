@@ -34,10 +34,12 @@
             id: {value: ''},
             userId: {value: this.$store.state.quserAuth.userId},
             title: {
-              label: this.$tr('ui.form.title'),
+              label: `${this.$tr('ui.form.title')}*`,
               value: '',
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             parentId: {
               label: this.$tr('ui.form.parent'),

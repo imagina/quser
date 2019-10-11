@@ -1,28 +1,30 @@
 <template>
-  <div id="formAuthPage"
-       class="form-content shadow-1 q-px-md backend-page">
-    <!--Tabs to toogle between login and register form-->
-    <q-tabs inverted v-model="tabModel" align="justify" color="blue-grey">
-      <!-- Tabs Title -->
-      <q-tab slot="title" name="tab-login" :label="$tr('quser.layout.label.login')"
-             @select="metaTitle = 'Iniciar Sesión'"/>
-      <q-tab slot="title" name="tab-register" :label="$tr('quser.layout.label.createAccount')"
-             @select="metaTitle = 'Crear Cuenta'" v-if="withRegister"/>
+  <q-card class="q-px-md">
+    <!--Tab-->
+    <q-tabs v-model="tabModel" dense class="text-grey" active-color="primary"
+            indicator-color="primary" align="justify">
+      <q-tab name="tab-login" :label="$tr('quser.layout.label.login')"/>
+      <q-tab name="tab-register" v-if="withRegister" :label="$tr('quser.layout.label.createAccount')"/>
+    </q-tabs>
 
-      <!-- Tab Pane Login -->
-      <q-tab-pane name="tab-login" keep-alive>
+    <q-separator />
+
+    <!--Tabs-->
+    <q-tab-panels v-model="tabModel" animated keep-alive>
+      <!--Login-->
+      <q-tab-panel name="tab-login">
         <login-form @logged="emitLogged()" :email="email"/>
-      </q-tab-pane>
-      <!-- Tab Pane Register -->
-      <q-tab-pane name="tab-register" keep-alive v-if="withRegister">
-        <register-form :horizontal-extra-fields="horizontalExtraFields"
-                       :horizontal="horizontal"
+      </q-tab-panel>
+      <!--Register-->
+      <q-tab-panel name="tab-register" v-if="withRegister">
+        <register-form :horizontal-extra-fields="props.horizontalExtraFields"
+                       :horizontal="props.horizontal"
                        v-model="email"
                        @logged="emitLogged()"
                        @registered="emitRegister()"/>
-      </q-tab-pane>
-    </q-tabs>
-  </div>
+      </q-tab-panel>
+    </q-tab-panels>
+  </q-card>
 </template>
 <script>
   //components
@@ -31,36 +33,41 @@
 
   export default {
     props: {
-      horizontal: {type: Boolean, default: false},
-      horizontalExtraFields: {type: Boolean, default: false}
+      horizontal: { type: Boolean, default: false },
+      horizontalExtraFields: { type: Boolean, default: false }
     },
-    components: {loginForm, registerForm},
+    components: {
+      loginForm,
+      registerForm
+    },
     watch: {},
-    mounted() {
+    mounted () {
       this.$nextTick(function () {
       })
     },
-    data() {
+    data () {
       return {
-        withRegister: this.$store.getters['qsiteSettings/getSettingValueByName']('iprofile::registerUsers'),
-        metaTitle: 'Iniciar Sesión',
-        tabModel: 'tab-login',
+        props: {},
+        withRegister: false,//this.$store.getters['qsiteSettings/getSettingValueByName']('iprofile::registerUsers'),
+        tabModel: 'tab-login',//'tab-login',
         email: null,
       }
     },
     methods: {
-      emitRegister(){
-        this.tabModel = 'tab-login'
-        this.$emit('registered',this.email)
+      init () {
+        this.props = this.$clone(this.$props)
       },
-      emitLogged(){
+      emitRegister () {
+        this.tabModel = 'tab-login'
+        this.$emit('registered', this.email)
+      },
+      emitLogged () {
         this.$emit('logged')
       }
     }
   }
 </script>
 <style lang="stylus">
-  @import "~variables";
   #authLoginRegister
     #formAuthPage
       &.form-content

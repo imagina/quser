@@ -2,9 +2,9 @@
 <script>
   export default {
     computed: {
-      crudData() {
+      crudData () {
         return {
-          field : 'socialNetworks',
+          field: 'socialNetworks',
           apiRoute: 'apiRoutes.quser.fields',
           permission: 'profile.fields',
           create: {
@@ -23,7 +23,7 @@
                 name: 'value', label: this.$tr('ui.form.reference'), field: 'value',
                 format: val => val || '-', align: 'left'
               },
-              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+              { name: 'actions', label: this.$tr('ui.form.actions'), align: 'left' },
             ],
             requestParams: {
               filter: {
@@ -43,13 +43,13 @@
           },
           delete: true,
           formLeft: {
-            id: {value: null},
-            userId: {value: this.$store.state.quserAuth.userId},
+            id: { value: null },
+            userId: { value: this.$store.state.quserAuth.userId },
             type: {
-              label: this.$tr('ui.form.socialNetwork'),
+              label: `${this.$tr('ui.form.socialNetwork')}*`,
               value: null,
               type: 'select',
-              options : [
+              options: [
                 {
                   label: 'Facebook',
                   id: 'Facebook',
@@ -75,13 +75,17 @@
                   id: 'Whatsapp',
                 }
               ],
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             value: {
-              label: this.$tr('ui.form.reference'),
+              label: `${this.$tr('ui.form.reference')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
           }
         }

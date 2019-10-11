@@ -1,9 +1,9 @@
 <template>
-  <q-page id="authLoginRegister" class="flex flex-center">
+  <div id="authLoginRegister" class="bg-grey-2 flex flex-center">
     <div class="q-px-md q-py-xl">
-      <form-auth :horizontal-extra-fields="true" @logged="redirect()" />
+      <form-auth :horizontal-extra-fields="true" @logged="redirect()"/>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>
@@ -12,30 +12,29 @@
 
   export default {
     props: {},
-    components: {formAuth},
-    watch: {
-      $route(to, from) {
-        this.checkRedirect()
-      },
+    components: { formAuth },
+    beforeRouteEnter (to, from, next) {
+      next(vm => vm.checkRedirect(from))
     },
-    mounted() {
+    mounted () {
       this.$nextTick(function () {
         this.checkRedirect()
       })
     },
-    data() {
+    data () {
       return {
         redirectTo: false
       }
     },
     methods: {
       //check if redirect to route specific
-      async checkRedirect() {
-        let route = this.$route.params.from
-        if (route && (route.name != 'auth.logout')) {
+      async checkRedirect (from = false) {
+        let route = from || await this.$cache.get.item('route.after.login')
+
+        if (route && route.name && (route.name != 'auth.logout')) {
           this.redirectTo = route
           //Save data of route in storage
-          this.$helper.storage.set('redirect.to.from.login', {
+          this.$cache.set('route.after.login', {
             name: route.name,
             fullPath: route.fullPath,
             meta: route.meta,
@@ -45,18 +44,19 @@
           })
         } else {
           //Search route in storage
-          let fromRoute = await this.$helper.storage.get.item('redirect.to.from.login')
-          if (fromRoute) this.redirectTo = fromRoute
+          this.redirectTo = { name: 'app.home' }
         }
       },
       //Redirect after login
-      redirect() {
-        this.$router.push({name: 'app.config', params: {redirectTo: this.redirectTo}})
+      redirect () {
+        this.$cache.remove('route.after.login')
+        this.$router.push(this.redirectTo)
       }
     }
   }
 </script>
 
 <style lang="stylus">
-  @import "~variables";
+  #authLoginRegister
+    min-height 100vh
 </style>

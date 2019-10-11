@@ -1,11 +1,3 @@
-//Layout container
-import master from 'src/layouts/master'
-import blank from 'src/layouts/blank'
-
-//Middleware
-import auth from '@imagina/quser/_router/middlewares/auth'
-import access from '@imagina/quser/_router/middlewares/access'
-
 export default {
 	//Login
 	login: {
@@ -13,11 +5,11 @@ export default {
 		activated: true,
 		path: '/auth/login',
 		name: 'auth.login',
-		layout: require('@imagina/quser/_layouts/login').default,
-		containerLayout: blank,
+		page: () => import('@imagina/quser/_layouts/login'),
+		layout: () => import('src/layouts/blank'),
 		title: 'quser.sidebar.login',
 		icon: 'fas fa-chart-bar',
-		middleware: [auth]
+		authenticated: true,
 	},
 	//Logout
 	logout: {
@@ -25,11 +17,11 @@ export default {
 		activated: true,
 		path: '/auth/logout',
 		name: 'auth.logout',
-		layout: require('@imagina/quser/_layouts/logout').default,
-		containerLayout: blank,
+		page: () => import('@imagina/quser/_layouts/logout'),
+		layout: () => import('src/layouts/blank'),
 		title: 'quser.sidebar.logout',
 		icon: 'fas fa-chart-bar',
-		middleware: [auth]
+		authenticated: true,
 	},
 	//Change password
 	changePassword: {
@@ -37,8 +29,8 @@ export default {
 		activated: true,
 		path: '/auth/change-password',
 		name: 'auth.change.password',
-		layout: require('@imagina/quser/_layouts/passwordChange').default,
-		containerLayout: blank,
+		page: () => import('@imagina/quser/_layouts/passwordChange'),
+		layout: () => import('src/layouts/blank'),
 		title: 'quser.sidebar.changePassword',
 		icon: 'fas fa-chart-bar'
 	},
@@ -48,31 +40,10 @@ export default {
 		activated: true,
 		path: '/users/me/profile',
 		name: 'user.profile.me',
-		layout: require('@imagina/quser/_layouts/profile').default,
-		containerLayout: master,
+		page: () => import('@imagina/quser/_layouts/profile'),
+		layout: () => import('src/layouts/master'),
 		title: 'quser.sidebar.meProfile',
 		icon: 'fas fa-user',
-		middleware: [auth,access]
+		authenticated: true,
 	},
-	//Reset Password
-	resetPassword: {
-		permission: null,
-		activated: true,
-		path: '/auth/reset-password',
-		name: 'auth.reset.password',
-		layout: require('@imagina/quser/_layouts/password/reset').default,
-		containerLayout: blank,
-		icon: 'fas fa-chart-bar',
-	},
-	//Reset Password Completed
-	resetCompleted: {
-		permission: null,
-		activated: true,
-		path: '/auth/reset/:id/:code',
-		name: 'auth.reset.completed',
-		layout: require('@imagina/quser/_layouts/password/completed').default,
-		containerLayout: blank,
-		icon: 'fas fa-chart-bar',
-	},
-
 }

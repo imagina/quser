@@ -1,7 +1,6 @@
 const moduleName = 'profile';
 const moduleVersion = 'v1';
-const baseApiUrl = `${env('BASE_URL', 'http://localhost:8000')}/api`;
-const urlBase = `${baseApiUrl}/${moduleName}/${moduleVersion}`
+const urlBase = `/${moduleName}/${moduleVersion}`
 
 export default {
 	urlBase : urlBase,
@@ -20,7 +19,5 @@ export default {
 	users: `${urlBase}/users`,
 	register: `${urlBase}/users/register`,
 	changePassword: `${urlBase}/users/change-password`,
-	resetPassword: `${urlBase}/auth/reset-password`,
-	resetCompleted: `${urlBase}/auth/reset-completed`,
   roles: `${urlBase}/roles`,
 }

@@ -237,7 +237,6 @@
 </script>
 
 <style lang="stylus">
-	@import "~variables";
 	#pageChangePassword
 		.q-input
 			padding-top 15px

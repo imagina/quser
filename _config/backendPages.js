@@ -1,11 +1,3 @@
-//Layout container
-import master from 'src/layouts/master'
-import blank from 'src/layouts/blank'
-
-//Middleware
-import auth from '@imagina/quser/_router/middlewares/auth'
-import access from '@imagina/quser/_router/middlewares/access'
-
 //get pages of frontend, same is necesary to backend
 import frontendPages from '@imagina/quser/_config/frontendPages'
 
@@ -16,11 +8,11 @@ let localPages = {
 		activated: true,
 		path: '/users/index',
 		name: 'quser.admin.users',
-		layout: require('@imagina/quser/_layouts/admin/users').default,
-		containerLayout: master,
+		page: () => import('@imagina/quser/_layouts/admin/users'),
+		layout: () => import('src/layouts/master'),
 		title: 'quser.sidebar.adminUserIndex',
 		icon: 'fas fa-users',
-		middleware: [auth,access]
+		authenticated: true,
 	},
 	//User Departments
 	userDepartments: {
@@ -28,12 +20,12 @@ let localPages = {
 		activated: true,
 		path: '/departments',
 		name: 'quser.admin.departments',
-		layout: require('@imagina/quser/_layouts/admin/departments/index').default,
-		containerLayout: master,
+		page: () => import('@imagina/quser/_layouts/admin/departments/index'),
+		layout: () => import('src/layouts/master'),
 		isCrud: true,
 		title: 'quser.sidebar.adminUserDepartments',
 		icon: 'fas fa-user-shield',
-		middleware: [auth,access]
+		authenticated: true,
 	},
 	//User Roles
 	userRoles: {
@@ -41,12 +33,12 @@ let localPages = {
 		activated: true,
 		path: '/roles',
 		name: 'quser.admin.roles',
-		layout: require('@imagina/quser/_layouts/admin/roles/index').default,
-		containerLayout: master,
+		page: () => import('@imagina/quser/_layouts/admin/roles/index'),
+		layout: () => import('src/layouts/master'),
 		isCrud: true,
 		title: 'quser.sidebar.adminUserRoles',
 		icon: 'fas fa-user-tag',
-		middleware: [auth,access]
+		authenticated: true,
 	},
 }
 

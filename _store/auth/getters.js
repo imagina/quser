@@ -1,14 +1,19 @@
 /*
 export const someGetter = (state) => {}
 */
-import {helper} from '@imagina/qhelper/_plugins/helper'
+import array from '@imagina/qhelper/_plugins/array'
+import cloneDeep from 'lodash.clonedeep'
+
+export const getState = (state) => (name) => {
+  return cloneDeep(state[name] || undefined)
+}
 
 export const user = (state) => {
   return state.userData;
 };
 
 export const isAuthenticated = (state) => {
-  return (state.userToken !== null);
+  return state.authenticated;
 };
 
 export const getPermissions = (state) => {
@@ -30,17 +35,35 @@ export const fullName = (state) => {
 };
 
 export const departmentsSelect = (state) => {
-  return helper.array.tree(state.departments);
+  return array.tree(state.departments);
 };
 
 export const userRolesSelect = (state) => {
   let userData = state.userData
   let roles = userData ? userData.roles : []
-  return helper.array.tree(roles, {label: 'name', id: 'id'})
+  return array.tree(roles, {label: 'name', id: 'id'})
 }
 
 export const userDepartmentsSelect = (state) => {
   let userData = state.userData
   let departments = userData ? userData.departments : []
-  return helper.array.tree(departments)
+  return array.tree(departments)
+}
+
+export const hasAccess = (state) => (can) => {
+  if(!can) return true
+  let userPermissions = state.permissions
+  //Validate permission
+  if(userPermissions && Object.keys(userPermissions).length){
+    let access = userPermissions[can]
+    return access || false
+  }else{
+    return false
+  }
+}
+
+export const hasSetting = (state) => (name) => {
+  let userSettings = state.settings
+  let setting = userSettings.find(setting => setting.name === name)
+  return setting || false
 }

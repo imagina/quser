@@ -279,7 +279,6 @@
 	}
 </script>
 <style lang="stylus">
-	@import "~variables";
 	#searchUsers
 		.fields
 			padding 5px 15px

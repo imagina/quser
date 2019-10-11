@@ -2,7 +2,7 @@
 <script>
   export default {
     computed: {
-      crudData() {
+      crudData () {
         return {
           apiRoute: 'apiRoutes.quser.users',
           permission: 'profile.user',
@@ -11,7 +11,7 @@
           },
           read: {
             columns: [
-              {name: 'id', label: this.$tr('ui.form.id'), field: 'id'},
+              { name: 'id', label: this.$tr('ui.form.id'), field: 'id' },
               {
                 name: 'fullName', label: this.$tr('ui.form.name'), field: 'fullName',
                 align: 'left', sortable: true
@@ -32,20 +32,20 @@
                 name: 'updated_at', label: this.$tr('ui.form.updatedAt'), field: 'updatedAt', align: 'left',
                 format: val => val ? this.$trd(val) : '-',
               },
-              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+              { name: 'actions', label: this.$tr('ui.form.actions'), align: 'left' },
             ],
-            requestParams: {include: ''},
+            requestParams: { include: '' },
             filters: {
               roleId: {
                 label: `${this.$tr('ui.label.role')}:`,
-                value: '0',
+                value: 0,
                 type: 'select',
                 options: [
-                  {label: this.$tr('ui.label.all'), id: '0'}
+                  { label: this.$tr('ui.label.all'), value: 0 }
                 ],
                 loadOptions: {
                   apiRoute: 'apiRoutes.quser.roles',
-                  select: {label: 'name', id: 'id'}
+                  select: { label: 'name', id: 'id' }
                 }
               },
               departmentId: {
@@ -54,7 +54,7 @@
                 tree: false,
                 type: 'select',
                 options: [
-                  {label: this.$tr('ui.label.all'), id: '0'}
+                  { label: this.$tr('ui.label.all'), value: '0' }
                 ],
                 loadOptions: {
                   apiRoute: 'apiRoutes.quser.departments'
@@ -65,52 +65,65 @@
                 value: '-1',
                 type: 'select',
                 options: [
-                  {label: this.$tr('ui.label.all'), id: '-1'},
-                  {label: this.$tr('ui.label.enabled'), id: '1'},
-                  {label: this.$tr('ui.label.disabled'), id: '0'},
+                  { label: this.$tr('ui.label.all'), value: '-1' },
+                  { label: this.$tr('ui.label.enabled'), value: '1' },
+                  { label: this.$tr('ui.label.disabled'), value: '0' },
                 ],
               },
             }
           },
           update: {
             title: this.$tr('quser.layout.updateUser'),
-            requestParams: {include: 'roles,departments,settings'}
+            requestParams: { include: 'roles,departments,settings' }
           },
           delete: false,
           formLeft: {
-            id: {value: null},
-            userId: {value: this.$store.state.quserAuth.userId},
+            id: { value: null },
+            userId: { value: this.$store.state.quserAuth.userId },
             firstName: {
-              label: this.$trp('ui.form.firstName'),
+              label: `${this.$trp('ui.form.firstName')} *`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             lastName: {
-              label: this.$trp('ui.form.lastName'),
+              label: `${this.$trp('ui.form.lastName')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             email: {
-              label: this.$trp('ui.form.email'),
+              label: `${this.$trp('ui.form.email')} *`,
               value: null,
               type: 'email',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired'),
+                val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+              ],
             },
             password: {
-              label: this.$trp('ui.form.password'),
+              label: `${this.$trp('ui.form.password')}*`,
               value: null,
               type: 'password',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired'),
+                val => val.length >= 8 || this.$tr('ui.message.fieldMinLeng', {num : 8})
+              ]
             },
             passwordConfirmation: {
-              label: this.$trp('ui.form.checkPassword'),
+              label: `${this.$trp('ui.form.checkPassword')}*`,
               value: null,
               type: 'checkPassword',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired'),
+                val => val.length >= 8 || this.$tr('ui.message.fieldMinLeng', {num : 8})
+              ]
             },
-            settings : {
+            settings: {
               type: 'settings',
               settings: {
                 assignedRoles: {
@@ -118,11 +131,11 @@
                   label: this.$trp('ui.label.role'),
                   value: [],
                   type: 'select',
-                  multiple : true,
+                  multiple: true,
                   clearable: true,
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.roles',
-                    select: {label: 'name', id: 'id'}
+                    select: { label: 'name', id: 'id' }
                   }
                 },
                 assignedDepartments: {
@@ -130,59 +143,65 @@
                   label: this.$trp('ui.label.department'),
                   value: [],
                   type: 'select',
-                  tree :false,
-                  multiple : true,
+                  tree: false,
+                  multiple: true,
                   clearable: true,
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.departments',
-                    requestParams: {include: ''}
+                    requestParams: { include: '' }
                   }
                 },
               }
             },
-            permissions : {
-              getAll : true,
-              type : 'permissions',
-              value : {}
+            permissions: {
+              getAll: true,
+              type: 'permissions',
+              value: {}
             }
           },
-          formRight : {
+          formRight: {
             activated: {
               label: `${this.$tr('ui.form.status')}:`,
               value: '1',
               type: 'select',
               options: [
-                {label: this.$tr('ui.label.enabled'), id: '1'},
-                {label: this.$tr('ui.label.disabled'), id: '0'},
+                { label: this.$tr('ui.label.enabled'), id: '1' },
+                { label: this.$tr('ui.label.disabled'), id: '0' },
               ],
             },
             roles: {
-              label: this.$trp('ui.label.role'),
+              label: `${this.$trp('ui.label.role')}*`,
               value: [],
               type: 'multiSelect',
               loadOptions: {
                 apiRoute: 'apiRoutes.quser.roles',
-                select: {label: 'name', id: 'id'},
-                requestParams: {include: ''}
+                select: { label: 'name', id: 'id' },
+                requestParams: { include: '' }
               },
               create: {
                 title: this.$tr('quser.layout.newRole'),
                 component: import('@imagina/quser/_crud/roles')
-              }
+              },
+              rules: [
+                val => (!!val && val.length) || this.$tr('ui.message.fieldRequired')
+              ]
             },
             departments: {
-              label: this.$trp('ui.label.department'),
+              label: `${this.$trp('ui.label.department')}*`,
               value: [],
               tree: false,
               type: 'multiSelect',
               loadOptions: {
                 apiRoute: 'apiRoutes.quser.departments',
-                requestParams: {include: ''}
+                requestParams: { include: '' }
               },
               create: {
                 title: this.$tr('quser.layout.newDepartment'),
                 component: import('@imagina/quser/_crud/departments')
-              }
+              },
+              rules: [
+                val => (!!val && val.length) || this.$tr('ui.message.fieldRequired')
+              ]
             },
           }
         }

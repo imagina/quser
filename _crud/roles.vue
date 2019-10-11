@@ -31,16 +31,20 @@
             id: {value: null},
             userId: {value: this.$store.state.quserAuth.userId},
             name: {
-              label: this.$tr('ui.form.name'),
+              label: `${this.$tr('ui.form.name')}*`,
               value: '',
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             slug: {
-              label: this.$tr('ui.form.slug'),
+              label: `${this.$tr('ui.form.slug')}*`,
               value: '',
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             settings : {
               type: 'settings',

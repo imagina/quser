@@ -25,7 +25,7 @@
               },
               {
                 name: 'phone', label: this.$tr('ui.form.phone'), field: 'phone',
-                format: val => val || '-', align: 'left'
+                format: val => this.$helper.maskPhone(val) || '-', align: 'left'
               },
               {
                 name: 'email', label: this.$tr('ui.form.email'), field: 'email',
@@ -55,29 +55,39 @@
             userId: {value: this.$store.state.quserAuth.userId},
             firstName: {
               name :'first_name',
-              label: this.$tr('ui.form.firstName'),
+              label: `${this.$tr('ui.form.firstName')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             lastName: {
               name :'last_name',
-              label: this.$tr('ui.form.lastName'),
+              label: `${this.$tr('ui.form.lastName')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             phone: {
-              label: this.$tr('ui.form.phone'),
+              label: `${this.$tr('ui.form.phone')}*`,
               value: null,
-              type: 'number',
-              isRequired: true,
+              type: 'phone',
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired'),
+                val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng',{num : 10})
+              ],
             },
             email: {
-              label: this.$tr('ui.form.email'),
+              label: `${this.$tr('ui.form.email')}*`,
               value: null,
               type: 'email',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired'),
+                val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+              ],
             },
           }
         }

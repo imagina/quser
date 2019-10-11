@@ -11,7 +11,6 @@ export default {
       .then(response => {
       resolve(response);
     }).catch(error => {
-      console.log('Logout error: ', error);
       reject(error);
       });
     });
@@ -36,7 +35,7 @@ export default {
       });
     });
   },
-  
+
   getAuthHeader() {
     if (helper.has('access_token')) {
       let access_token = this.getItem('access_token')

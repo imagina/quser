@@ -1,17 +1,16 @@
 <template>
-  <q-page id="pageLogout" class="flex flex-center">
-
+  <q-page id="pageLogout" class="bg-grey-2 flex flex-center">
     <div class="row shadow-3 q-mx-xl" style="width: 350px">
       <div class="flex flex-center col-12 relative-position"
-           style="padding: 30px 25px; min-height: 365px">
+           style="padding: 20px; min-height: 300px">
         <div class="text-center">
-          <q-icon name="fas fa-user-lock" color="teal-6" size="60px"/>
+          <q-icon name="fas fa-user-lock" color="primary" size="60px"/>
           <div class="text-grey-8 q-headline q-mt-md">
             {{$tr('quser.layout.message.logout')}}
           </div>
-          <q-btn :label="$tr('quser.layout.label.login')" color="teal-6"
+          <q-btn :label="$tr('quser.layout.label.login')" color="primary"
                  :loading="loading"
-                 class="q-mt-xl" :to="{name : 'auth.login'}"/>
+                 class="q-mt-md" :to="{name : 'auth.login'}"/>
         </div>
       </div>
     </div>
@@ -19,10 +18,8 @@
 </template>
 
 <script>
-  import innerLoading from 'src/components/master/innerLoading'
-
   export default {
-    components: {innerLoading},
+    components: {},
     data() {
       return {
         loading : false
@@ -39,13 +36,4 @@
 </script>
 
 <style lang="stylus">
-  @import "~variables";
-  #pageLogout
-    #form-login-left
-      min-height 150px
-
-      .bg-color
-        background-color $blue-grey
-        height 100%
-        width 100%
 </style>

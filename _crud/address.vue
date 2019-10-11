@@ -43,22 +43,28 @@
             id: {value: null},
             userId: {value: this.$store.state.quserAuth.userId},
             address1: {
-              label: this.$tr('ui.form.address'),
+              label: `${this.$tr('ui.form.address')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             city: {
-              label: this.$tr('ui.form.city'),
+              label: `${this.$tr('ui.form.city')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             state: {
-              label: this.$tr('ui.form.state'),
+              label: `${this.$tr('ui.form.state')}*`,
               value: null,
               type: 'text',
-              isRequired: true,
+              rules: [
+                val => !!val || this.$tr('ui.message.fieldRequired')
+              ],
             },
             zipCode: {
               label: this.$tr('ui.form.zipCode'),
