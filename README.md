@@ -1,8 +1,8 @@
-## QUSER  | 1.0.3
+## QUSER  | 2.0.0
 
 ## Installation
 
-`` npm i @imagina/quser@1.0.2 ``
+`` npm i @imagina/quser@2.0.0 ``
 
 ## API Routes
 
