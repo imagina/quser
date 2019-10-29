@@ -1,4 +1,4 @@
-## QUSER  | 2.0.0
+## QUSER  | 2.0.1
 
 ## Installation
 
@@ -61,6 +61,7 @@
   - quserAuth.permissions  
   - quserAuth.settings  
   - quserAuth.departments  
+  - quserAuth.authenticated  
   
 ## Plugins
 - #### Auth  

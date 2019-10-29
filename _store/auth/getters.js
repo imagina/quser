@@ -51,8 +51,8 @@ export const userDepartmentsSelect = (state) => {
 }
 
 export const hasAccess = (state) => (can) => {
-  if(!can) return true
   let userPermissions = state.permissions
+  if(!can || !userPermissions) return true
   //Validate permission
   if(userPermissions && Object.keys(userPermissions).length){
     let access = userPermissions[can]

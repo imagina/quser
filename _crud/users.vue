@@ -165,8 +165,8 @@
               value: '1',
               type: 'select',
               options: [
-                { label: this.$tr('ui.label.enabled'), id: '1' },
-                { label: this.$tr('ui.label.disabled'), id: '0' },
+                { label: this.$tr('ui.label.enabled'), value: '1' },
+                { label: this.$tr('ui.label.disabled'), value: '0' },
               ],
             },
             roles: {

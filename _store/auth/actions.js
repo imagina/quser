@@ -181,6 +181,7 @@ export const AUTH_LOGOUT = async ({ commit, dispatch, state }) => {
 //Refresh user Data
 export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
+    if(!state.authenticated) return reject('unauthenticated')
     let params = { refresh: true }
 
     //Get userData
@@ -197,7 +198,7 @@ export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
       resolve(true)
     }).catch(error => {
       console.error('[AUTH_UPDATE] ', error)
-      reject(false)
+      reject(true)
     })
   })
 }

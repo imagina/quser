@@ -1,7 +1,8 @@
 <template>
   <div id="formLoginComponent" class="relative-position"
        :style="'max-width: '+(isHorizontal ? '450px' : '300px')">
-    <q-form @submit="register()" ref="formRegister" @validation-error="$alert.error($tr('ui.message.formInvalid'))"
+    <q-form @submit="register()" ref="formContent"
+            @validation-error="$alert.error($tr('ui.message.formInvalid'))"
             class="row q-col-gutter-x-sm q-pt-sm " autocomplete="off">
       <!-- Main Image field -->
       <div class="col-12 q-mb-md" v-if="form.fields.mainImage">
@@ -243,7 +244,7 @@
       callbackRequest (success = true, response) {
         this.loading = false
         this.$refs.captcha.reset()
-        this.$refs.formRegister.resetValidation()
+        this.$refs.formContent.resetValidation()
         let message = `${this.$tr('quser.layout.message.activateAccount')} ${this.form.email}`
 
         if (success) {
