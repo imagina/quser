@@ -20,4 +20,6 @@ export default {
 	register: `${urlBase}/users/register`,
 	changePassword: `${urlBase}/users/change-password`,
   roles: `${urlBase}/roles`,
+	resetPassword: `${urlBase}/auth/reset-password`,
+	resetCompleted: `${urlBase}/auth/reset-completed`,
 }

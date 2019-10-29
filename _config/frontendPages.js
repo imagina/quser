@@ -46,4 +46,24 @@ export default {
 		icon: 'fas fa-user',
 		authenticated: true,
 	},
+	//Reset Password
+	resetPassword: {
+		permission: null,
+		activated: true,
+		path: '/auth/reset-password',
+		name: 'auth.reset.password',
+		layout: require('@imagina/quser/_layouts/password/reset').default,
+		containerLayout: blank,
+		icon: 'fas fa-chart-bar',
+	},
+	//Reset Password Completed
+	resetCompleted: {
+		permission: null,
+		activated: true,
+		path: '/auth/reset/:id/:code',
+		name: 'auth.reset.completed',
+		layout: require('@imagina/quser/_layouts/password/completed').default,
+		containerLayout: blank,
+		icon: 'fas fa-chart-bar',
+	},
 }
