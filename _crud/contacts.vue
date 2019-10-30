@@ -25,7 +25,7 @@
               },
               {
                 name: 'phone', label: this.$tr('ui.form.phone'), field: 'phone',
-                format: val => this.$helper.maskPhone(val) || '-', align: 'left'
+                format: val => this.$helper.maskPhone(val.toString()) || '-', align: 'left'
               },
               {
                 name: 'email', label: this.$tr('ui.form.email'), field: 'email',

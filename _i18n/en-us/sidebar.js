@@ -8,5 +8,6 @@ export default {
   login : 'Login',
   logout : 'Logout',
   changePassword : 'Change password',
-  meProfile : 'Profile'
+  meProfile : 'Profile',
+  resetPassword : 'Reset Password'
 }

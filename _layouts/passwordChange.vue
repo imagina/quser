@@ -136,10 +136,6 @@
 	import {required, email, numeric, minLength} from 'vuelidate/lib/validators';
 	import alert from '@imagina/qhelper/_plugins/alert'
 	import {helper} from '@imagina/qhelper/_plugins/helper'
-	import authService from '@imagina/quser/_services/profile/index';
-
-	//Services
-	import profileServices from '@imagina/quser/_services/profile'
 
 	export default {
 		data() {
@@ -182,7 +178,8 @@
 						if (this.checkNewPassword()) {//Check if new password is same to confrimation
 							this.login = !this.login;
 							this.inRequest = true
-							profileServices.changePassword(this.form).then(response => {
+
+							this.$crud.put('apiRoutes.quser.changePassword', {attributes : this.form}).then(response => {
 								this.userId = response.data.userId
 								this.showDialog = true
 							}).catch(error => {
@@ -212,7 +209,7 @@
 			getOut(closeSessions = false) {
 				if (closeSessions) {
 					const params = {remember: false, params: {userId: this.userId}}
-					profileServices.crud.index('apiRoutes.quser.authLogoutAll', params)
+					this.$crud.index('apiRoutes.quser.authLogoutAll', params)
 				}
 
 				//Redirect

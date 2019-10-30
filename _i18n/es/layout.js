@@ -16,6 +16,7 @@ export default {
     logout : 'Cerrar Sesión',
     createAccount : 'Crear cuenta',
     resetPassword: 'Recuperar Contraseña',
+    reset: 'Restablecer Contraseña',
     iremembered: 'Recordé mi contraseña',
     iforgot: 'Olvidé mi contraseña',
     newpassword: 'Nueva contraseña',
@@ -33,6 +34,8 @@ export default {
     previousReset: 'Para reiniciar la contraseña, complete este formulario:',
     checkMail: 'Revisa tu email para reiniciar',
     passwordUpdated: 'Password actualizado!!',
+    reset: 'Revise su correo electrónico para restablecer su contraseña.',
+    changend:'La contraseña ha sido restablecida. Ahora ya puede iniciar sesión con su nueva contraseña.',
     closeSessions: 'Quieres cerrar todas las sesiones activas?',
   }
 }

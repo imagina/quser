@@ -6,6 +6,7 @@ export default {
   adminUserDepartments : 'Departamentos',
   adminUserRoles : 'Roles',
   login : 'Iniciar sesión',
+  reset : 'Restablecer Contraseña',
   logout : 'Cerrar sesión',
   changePassword : 'Cambiar contraseña',
   meProfile : 'Perfil'

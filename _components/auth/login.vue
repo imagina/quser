@@ -1,13 +1,13 @@
 <template>
   <div id="formLoginComponent" :style="'max-width: '+(props.horizontal ? '700px' : '300px')">
-    <q-form @submit="authenticate" class="row q-gutter-x-sm q-pt-sm"
+    <q-form @submit="authenticate()" class="row q-gutter-x-sm q-pt-sm"
             autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('ui.message.formInvalid'))">
       <!-- User field -->
       <div :class="columnsFieldsClass">
         <q-input name="username" autofocus ref="username" dense
                  v-model="form.username" type="text" color="primary" outlined
                  :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 @keyup.enter="authenticate()" :label="$tr('ui.form.email')">
+                 :label="$tr('ui.form.email')">
           <template v-slot:prepend>
             <q-icon name="fas fa-user"/>
           </template>
@@ -19,7 +19,7 @@
         <q-input name="password" ref="password" dense v-model="form.password"
                  type="password" color="primary" outlined
                  :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 @keyup.enter="authenticate()" :label="$tr('ui.form.password')">
+                 :label="$tr('ui.form.password')">
           <template v-slot:prepend>
             <q-icon name="fas fa-lock"/>
           </template>
@@ -35,6 +35,9 @@
             {{$tr('ui.label.validating')}}
           </template>
         </q-btn>
+
+        <q-btn flat :label="$tr('quser.layout.label.resetPassword')" class="q-mt-sm"
+               :to="{name : 'auth.reset.password'}" color="grey-8"/>
       </div>
     </q-form>
   </div>
@@ -43,20 +46,20 @@
 <script>
   export default {
     props: {
-      email: { default: null },
-      horizontal: { type: Boolean, default: false }
+      email: {default: null},
+      horizontal: {type: Boolean, default: false}
     },
     watch: {
-      email () {
+      email() {
         this.setEmail()
       }
     },
-    mounted () {
+    mounted() {
       this.$nextTick(function () {
         this.init()
       })
     },
-    data () {
+    data() {
       return {
         props: {},
         form: {
@@ -70,7 +73,7 @@
       }
     },
     computed: {
-      columnsFieldsClass () {
+      columnsFieldsClass() {
         if (this.horizontal) {
           return 'col-12 col-md-6'
         } else {
@@ -80,17 +83,17 @@
     },
     methods: {
       //init
-      init () {
+      init() {
         this.props = this.$clone(this.$props)
         this.setEmail()
       },
       //Login
-      async authenticate () {
+      async authenticate() {
         if (!this.inRequest) {
           this.inRequest = true
           this.loading = true
-          const { username, password } = this.form
-          this.$store.dispatch('quserAuth/AUTH_REQUEST', { username, password }).then((response) => {
+          const {username, password} = this.form
+          this.$store.dispatch('quserAuth/AUTH_REQUEST', {username, password}).then((response) => {
             this.loading = false
             this.inRequest = false
             this.$emit('logged')
@@ -101,13 +104,17 @@
         }
       },
       //Set email
-      setEmail () {
-        if (this.email) {
-          this.form.username = this.$clone(this.email)
-          this.$refs.password.focus()
-        } else {
-          this.$refs.username.focus()
-        }
+      setEmail() {
+        let emailFromUrl = this.$route.query.email
+        let email = this.email ? this.$clone(this.email) : emailFromUrl
+        setTimeout(() => {
+          if (email) {
+            this.form.username = email
+            this.$refs.password.focus()
+          } else {
+            this.$refs.username.focus()
+          }
+        }, 200)
       }
     }
   }

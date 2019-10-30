@@ -128,10 +128,10 @@
       <div class="full-width text-center q-mt-sm">
         <q-btn :loading="loading" type="submit" color="primary" name="submit">
           {{$tr('quser.layout.label.createAccount')}}
-          <span slot="loading">
-          <q-spinner class="on-left"/>
-          {{`${$tr('ui.label.loading')}...`}}
-        </span>
+          <div slot="loading">
+            <q-spinner class="on-left"/>
+            {{`${$tr('ui.label.loading')}...`}}
+          </div>
         </q-btn>
       </div>
     </q-form>
@@ -147,16 +147,16 @@
 
   export default {
     props: {
-      horizontal: { type: Boolean, default: false },
-      horizontalExtraFields: { type: Boolean, default: false }
+      horizontal: {type: Boolean, default: false},
+      horizontalExtraFields: {type: Boolean, default: false}
     },
-    components: { captcha },
-    mounted () {
+    components: {captcha},
+    mounted() {
       this.$nextTick(function () {
         this.init()
       })
     },
-    data () {
+    data() {
       return {
         loading: false,
         fullLoading: false,
@@ -174,7 +174,7 @@
       }
     },
     computed: {
-      initData () {
+      initData() {
         return {
           firstName: null,
           lastName: null,
@@ -184,7 +184,7 @@
           fields: {}
         }
       },
-      columnsFieldsClass () {
+      columnsFieldsClass() {
         this.isHorizontal = this.$clone(this.horizontal)
         if (this.horizontalExtraFields && this.extraFields.length) this.isHorizontal = true
         if (this.isHorizontal) {
@@ -196,7 +196,7 @@
     },
     methods: {
       //Init template
-      async init () {
+      async init() {
         let captcha = this.$clone(this.form.captcha)//Save captcha
         this.form = this.$clone(this.initData)//inti form
         this.form.captcha = captcha//Add captch
@@ -207,7 +207,7 @@
         this.orderExtraFields()//Order extra fields
       },
       //Order extra fields
-      orderExtraFields () {
+      orderExtraFields() {
         this.extraFields.forEach(item => {
           if (item.active) {
             this.$set(this.form.fields, item.field, {
@@ -217,7 +217,7 @@
         })
       },
       //Login
-      async register () {
+      async register() {
         if (!this.inRequest) {
           if (this.checkedCaptcha()) {
             this.loading = true
@@ -232,16 +232,16 @@
         }
       },
       //check if captcha is defined
-      checkedCaptcha () {
+      checkedCaptcha() {
         let captcha = this.form.captcha
         let response = false
         if (captcha && captcha.token) response = true
-        if (!response) this.$alert.error({ message: this.$tr('ui.message.requiredCaptcha') })
+        if (!response) this.$alert.error({message: this.$tr('ui.message.requiredCaptcha')})
 
         return response
       },
       //Action after request
-      callbackRequest (success = true, response) {
+      callbackRequest(success = true, response) {
         this.loading = false
         this.$refs.captcha.reset()
         this.$refs.formContent.resetValidation()
@@ -271,13 +271,13 @@
                 pos: 'bottom', timeOut: 4000
               })
             } else {
-              this.$alert.error({ message: `${this.$tr('ui.message.recordNoCreated')}` })
+              this.$alert.error({message: `${this.$tr('ui.message.recordNoCreated')}`})
             }
           }
         }
       },
       //Login user or redirect to from login acooding "check email" from backend
-      login (checkEmail) {
+      login(checkEmail) {
         if (!checkEmail) {//Login
           this.fullLoading = true
           let data = {
@@ -296,12 +296,12 @@
         }
       },
       //Validte if field is required
-      isFieldRequired (name, value) {
+      isFieldRequired(name, value) {
         let field = this.extraFields.find(item => item.field == name)
         return field.required || false
       },
       //Vlaidte if field is required
-      isValueRequired (name, value) {
+      isValueRequired(name, value) {
         let field = this.extraFields.find(item => item.field == name)
         if (field && field.required && !value) return true
         return false

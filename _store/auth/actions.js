@@ -1,5 +1,5 @@
 //Services
-import profileServices from '@imagina/quser/_services/profile/index'
+import crud from '@imagina/qcrud/_services/baseService'
 
 //Plugins
 import helper from '@imagina/qhelper/_plugins/helper'
@@ -11,20 +11,23 @@ import axios from 'axios'
 import config from 'src/config/index'
 
 //Request Login
-export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
+export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
   return new Promise(async (resolve, reject) => {
-    profileServices.auth.login(authData.username, authData.password).then(async (response) => {
-      await dispatch('AUTH_SUCCESS', response.data.data)
+    let dataRequest = {username: authData.username, password: authData.password}
+
+    //Request login
+    crud.post('apiRoutes.quser.authLogin', dataRequest).then(async response => {
+      await dispatch('AUTH_SUCCESS', response.data)
       resolve(true)
     }).catch(error => {
-      alert.error(error.response.data.errors)
-      reject(error.response.data.errors)
+      alert.error(error)
+      reject(error)
     })
   })
 }
 
 //Set user Data
-export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
+export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
   return new Promise(async (resolve, reject) => {
     //Validate if is impersonating
     const impersonatorData = await cache.get.item('impersonatorData')
@@ -57,7 +60,7 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
 }
 
 //Set user role and user department
-export const SET_ROLE_DEPARTMENT = ({ state, commit }) => {
+export const SET_ROLE_DEPARTMENT = ({state, commit}) => {
   return new Promise(async (resolve, reject) => {
     //Search role and department in cache
     let roleUser = await cache.get.item('auth.role.id')
@@ -77,12 +80,12 @@ export const SET_ROLE_DEPARTMENT = ({ state, commit }) => {
     await cache.set('auth.role.id', roleUser)
     await cache.set('auth.department.id', departmentUser)
 
-    resolve({ departmentId: departmentUser, roleId: roleUser })//Response
+    resolve({departmentId: departmentUser, roleId: roleUser})//Response
   })
 }
 
 //Set permission of user
-export const SET_PERMISSIONS = ({ dispatch, commit, state }) => {
+export const SET_PERMISSIONS = ({dispatch, commit, state}) => {
   return new Promise(async (resolve) => {
     try {
       const roleId = state.selectedRoleId//Get role selected
@@ -104,7 +107,7 @@ export const SET_PERMISSIONS = ({ dispatch, commit, state }) => {
 }
 
 //Set settings of user
-export const SET_SETTINGS = ({ dispatch, commit, state }) => {
+export const SET_SETTINGS = ({dispatch, commit, state}) => {
   return new Promise(async (resolve) => {
     try {
       const departmentId = state.selectedDepartmentId//Get department selected
@@ -137,7 +140,7 @@ export const SET_SETTINGS = ({ dispatch, commit, state }) => {
 }
 
 //Try login
-export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
+export const AUTH_TRYAUTOLOGIN = ({commit, dispatch, state}) => {
   return new Promise(async (resolve, reject) => {
     try {
       let sessionData = await cache.get.item('sessionData')
@@ -164,28 +167,25 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
 }
 
 //Logout
-export const AUTH_LOGOUT = async ({ commit, dispatch, state }) => {
-  return new Promise((resolve, reject) => {
-    const clearData = async () => {
-      await dispatch('app/RESET_STORE', null, { root: true })//Reset Store
-      await cache.restore(config('app.saveCache.logout'))//Reset cache
-      resolve(true)
-    }
-
-    //Request to Logout in backend
-    profileServices.auth.logout().then(() => clearData())
-      .catch(() => clearData())
+export const AUTH_LOGOUT = async ({commit, dispatch, state}) => {
+  return new Promise(async resolve => {
+    if (state.authenticated)//Request to Logout in backend
+      await crud.get('apiRoutes.quser.authLogout').catch(() => {
+      })
+    await dispatch('app/RESET_STORE', null, {root: true})//Reset Store
+    await cache.restore(config('app.saveCache.logout'))//Reset cache
+    resolve(true)
   })
 }
 
 //Refresh user Data
-export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
+export const AUTH_UPDATE = ({commit, dispatch, state}) => {
   return new Promise(async (resolve, reject) => {
-    if(!state.authenticated) return reject('unauthenticated')
-    let params = { refresh: true }
+    if (!state.authenticated) return reject('unauthenticated')
+    let params = {refresh: true}
 
     //Get userData
-    profileServices.crud.index('apiRoutes.quser.me', params).then(async response => {
+    crud.index('apiRoutes.quser.me', params).then(async response => {
       let sessionData = await cache.get.item('sessionData')//Get  session Data
 
       //Update session data in storage
@@ -204,10 +204,10 @@ export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
 }
 
 //Get departments
-export const GET_DEPARTMENTS = ({ commit, dispatch }) => {
+export const GET_DEPARTMENTS = ({commit, dispatch}) => {
   return new Promise((resolve, reject) => {
     let configName = 'apiRoutes.quser.departments'
-    profileServices.crud.index(configName, { params: { filter: {} } }).then(response => {
+    crud.index(configName, {params: {filter: {}}}).then(response => {
       commit('OBTAINED_DEPARTMENTS', response.data)
       resolve(true)
     }).catch(error => {
@@ -218,7 +218,7 @@ export const GET_DEPARTMENTS = ({ commit, dispatch }) => {
 }
 
 //Impersonate User
-export const USER_IMPERSONATE = ({ commit, dispatch, state }, userId = false) => {
+export const USER_IMPERSONATE = ({commit, dispatch, state}, userId = false) => {
   return new Promise(async (resolve, reject) => {
     if (!userId) return reject('User Id is required')
     let params = {
@@ -229,7 +229,7 @@ export const USER_IMPERSONATE = ({ commit, dispatch, state }, userId = false) =>
       }
     }
 
-    profileServices.crud.index('apiRoutes.quser.impersonate', params).then(async response => {
+    crud.index('apiRoutes.quser.impersonate', params).then(async response => {
       let sessionData = await cache.get.item('sessionData')
       let roleId = await cache.get.item('auth.role.id')
       let departmentId = await cache.get.item('auth.department.id')
@@ -252,7 +252,7 @@ export const USER_IMPERSONATE = ({ commit, dispatch, state }, userId = false) =>
         expiresIn: response.data.expiresIn
       })
 
-      await dispatch('app/REFRESH_PAGE', null, { root: true })
+      await dispatch('app/REFRESH_PAGE', null, {root: true})
       resolve(true)
     }).catch(error => {
       console.error('[AUTH ACTION] impersonate', error)
@@ -263,33 +263,31 @@ export const USER_IMPERSONATE = ({ commit, dispatch, state }, userId = false) =>
 }
 
 //Leave impersonation
-export const USER_LEAVE_IMPERSONATE = ({ commit, dispatch, state }) => {
+export const USER_LEAVE_IMPERSONATE = ({commit, dispatch, state}) => {
   return new Promise(async (resolve, reject) => {
     //Get original user
     let impersonatorData = await cache.get.item('impersonatorData')
     if (!impersonatorData) return reject(false)
 
     //Request to Logout impersonate user
-    profileServices.auth.logout().then(async () => {
-      //Remove key "impersonatorData" form storage
-      await cache.remove('impersonatorData')
-      //set original role Id
-      await cache.set('auth.role.id', impersonatorData.roleId)
-      //Set original department Id
-      await cache.set('auth.department.id', impersonatorData.departmentId)
-      //AUTH success
-      await dispatch('AUTH_SUCCESS', impersonatorData.sessionData)
-
-      await dispatch('app/REFRESH_PAGE', null, { root: true })
-      resolve(true)
-    }).catch(async (error) => {
-      reject(error)
+    await crud.get('apiRoutes.quser.authLogout').catch(() => {
     })
+    //Remove key "impersonatorData" form storage
+    await cache.remove('impersonatorData')
+    //set original role Id
+    await cache.set('auth.role.id', impersonatorData.roleId)
+    //Set original department Id
+    await cache.set('auth.department.id', impersonatorData.departmentId)
+    //AUTH success
+    await dispatch('AUTH_SUCCESS', impersonatorData.sessionData)
+
+    await dispatch('app/REFRESH_PAGE', null, {root: true})
+    resolve(true)
   })
 }
 
 //Refresh user token
-export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
+export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
   let sesionData = await cache.get.item('sessionData')
 
   if (sesionData) {
@@ -299,7 +297,7 @@ export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
     //If token expires in ten minute, refresh
     if (expiresIn <= inTenMinutosDate) {
       //Request to refresh token
-      profileServices.crud.index('apiRoutes.quser.refreshToken').then(response => {
+      crud.index('apiRoutes.quser.refreshToken').then(response => {
         sesionData.expiresIn = response.data.expiresIn//Get expires in
         cache.set('sessionData', sesionData)//Update expiresIn in sessionData
       }).catch(error => {
@@ -308,3 +306,35 @@ export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
     }
   }
 }
+
+//Reset password request
+export const RESET_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
+  return new Promise(async (resolve, reject) => {
+      //Request Data
+      let dataRequest = {username: authData.username}
+      //Request
+      crud.post('apiRoutes.quser.authReset', dataRequest).then(response => {
+        dispatch('AUTH_LOGOUT').then(() => resolve(true)).catch(error => reject(error))
+      }).catch(error => reject(error))
+    }
+  )
+}
+
+//Change password
+export const CHANGED_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
+  return new Promise(async (resolve, reject) => {
+      //Request Data
+      let dataRequest = {
+        password: authData.password,
+        passwordConfirmation: authData.passwordConfirmation,
+        userId: authData.userId,
+        token: authData.token
+      }
+      //Request
+      crud.post('apiRoutes.quser.authChanged', dataRequest).then(response => {
+        dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
+      }).catch(error => reject(error));
+    }
+  )
+}
+
