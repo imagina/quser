@@ -67,3 +67,25 @@ export const hasSetting = (state) => (name) => {
   let setting = userSettings.find(setting => setting.name === name)
   return setting || false
 }
+
+export const getRolesField = (state) => (field = 'id') => {
+  let roles = state.userData.roles
+  let response = []
+
+  roles.forEach(item => {
+    response.push(item[field])
+  })
+
+  return response
+}
+
+export const getDepartmentsField = (state) => (field = 'id') => {
+  let departments = state.userData.departments
+  let response = []
+
+  departments.forEach(item => {
+    response.push(item[field])
+  })
+
+  return response
+}

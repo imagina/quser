@@ -98,6 +98,7 @@
             this.inRequest = false
             this.$emit('logged')
           }).catch(error => {
+            this.$alert.error(this.$tr('quser.layout.message.userOrPasswordInvalid'))
             this.loading = false
             this.inRequest = false
           })

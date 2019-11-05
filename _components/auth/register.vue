@@ -142,15 +142,12 @@
 </template>
 
 <script>
-  //components
-  import captcha from '@imagina/qsite/_components/captcha'
-
   export default {
     props: {
       horizontal: {type: Boolean, default: false},
       horizontalExtraFields: {type: Boolean, default: false}
     },
-    components: {captcha},
+    components: {},
     mounted() {
       this.$nextTick(function () {
         this.init()

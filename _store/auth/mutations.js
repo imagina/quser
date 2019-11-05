@@ -21,10 +21,6 @@ export const SET_IMPERSONATE = (state, data = true) => {
   state.impersonating = data
 }
 
-export const AUTH_USER_DATA = (state, data) => {
-  state.userData = data
-}
-
 export const AUTH_LOGOUT = (state) => {
   state.userToken = null
   state.userId = null

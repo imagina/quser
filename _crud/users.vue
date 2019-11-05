@@ -86,7 +86,7 @@
               type: 'text',
               rules: [
                 val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              ]
             },
             lastName: {
               label: `${this.$trp('ui.form.lastName')}*`,
@@ -154,7 +154,7 @@
               }
             },
             permissions: {
-              getAll: true,
+              allowInherit: true,
               type: 'permissions',
               value: {}
             }
