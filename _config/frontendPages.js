@@ -70,4 +70,17 @@ export default {
 		icon: 'fas fa-chart-bar',
 		//middleware: [auth]
 	},
+	// Route to Register (Specific register user Rol)
+	register: {
+		permission: null,
+		activated: true,
+		path: '/auth/register/:userRol',
+		name: 'auth.register',
+		page: () => import('@imagina/quser/_pages/register'),
+		layout: () => import('@imagina/qsite/_layouts/blank.vue'),
+		title: 'quser.sidebar.reset',
+		icon: 'fas fa-chart-bar',
+		//middleware: [auth]
+	},
+
 }
