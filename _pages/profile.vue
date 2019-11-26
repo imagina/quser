@@ -2,7 +2,7 @@
   <q-page id="profilePage" class="q-layout-page layout-padding backend-page">
 
     <!--Forms-->
-    <div class="row q-col-gutter-sm">
+    <div class="row q-col-gutter-md">
       <!--Form Left-->
       <div class="col-12 col-md-5 col-lg-4 col-xl-3"
            v-if="success">
@@ -30,7 +30,7 @@
           <q-input type="text" outlined dense v-model="form.fields.identification.value"
                    :label="$tr('ui.form.identification')"/>
           <!--Birthday-->
-          <q-input dense mask="date" v-model="form.fields.birthday.value" color="primary" class="q-mt-md"
+          <q-input dense mask="date" v-model="form.fields.birthday.value" color="primary"
                    unmasked-value :label="$tr('ui.form.birthday')" outlined placeholder="YYYY/MM/DD">
             <template v-slot:prepend>
               <q-icon name="fas fa-birthday-cake"/>

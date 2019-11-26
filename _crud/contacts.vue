@@ -4,6 +4,7 @@
     computed: {
       crudData() {
         return {
+          crudId : this.$uid(),
           field : 'contacts',
           apiRoute: 'apiRoutes.quser.fields',
           permission: 'profile.fields',
@@ -54,40 +55,50 @@
             id: {value: null},
             userId: {value: this.$store.state.quserAuth.userId},
             firstName: {
-              name :'first_name',
-              label: `${this.$tr('ui.form.firstName')}*`,
+              name : 'first_name',
               value: null,
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
+              props : {
+                label: `${this.$tr('ui.form.firstName')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
             lastName: {
-              name :'last_name',
-              label: `${this.$tr('ui.form.lastName')}*`,
+              name : 'last_name',
               value: null,
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
+              props : {
+                label: `${this.$tr('ui.form.lastName')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
             phone: {
-              label: `${this.$tr('ui.form.phone')}*`,
               value: null,
-              type: 'phone',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired'),
-                val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng',{num : 10})
-              ],
+              type: 'input',
+              props : {
+                label: `${this.$tr('ui.form.phone')}*`,
+                mask:'phone',
+                unmaskedValue : true,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired'),
+                  val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng',{num : 10})
+                ],
+              }
             },
             email: {
-              label: `${this.$tr('ui.form.email')}*`,
               value: null,
-              type: 'email',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired'),
-                val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
-              ],
+              type: 'input',
+              props : {
+                label: `${this.$tr('ui.form.email')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired'),
+                  val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                ],
+              }
             },
           }
         }

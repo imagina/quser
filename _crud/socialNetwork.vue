@@ -2,7 +2,7 @@
 <script>
   export default {
     computed: {
-      crudData () {
+      crudData() {
         return {
           field: 'socialNetworks',
           apiRoute: 'apiRoutes.quser.fields',
@@ -11,7 +11,7 @@
             title: this.$tr('quser.layout.newSocialNetwork'),
           },
           read: {
-            title: this.$trp('ui.label.sociaNetwork'),
+            title: this.$trp('ui.label.socialNetwork'),
             icon: 'fas fa-mouse-pointer',
             search: false,
             columns: [
@@ -23,7 +23,7 @@
                 name: 'value', label: this.$tr('ui.form.reference'), field: 'value',
                 format: val => val || '-', align: 'left'
               },
-              { name: 'actions', label: this.$tr('ui.form.actions'), align: 'left' },
+              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
             requestParams: {
               filter: {
@@ -43,54 +43,59 @@
           },
           delete: true,
           formLeft: {
-            id: { value: null },
-            userId: { value: this.$store.state.quserAuth.userId },
+            id: {value: null},
+            userId: {value: this.$store.state.quserAuth.userId},
             type: {
-              label: `${this.$tr('ui.form.socialNetwork')}*`,
+              name : 'type',
               value: null,
               type: 'select',
-              options: [
-                {
-                  label: 'Facebook',
-                  id: 'Facebook',
-                },
-                {
-                  label: 'Google +',
-                  id: 'Google+',
-                },
-                {
-                  label: 'LinkedIn',
-                  id: 'LinkedIn',
-                },
-                {
-                  label: 'Twitter',
-                  id: 'Twitter',
-                },
-                {
-                  label: 'Instagram',
-                  id: 'Instagram',
-                },
-                {
-                  label: 'Whatsapp',
-                  id: 'Whatsapp',
-                }
-              ],
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              props: {
+                label: `${this.$tr('ui.form.socialNetwork')}*`,
+                options: [
+                  {
+                    label: 'Facebook',
+                    value: 'Facebook',
+                  },
+                  {
+                    label: 'Google +',
+                    value: 'Google+',
+                  },
+                  {
+                    label: 'LinkedIn',
+                    value: 'LinkedIn',
+                  },
+                  {
+                    label: 'Twitter',
+                    value: 'Twitter',
+                  },
+                  {
+                    label: 'Instagram',
+                    value: 'Instagram',
+                  },
+                  {
+                    label: 'Whatsapp',
+                    value: 'Whatsapp',
+                  }
+                ],
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
             value: {
-              label: `${this.$tr('ui.form.reference')}*`,
+              name : 'value',
               value: null,
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
+              props : {
+                label: `${this.$tr('ui.form.reference')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
           }
         }
       }
-    },
-    methods: {}
+    }
   }
 </script>

@@ -1,9 +1,15 @@
 <template></template>
 <script>
   export default {
+    data (){
+      return {
+        crudId : this.$uid()
+      }
+    },
     computed: {
       crudData() {
         return {
+          crudId : this.crudId,
           apiRoute: 'apiRoutes.quser.roles',
           permission: 'profile.role',
           create: {
@@ -31,22 +37,26 @@
             id: {value: null},
             userId: {value: this.$store.state.quserAuth.userId},
             name: {
-              label: `${this.$tr('ui.form.name')}*`,
               value: '',
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
+              props: {
+                label: `${this.$tr('ui.form.name')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
             slug: {
-              label: `${this.$tr('ui.form.slug')}*`,
               value: '',
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
+              props: {
+                label: `${this.$tr('ui.form.slug')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
-            settings : {
+            settings: {
               type: 'settings',
               settings: {
                 assignedRoles: {
@@ -54,7 +64,7 @@
                   label: this.$trp('ui.label.role'),
                   value: [],
                   type: 'select',
-                  multiple : true,
+                  multiple: true,
                   clearable: true,
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.roles',
@@ -66,8 +76,8 @@
                   label: this.$trp('ui.label.department'),
                   value: [],
                   type: 'select',
-                  tree :false,
-                  multiple : true,
+                  tree: false,
+                  multiple: true,
                   clearable: true,
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.departments',
@@ -79,21 +89,25 @@
                   label: this.$trp('ui.label.setting'),
                   value: [],
                   type: 'select',
-                  valueConsistsOf : 'LEAF_PRIORITY',
-                  multiple : true,
+                  valueConsistsOf: 'LEAF_PRIORITY',
+                  multiple: true,
                   clearable: true,
                   loadOptions: {
-                    delayed : this.getSettingsOptions(),
+                    delayed: this.getSettingsOptions(),
                   }
                 },
               }
             },
-            permissions : {
-              type : 'permissions',
-              value : {}
+            permissions: {
+              type: 'permissions',
+              value: {}
             }
           }
         }
+      },
+      //Crud info
+      crudInfo(){
+        return this.$store.state.qcrudComponent.component[this.crudId] || {}
       }
     },
     methods: {

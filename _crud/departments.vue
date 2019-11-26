@@ -1,9 +1,15 @@
 <template></template>
 <script>
   export default {
+    data (){
+      return {
+        crudId : this.$uid()
+      }
+    },
     computed: {
       crudData() {
         return {
+          crudId : this.$uid(),
           apiRoute: 'apiRoutes.quser.departments',
           permission: 'profile.departments',
           create: {
@@ -34,25 +40,35 @@
             id: {value: ''},
             userId: {value: this.$store.state.quserAuth.userId},
             title: {
-              label: `${this.$tr('ui.form.title')}*`,
               value: '',
-              type: 'text',
-              rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-              ],
+              type: 'input',
+              props: {
+                label: `${this.$tr('ui.form.title')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
             },
             parentId: {
-              label: this.$tr('ui.form.parent'),
               value: 0,
               type: 'select',
-              clearable: true,
               loadOptions: {
                 apiRoute: 'apiRoutes.quser.departments',
                 requestParams: {include: 'parent'}
+              },
+              props: {
+                label: this.$tr('ui.form.parent'),
+                options : [
+                  {label: this.$tr('ui.label.disabled'), value: 0},
+                ],
               }
             },
           }
         }
+      },
+      //Crud info
+      crudInfo(){
+        return this.$store.state.qcrudComponent.component[this.crudId] || {}
       }
     },
   }
