@@ -61,11 +61,13 @@
               settings: {
                 assignedRoles: {
                   description: 'Can manage users with following roles',
-                  label: this.$trp('ui.label.role'),
                   value: [],
                   type: 'select',
-                  multiple: true,
-                  clearable: true,
+                  props : {
+                    multiple: true,
+                    useChips : true,
+                    label: this.$trp('ui.label.role'),
+                  },
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.roles',
                     select: {label: 'name', id: 'id'}
@@ -73,12 +75,13 @@
                 },
                 assignedDepartments: {
                   description: 'Can manage departments under following departments',
-                  label: this.$trp('ui.label.department'),
                   value: [],
                   type: 'select',
-                  tree: false,
-                  multiple: true,
-                  clearable: true,
+                  props : {
+                    label: this.$trp('ui.label.department'),
+                    multiple: true,
+                    useChips : true,
+                  },
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.departments',
                     requestParams: {include: ''}
@@ -86,12 +89,13 @@
                 },
                 assignedSettings: {
                   description: 'Can manage the following settings',
-                  label: this.$trp('ui.label.setting'),
                   value: [],
                   type: 'select',
-                  valueConsistsOf: 'LEAF_PRIORITY',
-                  multiple: true,
-                  clearable: true,
+                  props : {
+                    label: this.$trp('ui.label.setting'),
+                    multiple: true,
+                    useChips : true,
+                  },
                   loadOptions: {
                     delayed: this.getSettingsOptions(),
                   }
