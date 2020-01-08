@@ -60,15 +60,19 @@ export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
 }
 
 //Set user role and user department
-export const SET_ROLE_DEPARTMENT = ({state, commit, getters}) => {
+export const SET_ROLE_DEPARTMENT = ({state, commit, getters}, params = {}) => {
   return new Promise(async (resolve, reject) => {
     try {
       let roles = getters['getRolesField']()
       let departments = getters['getDepartmentsField']()
 
-      //Search role and department in cache
-      let roleUser = await cache.get.item('auth.role.id')
-      let departmentUser = await cache.get.item('auth.department.id')
+      //Get role and department from params
+      let roleUser = params.roleId || false
+      let departmentUser = params.departmentId || false
+
+      //If no exist role and department search it in cache
+      if(!roleUser) roleUser = await cache.get.item('auth.role.id')
+      if(!departmentUser) departmentUser = await cache.get.item('auth.department.id')
 
       //If not found in cache, get it from store
       if (!roleUser) roleUser = state.userData.roles[0].id || false
