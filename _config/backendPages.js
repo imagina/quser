@@ -1,5 +1,6 @@
 //get pages of frontend, same is necesary to backend
 import frontendPages from '@imagina/quser/_config/frontendPages'
+import appConfig from 'src/config/app'
 
 let localPages = {
 	//User Index
@@ -13,6 +14,9 @@ let localPages = {
 		title: 'quser.sidebar.adminUserIndex',
 		icon: 'fas fa-users',
 		authenticated: true,
+		subHeader: {
+			refresh: true,
+		}
 	},
 	//User Departments
 	userDepartments: {
@@ -26,6 +30,10 @@ let localPages = {
 		title: 'quser.sidebar.adminUserDepartments',
 		icon: 'fas fa-user-shield',
 		authenticated: true,
+		subHeader: {
+			refresh: true,
+			breadcrumb : ['quser.userIndex']
+		}
 	},
 	//User Roles
 	userRoles: {
@@ -39,8 +47,13 @@ let localPages = {
 		title: 'quser.sidebar.adminUserRoles',
 		icon: 'fas fa-user-tag',
 		authenticated: true,
+		subHeader: {
+			refresh: true,
+			breadcrumb : ['quser.userIndex']
+		}
 	},
 }
 
+const responseRoutes = (!appConfig.isBackend && appConfig.loadBackendPages) ? localPages : {...frontendPages, ...localPages}
 //Return local page merged with frontend pages
-export default Object.assign({},frontendPages, localPages)
+export default responseRoutes

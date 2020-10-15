@@ -20,8 +20,7 @@ export default {
 		page: () => import('@imagina/quser/_pages/logout'),
 		layout: () => import('@imagina/qsite/_layouts/blank.vue'),
 		title: 'quser.sidebar.logout',
-		icon: 'fas fa-chart-bar',
-		//authenticated: true,
+		icon: 'fas fa-chart-bar'
 	},
 	//Change password
 	changePassword: {
@@ -74,7 +73,7 @@ export default {
 	register: {
 		permission: null,
 		activated: true,
-		path: '/auth/register/:userRol',
+		path: '/auth/register',
 		name: 'auth.register',
 		page: () => import('@imagina/quser/_pages/register'),
 		layout: () => import('@imagina/qsite/_layouts/blank.vue'),

@@ -7,7 +7,7 @@
       <q-tab name="tab-register" v-if="withRegister" :label="$tr('quser.layout.label.createAccount')"/>
     </q-tabs>
 
-    <q-separator />
+    <q-separator/>
 
     <!--Tabs-->
     <q-tab-panels v-model="tabModel" animated keep-alive>
@@ -24,44 +24,68 @@
                        @registered="emitRegister()"/>
       </q-tab-panel>
     </q-tab-panels>
+
+    <q-separator/>
+
+    <!--Social Auth-->
+    <div class="socialAuth q-py-sm text-center" v-if="!isBackend">
+      <div class="text-grey-6 q-mb-xs">{{$tr('quser.layout.message.quickAccess')}}</div>
+      <!--google-->
+      <google-auth @logged="emitLogged()"/>
+      <!--google-->
+      <facebook-auth @logged="emitLogged()" class="q-ml-sm"/>
+    </div>
   </q-card>
 </template>
 <script>
   //components
   import loginForm from '@imagina/quser/_components/auth/login'
   import registerForm from '@imagina/quser/_components/auth/register'
+  import googleAuth from '@imagina/quser/_components/socialAuth/google'
+  import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
 
   export default {
     props: {
-      horizontal: { type: Boolean, default: false },
-      horizontalExtraFields: { type: Boolean, default: false }
+      horizontal: {type: Boolean, default: false},
+      horizontalExtraFields: {type: Boolean, default: false}
     },
     components: {
       loginForm,
-      registerForm
+      registerForm,
+      googleAuth,
+      facebookAuth
     },
     watch: {},
-    mounted () {
+    mounted() {
       this.$nextTick(function () {
       })
     },
-    data () {
+    data() {
       return {
         props: {},
-        withRegister: false,//this.$store.getters['qsiteSettings/getSettingValueByName']('iprofile::registerUsers'),
         tabModel: 'tab-login',//'tab-login',
         email: null,
       }
     },
+    computed: {
+      withRegister() {
+        let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
+        return (hasSetting && !this.isBackend) ? true : false
+      },
+      isBackend() {
+        let configApp = config('app')
+        return configApp.isBackend
+      }
+    },
     methods: {
-      init () {
+      init() {
         this.props = this.$clone(this.$props)
       },
-      emitRegister () {
+      emitRegister() {
         this.tabModel = 'tab-login'
         this.$emit('registered', this.email)
       },
-      emitLogged () {
+      emitLogged() {
         this.$emit('logged')
       }
     }

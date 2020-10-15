@@ -9,13 +9,14 @@
     computed: {
       crudData() {
         return {
-          crudId : this.$uid(),
+          crudId : this.crudId,
           apiRoute: 'apiRoutes.quser.departments',
           permission: 'profile.departments',
           create: {
             title: this.$tr('quser.layout.newDepartment'),
           },
           read: {
+            filterName: 'quser.admin.departments',
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
               {name: 'title', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
@@ -47,6 +48,10 @@
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
+              },
+              validateField : {
+                apiRoute: 'apiRoutes.quser.departments',
+                crudId : this.crudId,
               }
             },
             parentId: {

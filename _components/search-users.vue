@@ -128,12 +128,7 @@
 </template>
 <script>
 	/*Plugins*/
-	import {array} from '@imagina/qhelper/_plugins/array'
-
-	/*Services*/
-	import profileService from '@imagina/quser/_services/profile/index'
-	import rolesServices from '@imagina/quser/_services/roles'
-	import userServies from '@imagina/quser/_services/users'
+	import {array} from '@imagina/qsite/_plugins/array'
 
 	export default {
 		props: {},

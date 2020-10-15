@@ -36,7 +36,7 @@
 
 
 <script>
-  import {helper} from '@imagina/qhelper/_plugins/helper'
+  import {helper} from '@imagina/qsite/_plugins/helper'
 
   export default {
     props: {},

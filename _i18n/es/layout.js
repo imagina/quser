@@ -22,9 +22,14 @@ export default {
     newpassword: 'Nueva contraseña',
     confirmPassword: 'Confirmar contraseña',
     changePassword: 'Cambiar contraseña',
+    profile : 'Perfil | Perfiles',
+    myProfile : 'Mi perfil | Mis perfiles',
   },
   form : {
-    lastLogin : 'Ultima sesión'
+    lastLogin : 'Ultima sesión',
+    defaultAddress : 'Dirección por defecto',
+    documentType : 'Tipo de documento',
+    documentnumber : 'Numero de documento'
   },
   message : {
     emailExist : 'El email ya está registrado',
@@ -37,5 +42,6 @@ export default {
     reset: 'Revise su correo electrónico para restablecer su contraseña.',
     changend:'La contraseña ha sido restablecida. Ahora ya puede iniciar sesión con su nueva contraseña.',
     closeSessions: 'Quieres cerrar todas las sesiones activas?',
+    quickAccess : 'Acceso rapido',
   }
 }

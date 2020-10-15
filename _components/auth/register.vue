@@ -158,7 +158,7 @@
         loading: false,
         fullLoading: false,
         isHorizontal: false,
-        extraFields: this.$store.getters['qsiteSettings/getSettingValueByName']('iprofile::registerExtraFields'),
+        extraFields: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerExtraFields'),
         form: {
           firstName: null,
           lastName: null,

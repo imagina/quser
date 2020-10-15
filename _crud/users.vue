@@ -16,6 +16,7 @@
             title: this.$tr('quser.layout.newUser'),
           },
           read: {
+            requestParams: {include: 'roles,departments'},
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id'},
               {
@@ -25,6 +26,24 @@
               {
                 name: 'email', label: this.$tr('ui.form.email'), field: 'email',
                 align: 'left', sortable: true
+              },
+              {
+                name: 'isActivated', label: this.$tr('ui.form.status'), field: 'isActivated',
+                asStatus : true
+              },
+              {
+                name: 'roles', label: this.$trp('ui.label.role'), field: 'roles',
+                align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
+                format: val => val ? val.map(item => {
+                  return item.name
+                }).join(', ') : ''
+              },
+              {
+                name: 'departments', label: this.$trp('ui.label.department'), field: 'departments',
+                align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
+                format: val => val ? val.map(item => {
+                  return item.title
+                }).join(', ') : ''
               },
               {
                 name: 'last_loging', label: this.$tr('quser.layout.form.lastLogin'), field: 'lastLoginDate',
@@ -40,10 +59,9 @@
               },
               {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
             ],
-            requestParams: {include: ''},
             filters: {
               roleId: {
-                value: 0,
+                value: null,
                 type: 'select',
                 loadOptions: {
                   apiRoute: 'apiRoutes.quser.roles',
@@ -51,13 +69,11 @@
                 },
                 props: {
                   label: `${this.$tr('ui.label.role')}:`,
-                  options: [
-                    {label: this.$tr('ui.label.all'), value: 0}
-                  ],
+                  clearable : true
                 }
               },
               departmentId: {
-                value: '0',
+                value: null,
                 tree: false,
                 type: 'select',
                 loadOptions: {
@@ -65,21 +81,19 @@
                 },
                 props: {
                   label: `${this.$tr('ui.label.department')}:`,
-                  options: [
-                    {label: this.$tr('ui.label.all'), value: '0'}
-                  ],
+                  clearable : true
                 }
               },
-              status: {
-                value: '-1',
+              isActivated: {
+                value: null,
                 type: 'select',
                 props: {
                   label: `${this.$tr('ui.form.status')}:`,
                   options: [
-                    {label: this.$tr('ui.label.all'), value: '-1'},
                     {label: this.$tr('ui.label.enabled'), value: '1'},
                     {label: this.$tr('ui.label.disabled'), value: '0'},
                   ],
+                  clearable : true
                 }
               },
             }
@@ -162,7 +176,7 @@
             },
           },
           formRight: {
-            activated: {
+            isActivated: {
               value: '1',
               type: 'select',
               props: {

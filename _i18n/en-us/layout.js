@@ -21,9 +21,14 @@ export default {
     newpassword: 'New password',
     confirmPassword: 'Confirm password',
     changePassword: 'Change Password',
+    profile : 'Profile | Profiles',
+    myProfile : 'My profile | My profiles',
   },
   form : {
-    lastLogin : 'Last login'
+    lastLogin : 'Last login',
+    defaultAddress : 'Default address',
+    documentType : 'Document type',
+    documentnumber : 'Document number'
   },
   message : {
     emailExist : 'Email already exist',
@@ -34,5 +39,6 @@ export default {
     checkMail: 'check email to reset password',
     passwordUpdated: 'Password updated!!',
     closeSessions: 'Do you want to close all your active sessions?',
+    quickAccess : 'Quick access',
   }
 }

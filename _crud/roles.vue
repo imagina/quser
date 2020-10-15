@@ -44,6 +44,11 @@
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired')
                 ],
+              },
+              validateField : {
+                apiRoute: 'apiRoutes.quser.roles',
+                crudId : this.crudId,
+                requestParams : {filter : {field : 'name'}}
               }
             },
             slug: {
@@ -144,7 +149,7 @@
             }
 
             resolve(tree)//Response
-          })
+          }).catch(error => {})
         })
       }
     }
