@@ -12,6 +12,7 @@
           crudId: this.crudId,
           apiRoute: 'apiRoutes.quser.users',
           permission: 'profile.user',
+          extraFormFields: 'crud-fields.Iprofile.users',
           create: {
             title: this.$tr('quser.layout.newUser'),
           },
@@ -24,8 +25,8 @@
                 align: 'left', sortable: true
               },
               {
-                name: 'email', label: this.$tr('ui.form.email'), field: 'email',
-                align: 'left', sortable: true
+                name: 'email', label: `${this.$tr('ui.form.email')} / ${this.$trp('ui.form.userName')}`,
+                field: 'email', align: 'left', sortable: true
               },
               {
                 name: 'isActivated', label: this.$tr('ui.form.status'), field: 'isActivated',
@@ -130,10 +131,21 @@
               value: null,
               type: 'input',
               props: {
-                label: `${this.$trp('ui.form.email')} *`,
+                label: `${this.$tr('ui.form.email')} / ${this.$trp('ui.form.userName')} *`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  //val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                ],
+              }
+            },
+            isActivated: {
+              value: '1',
+              type: 'select',
+              props: {
+                label: `${this.$tr('ui.form.status')}:`,
+                options: [
+                  {label: this.$tr('ui.label.enabled'), value: '1'},
+                  {label: this.$tr('ui.label.disabled'), value: '0'},
                 ],
               }
             },
@@ -176,16 +188,10 @@
             },
           },
           formRight: {
-            isActivated: {
-              value: '1',
-              type: 'select',
-              props: {
-                label: `${this.$tr('ui.form.status')}:`,
-                options: [
-                  {label: this.$tr('ui.label.enabled'), value: '1'},
-                  {label: this.$tr('ui.label.disabled'), value: '0'},
-                ],
-              }
+            permissions: {
+              allowInherit: true,
+              type: 'permissions',
+              value: {}
             },
             roles: {
               value: [],
@@ -220,42 +226,37 @@
                 },
               }
             },
-            settings: {
-              type: 'settings',
-              settings: {
                 assignedRoles: {
-                  description: 'Can manage users with following roles',
-                  label: this.$trp('ui.label.role'),
                   value: [],
                   type: 'select',
+              fakeFieldName: 'settings',
+              props: {
+                label: 'Can manage users with following roles',
                   multiple: true,
                   clearable: true,
+                useChips : true
+              },
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.roles',
                     select: {label: 'name', id: 'id'}
                   }
                 },
                 assignedDepartments: {
-                  description: 'Can manage departments under following departments',
-                  label: this.$trp('ui.label.department'),
                   value: [],
                   type: 'select',
-                  tree: false,
+              fakeFieldName: 'settings',
+              props: {
+                label: 'Can manage departments under following departments',
                   multiple: true,
                   clearable: true,
+                useChips : true
+              },
                   loadOptions: {
                     apiRoute: 'apiRoutes.quser.departments',
                     requestParams: {include: ''}
                   }
                 },
               }
-            },
-            permissions: {
-              allowInherit: true,
-              type: 'permissions',
-              value: {}
-            }
-          }
         }
       },
       //Crud info

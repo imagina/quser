@@ -16,7 +16,6 @@
             title: this.$tr('quser.layout.newDepartment'),
           },
           read: {
-            filterName: 'quser.admin.departments',
             columns: [
               {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
               {name: 'title', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},

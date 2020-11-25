@@ -12,6 +12,7 @@
           crudId : this.crudId,
           apiRoute: 'apiRoutes.quser.roles',
           permission: 'profile.role',
+          extraFormFields: 'crud-fields.Iprofile.roles',
           create: {
             title: this.$tr('quser.layout.newRole'),
           },

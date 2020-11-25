@@ -9,7 +9,7 @@
             {{$tr('quser.layout.message.logout')}}
           </div>
           <q-btn :label="$tr('quser.layout.label.login')" color="primary"
-                 :loading="loading"
+                 :loading="loading" rounded unelevated
                  class="q-mt-md" :to="{name : 'auth.login'}"/>
         </div>
       </div>

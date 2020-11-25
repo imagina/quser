@@ -17,27 +17,31 @@
       <!-- Password field -->
       <div :class="columnsFieldsClass">
         <q-input name="password" ref="password" dense v-model="form.password"
-                 type="password" color="primary" outlined
+                 :type="isPwd ? 'password' : 'text'" color="primary" outlined
                  :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
                  :label="$tr('ui.form.password')">
           <template v-slot:prepend>
             <q-icon name="fas fa-lock"/>
+          </template>
+          <template v-slot:append>
+            <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+                    @click="isPwd = !isPwd"/>
           </template>
         </q-input>
       </div>
 
       <!-- Button login -->
       <div class="text-center col-12">
-        <q-btn :loading="loading" type="submit" color="primary">
+        <q-btn :loading="loading" type="submit" color="primary" rounded unelevated>
           {{$tr('quser.layout.label.login')}}
           <template v-slot:loading>
             <q-spinner-oval class="on-left"/>
             {{$tr('ui.label.validating')}}
           </template>
         </q-btn>
-
-        <q-btn flat :label="$tr('quser.layout.label.resetPassword')" class="q-mt-sm"
-               :to="{name : 'auth.reset.password'}" color="grey-8"/>
+        <br>
+        <q-btn :label="$tr('quser.layout.label.resetPassword')" class="q-mt-lg"
+               :to="{name : 'auth.reset.password'}" color="grey-8" flat/>
       </div>
     </q-form>
   </div>
@@ -69,7 +73,8 @@
         rememberData: true,
         loading: false,
         inRequest: false,
-        fromRoute: false
+        fromRoute: false,
+        isPwd: true
       }
     },
     computed: {
