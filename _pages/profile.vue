@@ -125,7 +125,7 @@
 
         //Set data in form
         this.form.id = this.$clone(userData.id)
-        this.form.activated = this.$clone(userData.activated)
+        this.form.isActivated = this.$clone(userData.isActivated)
         this.form.firstName = this.$clone(userData.firstName)
         this.form.lastName = this.$clone(userData.lastName)
         this.form.email = this.$clone(userData.email)
