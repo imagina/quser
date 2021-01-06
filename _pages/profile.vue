@@ -30,8 +30,8 @@
           <q-input type="text" outlined dense v-model="form.fields.identification.value"
                    :label="$tr('ui.form.identification')"/>
           <!--Birthday-->
-          <q-input dense mask="date" v-model="form.fields.birthday.value" color="primary"
-                   unmasked-value :label="$tr('ui.form.birthday')" outlined placeholder="YYYY/MM/DD">
+          <q-input dense v-model="form.fields.birthday.value" color="primary"
+                   :label="$tr('ui.form.birthday')" outlined>
             <template v-slot:prepend>
               <q-icon name="fas fa-birthday-cake"/>
             </template>
