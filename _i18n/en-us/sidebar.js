@@ -5,6 +5,7 @@ export default {
   adminUserEdit : 'User Edit',
   adminUserDepartments : 'Departments',
   adminUserRoles : 'Roles',
+  adminDirectory : 'Directory',
   login : 'Login',
   logout : 'Logout',
   changePassword : 'Change password',
