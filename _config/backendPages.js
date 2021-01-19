@@ -30,7 +30,7 @@ let localPages = {
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     isCrud: true,
     title: 'quser.sidebar.adminUserDepartments',
-    icon: 'fas fa-user-shield',
+    icon: 'fas fa-people-arrows',
     authenticated: true,
     subHeader: {
       refresh: true,

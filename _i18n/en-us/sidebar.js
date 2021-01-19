@@ -3,7 +3,7 @@ export default {
   adminUserIndex : 'User List',
   adminUserCreate : 'Create',
   adminUserEdit : 'User Edit',
-  adminUserDepartments : 'Departments',
+  adminUserDepartments : 'User Groups',
   adminUserRoles : 'Roles',
   adminDirectory : 'Directory',
   login : 'Login',

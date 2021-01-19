@@ -1,8 +1,8 @@
 export default {
   newUser : 'Nuevo Usuario',
   updateUser : 'Actualizar Usuario',
-  newDepartment : 'Nuevo Departamento',
-  updateDepartment : 'Actualizar Departamento',
+  newDepartment : 'Nuevo Grupo de usuarios',
+  updateDepartment : 'Actualizar Grupo de usuarios',
   newRole : 'Nuevo Rol',
   updateRole : 'Actualizar Rol',
   newAddress : 'Nueva dirección',
@@ -24,6 +24,7 @@ export default {
     changePassword: 'Cambiar contraseña',
     profile : 'Perfil | Perfiles',
     myProfile : 'Mi perfil | Mis perfiles',
+    userGroup : 'Grupo de usuario | Grupos de usuario'
   },
   form : {
     lastLogin : 'Ultima sesión',

@@ -40,7 +40,7 @@
                 }).join(', ') : ''
               },
               {
-                name: 'departments', label: this.$trp('ui.label.department'), field: 'departments',
+                name: 'departments', label: this.$trp('quser.layout.label.userGroup'), field: 'departments',
                 align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
                 format: val => val ? val.map(item => {
                   return item.title
@@ -217,7 +217,7 @@
                 crudType: 'select',
                 crudData: import('@imagina/quser/_crud/departments'),
                 crudProps: {
-                  label: `${this.$trp('ui.label.department')}*`,
+                  label: `${this.$trp('quser.layout.label.userGroup')}*`,
                   multiple: true,
                   useChips: true,
                   rules: [
@@ -246,7 +246,7 @@
                   type: 'select',
               fakeFieldName: 'settings',
               props: {
-                label: 'Can manage departments under following departments',
+                label: 'Can manage departments under following User groups',
                   multiple: true,
                   clearable: true,
                 useChips : true
