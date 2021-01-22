@@ -41,5 +41,8 @@ export default {
     passwordUpdated: 'Password updated!!',
     closeSessions: 'Do you want to close all your active sessions?',
     quickAccess : 'Quick access',
+  },
+  quickCard: {
+    lastUsers: 'Users - Last registered users'
   }
 }
