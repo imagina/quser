@@ -2,8 +2,9 @@ export default {
   //Quick Cards
   quickCards: [
     {
-      component: () => import('@imagina/quser/_components/quick-cards/lastUsers'),
-      active: true
+      active: true,
+      permission: 'profile.user.manage',
+      component: () => import('@imagina/quser/_components/quick-cards/lastUsers')
     }
   ]
 }
