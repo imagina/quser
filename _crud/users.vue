@@ -21,7 +21,7 @@ export default {
           columns: [
             {name: 'id', label: this.$tr('ui.form.id'), field: 'id'},
             {
-              name: 'fullName', label: this.$tr('ui.form.name'), field: 'fullName',
+              name: 'first_name', label: this.$tr('ui.form.name'), field: 'fullName',
               align: 'left', sortable: true
             },
             {
