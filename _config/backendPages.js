@@ -21,7 +21,7 @@ let localPages = {
   },
   //User Departments
   userDepartments: {
-    permission: 'profile.departments.index',
+    permission: 'profile.departments.manage',
     activated: true,
     path: '/departments',
     name: 'quser.admin.departments',
@@ -39,7 +39,7 @@ let localPages = {
   },
   //User Roles
   userRoles: {
-    permission: 'profile.role.index',
+    permission: 'profile.role.manage',
     activated: true,
     path: '/roles',
     name: 'quser.admin.roles',
