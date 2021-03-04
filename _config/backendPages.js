@@ -1,6 +1,5 @@
 //get pages of frontend, same is necesary to backend
 import frontendPages from '@imagina/quser/_config/frontendPages'
-import appConfig from 'src/config/app'
 
 let localPages = {
   //User Index
@@ -72,6 +71,6 @@ let localPages = {
   },
 }
 
-const responseRoutes = (!appConfig.isBackend && appConfig.loadBackendPages) ? localPages : {...frontendPages, ...localPages}
+const responseRoutes = {...frontendPages, ...localPages}
 //Return local page merged with frontend pages
 export default responseRoutes
