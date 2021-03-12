@@ -28,7 +28,7 @@
     <q-separator/>
 
     <!--Social Auth-->
-    <div class="socialAuth q-py-sm text-center" v-if="!isBackend">
+    <div class="socialAuth q-py-sm text-center" v-if="!isIadmin">
       <div class="text-grey-6 q-mb-xs">{{$tr('quser.layout.message.quickAccess')}}</div>
       <!--google-->
       <google-auth @logged="emitLogged()"/>
@@ -70,11 +70,11 @@
     computed: {
       withRegister() {
         let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
-        return (hasSetting && !this.isBackend) ? true : false
+        return (hasSetting && !this.isIadmin) ? true : false
       },
-      isBackend() {
+      isIadmin() {
         let configApp = config('app')
-        return configApp.isBackend
+        return (configApp.mode == 'iadmin') ? true : false
       }
     },
     methods: {
