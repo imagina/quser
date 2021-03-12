@@ -18,6 +18,7 @@ export default {
   addresses: `${urlBase}/addresses`,
   departments: `${urlBase}/departments`,
   departmentsSettings: `${urlBase}/departments/settings`,
+  settings: `${urlBase}/settings`,
   fields: `${urlBase}/fields`,
   users: `${urlBase}/users`,
   usersBirthday: `${urlBase}/users/birthday`,
