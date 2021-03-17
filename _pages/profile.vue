@@ -1,167 +1,313 @@
 <template>
-  <q-page id="profilePage" class="q-layout-page layout-padding backend-page">
+  <div id="profilePage" :key="pageId">
+    <!--Form-->
+    <div id="formProfile" class="col-12 q-mb-md">
+      <div class="row relative-position q-col-gutter-md">
+        <!--Forms-->
+        <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-md-6">
+          <div class="box">
+            <!--Title-->
+            <div class="text-blue-grey text-weight-bold text-subtitle1 row items-center">
+              <q-icon :name="formData.icon" size="22px" class="q-mr-sm"/>
+              {{ formData.title }}
+            </div>
+            <q-separator class="q-mt-sm q-mb-md"/>
 
-    <!--Forms-->
-    <div class="row q-col-gutter-md">
-      <!--Form Left-->
-      <div class="col-12 col-md-5 col-lg-4 col-xl-3"
-           v-if="success">
-        <q-form @submit="updateData" ref="formRegister" class="box relative-position" autocomplete="off"
-                @validation-error="$alert.error($tr('ui.message.formInvalid'))">
-          <!--Image-->
-          <upload-image v-model="form.fields.mainImage.value"/>
-          <!--First Name-->
-          <q-input v-model="form.firstName" outlined dense :label="`${$trp('ui.form.firstName')} *`"
-                   :rules="[val => !!val || $tr('ui.message.fieldRequired')]"/>
-          <!--Last Name-->
-          <q-input v-model="form.lastName" outlined dense :label="`${$trp('ui.form.lastName')} *`"
-                   :rules="[val => !!val || $tr('ui.message.fieldRequired')]"/>
-          <!--Email-->
-          <q-input v-model="form.email" outlined dense :label="`${$trp('ui.form.email')} *`"
-                   :rules="[
-                     val => !!val || $tr('ui.message.fieldRequired'),
-                     val => $helper.validateEmail(val) || $tr('ui.message.fieldEmail')
-                   ]"/>
-          <!--Cellular phone-->
-          <q-input outlined dense v-model="form.fields.cellularPhone.value" unmasked-value
-                   inputmode="numeric" mask="(###) ### - ####" :label="`${$tr('ui.form.phone')} *`"
-                   :rules="[val => !!val || $tr('ui.message.fieldRequired')]"/>
-          <!--Identifiction-->
-          <q-input type="text" outlined dense v-model="form.fields.identification.value"
-                   :label="$tr('ui.form.identification')"/>
-          <!--Birthday-->
-          <q-input dense v-model="form.fields.birthday.value" color="primary"
-                   :label="$tr('ui.form.birthday')" outlined>
-            <template v-slot:prepend>
-              <q-icon name="fas fa-birthday-cake"/>
-            </template>
-            <template v-slot:append>
-              <q-icon name="fas fa-calendar-day"/>
-              <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                <q-date v-model="form.fields.birthday.value" @input="() => $refs.qDateProxy.hide()"/>
-              </q-popup-proxy>
-            </template>
-          </q-input>
-          <!--Update button-->
-          <div class="text-right q-mt-sm">
-            <q-btn color="positive" :loading="loading" type="submit"
-                   icon="fas fa-save" :label="$tr('ui.label.save')"/>
+            <!--Form-->
+            <q-form @submit="updateData" ref="formRegister" autocomplete="off" class="row q-col-gutter-x-md"
+                    @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+              <!--Fields-->
+              <dynamic-field v-for="(field, fieldKey) in formData.fields" :key="fieldKey" :field="field"
+                             v-model="form[field.name || fieldKey]" class="col-12"/>
+              <!--Actions-->
+              <div id="profileActions" class="col-12 text-right">
+                <!--Save-->
+                <q-btn :label="$tr('ui.label.save')" rounded unelevated color="green" type="submit"/>
+              </div>
+            </q-form>
           </div>
-          <!--Inner loafing-->
-          <inner-loading :visible="loading"/>
-        </q-form>
-      </div>
-      <!--Form Right-->
-      <div class="col-12 col-md-7 col-lg-8 col-xl-9"
-           v-if="success">
-        <!--Crud Address-->
-        <crud :crud-data="import('@imagina/quser/_crud/address')"
-              @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
-              @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
-        <!--Crud Contacts-->
-        <crud class="q-my-md" :crud-data="import('@imagina/quser/_crud/contacts')"
-              @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
-              @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
-        <!--Crud social Networks-->
-        <crud class="q-my-md" :crud-data="import('@imagina/quser/_crud/socialNEtwork')"
-              @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
-              @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
+          <!--Address CRUD-->
+          <div v-if="keyForm == 'session'" class="q-mt-md">
+            <crud :crud-data="import('@imagina/quser/_crud/address')"
+                  @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
+                  @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
+          </div>
+        </div>
+
+        <!--inner loading-->
+        <inner-loading :visible="loading"/>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>
-  export default {
-    props: {},
-    components: {},
-    watch: {},
-    mounted () {
-      this.$nextTick(function () {
-        this.init()
-      })
-    },
-    data () {
+export default {
+  beforeDestroy() {
+    this.$root.$off('page.data.refresh')
+  },
+  props: {},
+  components: {},
+  mounted() {
+    this.$nextTick(function () {
+      this.init()
+    })
+  },
+  data() {
+    return {
+      loading: false,
+      pageId: this.$uid(),
+      success: false,
+      form: {}
+    }
+  },
+  computed: {
+    //User data
+    userData() {
+      //Get user data
+      let userData = this.$clone(this.$store.state.quserAuth.userData)
+      //Get fields data
+      let fieldsData = this.$helper.convertToFrontField([
+        {name: 'cellularPhone', value: null},
+        {name: 'birthday', value: null},
+        {name: 'documentType', value: null},
+        {name: 'documentNumber', value: null},
+        {name: 'mainImage', value: null},
+        {name: 'email', value: null},
+        {name: 'socialNetworks', value: []},
+        {name: 'contacts', value: []},
+        {name: 'products', value: []}
+      ], userData.fields)
+
+      //Set data in form
       return {
-        loading: false,
-        success: false,
-        form: {
-          firstName: null,
-          lastName: null,
-          email: null,
-          fields: {}
+        id: this.$clone(userData.id),
+        firstName: this.$clone(userData.firstName),
+        lastName: this.$clone(userData.lastName),
+        email: this.$clone(userData.email),
+        cellularPhone: this.$clone(fieldsData.cellularPhone.value),
+        documentType: this.$clone(fieldsData.documentType.value),
+        documentNumber: this.$clone(fieldsData.documentNumber.value),
+        birthday: this.$clone(fieldsData.birthday.value),
+        mainImage: this.$clone(fieldsData.mainImage.value)
+      }
+    },
+    //Extra fields from setting
+    extraFields() {
+      return this.$clone(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerExtraFields'))
+    },
+    //Default form Field
+    formsData() {
+      return {
+        profile: {
+          icon: 'fas fa-user-circle',
+          title: this.$tr('ui.label.profile'),
+          fields: {
+            mainImage: {
+              value: this.userData.mainImage,
+              type: 'uploader',
+              props: {
+                maxFiles: 1,
+                accept: 'images',
+                helpText: this.$tr('ui.message.uploadImage'),
+                emitBase64: true,
+                rules: !this.extraFields.mainImage.required ? [] :
+                  [val => !!val || this.$tr('ui.message.fieldRequired')]
+              }
+            },
+            firstName: {
+              value: this.userData.firstName,
+              type: 'input',
+              props: {
+                label: `${this.$trp('ui.form.firstName')} *`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ]
+              }
+            },
+            lastName: {
+              value: this.userData.lastName,
+              type: 'input',
+              props: {
+                label: `${this.$trp('ui.form.lastName')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired')
+                ],
+              }
+            },
+            cellularPhone: {
+              value: this.userData.cellularPhone,
+              type: 'input',
+              props: {
+                label: this.$tr('ui.label.phone') + (this.extraFields.cellularPhone.required ? '*' : ''),
+                mask: 'phone',
+                clearable: true,
+                unmaskedValue: true,
+                rules: !this.extraFields.cellularPhone.required ? [] : [
+                  val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng', {num: 10})
+                ]
+              }
+            },
+            documentType: {
+              value: this.userData.documentType,
+              type: 'select',
+              props: {
+                label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType.required ? '*' : ''),
+                rules: !this.extraFields.documentType.required ? [] :
+                  [val => !!val || this.$tr('ui.message.fieldRequired')],
+                options: this.extraFields.documentType.options.filter(item =>
+                  this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
+                )
+              }
+            },
+            documentNumber: {
+              value: this.userData.documentNumber,
+              type: 'input',
+              props: {
+                type: 'number',
+                label: this.$tr('ui.form.identification') + (this.extraFields.documentType.required ? '*' : ''),
+                rules: !this.extraFields.documentType.required ? [] :
+                  [val => !!val || this.$tr('ui.message.fieldRequired')]
+              }
+            },
+            birthday: {
+              value: this.userData.birthday,
+              type: 'date',
+              props: {
+                label: this.$tr('ui.label.birthday') + (this.extraFields.birthday.required ? '*' : ''),
+                clearable: true,
+                rules: !this.extraFields.birthday.required ? [] :
+                  [val => !!val || this.$tr('ui.message.fieldRequired')]
+              }
+            }
+          }
+        },
+        session: {
+          icon: 'fas fa-sign-in-alt',
+          title: this.$tr('ui.label.session'),
+          fields: {
+            email: {
+              value: this.userData.email,
+              type: 'input',
+              props: {
+                label: `${this.$tr('ui.form.email')}*`,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired'),
+                  val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                ],
+              }
+            },
+            changePassword: {
+              value: false,
+              type: 'checkbox',
+              props: {
+                label: `${this.$tr('ui.message.updatePassword')}`,
+              }
+            },
+            password: {
+              value: null,
+              type: 'input',
+              props: {
+                label: `${this.$trp('ui.form.password')}*`,
+                type: 'password',
+                vIf: this.form.changePassword,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired'),
+                  val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
+                ]
+              }
+            },
+            passwordConfirmation: {
+              value: null,
+              type: 'input',
+              props: {
+                label: `${this.$trp('ui.form.checkPassword')}*`,
+                type: 'password',
+                vIf: this.form.changePassword,
+                rules: [
+                  val => !!val || this.$tr('ui.message.fieldRequired'),
+                  val => (this.form.password == val) || this.$tr('ui.message.fieldCheckPassword'),
+                ]
+              }
+            },
+          }
         }
       }
     },
-    computed: {
-      defaultFields () {
-        return [
-          { name: 'cellularPhone', value: null },
-          { name: 'birthday', value: null },
-          { name: 'identification', value: null },
-          { name: 'mainImage', value: {} },
-          { name: 'email', value: null },
-          { name: 'socialNetworks', value: [] },
-          { name: 'contacts', value: [] },
-          { name: 'products', value: [] }
-        ]
-      }
+  },
+  methods: {
+    //init
+    async init() {
+      this.loadPage()
+      this.$root.$on('page.data.refresh', () => {
+        this.loadPage()
+      })
     },
-    methods: {
-      //init
-      async init () {
-        this.loading = true//Loading
-        this.form.fields = this.$clone(this.defaultFields)//Set default fields
-        await this.setUserData()//Set user data
-        this.success = true//Success page
-        this.loading = false//Loading
-      },
-      //Set user data
-      async setUserData () {
-        let sessionData = await this.$cache.get.item('sessionData')//Get data from storage
-        let userData = this.$clone(sessionData.userData)//Get user data
-        //Convert fields
-        userData.fields = this.$helper.convertToFrontField(this.defaultFields, userData.fields)
+    //Refresh page actions
+    async loadPage() {
+      this.loading = true
+      await Promise.all([
+        this.$store.dispatch('qsiteApp/GET_SITE_SETTINGS'),
+        this.$store.dispatch('quserAuth/AUTH_UPDATE')
+      ])
+      this.pageId = this.$uid()
+      this.form = {}
+      this.loading = false
+    },
+    //Get form data
+    getFormData() {
+      let userData = this.$clone(this.$store.state.quserAuth.userData)
+      let formData = this.$clone(this.form)
 
-        //Set data in form
-        this.form.id = this.$clone(userData.id)
-        this.form.isActivated = this.$clone(userData.isActivated)
-        this.form.firstName = this.$clone(userData.firstName)
-        this.form.lastName = this.$clone(userData.lastName)
-        this.form.email = this.$clone(userData.email)
-        this.form.fields = this.$helper.convertToFrontField(this.defaultFields, userData.fields)
-      },
-      //update data
-      updateData () {
-        this.loading = true//Loading
-        let data = this.$clone(this.form)//Fet form data
-        data.fields = this.$helper.convertToBackField(data.fields)//Convert fields
-
-        //Request
-        this.$crud.update('apiRoutes.quser.users', data.id, data).then(response => {
-          this.$alert.success({ message: this.$tr('ui.message.recordUpdated') })
-          this.loading = false//Login
-          this.updateUserData()//update local userData
-        }).catch(error => {
-          console.error('[UPDATE PROFILE] ', error)
-          this.$alert.error({ message: this.$tr('ui.message.recordNoUpdated') })
-          this.loading = false
-        })
-      },
-      //Update user local data
-      async updateUserData () {
-        let userData = this.$clone(this.form)//Get form data
-        let sessionData = await this.$cache.get.item('sessionData')//Get session data
-        userData.fields = this.$helper.convertToBackField(userData.fields)//Convert fields
-        sessionData.userData = this.$clone(Object.assign({}, sessionData.userData, userData))//Merge with current data
-        await this.$store.dispatch('quserAuth/AUTH_UPDATE')//Update session data
+      //Default response
+      let response = {
+        id: this.$store.state.quserAuth.userId,
+        isActivated: 1,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        fields: []
       }
+
+      //Set fields data
+      for (var fieldName in formData) {
+        if (!response[fieldName]) {
+          response.fields.push({
+            name: fieldName,
+            value: formData[fieldName]
+          })
+        }
+      }
+
+      //Set password
+      if (formData.changePassword && formData.password) {
+        response.password = formData.password
+        response.passwordConfirmation = formData.passwordConfirmation
+      }
+
+      //Response
+      return response
+    },
+    //update data
+    updateData() {
+      this.loading = true//Loading
+      let formData = this.getFormData()//get form data
+
+      //Request
+      this.$crud.update('apiRoutes.quser.users', formData.id, formData).then(async response => {
+        this.$alert.success({message: this.$tr('ui.message.recordUpdated')})
+        this.loadPage()
+      }).catch(error => {
+        this.$alert.error({message: this.$tr('ui.message.recordNoUpdated')})
+        this.loading = false
+      })
     }
   }
+}
 </script>
 
 <style lang="stylus">
-  #profilePage
-    .form-title
-      color $primary
+#profilePage
+  .form-title
+    color $primary
 </style>

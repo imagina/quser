@@ -1,4 +1,5 @@
 export default {
+  //Iadmin translations
   adminGroup : 'Usuarios',
   adminUserIndex : 'Lista de Usuarios',
   adminUserCreate : 'Crear Usuario',
@@ -6,6 +7,9 @@ export default {
   adminUserDepartments : 'Grupos de Usuarios',
   adminUserRoles : 'Roles',
   adminDirectory : 'Directorio',
+  //Ipanel translations
+  panelProfile : 'Mis Datos',
+  //Others
   login : 'Iniciar sesión',
   reset : 'Restablecer Contraseña',
   logout : 'Cerrar sesión',

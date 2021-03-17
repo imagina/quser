@@ -168,7 +168,7 @@ export default {
               vIf: (this.crudInfo.typeForm == 'create') || this.crudInfo.changePassword,
               rules: [
                 val => !!val || this.$tr('ui.message.fieldRequired'),
-                val => val.length >= 8 || this.$tr('ui.message.fieldMinLeng', {num: 8})
+                val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
               ]
             }
           },
@@ -217,12 +217,9 @@ export default {
               crudType: 'select',
               crudData: import('@imagina/quser/_crud/departments'),
               crudProps: {
-                label: `${this.$trp('quser.layout.label.userGroup')}*`,
+                label: `${this.$trp('quser.layout.label.userGroup')}`,
                 multiple: true,
-                useChips: true,
-                rules: [
-                  val => (!!val && val.length) || this.$tr('ui.message.fieldRequired')
-                ]
+                useChips: true
               },
             }
           },
