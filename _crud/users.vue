@@ -227,6 +227,7 @@ export default {
             value: [],
             type: 'select',
             fakeFieldName: 'settings',
+            permission : 'profile.permissions.manage',
             props: {
               label: 'Can manage users with following roles',
               multiple: true,
@@ -242,6 +243,7 @@ export default {
             value: [],
             type: 'select',
             fakeFieldName: 'settings',
+            permission : 'profile.permissions.manage',
             props: {
               label: 'Can manage departments under following User groups',
               multiple: true,

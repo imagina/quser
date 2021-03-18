@@ -111,7 +111,7 @@ export default {
                 accept: 'images',
                 helpText: this.$tr('ui.message.uploadImage'),
                 emitBase64: true,
-                rules: !this.extraFields.mainImage.required ? [] :
+                rules: (!this.extraFields.mainImage || !this.extraFields.mainImage.required) ? [] :
                   [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
             },
@@ -139,11 +139,11 @@ export default {
               value: this.userData.cellularPhone,
               type: 'input',
               props: {
-                label: this.$tr('ui.label.phone') + (this.extraFields.cellularPhone.required ? '*' : ''),
+                label: this.$tr('ui.label.phone') + (this.extraFields.cellularPhone && this.extraFields.cellularPhone.required ? '*' : ''),
                 mask: 'phone',
                 clearable: true,
                 unmaskedValue: true,
-                rules: !this.extraFields.cellularPhone.required ? [] : [
+                rules: !this.extraFields.cellularPhone || !this.extraFields.cellularPhone.required ? [] : [
                   val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng', {num: 10})
                 ]
               }
@@ -152,12 +152,12 @@ export default {
               value: this.userData.documentType,
               type: 'select',
               props: {
-                label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType.required ? '*' : ''),
-                rules: !this.extraFields.documentType.required ? [] :
+                label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
+                rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
                   [val => !!val || this.$tr('ui.message.fieldRequired')],
-                options: this.extraFields.documentType.options.filter(item =>
+                options: this.extraFields.documentType ? this.extraFields.documentType.options.filter(item =>
                   this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
-                )
+                ) : []
               }
             },
             documentNumber: {
@@ -165,8 +165,8 @@ export default {
               type: 'input',
               props: {
                 type: 'number',
-                label: this.$tr('ui.form.identification') + (this.extraFields.documentType.required ? '*' : ''),
-                rules: !this.extraFields.documentType.required ? [] :
+                label: this.$tr('ui.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
+                rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
                   [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
             },
@@ -174,9 +174,9 @@ export default {
               value: this.userData.birthday,
               type: 'date',
               props: {
-                label: this.$tr('ui.label.birthday') + (this.extraFields.birthday.required ? '*' : ''),
+                label: this.$tr('ui.label.birthday') + (this.extraFields.birthday && this.extraFields.birthday.required ? '*' : ''),
                 clearable: true,
-                rules: !this.extraFields.birthday.required ? [] :
+                rules: !this.extraFields.birthday || !this.extraFields.birthday.required ? [] :
                   [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
             }

@@ -152,12 +152,12 @@ export default {
             type: 'select',
             isFakeField : true,
             props: {
-              label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType.required ? '*' : ''),
-              rules: !this.extraFields.documentType.required ? [] :
+              label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
+              rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
                 [val => !!val || this.$tr('ui.message.fieldRequired')],
-              options: this.extraFields.documentType.options.filter(item =>
+              options: this.extraFields.documentType ? this.extraFields.documentType.options.filter(item =>
                 this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
-              )
+              ) : []
             }
           },
           documentNumber: {
@@ -166,8 +166,8 @@ export default {
             isFakeField : true,
             props: {
               type: 'number',
-              label: this.$tr('ui.form.identification') + (this.extraFields.documentType.required ? '*' : ''),
-              rules: !this.extraFields.documentType.required ? [] :
+              label: this.$tr('ui.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
+              rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
                 [val => !!val || this.$tr('ui.message.fieldRequired')]
             }
           },
