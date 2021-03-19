@@ -217,9 +217,12 @@ export default {
               crudType: 'select',
               crudData: import('@imagina/quser/_crud/departments'),
               crudProps: {
-                label: `${this.$trp('quser.layout.label.userGroup')}`,
+                label: `${this.$trp('quser.layout.label.userGroup')}*`,
                 multiple: true,
-                useChips: true
+                useChips: true,
+                rules: [
+                  val => (!!val && val.length) || this.$tr('ui.message.fieldRequired')
+                ]
               },
             }
           },

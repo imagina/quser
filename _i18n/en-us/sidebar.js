@@ -8,7 +8,7 @@ export default {
   adminUserRoles : 'Roles',
   adminDirectory : 'Directory',
   //Ipanel translations
-  panelProfile : 'My Data',
+  panelProfile : 'My Account',
   //Others
   login : 'Login',
   logout : 'Logout',

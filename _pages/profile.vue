@@ -7,7 +7,7 @@
         <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-md-6">
           <div class="box">
             <!--Title-->
-            <div class="text-blue-grey text-weight-bold text-subtitle1 row items-center">
+            <div class="box-title row items-center">
               <q-icon :name="formData.icon" size="22px" class="q-mr-sm"/>
               {{ formData.title }}
             </div>
