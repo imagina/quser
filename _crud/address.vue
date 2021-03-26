@@ -150,20 +150,19 @@ export default {
           documentType: {
             value: null,
             type: 'select',
-            isFakeField : true,
+            isFakeField: true,
             props: {
               label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
               rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
                 [val => !!val || this.$tr('ui.message.fieldRequired')],
-              options: this.extraFields.documentType ? this.extraFields.documentType.options.filter(item =>
-                this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
-              ) : []
+              options: (this.extraFields.documentType && this.extraFields.documentType.options) ?
+                this.extraFields.documentType.options.filter(item => this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0) : []
             }
           },
           documentNumber: {
             value: null,
             type: 'input',
-            isFakeField : true,
+            isFakeField: true,
             props: {
               type: 'number',
               label: this.$tr('ui.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
@@ -182,7 +181,7 @@ export default {
           extraInfo: {
             value: '',
             type: 'input',
-            isFakeField : true,
+            isFakeField: true,
             props: {
               label: `${this.$trp('ui.form.comment')}`,
               type: 'textarea',
