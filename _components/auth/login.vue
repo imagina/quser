@@ -34,9 +34,8 @@
       <div class="text-center col-12">
         <q-btn :loading="loading" type="submit" color="primary" rounded unelevated>
           {{$tr('quser.layout.label.login')}}
-          <template v-slot:loading>
-            <q-spinner-oval class="on-left"/>
-            {{$tr('ui.label.validating')}}
+          <template v-slot:loading >
+            <q-spinner-oval />
           </template>
         </q-btn>
         <br>
