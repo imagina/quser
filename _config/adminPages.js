@@ -13,6 +13,15 @@ export default {
     authenticated: true,
     subHeader: {
       refresh: true,
+      export: {
+        title: 'quser.sidebar.adminUserIndex',
+        icon: 'fas fa-users',
+        moduleName: "Iprofile",
+        repositoryName: "UserApiRepository",
+        fileName: "Users",
+        fields: ['id', 'first_name', 'last_name', 'email', 'last_login', 'created_at', 'updated_at'],
+        headings: ['id', 'Nombre', 'Apellido', 'Email', 'Fecha Ultima Sesión', 'Fecha de Creación', 'Fecha Ultima Actualización']
+      }
     }
   },
   //User Departments
