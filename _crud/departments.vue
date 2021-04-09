@@ -12,7 +12,7 @@ export default {
         crudId: this.crudId,
         apiRoute: 'apiRoutes.quser.departments',
         permission: 'profile.departments',
-        extraFormFields: 'crud-fields.Iprofile.departments',
+        extraFormFields: 'Iprofile.crud-fields.departments',
         create: {
           title: this.$tr('quser.layout.newDepartment'),
         },

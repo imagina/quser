@@ -12,7 +12,7 @@ export default {
         crudId: this.crudId,
         apiRoute: 'apiRoutes.quser.users',
         permission: 'profile.user',
-        extraFormFields: 'crud-fields.Iprofile.users',
+        extraFormFields: 'Iprofile.crud-fields.users',
         create: {
           title: this.$tr('quser.layout.newUser'),
         },
