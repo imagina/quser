@@ -1,5 +1,5 @@
 <template>
-  <q-btn v-bind="propsButton" @click="signIn()"/>
+  <q-btn v-bind="propsButton" @click="signIn()" round unelevated/>
 </template>
 
 <script>

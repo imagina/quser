@@ -1,6 +1,11 @@
 <template>
-  <div id="formLoginComponent" :style="'max-width: '+(props.horizontal ? '700px' : '300px')">
-    <q-form @submit="authenticate()" class="row q-gutter-x-sm q-pt-sm"
+  <div id="formLoginComponent" :style="'max-width: '+(props.horizontal ? '700px' : '400px')">
+    <!--Title-->
+    <div class="box-title text-uppercase q-mb-sm">
+      {{ $tr('quser.layout.label.login') }}
+    </div>
+    <!--Form-->
+    <q-form @submit="authenticate()" class="row q-col-gutter-x-sm q-pt-sm"
             autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('ui.message.formInvalid'))">
       <!-- User field -->
       <div :class="columnsFieldsClass">
@@ -30,99 +35,110 @@
         </q-input>
       </div>
 
-      <!-- Button login -->
-      <div class="text-center col-12">
-        <q-btn :loading="loading" type="submit" color="primary" rounded unelevated>
-          {{$tr('quser.layout.label.login')}}
-          <template v-slot:loading >
-            <q-spinner-oval />
+      <!--Actions-->
+      <div id="formActions" :class="`row full-width q-mb-md ${withRegister ? 'justify-between' : 'justify-end'}`">
+        <!--Register-->
+        <q-btn :label="$tr('quser.layout.label.createAccount')" unelevated no-caps v-if="withRegister"
+               :to="{name : 'auth.register'}" color="blue-grey-1" text-color="blue-grey" rounded/>
+        <!-- Button login -->
+        <q-btn :loading="loading" type="submit" color="primary" rounded unelevated no-caps>
+          {{ $tr('quser.layout.label.login') }}
+          <template v-slot:loading>
+            <q-spinner-oval/>
           </template>
         </q-btn>
-        <br>
-        <q-btn :label="$tr('quser.layout.label.resetPassword')" class="q-mt-lg"
-               :to="{name : 'auth.reset.password'}" color="grey-8" flat/>
+      </div>
+
+      <!--Reset Password-->
+      <div class="text-center full-width">
+        <q-btn :label="$tr('quser.layout.label.resetPassword')" unelevated no-caps
+               :to="{name : 'auth.reset.password'}" color="blue-grey" rounded flat/>
       </div>
     </q-form>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      email: {default: null},
-      horizontal: {type: Boolean, default: false}
-    },
-    watch: {
-      email() {
-        this.setEmail()
+export default {
+  props: {
+    email: {default: null},
+    horizontal: {type: Boolean, default: false}
+  },
+  watch: {
+    email() {
+      this.setEmail()
+    }
+  },
+  mounted() {
+    this.$nextTick(function () {
+      this.init()
+    })
+  },
+  data() {
+    return {
+      props: {},
+      form: {
+        username: '',
+        password: ''
+      },
+      rememberData: true,
+      loading: false,
+      inRequest: false,
+      fromRoute: false,
+      isPwd: true
+    }
+  },
+  computed: {
+    columnsFieldsClass() {
+      if (this.horizontal) {
+        return 'col-12 col-md-6'
+      } else {
+        return 'col-12'
       }
     },
-    mounted() {
-      this.$nextTick(function () {
-        this.init()
-      })
+    withRegister() {
+      let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
+      return (hasSetting && (config('app.mode') == 'ipanel')) ? true : false
+    }
+  },
+  methods: {
+    //init
+    init() {
+      this.props = this.$clone(this.$props)
+      this.setEmail()
     },
-    data() {
-      return {
-        props: {},
-        form: {
-          username: '',
-          password: ''
-        },
-        rememberData: true,
-        loading: false,
-        inRequest: false,
-        fromRoute: false,
-        isPwd: true
+    //Login
+    async authenticate() {
+      if (!this.inRequest) {
+        this.inRequest = true
+        this.loading = true
+        const {username, password} = this.form
+        this.$store.dispatch('quserAuth/AUTH_REQUEST', {username, password}).then((response) => {
+          this.loading = false
+          this.inRequest = false
+          this.$emit('logged')
+        }).catch(error => {
+          this.$alert.error(this.$tr('quser.layout.message.userOrPasswordInvalid'))
+          this.loading = false
+          this.inRequest = false
+        })
       }
     },
-    computed: {
-      columnsFieldsClass() {
-        if (this.horizontal) {
-          return 'col-12 col-md-6'
+    //Set email
+    setEmail() {
+      let emailFromUrl = this.$route.query.email
+      let email = this.email ? this.$clone(this.email) : emailFromUrl
+      setTimeout(() => {
+        if (email) {
+          this.form.username = email
+          this.$refs.password.focus()
         } else {
-          return 'col-12'
+          this.$refs.username.focus()
         }
-      }
-    },
-    methods: {
-      //init
-      init() {
-        this.props = this.$clone(this.$props)
-        this.setEmail()
-      },
-      //Login
-      async authenticate() {
-        if (!this.inRequest) {
-          this.inRequest = true
-          this.loading = true
-          const {username, password} = this.form
-          this.$store.dispatch('quserAuth/AUTH_REQUEST', {username, password}).then((response) => {
-            this.loading = false
-            this.inRequest = false
-            this.$emit('logged')
-          }).catch(error => {
-            this.$alert.error(this.$tr('quser.layout.message.userOrPasswordInvalid'))
-            this.loading = false
-            this.inRequest = false
-          })
-        }
-      },
-      //Set email
-      setEmail() {
-        let emailFromUrl = this.$route.query.email
-        let email = this.email ? this.$clone(this.email) : emailFromUrl
-        setTimeout(() => {
-          if (email) {
-            this.form.username = email
-            this.$refs.password.focus()
-          } else {
-            this.$refs.username.focus()
-          }
-        }, 200)
-      }
+      }, 200)
     }
   }
+}
 </script>
 <style lang="stylus">
 </style>
