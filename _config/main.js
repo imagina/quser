@@ -1,4 +1,10 @@
 export default {
+  //Entities
+  entityNames: {
+    department: 'department',
+    rol:'role',
+    user: 'user',
+  },
   //Quick Cards
   quickCards: [
     {

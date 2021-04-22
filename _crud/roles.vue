@@ -10,6 +10,7 @@ export default {
     crudData() {
       return {
         crudId: this.crudId,
+        entityName: config("main.quser.entityNames.role"),
         apiRoute: 'apiRoutes.quser.roles',
         permission: 'profile.role',
         extraFormFields: 'Iprofile.crud-fields.roles',
