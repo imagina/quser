@@ -55,7 +55,9 @@ export default {
       let origenUrl = this.$store.state.qsiteApp.baseUrl //get local origin Url
 
       //validate last navigator history route to redirect
-      if (windowLastRoute.length && (windowLastRoute.indexOf(origenUrl) >= 0) && (windowLastRoute.indexOf("login") == -1) && (windowLastRoute.indexOf("logout") == -1)) {
+      if (windowLastRoute && windowLastRoute.length &&
+        (windowLastRoute.indexOf(origenUrl) >= 0) && (windowLastRoute.indexOf("login") == -1) &&
+        (windowLastRoute.indexOf("logout") == -1)) {
         //Redirect last
         location.href = windowLastRoute;
         //validate last vue router history route to rediret
