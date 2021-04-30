@@ -50,7 +50,7 @@ export default {
   methods: {
     //Redirect after login
     redirect() {
-      let windowLastRoute = this.$route.query.redirectTo || document.referrer //Define last navigator history route
+      let windowLastRoute = this.$route.query.redirectTo //Define last navigator history route
       let fromVueRoute = this.$route.query.fromVueRoute || this.fromVueRoute //Define from vue route
       let origenUrl = this.$store.state.qsiteApp.baseUrl //get local origin Url
 
