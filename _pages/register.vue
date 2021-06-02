@@ -7,7 +7,7 @@
       </div>
       <!--Form-->
       <div class="box q-mb-md">
-        <register-form @logged="redirect()" class="full-width"/>
+        <register-form @logged="$router.push({name : 'app.home'})" class="full-width"/>
       </div>
       <!--Auth social-->
       <div class="box" style="min-height: auto" v-if="appConfig.mode == 'ipanel'">
@@ -57,23 +57,6 @@ export default {
   methods: {
     init() {
       if (!this.withRegister) this.$router.push({name: 'app.not.authorized'})
-    },
-    //Redirect after login
-    redirect() {
-      let windowLastRoute = document.referrer //get last navigator history route
-      let origenUrl = this.$store.state.qsiteApp.baseUrl //get local origin Url
-      //validate last navigator history route to redirect
-      if (windowLastRoute.length && (windowLastRoute.indexOf(origenUrl) >= 0) && (windowLastRoute.indexOf("login") == -1) && (windowLastRoute.indexOf("logout") == -1)) {
-        //Redirect last
-        location.href = windowLastRoute;
-        //validate last vue router history route to rediret
-      } else if (this.fromRoute && this.fromRoute.name && (this.fromRoute.name != "auth.logout") && (this.fromRoute.name != "auth.login")) {
-        //Redirect last
-        this.$router.push({name: this.fromRoute.name});
-      } else {
-        //Redirect home iadmin
-        this.$router.push({name: 'app.home'});
-      }
     }
   }
 }

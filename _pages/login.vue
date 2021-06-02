@@ -7,7 +7,7 @@
       </div>
       <!--Form-->
       <div class="box q-mb-md">
-        <login-form @logged="redirect()" class="full-width"/>
+        <login-form @logged="$router.push({name : 'app.home'})" class="full-width"/>
       </div>
       <!--Auth social-->
       <div class="box" style="min-height: auto" v-if="appConfig.mode == 'ipanel'">
@@ -47,29 +47,7 @@ export default {
       appConfig: config('app')
     }
   },
-  methods: {
-    //Redirect after login
-    redirect() {
-      let windowLastRoute = this.$route.query.redirectTo //Define last navigator history route
-      let fromVueRoute = this.$route.query.fromVueRoute || this.fromVueRoute //Define from vue route
-      let origenUrl = this.$store.state.qsiteApp.baseUrl //get local origin Url
-
-      //validate last navigator history route to redirect
-      if (windowLastRoute && windowLastRoute.length &&
-        (windowLastRoute.indexOf(origenUrl) >= 0) && (windowLastRoute.indexOf("login") == -1) &&
-        (windowLastRoute.indexOf("logout") == -1)) {
-        //Redirect last
-        location.href = windowLastRoute;
-        //validate last vue router history route to rediret
-      } else if (fromVueRoute && (fromVueRoute != "auth.logout") && (fromVueRoute != "auth.login")) {
-        //Redirect last
-        this.$router.push({name: fromVueRoute});
-      } else {
-        //Redirect home iadmin
-        this.$router.push({name: 'app.home'});
-      }
-    }
-  }
+  methods: {}
 }
 </script>
 

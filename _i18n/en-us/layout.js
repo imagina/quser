@@ -39,6 +39,7 @@ export default {
     previousReset: 'To reset the password, complete this form:',
     checkMail: 'check email to reset password',
     passwordUpdated: 'Password updated!!',
+    reset: 'Revise su correo electrónico para restablecer su contraseña.',
     closeSessions: 'Do you want to close all your active sessions?',
     quickAccess : 'Quick access',
   },

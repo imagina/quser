@@ -1,18 +1,19 @@
 export default {
   //Iadmin translations
-  adminGroup : 'Users',
-  adminUserIndex : 'User List',
-  adminUserCreate : 'Create',
-  adminUserEdit : 'User Edit',
-  adminUserDepartments : 'User Groups',
-  adminUserRoles : 'Roles',
-  adminDirectory : 'Directory',
+  adminGroup: 'Users',
+  adminUserIndex: 'User List',
+  adminUserCreate: 'Create',
+  adminUserEdit: 'User Edit',
+  adminUserDepartments: 'User Groups',
+  adminUserRoles: 'Roles',
+  adminDirectory: 'Directory',
   //Ipanel translations
-  panelProfile : 'My Account',
+  panelProfile: 'My Account',
   //Others
-  login : 'Login',
-  logout : 'Logout',
-  changePassword : 'Change password',
-  meProfile : 'Profile',
-  resetPassword : 'Reset Password'
+  meProfile: 'Profile',
+  login: 'Login',
+  logout: 'Logout',
+  changePassword: 'Change Password',
+  resetPassword: 'Reset Password',
+  register: 'Register'
 }

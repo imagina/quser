@@ -56,7 +56,7 @@ export default {
     name: 'auth.reset.password',
     page: () => import('@imagina/quser/_pages/resetPassword'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.reset',
+    title: 'quser.sidebar.resetPassword',
     icon: 'fas fa-chart-bar',
     //middleware: [auth]
   },
@@ -68,7 +68,7 @@ export default {
     name: 'auth.reset-complete',
     page: () => import('@imagina/quser/_pages/resetPasswordComplete'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.reset',
+    title: 'quser.sidebar.resetPassword',
     icon: 'fas fa-chart-bar',
     //middleware: [auth]
   },
@@ -80,7 +80,7 @@ export default {
     name: 'auth.register',
     page: () => import('@imagina/quser/_pages/register'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.reset',
+    title: 'quser.sidebar.register',
     icon: 'fas fa-chart-bar',
     //middleware: [auth]
   },

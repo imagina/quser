@@ -9,7 +9,7 @@
       <div class="box">
         <!--Title-->
         <div class="box-title text-uppercase q-mb-sm">
-          {{ $tr('quser.layout.label.reset') }}
+          {{ $tr('quser.layout.label.resetPassword') }}
         </div>
 
         <!--Form-->
@@ -44,10 +44,8 @@
     <q-dialog persistent v-model="showMessage">
       <q-card>
         <q-card-section>
-          <!--Title-->
-          <div class="text-primary text-center text-h6">{{ $tr('quser.layout.label.reset') }}</div>
           <!--Message-->
-          <p class="text-subtitle1 text-justify">{{ $tr('quser.layout.message.reset') }}</p>
+          <p class="text-subtitle1 text-justify">{{ $tr('quser.layout.message.passwordUpdated') }}</p>
           <!--Button login-->
           <div class="text-center q-mt-sm">
             <q-btn label="Iniciar sesion" :to="{name : 'auth.login'}" color="primary"/>

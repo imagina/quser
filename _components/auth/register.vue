@@ -131,7 +131,7 @@
 
       <!--Actions-->
       <div id="formActions" class="row justify-between full-width q-mb-md">
-        <!--Register-->
+        <!--Login-->
         <q-btn :label="$tr('quser.layout.label.login')" unelevated no-caps
                :to="{name : 'auth.login'}" color="blue-grey-1" text-color="blue-grey" rounded/>
         <!-- Button Register -->
@@ -256,16 +256,18 @@ export default {
       if (success) {
         if (!response.checkEmail) message = ''
         //Dialog to go to iniciar sesión when id register
-        this.$q.dialog({
-          title: this.$tr('ui.message.recordCreated'),
+        this.$alert.success({
+          mode: 'modal',
+          title: `${this.$tr('ui.label.welcome')}!`,
           message: message,
-          color: 'blue-grey',
-          ok: this.$tr('quser.layout.label.login'),
-          cancel: false,
-          noBackdropDismiss: true,
-          noEscDismiss: true,
-        }).onOk(async data => {
-          this.login(response.checkEmail)
+          actions: [
+            {
+              label: this.$tr('quser.layout.label.login'),
+              handler: () => {
+                this.login(response.checkEmail)
+              }
+            },
+          ]
         })
       } else {
         console.error('[auth.register]', response)
