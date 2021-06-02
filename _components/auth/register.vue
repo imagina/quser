@@ -133,7 +133,8 @@
       <div id="formActions" class="row justify-between full-width q-mb-md">
         <!--Login-->
         <q-btn :label="$tr('quser.layout.label.login')" unelevated no-caps
-               :to="{name : 'auth.login'}" color="blue-grey-1" text-color="blue-grey" rounded/>
+               :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"
+               rounded/>
         <!-- Button Register -->
         <q-btn :loading="loading" type="submit" color="primary" name="submit" rounded unelevated>
           {{ $tr('quser.layout.label.createAccount') }}

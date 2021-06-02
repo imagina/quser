@@ -39,7 +39,8 @@
       <div id="formActions" :class="`row full-width q-mb-md ${withRegister ? 'justify-between' : 'justify-end'}`">
         <!--Register-->
         <q-btn :label="$tr('quser.layout.label.createAccount')" unelevated no-caps v-if="withRegister"
-               :to="{name : 'auth.register'}" color="blue-grey-1" text-color="blue-grey" rounded/>
+               :to="{name : 'auth.register',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"
+               rounded/>
         <!-- Button login -->
         <q-btn :loading="loading" type="submit" color="primary" rounded unelevated no-caps>
           {{ $tr('quser.layout.label.login') }}
@@ -52,7 +53,7 @@
       <!--Reset Password-->
       <div class="text-center full-width">
         <q-btn :label="$tr('quser.layout.label.resetPassword')" unelevated no-caps
-               :to="{name : 'auth.reset.password'}" color="blue-grey" rounded flat/>
+               :to="{name : 'auth.reset.password',query : this.$route.query}" color="blue-grey" rounded flat/>
       </div>
     </q-form>
   </div>

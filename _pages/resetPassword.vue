@@ -26,7 +26,7 @@
           <div class="row justify-between">
             <!--Button Login-->
             <q-btn :label="$tr('quser.layout.label.login')" no-caps rounded unelevated
-                   :to="{name : 'auth.login'}" color="blue-grey-1" text-color="blue-grey"/>
+                   :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"/>
             <!--Button submit-->
             <q-btn :loading="loading" color="primary" type="submit" :label="$tr('ui.label.reset')"
                    unelevated rounded no-caps>
