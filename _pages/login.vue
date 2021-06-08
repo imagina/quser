@@ -62,6 +62,6 @@ export default {
     #logo
       max-width 340px
       height 100px
-      max-height 100px
+      max-height 240px
       margin-bottom 25px
 </style>
