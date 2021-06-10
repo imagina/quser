@@ -386,7 +386,7 @@ export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
 export const RESET_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
   return new Promise(async (resolve, reject) => {
       //Request Data
-      let dataRequest = {email: authData.username}
+      let dataRequest = {username: authData.username}
       //Request
       crud.post('apiRoutes.quser.authReset', dataRequest).then(response => {
         dispatch('AUTH_LOGOUT').then(() => resolve(true)).catch(error => reject(error))
