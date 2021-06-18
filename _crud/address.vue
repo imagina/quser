@@ -30,7 +30,7 @@ export default {
             },
             {
               name: 'country', label: this.$tr('ui.label.country'), field: 'country',
-              format: val => val || '-', align: 'left'
+              format: val => val ? val.name : '-', align: 'left'
             },
             {
               name: 'state', label: this.$tr('ui.form.province'), field: 'state',

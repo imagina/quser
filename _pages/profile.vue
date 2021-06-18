@@ -4,7 +4,7 @@
     <div id="formProfile" class="col-12 q-mb-md">
       <div class="row relative-position q-col-gutter-md">
         <!--Forms-->
-        <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-md-6">
+        <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-lg-6 offset-lg-3">
           <div class="box">
             <!--Title-->
             <div class="box-title row items-center">
