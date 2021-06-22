@@ -52,7 +52,7 @@
 									<q-item-side>
 										<q-checkbox v-if="!user.selected"
 										            v-model="userSelected" :val="user"/>
-										<q-icon v-else name="fas fa-check" color="positive"></q-icon>
+										<q-icon v-else name="fas fa-check" color="green"></q-icon>
 									</q-item-side>
 									<!--Name user-->
 									<q-item-main>

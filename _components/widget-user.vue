@@ -19,7 +19,7 @@
 
       <q-item tag="label" link :to="{name:'auth.logout'}">
         <q-item-side>
-          <q-icon color="negative" name="fas fa-sign-out-alt" size="25px"></q-icon>
+          <q-icon color="red" name="fas fa-sign-out-alt" size="25px"></q-icon>
         </q-item-side>
         <q-item-main>
           <q-item-tile tag="a"

@@ -48,7 +48,7 @@
       <q-card>
         <q-card-section>
           <!--Title-->
-          <div class="text-positive text-center text-h6">
+          <div class="text-green text-center text-h6">
             <q-icon name="fas fa-check" size="20px"/>
             {{$tr('ui.label.ready')}}
           </div>
