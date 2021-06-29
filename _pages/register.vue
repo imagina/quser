@@ -10,7 +10,7 @@
         <register-form @logged="$router.push({name : 'app.home'})" class="full-width"/>
       </div>
       <!--Auth social-->
-      <div class="box" style="min-height: auto" v-if="appConfig.mode == 'ipanel'">
+      <div class="box" style="min-height: auto" v-if="withAuthSocial">
         <!--Title-->
         <div class="box-title text-uppercase q-mb-sm text-center">
           {{ $tr('quser.layout.message.quickAccess') }}
@@ -52,6 +52,10 @@ export default {
     withRegister() {
       let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
       return (hasSetting && (this.appConfig.mode == 'ipanel')) ? true : false
+    },
+    withAuthSocial() {
+      let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsersWithSocialNetworks')
+      return (hasSetting && (config('app.mode') == 'ipanel')) ? true : false
     }
   },
   methods: {

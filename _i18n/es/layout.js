@@ -44,6 +44,9 @@ export default {
     changend: 'La contraseña ha sido restablecida. Ahora ya puede iniciar sesión con su nueva contraseña.',
     closeSessions: 'Quieres cerrar todas las sesiones activas?',
     quickAccess: 'Acceso rapido',
+    privacyData: 'Declaro que he leído y acepto {concatData} de <b>{siteName}</b>',
+    termsAndConditions: 'Terminos y Condiciones',
+    privacyPolicy: 'Politica de Privacidad'
   },
   quickCard: {
     lastUsers: 'Usuarios - Ultimos usuarios registrados'

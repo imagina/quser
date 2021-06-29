@@ -9,6 +9,7 @@
     <q-form @submit="register()" ref="formContent"
             @validation-error="$alert.error($tr('ui.message.formInvalid'))"
             class="row q-col-gutter-x-sm q-pt-sm " autocomplete="off">
+
       <!-- Main Image field -->
       <div class="col-12 q-mb-md" v-if="form.fields.mainImage">
         <q-field v-model="form.fields.mainImage.value" borderless
@@ -126,6 +127,21 @@
         </q-input>
       </div>
 
+      <!--Terms and conditions-->
+      <div v-if="termsAndConditions" class="q-mb-md">
+        <q-item tag="label" v-ripple dense>
+          <q-item-section side>
+            <dynamic-field v-model="form.fields[termsAndConditions.field.name]" :field="termsAndConditions.field"/>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label caption>
+              <div class="float-right" v-html="termsAndConditions.message"></div>
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+      </div>
+
       <!--captcha-->
       <captcha v-model="form.captcha" class="full-width" ref="captcha"/>
 
@@ -181,6 +197,44 @@ export default {
     }
   },
   computed: {
+    termsAndConditions() {
+      if (config('app.mode') != 'ipanel') return false
+
+      //Get settings data
+      let settings = {
+        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
+        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions')
+      }
+
+      //Validate settin data
+      if (!settings.politics && !settings.terms) return false
+
+      //Add links to terms and conditions
+      let concatData = ''
+      if (settings.politics)
+        concatData += `<a href="${settings.politics}" target="_blank" class="text-green"><b>${this.$tr('quser.layout.message.privacyPolicy')}</b></a>,`
+      if (settings.terms)
+        concatData += `<a href="${settings.terms}" target="_blank" class="text-green"><b>${this.$tr('quser.layout.message.termsAndConditions')}</b></a>,`
+
+      //Default response
+      let response = {
+        message: this.$tr('quser.layout.message.privacyData', {
+          concatData: concatData,
+          siteName: this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name')
+        }),
+        field: {
+          name: 'terms',
+          value: false,
+          type: 'checkbox',
+          props: {
+            rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
+          }
+        }
+      }
+
+      //Response
+      return response
+    },
     initData() {
       return {
         firstName: null,
