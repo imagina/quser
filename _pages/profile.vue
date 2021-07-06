@@ -2,40 +2,46 @@
   <div id="profilePage" :key="pageId">
     <!--Form-->
     <div id="formProfile" class="col-12 q-mb-md">
-      <div class="row relative-position q-col-gutter-md">
+      <div class="row q-col-gutter-md">
         <!--Forms-->
         <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-lg-6 offset-lg-3">
-          <div class="box">
+          <div class="relative-position">
             <!--Title-->
-            <div class="box-title row items-center">
-              <q-icon :name="formData.icon" size="22px" class="q-mr-sm"/>
-              {{ formData.title }}
-            </div>
-            <q-separator class="q-mt-sm q-mb-md"/>
-
-            <!--Form-->
-            <q-form @submit="updateData" ref="formRegister" autocomplete="off" class="row q-col-gutter-x-md"
-                    @validation-error="$alert.error($tr('ui.message.formInvalid'))">
-              <!--Fields-->
-              <dynamic-field v-for="(field, fieldKey) in formData.fields" :key="fieldKey" :field="field"
-                             v-model="form[field.name || fieldKey]" class="col-12"/>
-              <!--Actions-->
-              <div id="profileActions" class="col-12 text-right">
-                <!--Save-->
-                <q-btn :label="$tr('ui.label.save')" rounded unelevated color="green" type="submit"/>
+            <div class="box">
+              <!--Page Actions-->
+              <page-actions v-if="keyForm == 'profile'" :title="formData.title" :icon="formData.icon"/>
+              <!--Title-->
+              <div class="box-title row items-center" v-else>
+                <q-icon :name="formData.icon" size="22px" class="q-mr-sm"/>
+                {{ formData.title }}
               </div>
-            </q-form>
-          </div>
-          <!--Address CRUD-->
-          <div v-if="keyForm == 'session'" class="q-mt-md">
-            <crud :crud-data="import('@imagina/quser/_crud/address')"
-                  @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
-                  @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
+              <q-separator class="q-mt-sm q-mb-md"/>
+
+              <!--Form-->
+              <q-form @submit="updateData" ref="formRegister" autocomplete="off" class="row q-col-gutter-x-md"
+                      @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+                <!--Fields-->
+                <div v-for="(field, fieldKey) in formData.fields" :key="fieldKey"
+                     :class="fieldKey == 'mainImage' ? 'col-xs-12 col-md-4 offset-md-4' : 'col-12'">
+                  <dynamic-field :field="field" v-model="form[field.name || fieldKey]"/>
+                </div>
+                <!--Actions-->
+                <div id="profileActions" class="col-12 text-right">
+                  <!--Save-->
+                  <q-btn :label="$tr('ui.label.save')" rounded unelevated color="green" type="submit"/>
+                </div>
+              </q-form>
+            </div>
+            <!--Address CRUD-->
+            <div v-if="keyForm == 'session'" class="q-mt-md">
+              <crud :crud-data="import('@imagina/quser/_crud/address')"
+                    @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
+                    @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
+            </div>
+            <!--inner loading-->
+            <inner-loading :visible="loading"/>
           </div>
         </div>
-
-        <!--inner loading-->
-        <inner-loading :visible="loading"/>
       </div>
     </div>
   </div>
@@ -112,7 +118,7 @@ export default {
                 helpText: this.$tr('ui.message.uploadImage'),
                 emitBase64: true,
                 rules: (!this.extraFields.mainImage || !this.extraFields.mainImage.required) ? [] :
-                  [val => !!val || this.$tr('ui.message.fieldRequired')]
+                    [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
             },
             firstName: {
@@ -154,9 +160,9 @@ export default {
               props: {
                 label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
                 rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
-                  [val => !!val || this.$tr('ui.message.fieldRequired')],
+                    [val => !!val || this.$tr('ui.message.fieldRequired')],
                 options: this.extraFields.documentType ? this.extraFields.documentType.options.filter(item =>
-                  this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
+                    this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
                 ) : []
               }
             },
@@ -167,7 +173,7 @@ export default {
                 type: 'number',
                 label: this.$tr('ui.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
                 rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
-                  [val => !!val || this.$tr('ui.message.fieldRequired')]
+                    [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
             },
             birthday: {
@@ -177,7 +183,7 @@ export default {
                 label: this.$tr('ui.label.birthday') + (this.extraFields.birthday && this.extraFields.birthday.required ? '*' : ''),
                 clearable: true,
                 rules: !this.extraFields.birthday || !this.extraFields.birthday.required ? [] :
-                  [val => !!val || this.$tr('ui.message.fieldRequired')]
+                    [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
             }
           }
