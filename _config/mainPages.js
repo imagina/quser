@@ -18,10 +18,11 @@ export default {
     activated: true,
     path: '/auth/logout',
     name: 'auth.logout',
-    page: () => import('@imagina/quser/_pages/logout'),
+    page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
     title: 'quser.sidebar.logout',
-    icon: 'fas fa-chart-bar'
+    icon: 'fas fa-chart-bar',
+    authType : 'logout'
   },
   // Route to Register
   register: {

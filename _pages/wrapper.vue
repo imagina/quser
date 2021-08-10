@@ -25,6 +25,8 @@
                              class="full-width"/>
               <!--Loggin-->
               <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
+              <!--logout-->
+              <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
             <!--Auth social-->
             <div style="min-height: auto" v-if="withAuthSocial">
@@ -51,13 +53,14 @@
 import loginForm from '@imagina/quser/_components/auth/login'
 import registerForm from '@imagina/quser/_components/auth/register'
 import resetPassword from '@imagina/quser/_components/auth/resetPassword'
+import logout from '@imagina/quser/_components/auth/logout'
 
 import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
 import googleAuth from '@imagina/quser/_components/socialAuth/google'
 
 export default {
   props: {},
-  components: {loginForm, registerForm, resetPassword, facebookAuth, googleAuth},
+  components: {loginForm, registerForm, resetPassword, logout, facebookAuth, googleAuth},
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)
   },
