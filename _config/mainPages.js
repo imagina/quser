@@ -5,11 +5,12 @@ export default {
     activated: true,
     path: '/auth/login',
     name: 'auth.login',
-    page: () => import('@imagina/quser/_pages/login'),
+    page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
     title: 'quser.sidebar.login',
     icon: 'fas fa-chart-bar',
     authenticated: true,
+    authType: 'login'
   },
   //Logout
   logout: {
@@ -22,16 +23,41 @@ export default {
     title: 'quser.sidebar.logout',
     icon: 'fas fa-chart-bar'
   },
-  //Change password
-  changePassword: {
+  // Route to Register
+  register: {
     permission: null,
     activated: true,
-    path: '/auth/change-password',
-    name: 'auth.change.password',
-    page: () => import('@imagina/quser/_pages/passwordChange'),
+    path: '/auth/register',
+    name: 'auth.register',
+    page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.changePassword',
-    icon: 'fas fa-chart-bar'
+    title: 'quser.sidebar.register',
+    icon: 'fas fa-chart-bar',
+    authType: 'register'
+  },
+  //reset
+  resetPassword: {
+    permission: null,
+    activated: true,
+    path: '/auth/reset',
+    name: 'auth.reset.password',
+    page: () => import('@imagina/quser/_pages/wrapper'),
+    layout: () => import('@imagina/qsite/_layouts/blank.vue'),
+    title: 'quser.sidebar.resetPassword',
+    icon: 'fas fa-chart-bar',
+    authType: 'resetPassword'
+  },
+  //Reset success
+  resetPasswordComplete: {
+    permission: null,
+    activated: true,
+    path: '/auth/reset/:userId/:token',
+    name: 'auth.reset-complete',
+    page: () => import('@imagina/quser/_pages/resetPasswordComplete'),
+    layout: () => import('@imagina/qsite/_layouts/blank.vue'),
+    title: 'quser.sidebar.resetPassword',
+    icon: 'fas fa-chart-bar',
+    //middleware: [auth]
   },
   //User Profile
   userProfile: {
@@ -48,41 +74,4 @@ export default {
       refresh: true
     }
   },
-  //reset
-  resetPassword: {
-    permission: null,
-    activated: true,
-    path: '/auth/reset',
-    name: 'auth.reset.password',
-    page: () => import('@imagina/quser/_pages/resetPassword'),
-    layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.resetPassword',
-    icon: 'fas fa-chart-bar',
-    //middleware: [auth]
-  },
-
-  resetPasswordComplete: {
-    permission: null,
-    activated: true,
-    path: '/auth/reset/:userId/:token',
-    name: 'auth.reset-complete',
-    page: () => import('@imagina/quser/_pages/resetPasswordComplete'),
-    layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.resetPassword',
-    icon: 'fas fa-chart-bar',
-    //middleware: [auth]
-  },
-  // Route to Register (Specific register user Rol)
-  register: {
-    permission: null,
-    activated: true,
-    path: '/auth/register',
-    name: 'auth.register',
-    page: () => import('@imagina/quser/_pages/register'),
-    layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.register',
-    icon: 'fas fa-chart-bar',
-    //middleware: [auth]
-  },
-
 }

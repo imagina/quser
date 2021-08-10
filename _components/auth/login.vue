@@ -1,7 +1,7 @@
 <template>
   <div id="formLoginComponent" :style="'max-width: '+(props.horizontal ? '700px' : '400px')">
     <!--Title-->
-    <div class="box-title text-uppercase q-mb-sm">
+    <div class="box-title text-uppercase q-mb-sm text-center">
       {{ $tr('quser.layout.label.login') }}
     </div>
     <!--Form-->

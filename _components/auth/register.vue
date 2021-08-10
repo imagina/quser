@@ -1,8 +1,7 @@
 <template>
-  <div id="formLoginComponent" class="relative-position"
-       :style="'max-width: '+(isHorizontal ? '450px' : '300px')">
+  <div id="formLoginComponent" class="relative-position" :style="'max-width: '+(isHorizontal ? '700px' : '400px')">
     <!--Title-->
-    <div class="box-title text-uppercase q-mb-sm">
+    <div class="box-title text-uppercase q-mb-sm text-center">
       {{ $tr('quser.layout.label.createAccount') }}
     </div>
     <!--Form-->
