@@ -63,6 +63,21 @@ export default {
               ],
             }
           },
+          formId: {
+            type: 'crud',
+            props: {
+              crudType: 'select',
+              crudData: import('@imagina/qform/_crud/crudForms'),
+              crudProps: {
+                label: `${this.$tr('ui.label.form')}`,
+              },
+              config: {
+                options: {
+                  label: 'title', value: 'id'
+                }
+              },
+            },
+          },
           permissions: {
             type: 'permissions',
             value: {}
