@@ -49,7 +49,7 @@ export default {
         blocks: [
           {
             fields: {
-              /*firstName: {
+              firstName: {
                 value: null,
                 type: 'input',
                 colClass: 'col-12',
@@ -66,9 +66,9 @@ export default {
                   label: `${this.$tr('ui.form.lastName')}*`,
                   rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
                 }
-              },*/
+              },
               email: {
-                value: 'mail@mail.com',
+                value: null,
                 type: 'input',
                 colClass: 'col-12',
                 props: {
@@ -80,7 +80,7 @@ export default {
                 }
               },
               password: {
-                value: '321654',
+                value: null,
                 type: 'input',
                 colClass: 'col-12',
                 props: {
@@ -94,7 +94,7 @@ export default {
                 }
               },
               passwordConfirmation: {
-                value: '321654',
+                value: null,
                 type: 'input',
                 colClass: 'col-12',
                 props: {
@@ -220,62 +220,15 @@ export default {
       this.loading = true
       //Request
       this.$crud.create('apiRoutes.quser.register', this.getFormData()).then(response => {
-        this.callbackRequest(true, response.data)
+        //Auth Data
+        let authData = {username: this.form.email, password: this.form.password}
+        //Login
+        this.$store.dispatch('quserAuth/AUTH_REQUEST', authData).then((response) => this.$emit('logged'))
+        //Hidden loading
+        this.loading = false
       }).catch(error => {
-        this.callbackRequest(false, error)
+        this.loading = false
       })
-    },
-    //Action after request
-    callbackRequest(success = true, response) {
-      this.loading = false
-      let message = `${this.$tr('quser.layout.message.activateAccount')} ${this.form.email}`
-
-      if (success) {
-        if (!response.checkEmail) message = ''
-        //Dialog to go to iniciar sesión when id register
-        this.$alert.success({
-          mode: 'modal',
-          title: `${this.$tr('ui.label.welcome')}!`,
-          message: message,
-          actions: [
-            {
-              label: this.$tr('quser.layout.label.login'),
-              handler: () => {
-                this.login(response.checkEmail)
-              }
-            },
-          ]
-        })
-      } else {
-        console.error('[auth.register]', response)
-        if (response) {//Message Vali
-          let errorMsg = JSON.parse(response)
-          if (errorMsg.email) {
-            this.$alert.error({
-              message: this.$tr('quser.layout.message.emailExist'),
-              pos: 'bottom', timeOut: 4000
-            })
-          } else {
-            this.$alert.error({message: `${this.$tr('ui.message.recordNoCreated')}`})
-          }
-        }
-      }
-    },
-    //Login user or redirect to from login acooding "check email" from backend
-    login(checkEmail) {
-      if (!checkEmail) {//Login
-        let data = {
-          username: this.form.email, password: this.form.password
-        }
-        this.$store.dispatch('quserAuth/AUTH_REQUEST', data).then((response) => {
-          this.$emit('logged')
-        }).catch(error => {
-        })
-      } else {//Emmit event
-        this.$emit('registered', this.form.email)
-        this.$emit('input', this.form.email)
-        this.init()//Init form
-      }
     }
   }
 }
