@@ -23,7 +23,8 @@ export default {
     changePassword: 'Change Password',
     profile: 'Profile | Profiles',
     myProfile: 'My profile | My profiles',
-    userGroup: 'User Group | User Groups'
+    userGroup: 'User Group | User Groups',
+    registerAs : 'Register as'
   },
   form: {
     lastLogin: 'Last login',

@@ -1,177 +1,20 @@
 <template>
-  <div id="formLoginComponent" class="relative-position" :style="'max-width: '+(isHorizontal ? '700px' : '400px')">
-    <!--Title-->
-    <div class="box-title text-uppercase q-mb-sm text-center">
-      {{ $tr('quser.layout.label.createAccount') }}
+  <div id="formLoginComponent" class="relative-position">
+    <!--Dynamic form-->
+    <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
+                  :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
+                  :form-id="dynamicForm.formId" default-col-class="col-12"/>
+
+    <!--Login-->
+    <div class="text-center full-width">
+      <q-btn :label="$tr('quser.layout.label.login')" unelevated no-caps
+             :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey" rounded flat/>
     </div>
-    <!--Form-->
-    <q-form @submit="register()" ref="formContent"
-            @validation-error="$alert.error($tr('ui.message.formInvalid'))"
-            class="row q-col-gutter-x-sm q-pt-sm " autocomplete="off">
-
-      <!-- Main Image field -->
-      <div class="col-12 q-mb-md" v-if="form.fields.mainImage">
-        <q-field v-model="form.fields.mainImage.value" borderless
-                 :rules="[val => !isValueRequired('mainImage',val) || $tr('ui.message.fieldRequired')]">
-          <upload-image v-model="form.fields.mainImage.value" ref="uploadComponent" rounded/>
-        </q-field>
-      </div>
-
-      <!-- Name field -->
-      <div :class="columnsFieldsClass">
-        <q-input dense v-model="form.firstName" color="primary" outlined
-                 :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 :label="`${$tr('ui.form.firstName')} *`">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-user"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- Last Name field -->
-      <div :class="columnsFieldsClass">
-        <q-input dense v-model="form.lastName" color="primary"
-                 outlined :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 :label="`${$tr('ui.form.lastName')} *`">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-user-friends"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- Email field -->
-      <div :class="columnsFieldsClass">
-        <q-input dense v-model="form.email" color="primary" outlined type="email"
-                 :label="`${$tr('ui.form.email')} *`"
-                 :rules="[
-                  val => !!val || $tr('ui.message.fieldRequired'),
-                  val => $helper.validateEmail(val) || $tr('ui.message.fieldEmail')
-                 ]">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-at"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- Password field -->
-      <div :class="columnsFieldsClass">
-        <q-input dense v-model="form.password" type="password" color="primary" outlined
-                 :label="`${$tr('ui.form.password')} *`" :rules="[
-                  val => !!val || $tr('ui.message.fieldRequired'),
-                  val => val.length >= 8 || $tr('ui.message.fieldMinLeng', {num : 8})
-                 ]">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-lock"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- comfirm Password field -->
-      <div :class="columnsFieldsClass">
-        <q-input dense v-model="form.passwordConfirmation" type="password"
-                 color="primary" outlined :label="`${$tr('ui.form.checkPassword')} *`"
-                 :rules="[
-                  val => !!val || $tr('ui.message.fieldRequired'),
-                  val => val == form.password || $tr('ui.message.fieldCheckPassword')
-                  ]">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-user-lock"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- Phone field -->
-      <div :class="columnsFieldsClass" v-if="form.fields.cellularPhone">
-        <q-input dense mask="phone"
-                 :label="`${$tr('ui.form.phone')} ${isFieldRequired('cellularPhone') ? '*' : ''}`"
-                 v-model="form.fields.cellularPhone.value" color="primary" outlined
-                 unmasked-value :rules="[
-                  val => !isValueRequired('cellularPhone',val) || $tr('ui.message.fieldRequired'),
-                  val => !val || val.length == 10 || $tr('ui.message.fieldMinLeng',{num : 10})
-                 ]">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-phone"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- Identification field -->
-      <div :class="columnsFieldsClass" v-if="form.fields.identification">
-        <q-input dense v-model.number="form.fields.identification.value" type="number"
-                 :label="`${$tr('ui.form.identification')} ${isFieldRequired('identification') ? '*' : ''}`"
-                 color="primary" outlined :rules="[
-                  val => !isValueRequired('identification',val) || $tr('ui.message.fieldRequired')
-                 ]">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-id-card"/>
-          </template>
-        </q-input>
-      </div>
-
-      <!-- Birthday field -->
-      <div :class="columnsFieldsClass" v-if="form.fields.birthday">
-        <q-input dense mask="date" v-model="form.fields.birthday.value" color="primary"
-                 :rules="[val => !isValueRequired('birthday',val) || $tr('ui.message.fieldRequired')]"
-                 :label="`${$tr('ui.form.birthday')} ${isFieldRequired('birthday') ? '*' : ''}`"
-                 outlined placeholder="YYYY/MM/DD">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-birthday-cake"/>
-          </template>
-          <template v-slot:append>
-            <q-icon name="fas fa-calendar-day"/>
-            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-              <q-date v-model="form.fields.birthday.value" @input="() => $refs.qDateProxy.hide()"/>
-            </q-popup-proxy>
-          </template>
-        </q-input>
-      </div>
-
-      <!--Terms and conditions-->
-      <div v-if="termsAndConditions" class="q-mb-md">
-        <q-item tag="label" v-ripple dense>
-          <q-item-section side>
-            <dynamic-field v-model="form.fields[termsAndConditions.field.name]" :field="termsAndConditions.field"/>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label caption>
-              <div class="float-right" v-html="termsAndConditions.message"></div>
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-      </div>
-
-      <!--captcha-->
-      <captcha v-model="form.captcha" class="full-width" ref="captcha"/>
-
-      <!--Actions-->
-      <div id="formActions" class="row justify-between full-width q-mb-md">
-        <!--Login-->
-        <q-btn :label="$tr('quser.layout.label.login')" unelevated no-caps
-               :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"
-               rounded/>
-        <!-- Button Register -->
-        <q-btn :loading="loading" type="submit" color="primary" name="submit" rounded unelevated>
-          {{ $tr('quser.layout.label.createAccount') }}
-          <div slot="loading">
-            <q-spinner class="on-left"/>
-            {{ `${$tr('ui.label.loading')}...` }}
-          </div>
-        </q-btn>
-      </div>
-    </q-form>
-
-    <!--inner loading-->
-    <inner-loading :visible="loading"/>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    horizontal: {type: Boolean, default: false},
-    horizontalExtraFields: {type: Boolean, default: false}
-  },
   components: {},
   mounted() {
     this.$nextTick(function () {
@@ -181,29 +24,129 @@ export default {
   data() {
     return {
       loading: false,
-      fullLoading: false,
-      isHorizontal: false,
-      extraFields: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerExtraFields'),
-      form: {
-        firstName: null,
-        lastName: null,
-        email: null,
-        password: null,
-        passwordConfirmation: null,
-        captcha: false,
-        fields: {}
-      },
+      form: {},
+      authRoles: [],
+      defaultFields: ['roleId', 'email', 'password', 'passwordConfirmation', 'firstName', 'lastName']
     }
   },
   computed: {
+    dynamicForm() {
+      //Get Role selected
+      let roleSelected = !this.form.roleId ? false : this.authRoles.find(item => item.id == this.form.roleId)
+      //Instance default form id
+      let defaultFormId = (this.authRoles && (this.authRoles.length == 1)) ? this.authRoles[0].formId : null
+
+      //Instace response
+      let response = {
+        formId: roleSelected ? roleSelected.formId : defaultFormId,
+        actions: {
+          submit: {
+            label: this.$tr('quser.layout.label.createAccount'),
+            color: 'primary',
+            icon: null
+          }
+        },
+        blocks: [
+          {
+            fields: {
+              /*firstName: {
+                value: null,
+                type: 'input',
+                colClass: 'col-12',
+                props: {
+                  label: `${this.$tr('ui.form.firstName')}*`,
+                  rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
+                }
+              },
+              lastName: {
+                value: null,
+                type: 'input',
+                colClass: 'col-12',
+                props: {
+                  label: `${this.$tr('ui.form.lastName')}*`,
+                  rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
+                }
+              },*/
+              email: {
+                value: 'mail@mail.com',
+                type: 'input',
+                colClass: 'col-12',
+                props: {
+                  label: `${this.$tr('ui.form.email')}*`,
+                  rules: [
+                    val => !!val || this.$tr('ui.message.fieldRequired'),
+                    val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                  ]
+                }
+              },
+              password: {
+                value: '321654',
+                type: 'input',
+                colClass: 'col-12',
+                props: {
+                  label: `${this.$trp('ui.form.password')}*`,
+                  type: 'password',
+                  vIf: this.form.changePassword,
+                  rules: [
+                    val => !!val || this.$tr('ui.message.fieldRequired'),
+                    val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
+                  ]
+                }
+              },
+              passwordConfirmation: {
+                value: '321654',
+                type: 'input',
+                colClass: 'col-12',
+                props: {
+                  label: `${this.$trp('ui.form.checkPassword')}*`,
+                  type: 'password',
+                  vIf: this.form.changePassword,
+                  rules: [
+                    val => !!val || this.$tr('ui.message.fieldRequired'),
+                    val => (this.form.password == val) || this.$tr('ui.message.fieldCheckPassword'),
+                  ]
+                }
+              },
+            }
+          }
+        ]
+      }
+
+      //Add blocks to auth roles
+      if (this.authRoles && (this.authRoles.length >= 2)) {
+        response.blocks.unshift({
+          fields: {
+            roleId: {
+              value: null,
+              type: 'optionGroup',
+              colClass: 'col-12',
+              props: {
+                options: this.authRoles.map(item => {
+                  return {label: `${this.$tr('quser.layout.label.registerAs')} ${item.name}`, value: item.id}
+                }),
+                color: 'secondary',
+                rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
+              }
+            }
+          }
+        })
+      }
+
+      //Response
+      return response
+    },
+    //Get settings data
+    settings() {
+      return {
+        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
+        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
+        rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister')
+      }
+    },
+    //Termns and conditions
     termsAndConditions() {
       if (config('app.mode') != 'ipanel') return false
-
-      //Get settings data
-      let settings = {
-        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
-        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions')
-      }
+      let settings = this.settings
 
       //Validate settin data
       if (!settings.politics && !settings.terms) return false
@@ -233,78 +176,58 @@ export default {
 
       //Response
       return response
-    },
-    initData() {
-      return {
-        firstName: null,
-        lastName: null,
-        email: null,
-        password: null,
-        passwordConfirmation: null,
-        fields: {}
-      }
-    },
-    columnsFieldsClass() {
-      this.isHorizontal = this.$clone(this.horizontal)
-      if (this.horizontalExtraFields && this.extraFields.length) this.isHorizontal = true
-      if (this.isHorizontal) {
-        return 'col-12 col-md-6'
-      } else {
-        return 'col-12'
-      }
     }
   },
   methods: {
     //Init template
     async init() {
-      let captcha = this.$clone(this.form.captcha)//Save captcha
-      this.form = this.$clone(this.initData)//inti form
-      this.form.captcha = captcha//Add captch
-      //Reset component image
-      if (this.$refs.uploadComponent) {
-        this.$refs.uploadComponent.removeFile()
-      }
-      this.orderExtraFields()//Order extra fields
+      this.getAuthRoles()
     },
-    //Order extra fields
-    orderExtraFields() {
-      Object.values(this.extraFields).forEach(item => {
-        if (item.active) {
-          this.$set(this.form.fields, item.field, {
-            name: item.field, value: null
-          })
+    //Get auth roles
+    getAuthRoles() {
+      if (this.settings.rolesToRegister) {
+        this.loading = true
+        //Request params
+        let requestParams = {
+          refresh: true,
+          params: {filter: {id: this.settings.rolesToRegister}}
         }
+        //Request
+        this.$crud.index('apiRoutes.quser.roles', requestParams).then(response => {
+          this.authRoles = response.data
+          this.loading = false
+        }).catch(error => {
+          this.loading = false
+        })
+      }
+    },
+    //Get formData
+    getFormData() {
+      let form = this.$clone(this.form)
+      let response = {fields: {}}
+
+      //Set form fields to send api
+      Object.keys(form).forEach(itemName => {
+        if (this.defaultFields.includes(itemName)) response[itemName] = form[itemName]
+        else response.fields[itemName] = form[itemName]
       })
+
+      //Response
+      return response
     },
     //Login
     async register() {
-      if (!this.inRequest) {
-        if (this.checkedCaptcha()) {
-          this.loading = true
-          let data = this.$clone(this.form)
-          data.fields = this.$helper.convertToBackField(this.form.fields)
-          this.$crud.create('apiRoutes.quser.register', data).then(response => {
-            this.callbackRequest(true, response.data)
-          }).catch(error => {
-            this.callbackRequest(false, error)
-          })
-        }
-      }
-    },
-    //check if captcha is defined
-    checkedCaptcha() {
-      let captcha = this.form.captcha
-      let response = false
-      if (captcha && captcha.token) response = true
-      if (!response) this.$alert.error({message: this.$tr('ui.message.requiredCaptcha')})
-
-      return response
+      this.loading = true
+      //Request
+      this.$crud.create('apiRoutes.quser.register', this.getFormData()).then(response => {
+        this.callbackRequest(true, response.data)
+      }).catch(error => {
+        this.callbackRequest(false, error)
+      })
     },
     //Action after request
     callbackRequest(success = true, response) {
       this.loading = false
-      this.$refs.captcha.reset()
-      this.$refs.formContent.resetValidation()
       let message = `${this.$tr('quser.layout.message.activateAccount')} ${this.form.email}`
 
       if (success) {
@@ -341,36 +264,37 @@ export default {
     //Login user or redirect to from login acooding "check email" from backend
     login(checkEmail) {
       if (!checkEmail) {//Login
-        this.fullLoading = true
         let data = {
           username: this.form.email, password: this.form.password
         }
         this.$store.dispatch('quserAuth/AUTH_REQUEST', data).then((response) => {
-          this.fullLoading = false
           this.$emit('logged')
         }).catch(error => {
-          this.fullLoading = false
         })
       } else {//Emmit event
         this.$emit('registered', this.form.email)
         this.$emit('input', this.form.email)
         this.init()//Init form
       }
-    },
-    //Validate if field is required
-    isFieldRequired(name, value) {
-      let field = this.extraFields.find(item => item.field == name)
-      return field.required || false
-    },
-    //Validate if field is required
-    isValueRequired(name, value) {
-      let field = this.extraFields.find(item => item.field == name)
-      if (field && field.required && !value) return true
-      return false
     }
   }
 }
 </script>
 
 <style lang="stylus">
+#formLoginComponent
+  max-width 400px
+
+  .q-option-group
+    width 100%
+
+    .q-radio
+      width 100%
+      border 2px solid $secondary
+      border-radius $custom-radius-items
+      margin-bottom 10px
+      padding 10px
+
+      .q-radio__label
+        color $blue-grey
 </style>

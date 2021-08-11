@@ -12,11 +12,7 @@
         <q-input name="username" autofocus ref="username" dense
                  v-model="form.username" type="text" color="primary" outlined
                  :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 :label="$tr('ui.form.email')">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-user"/>
-          </template>
-        </q-input>
+                 :label="$tr('ui.form.email')" />
       </div>
 
       <!-- Password field -->
@@ -25,9 +21,6 @@
                  :type="isPwd ? 'password' : 'text'" color="primary" outlined
                  :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
                  :label="$tr('ui.form.password')">
-          <template v-slot:prepend>
-            <q-icon name="fas fa-lock"/>
-          </template>
           <template v-slot:append>
             <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                     @click="isPwd = !isPwd"/>

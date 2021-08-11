@@ -13,7 +13,7 @@
               {{ $tr('ui.label.welcome') }}
             </div>
             <!--Logo-->
-            <div class="wrapp__logo q-mb-xl">
+            <div class="wrapp__logo logo-bg-primary q-mb-xl">
               <img :src="settings.logo.path"></img>
             </div>
             <!--Auth Type-->
@@ -86,10 +86,8 @@ export default {
       let authBanner = this.$store.getters['qsiteApp/getSettingMediaByName']('iprofile::authBanner')
 
       return {
-        siteName: this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name'),
         logo: this.$store.getters['qsiteApp/getSettingMediaByName']('isite::logo1'),
-        authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner,
-        rolesToRegister: this.$store.getters['qsiteApp/getSettingMediaByName']('iprofile::rolesToRegister')
+        authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
       }
     },
     //Validate if load social auth
@@ -138,16 +136,6 @@ export default {
       padding 15px
       border-radius 10px
       overflow hidden
-
-      &::before
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background $primary
-        opacity: .1;
 
       img
         position absolute

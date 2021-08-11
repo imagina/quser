@@ -24,7 +24,8 @@ export default {
     changePassword: 'Cambiar contraseña',
     profile: 'Perfil | Perfiles',
     myProfile: 'Mi perfil | Mis perfiles',
-    userGroup: 'Grupo de usuario | Grupos de usuario'
+    userGroup: 'Grupo de usuario | Grupos de usuario',
+    registerAs : 'Registrarme como'
   },
   form: {
     lastLogin: 'Ultima sesión',
