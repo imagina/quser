@@ -383,12 +383,10 @@ export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
 }
 
 //Reset password request
-export const RESET_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
+export const RESET_PASSWORD_REQUEST = ({commit, dispatch}, dataRequest) => {
   return new Promise(async (resolve, reject) => {
-      //Request Data
-      let dataRequest = {username: authData.username}
       //Request
-      crud.post('apiRoutes.quser.authReset', dataRequest).then(response => {
+      crud.post('apiRoutes.quser.authReset', {attributes: dataRequest}).then(response => {
         dispatch('AUTH_LOGOUT').then(() => resolve(true)).catch(error => reject(error))
       }).catch(error => reject(error))
     }

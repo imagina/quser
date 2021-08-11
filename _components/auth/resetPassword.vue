@@ -16,6 +16,9 @@
                       val => !!val || $tr('ui.message.fieldRequired'),
                       val => $helper.validateEmail(val) || $tr('ui.message.fieldEmail')]"/>
 
+        <!--Captcha-->
+        <dynamic-field :field="{type : 'captcha'}" v-model="form.captcha"/>
+
         <!--Actions-->
         <div class="row justify-between">
           <!--Button Login-->
@@ -41,7 +44,7 @@
           <p class="text-subtitle1 text-justify">{{ $tr('quser.layout.message.passwordUpdated') }}</p>
           <!--Button login-->
           <div class="text-center q-mt-sm">
-            <q-btn label="Iniciar sesion" :to="{name : 'auth.login'}" color="primary"/>
+            <q-btn unelevated rounded label="Iniciar sesion" :to="{name : 'auth.login'}" color="primary"/>
           </div>
         </q-card-section>
       </q-card>
@@ -77,8 +80,8 @@ export default {
     //Login
     async resetPassword() {
       this.loading = true;
-      const {username} = this.form;
-      this.$store.dispatch("quserAuth/RESET_PASSWORD_REQUEST", {username}).then((response) => {
+      const {username, captcha} = this.form;
+      this.$store.dispatch("quserAuth/RESET_PASSWORD_REQUEST", {username, captcha}).then((response) => {
         this.loading = false;
         this.showMessage = true
       }).catch(error => {

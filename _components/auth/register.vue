@@ -3,7 +3,7 @@
     <!--Dynamic form-->
     <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
                   :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
-                  :form-id="dynamicForm.formId" default-col-class="col-12"/>
+                  :form-id="dynamicForm.formId" default-col-class="col-12" use-captcha/>
 
     <!--Login-->
     <div class="text-center full-width">
@@ -26,7 +26,7 @@ export default {
       loading: false,
       form: {},
       authRoles: [],
-      defaultFields: ['roleId', 'email', 'password', 'passwordConfirmation', 'firstName', 'lastName']
+      defaultFields: ['roleId', 'email', 'password', 'passwordConfirmation', 'firstName', 'lastName', 'captcha']
     }
   },
   computed: {
