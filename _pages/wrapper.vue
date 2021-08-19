@@ -14,7 +14,7 @@
             </div>
             <!--Logo-->
             <div class="wrapp__logo logo-bg-primary q-mb-xl">
-              <img :src="settings.logo.path"></img>
+              <img :src="settings.logo"></img>
             </div>
             <!--Auth Type-->
             <div class="q-mb-md">
@@ -86,7 +86,7 @@ export default {
       let authBanner = this.$store.getters['qsiteApp/getSettingMediaByName']('iprofile::authBanner')
 
       return {
-        logo: this.$store.getters['qsiteApp/getSettingMediaByName']('isite::logo1'),
+        logo: this.$store.state.qsiteApp.logo,
         authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
       }
     },
