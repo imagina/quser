@@ -143,7 +143,5 @@ export default {
         right 0
         margin-left auto
         margin-right auto
-        max-width 340px
-        height 100px
-        max-height 240px
+        width 90%
 </style>
