@@ -111,19 +111,6 @@ export default {
               apiRoute: 'apiRoutes.quser.departments',
               requestParams: {include: ''}
             }
-          },
-          assignedSettings: {
-            value: [],
-            type: 'treeSelect',
-            fakeFieldName: 'settings',
-            props: {
-              label: 'Can manage the following settings',
-              multiple: true,
-              valueConsistsOf: "ALL_WITH_INDETERMINATE"
-            },
-            loadOptions: {
-              delayed: this.getSettingsOptions(),
-            }
           }
         }
       }
