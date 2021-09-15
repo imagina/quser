@@ -213,13 +213,13 @@ export default {
       })
 
       //Response
-      return response
+      return {attributes: this.$helper.toSnakeCase(response)}
     },
     //Login
     async register() {
       this.loading = true
       //Request
-      this.$crud.create('apiRoutes.quser.register', this.getFormData()).then(response => {
+      this.$crud.post('apiRoutes.quser.register', this.getFormData()).then(response => {
         //Auth Data
         let authData = {username: this.form.email, password: this.form.password}
         //Login
