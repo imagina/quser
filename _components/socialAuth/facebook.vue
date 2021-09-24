@@ -1,5 +1,5 @@
 <template>
-  <q-btn v-bind="propsButton" @click="signIn()" round unelevated/>
+  <q-btn v-bind="propsButton" @click="signIn()" round unelevated v-if="appIdFacebook"/>
 </template>
 <script>
 export default {
