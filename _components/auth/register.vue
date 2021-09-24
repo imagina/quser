@@ -57,7 +57,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  vIf : asIncognito ? false : true,
+                  vIf: asIncognito ? false : true,
                   label: `${this.$tr('ui.form.firstName')}*`,
                   rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
                 }
@@ -67,7 +67,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  vIf : asIncognito ? false : true,
+                  vIf: asIncognito ? false : true,
                   label: `${this.$tr('ui.form.lastName')}*`,
                   rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
                 }
@@ -112,10 +112,12 @@ export default {
                   ]
                 }
               },
+              ...(this.termsAndConditions ? {terms: this.termsAndConditions} : {})
             }
           }
         ]
       }
+
 
       //Add blocks to auth roles
       if (this.authRoles && (this.authRoles.length >= 2)) {
@@ -165,17 +167,15 @@ export default {
 
       //Default response
       let response = {
-        message: this.$tr('quser.layout.message.privacyData', {
-          concatData: concatData,
-          siteName: this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name')
-        }),
-        field: {
-          name: 'terms',
-          value: false,
-          type: 'checkbox',
-          props: {
-            rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
-          }
+        name: 'terms',
+        value: false,
+        type: 'checkbox',
+        props: {
+          rules: [val => !!val || this.$tr('ui.message.fieldRequired')],
+          label: this.$tr('quser.layout.message.privacyData', {
+            concatData: concatData,
+            siteName: this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name')
+          }),
         }
       }
 
