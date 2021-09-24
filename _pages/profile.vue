@@ -22,7 +22,7 @@
                       @validation-error="$alert.error($tr('ui.message.formInvalid'))">
                 <!--Fields-->
                 <div v-for="(field, fieldKey) in formData.fields" :key="fieldKey"
-                     :class="fieldKey == 'mainImage' ? 'col-xs-12 col-md-4 offset-md-4' : 'col-12'">
+                     :class="fieldKey == 'mainImage' ? 'col-xs-12 col-md-6 offset-md-3' : 'col-12'">
                   <dynamic-field :field="field" v-model="form[field.name || fieldKey]"/>
                 </div>
                 <!--Actions-->
@@ -113,10 +113,12 @@ export default {
               value: this.userData.mainImage,
               type: 'uploader',
               props: {
+                title: this.$tr('ui.label.photo'),
                 maxFiles: 1,
                 accept: 'images',
                 helpText: this.$tr('ui.message.uploadImage'),
                 emitBase64: true,
+                gridColClass: 'col-xs-12',
                 rules: (!this.extraFields.mainImage || !this.extraFields.mainImage.required) ? [] :
                     [val => !!val || this.$tr('ui.message.fieldRequired')]
               }
