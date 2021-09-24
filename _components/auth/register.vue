@@ -32,9 +32,12 @@ export default {
   computed: {
     dynamicForm() {
       //Get Role selected
-      let roleSelected = !this.form.roleId ? false : this.authRoles.find(item => item.id == this.form.roleId)
+      let roleSelected = !this.form.roleId ? this.authRoles[0] : this.authRoles.find(item => item.id == this.form.roleId)
       //Instance default form id
       let defaultFormId = (this.authRoles && (this.authRoles.length == 1)) ? this.authRoles[0].formId : null
+      //validate if is a role with incognito profile
+      let asIncognito = parseInt(!roleSelected ? 0 :
+          (roleSelected.settings && roleSelected.settings.incognitoProfile ? roleSelected.settings.incognitoProfile : 0))
 
       //Instace response
       let response = {
@@ -54,6 +57,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
+                  vIf : asIncognito ? false : true,
                   label: `${this.$tr('ui.form.firstName')}*`,
                   rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
                 }
@@ -63,6 +67,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
+                  vIf : asIncognito ? false : true,
                   label: `${this.$tr('ui.form.lastName')}*`,
                   rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
                 }

@@ -4,7 +4,8 @@
     <div id="formProfile" class="col-12 q-mb-md">
       <div class="row q-col-gutter-md">
         <!--Forms-->
-        <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-lg-6 offset-lg-3">
+        <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-lg-6 offset-lg-3"
+             v-if="formData.vIf != undefined ? formData.vIf : true">
           <div class="relative-position">
             <!--Title-->
             <div class="box">
@@ -68,6 +69,11 @@ export default {
     }
   },
   computed: {
+    //incognito profile
+    isIncognitoProfile() {
+      let settingsProfile = this.$store.state.quserAuth.settings
+      return parseInt(settingsProfile.incognitoProfile || 0)
+    },
     //User data
     userData() {
       //Get user data
@@ -108,6 +114,7 @@ export default {
         profile: {
           icon: 'fas fa-user-circle',
           title: this.$tr('ui.label.profile'),
+          vIf: this.isIncognitoProfile ? false : true,
           fields: {
             mainImage: {
               value: this.userData.mainImage,

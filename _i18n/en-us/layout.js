@@ -24,7 +24,8 @@ export default {
     profile: 'Profile | Profiles',
     myProfile: 'My profile | My profiles',
     userGroup: 'User Group | User Groups',
-    registerAs : 'Register as'
+    registerAs : 'Register as',
+    incognitoProfile: 'Incognito profile'
   },
   form: {
     lastLogin: 'Last login',

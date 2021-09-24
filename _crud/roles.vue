@@ -111,6 +111,18 @@ export default {
               apiRoute: 'apiRoutes.quser.departments',
               requestParams: {include: ''}
             }
+          },
+          incognitoProfile: {
+            value: '0',
+            type: 'select',
+            fakeFieldName: 'settings',
+            props: {
+              label: this.$tr('quser.layout.label.incognitoProfile'),
+              options: [
+                {label: this.$tr('ui.label.yes'), value: 1},
+                {label: this.$tr('ui.label.no'), value: 0},
+              ]
+            }
           }
         }
       }
