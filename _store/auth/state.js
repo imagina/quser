@@ -1,12 +1,14 @@
 export default {
-  authenticated : false,
-  impersonating : false,
+  authenticated: false,
+  impersonating: false,
   userToken: null,
   userId: null,
   userData: null,
   permissions: null,
   settings: null,
-  departments:[],
-  selectedRoleId : false,
-  selectedDepartmentId : false,
+  departments: [],
+  selectedRoleId: false,
+  selectedDepartmentId: false,
+  organizations: [],
+  organizationId: null
 }

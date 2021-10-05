@@ -2,6 +2,7 @@ export const AUTH_SUCCESS = (state, data) => {
   state.userData = data.userData
   state.userToken = data.userToken
   state.userId = data.userData.id
+  state.organizations = data.userData.organizations || []
   state.authenticated = true
 }
 
@@ -47,12 +48,13 @@ export const RESET = (state, settings) => {
   state.selectedDepartmentId = false
   state.authenticated = false
   state.impersonating = false
+  state.organizations = []
 }
 
-export function OBTAINED_DEPARTMENTS (state, data) {
+export function OBTAINED_DEPARTMENTS(state, data) {
   state.departments = data
 }
 
-
-
-
+export const SET_ORGANIZATION = (state, data) => {
+  state.organizationId = data
+}

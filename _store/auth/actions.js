@@ -58,11 +58,10 @@ export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
         await dispatch('SET_ROLE_DEPARTMENT')//Set role and department
         await dispatch('SET_PERMISSIONS')//Set Permissions
         await dispatch('SET_SETTINGS')//Set settings
-        //Set default headers to axios
-        axios.defaults.headers.common['Authorization'] = data.userToken
-
+        axios.defaults.headers.common['Authorization'] = data.userToken//Set default headers to axios
         await cache.set('sessionData', data)//Save session data in storage
         commit('SET_AUTHENTICATED')
+        await dispatch('SET_ORGANIZATION')//Set settings
         return resolve(true)//Resolve
       } else {
         console.info('[AUTH_SUCCESS]::LOGOUT')
@@ -222,7 +221,11 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
 
       //Set user token to axios
       axios.defaults.headers.common['Authorization'] = sessionData.userToken
-      let params = {refresh: true}//Request params
+      //Request params
+      let params = {
+        refresh: true,
+        params: {include: 'organizations'}
+      }
 
       //Get userData
       crud.index('apiRoutes.quser.me', params).then(async response => {
@@ -423,3 +426,22 @@ export const VALIDATE_SESION = ({commit, dispatch, state}, params = {}) => {
   })
 }
 
+//Open modal sesion
+export const SET_ORGANIZATION = ({commit, dispatch, state}, params = {}) => {
+  return new Promise(async resolve => {
+    //get user organizations
+    let organizations = state.organizations || []
+    //validate organizations
+    if (!organizations.length || !state.authenticated) return resolve(true)
+    //Get organization id
+    let organizationId = params.organizationId || await cache.get.item('auth.organization.id') || organizations[0].id
+    //set to axios
+    axios.defaults.params.organizationId = organizationId
+    //save in cache
+    await cache.set('auth.organization.id', organizationId)
+    //save in store
+    commit('SET_ORGANIZATION', organizationId)
+    //response
+    resolve(true)
+  })
+}
