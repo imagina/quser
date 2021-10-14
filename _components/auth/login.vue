@@ -4,6 +4,11 @@
     <div class="box-title text-uppercase q-mb-sm text-center">
       {{ $tr('quser.layout.label.login') }}
     </div>
+    <!--Caption-->
+    <div v-if="settings.authLoginCaption && (settings.authLoginCaption != 'null')"
+         class="text-center text-caption text-grey-8 q-mb-md">
+      {{ settings.authLoginCaption }}
+    </div>
     <!--Form-->
     <q-form @submit="authenticate()" class="row q-col-gutter-x-sm q-pt-sm"
             autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('ui.message.formInvalid'))">
@@ -12,7 +17,7 @@
         <q-input name="username" autofocus ref="username" dense
                  v-model="form.username" type="text" color="primary" outlined
                  :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 :label="$tr('ui.form.email')" />
+                 :label="$tr('ui.form.email')"/>
       </div>
 
       <!-- Password field -->
@@ -83,6 +88,15 @@ export default {
     }
   },
   computed: {
+    //Settings
+    settings() {
+      let response = {
+        authLoginCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authLoginCaption'),
+      }
+
+      //response
+      return response
+    },
     columnsFieldsClass() {
       if (this.horizontal) {
         return 'col-12 col-md-6'

@@ -1,5 +1,10 @@
 <template>
   <div id="formLoginComponent" class="relative-position">
+    <!--Caption-->
+    <div v-if="settings.authRegisterCaption && (settings.authRegisterCaption != 'null')"
+         class="text-center text-caption text-grey-8 q-mb-md">
+      {{ settings.authRegisterCaption }}
+    </div>
     <!--Dynamic form-->
     <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
                   :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
@@ -147,7 +152,8 @@ export default {
       return {
         politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
         terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
-        rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister')
+        rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister'),
+        authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authRegisterCaption'),
       }
     },
     //Termns and conditions

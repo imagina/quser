@@ -9,11 +9,11 @@
         <div class="wrapp__content flex flex-center justify-center">
           <div class="wrapp__content_sub q-pa-md">
             <!--Welcome text-->
-            <div class="wrapp__title q-mb-md">
-              {{ $tr('ui.label.welcome') }}
+            <div class="wrapp__title q-mb-md" v-if="settings.authTitle && (settings.authTitle != 'null')">
+              {{ settings.authTitle }}
             </div>
             <!--Logo-->
-            <div class="wrapp__logo logo-bg-primary q-mb-xl">
+            <div class="wrapp__logo logo-bg-primary q-mb-xl" v-if="!settings.hideLogo">
               <img :src="settings.logo"></img>
             </div>
             <!--Auth Type-->
@@ -85,10 +85,15 @@ export default {
       //Get auth banner
       let authBanner = this.$store.getters['qsiteApp/getSettingMediaByName']('iprofile::authBanner')
 
-      return {
+      let response = {
         logo: this.$store.state.qsiteApp.logo,
+        authTitle: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authTitle'),
+        hideLogo: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::hideLogo')),
         authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
       }
+
+      //response
+      return response
     },
     //Validate if load social auth
     withAuthSocial() {
