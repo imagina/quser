@@ -98,7 +98,7 @@ export default {
     //Validate if load social auth
     withAuthSocial() {
       let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsersWithSocialNetworks')
-      return (hasSetting && (config('app.mode') == 'ipanel')) ? true : false
+      return hasSetting/* && (config('app.mode') == 'ipanel'))*/ ? true : false
     }
   },
   methods: {

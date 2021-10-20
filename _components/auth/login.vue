@@ -106,7 +106,7 @@ export default {
     },
     withRegister() {
       let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
-      return (hasSetting && (config('app.mode') == 'ipanel')) ? true : false
+      return hasSetting /*&& (config('app.mode') == 'ipanel'))*/ ? true : false
     }
   },
   methods: {
