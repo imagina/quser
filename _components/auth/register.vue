@@ -296,10 +296,12 @@ export default {
     //Login
     async register() {
       this.loading = true
+      //get formData
+      let formData = this.$clone(this.getFormData())
       //Request
-      this.$crud.post('apiRoutes.quser.register', this.getFormData()).then(response => {
+      this.$crud.post('apiRoutes.quser.register', formData).then(response => {
         //Auth Data
-        let authData = {username: this.form.email, password: this.form.password}
+        let authData = {username: formData.attributes.email, password: formData.attributes.password}
         //Login
         this.$store.dispatch('quserAuth/AUTH_REQUEST', authData).then((response) => this.$emit('logged'))
         //Hidden loading
