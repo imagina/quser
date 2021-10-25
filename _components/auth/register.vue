@@ -6,10 +6,11 @@
       {{ settings.authRegisterCaption }}
     </div>
     <!--Dynamic form-->
-    <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
-                  :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
-                  :form-id="dynamicForm.formId" default-col-class="col-12" use-captcha/>
-
+    <div id="formContent">
+      <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
+                    :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
+                    default-col-class="col-12" use-captcha/>
+    </div>
     <!--Login-->
     <div class="text-center full-width">
       <q-btn :label="$tr('quser.layout.label.login')" unelevated no-caps
@@ -21,6 +22,17 @@
 <script>
 export default {
   components: {},
+  watch: {
+    async watchRoleId(newValue, oldValue) {
+      //Call role form
+      if (newValue && (newValue != this.selectedRoleId)) {
+        this.selectedRoleId = this.$clone(newValue)
+        await this.getRoleForm()
+      }
+      //set roleId selected.
+      if (!newValue && this.selectedRoleId) this.form['role-roleId'] = this.$clone(this.selectedRoleId)
+    }
+  },
   mounted() {
     this.$nextTick(function () {
       this.init()
@@ -31,22 +43,15 @@ export default {
       loading: false,
       form: {},
       authRoles: [],
-      defaultFields: ['roleId', 'email', 'password', 'passwordConfirmation', 'firstName', 'lastName', 'captcha']
+      extraBlocks: [],
+      selectedRoleId: null,
+      mainFields: ['roleId', 'email', 'password', 'passwordConfirmation', 'firstName', 'lastName', 'captcha'],
     }
   },
   computed: {
     dynamicForm() {
-      //Get Role selected
-      let roleSelected = !this.form.roleId ? this.authRoles[0] : this.authRoles.find(item => item.id == this.form.roleId)
-      //Instance default form id
-      let defaultFormId = (this.authRoles && (this.authRoles.length == 1)) ? this.authRoles[0].formId : null
-      //validate if is a role with incognito profile
-      let asIncognito = parseInt(!roleSelected ? 0 :
-          (roleSelected.settings && roleSelected.settings.incognitoProfile ? roleSelected.settings.incognitoProfile : 0))
-
       //Instace response
       let response = {
-        formId: roleSelected ? roleSelected.formId : defaultFormId,
         actions: {
           submit: {
             label: this.$tr('quser.layout.label.createAccount'),
@@ -56,27 +61,9 @@ export default {
         },
         blocks: [
           {
+            //title: 'Main Block',
+            name: 'main',
             fields: {
-              firstName: {
-                value: null,
-                type: 'input',
-                colClass: 'col-12',
-                props: {
-                  vIf: asIncognito ? false : true,
-                  label: `${this.$tr('ui.form.firstName')}*`,
-                  rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
-                }
-              },
-              lastName: {
-                value: null,
-                type: 'input',
-                colClass: 'col-12',
-                props: {
-                  vIf: asIncognito ? false : true,
-                  label: `${this.$tr('ui.form.lastName')}*`,
-                  rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
-                }
-              },
               email: {
                 value: null,
                 type: 'input',
@@ -113,20 +100,22 @@ export default {
                   vIf: this.form.changePassword,
                   rules: [
                     val => !!val || this.$tr('ui.message.fieldRequired'),
-                    val => (this.form.password == val) || this.$tr('ui.message.fieldCheckPassword'),
+                    val => (this.form['main-password'] == val) || this.$tr('ui.message.fieldCheckPassword'),
                   ]
                 }
               },
               ...(this.termsAndConditions ? {terms: this.termsAndConditions} : {})
             }
-          }
+          },
+          ...this.$clone(this.extraBlocks)
         ]
       }
-
 
       //Add blocks to auth roles
       if (this.authRoles && (this.authRoles.length >= 2)) {
         response.blocks.unshift({
+          //title: 'Role Block',
+          name: 'role',
           fields: {
             roleId: {
               value: null,
@@ -143,6 +132,15 @@ export default {
           }
         })
       }
+
+      //concat block name to fields
+      response.blocks.forEach((block, blockKey) => {
+        let fields = {}
+        Object.keys(block.fields).forEach(fieldKey =>
+            fields[`${block.name}-${fieldKey}`] = {...block.fields[fieldKey], name: `${block.name}-${fieldKey}`}
+        )
+        response.blocks[blockKey].fields = fields
+      })
 
       //Response
       return response
@@ -187,6 +185,10 @@ export default {
 
       //Response
       return response
+    },
+    //To watch roleID
+    watchRoleId() {
+      return this.form['role-roleId']
     }
   },
   methods: {
@@ -196,31 +198,96 @@ export default {
     },
     //Get auth roles
     getAuthRoles() {
-      if (this.settings.rolesToRegister) {
+      return new Promise((resolve, reject) => {
+        //validate setting
+        if (!this.settings.rolesToRegister) return reject(false)
         this.loading = true
         //Request params
         let requestParams = {
           refresh: true,
-          params: {filter: {id: this.settings.rolesToRegister}}
+          params: {
+            include: 'forms.fields',
+            filter: {id: this.settings.rolesToRegister}
+          }
         }
         //Request
         this.$crud.index('apiRoutes.quser.roles', requestParams).then(response => {
           this.authRoles = response.data
           this.loading = false
+          resolve(response.data)
         }).catch(error => {
           this.loading = false
+          reject(error)
         })
-      }
+      })
+    },
+    //Get form fields
+    getRoleForm() {
+      return new Promise((resolve, reject) => {
+        //reset extra blocks
+        this.extraBlocks = []
+        //Get Role selected
+        let roleSelected = !this.form['role-roleId'] ? this.authRoles[0] :
+            this.authRoles.find(item => item.id == this.form['role-roleId'])
+
+        //validate role
+        if (!roleSelected || !roleSelected.formId) return reject(false)
+
+        //Open loading
+        this.loading = true
+
+        //Request Params
+        let requestParams = {
+          refresh: true,
+          params: {include: 'blocks.fields'}
+        }
+
+        //Request
+        this.$crud.show('apiRoutes.qform.forms', roleSelected.formId, requestParams).then(response => {
+          //Set extra blocks
+          let extraBlocks = response.data.blocks.map(block => {
+            return {...block, fields: block.fields.map(field => field.dynamicField)}
+          })
+          //concat block name to fields
+          extraBlocks.forEach((block, blockKey) => {
+            let fields = {}
+            block.fields.forEach((field, fieldKey) => fields[`${field.name}`] = field)
+            extraBlocks[blockKey].fields = fields
+          })
+          //set data
+          this.extraBlocks = this.$clone(extraBlocks)
+          resolve(response.data)
+          this.loading = false
+        }).catch(error => {
+          reject(error)
+          this.loading = false
+        })
+      })
     },
     //Get formData
     getFormData() {
       let form = this.$clone(this.form)
-      let response = {fields: {}}
+      let currentDate = new Date()
 
-      //Set form fields to send api
-      Object.keys(form).forEach(itemName => {
-        if (this.defaultFields.includes(itemName)) response[itemName] = form[itemName]
-        else response.fields[itemName] = form[itemName]
+      //Instance respons, with default hidne data
+      let response = {
+        timezone: (currentDate.getTimezoneOffset() / 60),
+        language: (navigator.language || navigator.userLanguage)
+      }
+
+      //order form data
+      this.dynamicForm.blocks.forEach(block => {
+        Object.keys(form).forEach(fieldKey => {
+          //Get field name, removed block name from fieldKey
+          let fieldName = fieldKey.replace(`${block.name}-`, '')
+          //Set data by blocks, group data by block name, and keep to main level the mainField from fields and main blocks
+          if (['fields', 'main', 'role'].includes(block.name) && this.mainFields.includes(fieldName))
+            response[fieldName] = form[fieldKey]
+          else if (Object.keys(block.fields).includes(fieldKey)) {
+            if (!response[block.name]) response[block.name] = {}
+            response[block.name][fieldName] = form[fieldKey]
+          }
+        })
       })
 
       //Response
@@ -249,16 +316,17 @@ export default {
 #formLoginComponent
   max-width 400px
 
-  .q-option-group
-    width 100%
-
-    .q-radio
+  #formContent
+    .q-option-group
       width 100%
-      border 2px solid $secondary
-      border-radius $custom-radius-items
-      margin-bottom 10px
-      padding 10px
 
-      .q-radio__label
-        color $blue-grey
+      .q-radio
+        width 100%
+        border 2px solid $secondary
+        border-radius $custom-radius-items
+        margin-bottom 10px
+        padding 10px
+
+        .q-radio__label
+          color $blue-grey
 </style>
