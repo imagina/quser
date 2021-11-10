@@ -96,3 +96,10 @@ export const getDepartmentsField = (state) => (field = 'id') => {
 
   return response
 }
+
+export const getOrganization = (state => (id = false) => {
+  //Instance organizaciton id as criteria
+  let organizationId = id || state.organizationId
+  //Repsonse
+  return state.organizations.find(item => item.id == organizationId)
+})
