@@ -123,6 +123,18 @@ export default {
                 {label: this.$tr('ui.label.no'), value: 0},
               ]
             }
+          },
+          workSpace: {
+            value: 'iadmin',
+            type: 'select',
+            fakeFieldName: 'settings',
+            props: {
+              label: this.$tr('ui.label.workSpace'),
+              options: [
+                {label: 'Iadmin', value: 'iadmin'},
+                {label: 'Ipanel', value: 'ipanel'},
+              ]
+            }
           }
         }
       }
