@@ -19,9 +19,9 @@
             <!--Auth Type-->
             <div class="q-mb-md">
               <!--Loggin-->
-              <login-form v-if="authType == 'login'" @logged="$router.push({name : 'app.home'})" class="full-width"/>
+              <login-form v-if="authType == 'login'" @logged="redirectAfterLogin()" class="full-width"/>
               <!--Register-->
-              <register-form v-if="authType == 'register'" @logged="$router.push({name : 'app.home'})"
+              <register-form v-if="authType == 'register'" @logged="redirectAfterLogin()"
                              class="full-width"/>
               <!--Loggin-->
               <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
@@ -104,6 +104,17 @@ export default {
   methods: {
     init() {
 
+    },
+    //Redirect after user be logged
+    redirectAfterLogin() {
+      //Get workSapce assigned from user Role. if not found it, set `iadmin` as default
+      let settingsProfile = this.$store.state.quserAuth.settings
+      let workSpace = settingsProfile.workSpace || 'iadmin'
+
+      //Redirect to same workSpace
+      if (workSpace == config('app.mode')) this.$router.push({name: 'app.home'})
+      //Redirect to assigned workSpace
+      else this.$helper.openExternalURL(`${this.$store.state.qsiteApp.baseUrl}/${workSpace}`, false)
     }
   }
 }
