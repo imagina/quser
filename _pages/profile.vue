@@ -1,49 +1,100 @@
 <template>
   <div id="profilePage" :key="pageId">
+    <!--Page actions-->
+    <div class="box box-auto-height q-mb-md">
+      <page-actions :title="userData.fullName" @refresh="loadPage"/>
+    </div>
     <!--Form-->
-    <div id="formProfile" class="col-12 q-mb-md">
+    <div id="formProfile" class="relative-position">
       <div class="row q-col-gutter-md">
-        <!--Forms-->
-        <div v-for="(formData, keyForm) in formsData" :key="keyForm" class="col-12 col-lg-6 offset-lg-3"
-             v-if="formData.vIf != undefined ? formData.vIf : true">
-          <div class="relative-position">
-            <!--Title-->
-            <div class="box">
-              <!--Page Actions-->
-              <page-actions v-if="keyForm == 'profile'" :title="formData.title" :icon="formData.icon"/>
-              <!--Title-->
-              <div class="box-title row items-center" v-else>
-                <q-icon :name="formData.icon" size="22px" class="q-mr-sm"/>
-                {{ formData.title }}
+        <!--Menu-->
+        <div id="menuContent" class="col-12 col-md-3">
+          <div class="box">
+            <q-tabs v-model="menuOption" vertical active-color="primary">
+              <q-tab v-for="(opt, keyOpt) in menuOptions" :key="keyOpt" :name="opt.value" :label="opt.label"
+                     no-caps v-if="(opt.vIf != undefined) ? opt.vIf : true"/>
+            </q-tabs>
+          </div>
+        </div>
+        <!--Form content-->
+        <div id="formContent" class="col-12 col-md-9">
+          <q-tab-panels v-model="menuOption" animated transition-prev="slide-down" transition-next="slide-up"
+                        keep-alive>
+            <!--Session-->
+            <q-tab-panel name="session">
+              <div class="box box-auto-height">
+                <!--Title-->
+                <div class="box-title row items-center">
+                  <q-icon :name="formsData.session.icon" size="22px" class="q-mr-sm"/>
+                  {{ formsData.session.title }}
+                </div>
+                <q-separator class="q-mt-sm q-mb-md"/>
+                <!--Form-->
+                <q-form @submit="updateUserData(form.session)" ref="formRegister" autocomplete="off"
+                        class="row q-col-gutter-x-md" @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+                  <!--Fields-->
+                  <div v-for="(field, fieldKey) in formsData.session.fields" :key="fieldKey"
+                       :class="field.colClass || 'col-12'">
+                    <dynamic-field :field="field" v-model="form.session[field.name || fieldKey]"/>
+                  </div>
+                  <!--Actions-->
+                  <div id="profileActions" class="col-12 text-right">
+                    <!--Save-->
+                    <q-btn :label="$tr('ui.label.save')" rounded unelevated color="green" type="submit"/>
+                  </div>
+                </q-form>
               </div>
-              <q-separator class="q-mt-sm q-mb-md"/>
-
+            </q-tab-panel>
+            <!--Profile-->
+            <q-tab-panel v-if="roleFormId" name="profile">
+              <!--Title-->
+              <div class="box box-auto-height q-mb-md">
+                <div class="box-title row items-center">
+                  <q-icon name="fas fa-user" size="22px" class="q-mr-sm"/>
+                  {{ $tr('ui.label.profile') }}
+                </div>
+              </div>
               <!--Form-->
-              <q-form @submit="updateData" ref="formRegister" autocomplete="off" class="row q-col-gutter-x-md"
-                      @validation-error="$alert.error($tr('ui.message.formInvalid'))">
-                <!--Fields-->
-                <div v-for="(field, fieldKey) in formData.fields" :key="fieldKey"
-                     :class="fieldKey == 'mainImage' ? 'col-xs-12 col-md-6 offset-md-3' : 'col-12'">
-                  <dynamic-field :field="field" v-model="form[field.name || fieldKey]"/>
-                </div>
-                <!--Actions-->
-                <div id="profileActions" class="col-12 text-right">
-                  <!--Save-->
-                  <q-btn :label="$tr('ui.label.save')" rounded unelevated color="green" type="submit"/>
-                </div>
-              </q-form>
-            </div>
-            <!--Address CRUD-->
-            <div v-if="keyForm == 'session'" class="q-mt-md">
+              <dynamic-form v-if="roleFormId" formType="grid" :form-id="roleFormId" @submit="updateUserData"/>
+            </q-tab-panel>
+            <!--Address-->
+            <q-tab-panel name="address">
               <crud :crud-data="import('@imagina/quser/_crud/address')"
                     @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
                     @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
-            </div>
-            <!--inner loading-->
-            <inner-loading :visible="loading"/>
-          </div>
+            </q-tab-panel>
+            <!--Payment method-->
+            <q-tab-panel name="paymentMethod">
+              <!--Title-->
+              <div class="box box-auto-height q-mb-md">
+                <div class="box-title row items-center">
+                  <q-icon name="fas fa-file-invoice-dollar" size="22px" class="q-mr-sm"/>
+                  {{ $tr('ui.label.paymentMethod') }}
+                </div>
+              </div>
+              <!--Help Caption-->
+              <div class="q-mb-md">
+                <q-banner v-if="payoutBannerHelp" rounded dense :class="payoutBannerHelp.class">
+                  <template v-slot:avatar>
+                    <q-icon :name="payoutBannerHelp.icon" color="white"/>
+                  </template>
+                  <div class="text-white">{{ payoutBannerHelp.message }}</div>
+                  <template v-slot:action v-if="payout.account && payout.account.urlPanel">
+                    <q-btn flat color="white" label="Ver mi Panel"
+                           @click="$helper.openExternalURL(payout.account.urlPanel)"/>
+                  </template>
+                </q-banner>
+              </div>
+              <!--Form-->
+              <dynamic-form v-if="payout.paymentMethod.formId && !payout.account.urlPanel"
+                            v-model="form.payout" form-type="grid"
+                            :form-id="payout.paymentMethod.formId" @submit="connectPayout"/>
+            </q-tab-panel>
+          </q-tab-panels>
         </div>
       </div>
+      <!--inner loading-->
+      <inner-loading :visible="loading"/>
     </div>
   </div>
 </template>
@@ -64,139 +115,44 @@ export default {
     return {
       loading: false,
       pageId: this.$uid(),
-      success: false,
-      form: {}
+      menuOption: 'paymentMethod',
+      form: {
+        session: {},
+        profile: {},
+        payout: {}
+      },
+      payout: {
+        paymentMethod: false,
+        account: false
+      }
     }
   },
   computed: {
-    //incognito profile
-    isIncognitoProfile() {
-      let settingsProfile = this.$store.state.quserAuth.settings
-      return parseInt(settingsProfile.incognitoProfile || 0)
-    },
-    //User data
-    userData() {
-      //Get user data
-      let userData = this.$clone(this.$store.state.quserAuth.userData)
-      //Get fields data
-      let fieldsData = this.$helper.convertToFrontField([
-        {name: 'cellularPhone', value: null},
-        {name: 'birthday', value: null},
-        {name: 'documentType', value: null},
-        {name: 'documentNumber', value: null},
-        {name: 'mainImage', value: null},
-        {name: 'email', value: null},
-        {name: 'socialNetworks', value: []},
-        {name: 'contacts', value: []},
-        {name: 'products', value: []}
-      ], userData.fields)
+    //return formId from current role
+    roleFormId() {
+      let roleId = this.$store.state.quserAuth.selectedRoleId
+      let roles = this.$store.state.quserAuth.userData.roles
+      let roleData = roleId ? roles.fond(item => item.id == roleId) : roles[0]
 
-      //Set data in form
-      return {
-        id: this.$clone(userData.id),
-        firstName: this.$clone(userData.firstName),
-        lastName: this.$clone(userData.lastName),
-        email: this.$clone(userData.email),
-        cellularPhone: this.$clone(fieldsData.cellularPhone.value),
-        documentType: this.$clone(fieldsData.documentType.value),
-        documentNumber: this.$clone(fieldsData.documentNumber.value),
-        birthday: this.$clone(fieldsData.birthday.value),
-        mainImage: this.$clone(fieldsData.mainImage.value)
-      }
+      //Response
+      return roleData?.formId || null
     },
-    //Extra fields from setting
-    extraFields() {
-      return this.$clone(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerExtraFields'))
+    //Profile menu options
+    menuOptions() {
+      return [
+        {label: this.$tr('ui.label.session'), value: 'session'},
+        {label: this.$tr('ui.label.profile'), value: 'profile', vIf: this.roleFormId},
+        {label: this.$trp('ui.label.address'), value: 'address'},
+        {label: this.$tr('ui.label.paymentMethod'), value: 'paymentMethod'}
+      ]
+    },
+    //Return User data
+    userData() {
+      return this.$clone(this.$store.state.quserAuth.userData)
     },
     //Default form Field
     formsData() {
       return {
-        profile: {
-          icon: 'fas fa-user-circle',
-          title: this.$tr('ui.label.profile'),
-          vIf: this.isIncognitoProfile ? false : true,
-          fields: {
-            mainImage: {
-              value: this.userData.mainImage,
-              type: 'uploader',
-              props: {
-                title: this.$tr('ui.label.photo'),
-                maxFiles: 1,
-                accept: 'images',
-                helpText: this.$tr('ui.message.uploadImage'),
-                emitBase64: true,
-                gridColClass: 'col-xs-12',
-                rules: (!this.extraFields.mainImage || !this.extraFields.mainImage.required) ? [] :
-                    [val => !!val || this.$tr('ui.message.fieldRequired')]
-              }
-            },
-            firstName: {
-              value: this.userData.firstName,
-              type: 'input',
-              props: {
-                label: `${this.$trp('ui.form.firstName')} *`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ]
-              }
-            },
-            lastName: {
-              value: this.userData.lastName,
-              type: 'input',
-              props: {
-                label: `${this.$trp('ui.form.lastName')}*`,
-                rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
-                ],
-              }
-            },
-            cellularPhone: {
-              value: this.userData.cellularPhone,
-              type: 'input',
-              props: {
-                label: this.$tr('ui.label.phone') + (this.extraFields.cellularPhone && this.extraFields.cellularPhone.required ? '*' : ''),
-                mask: 'phone',
-                clearable: true,
-                unmaskedValue: true,
-                rules: !this.extraFields.cellularPhone || !this.extraFields.cellularPhone.required ? [] : [
-                  val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng', {num: 10})
-                ]
-              }
-            },
-            documentType: {
-              value: this.userData.documentType,
-              type: 'select',
-              props: {
-                label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
-                rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
-                    [val => !!val || this.$tr('ui.message.fieldRequired')],
-                options: this.extraFields.documentType ? this.extraFields.documentType.options.filter(item =>
-                    this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0
-                ) : []
-              }
-            },
-            documentNumber: {
-              value: this.userData.documentNumber,
-              type: 'input',
-              props: {
-                type: 'number',
-                label: this.$tr('ui.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
-                rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
-                    [val => !!val || this.$tr('ui.message.fieldRequired')]
-              }
-            },
-            birthday: {
-              value: this.userData.birthday,
-              type: 'date',
-              props: {
-                label: this.$tr('ui.label.birthday') + (this.extraFields.birthday && this.extraFields.birthday.required ? '*' : ''),
-                clearable: true,
-                rules: !this.extraFields.birthday || !this.extraFields.birthday.required ? [] :
-                    [val => !!val || this.$tr('ui.message.fieldRequired')]
-              }
-            }
-          }
-        },
         session: {
           icon: 'fas fa-sign-in-alt',
           title: this.$tr('ui.label.session'),
@@ -204,6 +160,7 @@ export default {
             email: {
               value: this.userData.email,
               type: 'input',
+              colClass: 'col-12 col-md-6',
               props: {
                 label: `${this.$tr('ui.form.email')}*`,
                 rules: [
@@ -213,19 +170,23 @@ export default {
               }
             },
             changePassword: {
-              value: false,
+              value: 0,
               type: 'checkbox',
+              colClass: 'col-12 col-md-6',
               props: {
                 label: `${this.$tr('ui.message.updatePassword')}`,
+                trueValue: 1,
+                falseValue: 0,
               }
             },
             password: {
               value: null,
               type: 'input',
+              colClass: 'col-12 col-md-6',
               props: {
                 label: `${this.$trp('ui.form.password')}*`,
                 type: 'password',
-                vIf: this.form.changePassword,
+                vIf: this.form.session.changePassword,
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired'),
                   val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
@@ -235,20 +196,61 @@ export default {
             passwordConfirmation: {
               value: null,
               type: 'input',
+              colClass: 'col-12 col-md-6',
               props: {
                 label: `${this.$trp('ui.form.checkPassword')}*`,
                 type: 'password',
-                vIf: this.form.changePassword,
+                vIf: this.form.session.changePassword,
                 rules: [
                   val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => (this.form.password == val) || this.$tr('ui.message.fieldCheckPassword'),
+                  val => (this.form.session.password == val) || this.$tr('ui.message.fieldCheckPassword'),
                 ]
               }
             },
           }
+        },
+        payOut: {
+          blocks: [
+            {
+              fields: {
+                paymentMethod: {
+                  value: null,
+                  type: 'select',
+                  //colClass: 'col-12 col-md-6',
+                  props: {
+                    label: `${this.$tr('ui.label.paymentMethod')}*`,
+                    rules: [val => !!val || this.$tr('ui.message.fieldRequired')],
+                  },
+                  loadOptions: {}
+                }
+              }
+            }
+          ]
         }
       }
     },
+    //help banner to payout
+    payoutBannerHelp() {
+      if (!this.payout.account) {//No added
+        return {
+          class: 'bg-amber q-mt-md',
+          icon: 'fas fa-exclamation-triangle',
+          message: this.$tr('ui.message.noRegistered')
+        }
+      } else if (this.payout.account.payoutsEnabled) {//Pending
+        return {
+          class: 'bg-green q-mt-md',
+          icon: 'fas fa-check-circle',
+          message: this.$tr('ui.message.ready')
+        }
+      } else {//Added
+        return {
+          class: 'bg-info q-mt-md',
+          icon: 'fas fa-info-circle',
+          message: this.payout.account.urlPanelMsj
+        }
+      }
+    }
   },
   methods: {
     //init
@@ -263,58 +265,119 @@ export default {
       this.loading = true
       await Promise.all([
         this.$store.dispatch('qsiteApp/GET_SITE_SETTINGS'),
-        this.$store.dispatch('quserAuth/AUTH_UPDATE')
+        this.$store.dispatch('quserAuth/AUTH_UPDATE'),
+        this.getRoleForm(),
+        this.getPaymentMethod(),
+        this.getPayoutData()
       ])
       this.pageId = this.$uid()
-      this.form = {}
       this.loading = false
     },
-    //Get form data
-    getFormData() {
-      let userData = this.$clone(this.$store.state.quserAuth.userData)
-      let formData = this.$clone(this.form)
+    //Get role form
+    getRoleForm() {
+      return new Promise((resolve, reject) => {
+        if (!this.roleFormId) return resolve(false)
+        //reset extra blocks
+        this.extraBlocks = []
+        //Open loading
+        this.loading = true
 
-      //Default response
-      let response = {
-        id: this.$store.state.quserAuth.userId,
-        isActivated: 1,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        fields: []
-      }
-
-      //Set fields data
-      for (var fieldName in formData) {
-        if (!response[fieldName]) {
-          response.fields.push({
-            name: fieldName,
-            value: formData[fieldName]
-          })
+        //Request Params
+        let requestParams = {
+          refresh: true,
+          params: {include: 'blocks.fields'}
         }
-      }
 
-      //Set password
-      if (formData.changePassword && formData.password) {
-        response.password = formData.password
-        response.passwordConfirmation = formData.passwordConfirmation
-      }
-
-      //Response
-      return response
+        //Request
+        this.$crud.show('apiRoutes.qform.forms', this.roleFormId, requestParams).then(response => {
+          //Set extra blocks
+          let extraBlocks = response.data.blocks.map(block => {
+            return {...block, fields: block.fields.map(field => field.dynamicField)}
+          })
+          //concat block name to fields
+          extraBlocks.forEach((block, blockKey) => {
+            let fields = {}
+            block.fields.forEach((field, fieldKey) => fields[`${field.name}`] = field)
+            extraBlocks[blockKey].fields = fields
+          })
+          //set data
+          //this.extraBlocks = this.$clone(extraBlocks)
+          resolve(response.data)
+          this.loading = false
+        }).catch(error => {
+          reject(error)
+          this.loading = false
+        })
+      })
     },
     //update data
-    updateData() {
-      this.loading = true//Loading
-      let formData = this.getFormData()//get form data
-
+    updateUserData(formData = {}) {
+      return console.warn(formData)
+      this.loading = true
+      //Add userId to form data
+      formData = {...formData, id: this.userData.id, isActivated: true}
       //Request
-      this.$crud.update('apiRoutes.quser.users', formData.id, formData).then(async response => {
+      this.$crud.update('apiRoutes.quser.users', this.userData.id, formData).then(async response => {
         this.$alert.success({message: this.$tr('ui.message.recordUpdated')})
         this.loadPage()
       }).catch(error => {
         this.$alert.error({message: this.$tr('ui.message.recordNoUpdated')})
         this.loading = false
+      })
+    },
+    //get payment method
+    getPaymentMethod() {
+      return new Promise(resolve => {
+        //Request Params
+        let requestParams = {
+          refresh: true,
+          params: {filter: {field: 'name'}}
+        }
+        //request
+        this.$crud.show('apiRoutes.qcommerce.paymentMethods', 'icommercestripe', requestParams).then(response => {
+          this.payout.paymentMethod = response.data
+          resolve(response.data)
+        }).catch(error => resolve(error))
+      })
+    },
+    //Get payout data
+    getPayoutData() {
+      return new Promise((resolve, reject) => {
+        this.$crud.get('apiRoutes.qcommerce.stripe.accountUser', {refresh: true}).then(response => {
+          if (response.data && response.data.email) {
+            this.payout.account = response.data
+            this.form.payout.email = this.$clone(response.data.email)
+          }
+          resolve(response)
+        }).catch(error => {
+          this.form.payout = {}
+          this.payout.account = false
+          resolve(false)
+        })
+      })
+    },
+    //connect with payout
+    connectPayout() {
+      return new Promise((resolve, reject) => {
+        this.loading = true
+        this.$crud.create('apiRoutes.qcommerce.stripe.connect', this.form.payout).then(response => {
+          //Show dialog to finish register
+          this.$alert.info({
+            mode: 'modal',
+            message: this.$tr('ui.message.finishRegister'),
+            actions: [{
+              label: this.$tr('ui.label.next'),
+              color: 'green',
+              handler: () => {
+                this.$helper.openExternalURL(response.data.accountRegisterLink)
+                this.loadPage()
+              }
+            }],
+          })
+          this.loading = false
+        }).catch(error => {
+          this.loading = false
+        })
       })
     }
   }
@@ -323,6 +386,29 @@ export default {
 
 <style lang="stylus">
 #profilePage
-  .form-title
-    color $primary
+  #menuContent
+    .q-tab__indicator
+      width 4px
+      border-radius 2px
+
+    .q-tab
+      border-bottom 1px solid $grey-3
+
+      &:last-child
+        border none
+
+    .q-tab__content
+      width 100%
+
+      .q-tab__label
+        width 100%
+        text-align left
+
+  #formContent
+    .q-tab-panels
+      background-color transparent
+
+      .q-tab-panel
+        padding 0
+
 </style>
