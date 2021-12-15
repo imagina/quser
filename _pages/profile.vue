@@ -55,7 +55,8 @@
                 </div>
               </div>
               <!--Form-->
-              <dynamic-form v-if="roleFormId" formType="grid" :form-id="roleFormId" @submit="updateUserData"/>
+              <dynamic-form v-model="form.profile" v-if="roleFormId && profileFormBlocks.length"
+                            formType="grid" :blocks="profileFormBlocks" @submit="updateUserData(form.profile)"/>
             </q-tab-panel>
             <!--Address-->
             <q-tab-panel name="address">
@@ -115,7 +116,8 @@ export default {
     return {
       loading: false,
       pageId: this.$uid(),
-      menuOption: 'paymentMethod',
+      menuOption: 'profile',
+      profileFormBlocks: [],
       form: {
         session: {},
         profile: {},
@@ -124,7 +126,8 @@ export default {
       payout: {
         paymentMethod: false,
         account: false
-      }
+      },
+      mainFields: ['firstName', 'lastName']
     }
   },
   computed: {
@@ -266,12 +269,29 @@ export default {
       await Promise.all([
         this.$store.dispatch('qsiteApp/GET_SITE_SETTINGS'),
         this.$store.dispatch('quserAuth/AUTH_UPDATE'),
+        this.setProfileFormData(),
         this.getRoleForm(),
         this.getPaymentMethod(),
         this.getPayoutData()
       ])
       this.pageId = this.$uid()
       this.loading = false
+    },
+    //Set profile form data
+    setProfileFormData() {
+      return new Promise((resolve, reject) => {
+        let formData = {}
+        //Set main fields
+        this.mainFields.map(fieldName => formData[fieldName] = this.userData[fieldName])
+        //Set fields
+        if (this.userData.fields && Array.isArray(this.userData.fields))
+          this.userData.fields.forEach(field => {
+            formData[field.name] = field.value
+          })
+        //Set formdata
+        this.form.profile = this.$clone(formData)
+        resolve(true)
+      })
     },
     //Get role form
     getRoleForm() {
@@ -291,19 +311,20 @@ export default {
         //Request
         this.$crud.show('apiRoutes.qform.forms', this.roleFormId, requestParams).then(response => {
           //Set extra blocks
-          let extraBlocks = response.data.blocks.map(block => {
+          let blocks = response.data.blocks.map(block => {
             return {...block, fields: block.fields.map(field => field.dynamicField)}
           })
           //concat block name to fields
-          extraBlocks.forEach((block, blockKey) => {
+          blocks.forEach((block, blockKey) => {
             let fields = {}
             block.fields.forEach((field, fieldKey) => fields[`${field.name}`] = field)
-            extraBlocks[blockKey].fields = fields
+            blocks[blockKey].fields = fields
           })
-          //set data
-          //this.extraBlocks = this.$clone(extraBlocks)
-          resolve(response.data)
+          //set to profile blocks
+          this.profileFormBlocks = blocks.filter(item => item.name == 'fields')
+
           this.loading = false
+          resolve(response.data)
         }).catch(error => {
           reject(error)
           this.loading = false
@@ -312,14 +333,28 @@ export default {
     },
     //update data
     updateUserData(formData = {}) {
-      return console.warn(formData)
       this.loading = true
+      //Transform formData to profile
+      if (this.menuOption == 'profile') {
+        let formDataProfile = {}
+        //Order form data by fields
+        Object.keys(formData).forEach(fieldName => {
+          //Set main fields
+          if (this.mainFields.includes(fieldName)) formDataProfile[fieldName] = formData[fieldName]
+          else {//Set fields data
+            if (!formDataProfile.fields) formDataProfile.fields = []
+            formDataProfile.fields.push({name: fieldName, value: formData[fieldName]})
+          }
+        })
+        //Change form data
+        formData = this.$clone(formDataProfile)
+      }
       //Add userId to form data
-      formData = {...formData, id: this.userData.id, isActivated: true}
+      formData = {email: this.userData.email, ...formData, id: this.userData.id, isActivated: true}
       //Request
       this.$crud.update('apiRoutes.quser.users', this.userData.id, formData).then(async response => {
         this.$alert.success({message: this.$tr('ui.message.recordUpdated')})
-        this.loadPage()
+        this.loading = false
       }).catch(error => {
         this.$alert.error({message: this.$tr('ui.message.recordNoUpdated')})
         this.loading = false
