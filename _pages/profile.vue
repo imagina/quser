@@ -116,7 +116,7 @@ export default {
     return {
       loading: false,
       pageId: this.$uid(),
-      menuOption: 'profile',
+      menuOption: 'session',
       profileFormBlocks: [],
       form: {
         session: {},
@@ -144,7 +144,10 @@ export default {
     menuOptions() {
       return [
         {label: this.$tr('ui.label.session'), value: 'session'},
-        {label: this.$tr('ui.label.profile'), value: 'profile', vIf: this.roleFormId},
+        {
+          label: this.$tr('ui.label.profile'), value: 'profile',
+          vIf: this.roleFormId && this.profileFormBlocks.length ? true : false
+        },
         {label: this.$trp('ui.label.address'), value: 'address'},
         {label: this.$tr('ui.label.paymentMethod'), value: 'paymentMethod'}
       ]
