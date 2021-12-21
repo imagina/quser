@@ -1,8 +1,10 @@
 export default {
+  moduleName: 'iprofile',
+  modulesSettings: ['user', 'iprofile'],
   //Entities
   entityNames: {
     department: 'department',
-    rol:'role',
+    rol: 'role',
     user: 'user',
   },
   //Quick Cards
