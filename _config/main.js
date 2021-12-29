@@ -1,6 +1,9 @@
 export default {
   moduleName: 'iprofile',
-  modulesSettings: ['user', 'iprofile'],
+  //Perzonalization config
+  perzonalization: {
+    otherModules: ['user']
+  },
   //Entities
   entityNames: {
     department: 'department',
