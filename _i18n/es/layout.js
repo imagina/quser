@@ -26,7 +26,9 @@ export default {
     myProfile: 'Mi perfil | Mis perfiles',
     userGroup: 'Grupo de usuario | Grupos de usuario',
     registerAs : 'Registrarme como',
-    incognitoProfile : 'Perfil incógnito'
+    incognitoProfile : 'Perfil incógnito',
+    wallet: 'Billetera',
+    amountAvailable: 'Cantidad disponible'
   },
   form: {
     lastLogin: 'Ultima sesión',

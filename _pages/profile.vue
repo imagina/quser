@@ -70,7 +70,7 @@
               <div class="box box-auto-height q-mb-md">
                 <div class="box-title row items-center">
                   <q-icon name="fas fa-file-invoice-dollar" size="22px" class="q-mr-sm"/>
-                  {{ $tr('ui.label.paymentMethod') }}
+                  {{ $tr('ui.label.paymentMethod')}}
                 </div>
               </div>
               <!--Help Caption-->
@@ -91,7 +91,27 @@
                             v-model="form.payout" form-type="grid"
                             :form-id="payout.paymentMethod.formId" @submit="connectPayout"/>
             </q-tab-panel>
+            <!-- Wallet -->
+            <q-tab-panel name="wallet">
+              <div class="box box-auto-height q-mb-md">
+
+                      <div class="box-title q-mb-md">
+                      <q-icon name="fa fa-wallet" /> {{ this.$tr('quser.layout.label.wallet')}}
+                      </div>
+                    <div class="box box-auto-height q-mb-md">
+                      {{ this.$tr('quser.layout.label.amountAvailable') + ": " + this.amountAvailable
+                      }}
+                    </div>
+
+                <crud :crud-data="import('@imagina/qcredit/_crud/wallet')"
+                      @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
+                      @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
+              </div>
+            </q-tab-panel>
+
           </q-tab-panels>
+
+
         </div>
       </div>
       <!--inner loading-->
@@ -108,9 +128,11 @@ export default {
   props: {},
   components: {},
   mounted() {
+
     this.$nextTick(function () {
       this.init()
     })
+    this.getAmountAvailable()
   },
   data() {
     return {
@@ -121,8 +143,10 @@ export default {
       form: {
         session: {},
         profile: {},
-        payout: {}
+        payout: {},
+        wallet: {}
       },
+      amountAvailable: null,
       payout: {
         paymentMethod: false,
         account: false
@@ -149,7 +173,8 @@ export default {
           vIf: this.roleFormId && this.profileFormBlocks.length ? true : false
         },
         {label: this.$trp('ui.label.address'), value: 'address'},
-        {label: this.$tr('ui.label.paymentMethod'), value: 'paymentMethod'}
+        {label: this.$tr('ui.label.paymentMethod'), value: 'paymentMethod'},
+        {label: this.$tr('quser.layout.label.wallet'), value: 'wallet'}
       ]
     },
     //Return User data
@@ -279,6 +304,15 @@ export default {
       ])
       this.pageId = this.$uid()
       this.loading = false
+    },
+    async getAmountAvailable(){
+        let requestParams = {
+          refresh: true,
+          params: { filter: {customerId: this.$store.state.quserAuth.userId, amountAvailable: true } }
+        }
+        this.$crud.index('/icredit/v1/credits', requestParams).then(async (res) =>{
+          this.amountAvailable = await res.data[0].amount
+        }).catch(err => console.log(err))
     },
     //Set profile form data
     setProfileFormData() {
