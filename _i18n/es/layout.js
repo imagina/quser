@@ -28,7 +28,6 @@ export default {
     registerAs : 'Registrarme como',
     incognitoProfile : 'Perfil incógnito',
     wallet: 'Billetera',
-    amountAvailable: 'Cantidad disponible'
   },
   form: {
     lastLogin: 'Ultima sesión',

@@ -135,7 +135,7 @@ export default {
         session: {},
         profile: {},
         payout: {},
-        wallet: {}
+        wallet: []
       },
       payout: {
         paymentMethod: false,
