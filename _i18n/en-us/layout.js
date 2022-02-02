@@ -25,7 +25,9 @@ export default {
     myProfile: 'My profile | My profiles',
     userGroup: 'User Group | User Groups',
     registerAs : 'Register as',
-    incognitoProfile: 'Incognito profile'
+    incognitoProfile: 'Incognito profile',
+    wallet: 'Wallet',
+    amountAvailable: 'Amount available'
   },
   form: {
     lastLogin: 'Last login',
