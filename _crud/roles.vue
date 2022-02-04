@@ -23,6 +23,14 @@ export default {
             {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
             {name: 'slug', label: this.$tr('ui.form.slug'), field: 'slug', align: 'left'},
             {
+              name: 'workSpace', label: this.$tr('ui.label.workSpace'), field: 'settings',
+              align: 'left', format: val => val.workSpace || '-'
+            },
+            {
+              name: 'form', label: this.$tr('ui.label.form'), field: 'form',
+              align: 'left', format: val => val ? val.title : '-'
+            },
+            {
               name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
