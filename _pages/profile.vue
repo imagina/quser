@@ -59,7 +59,7 @@
                             formType="grid" :blocks="profileFormBlocks" @submit="updateUserData(form.profile)"/>
             </q-tab-panel>
             <!--Address-->
-            <q-tab-panel name="address">
+            <q-tab-panel name="address" v-if="hasPermission.addresses">
               <crud :crud-data="import('@imagina/quser/_crud/address')"
                     @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
                     @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
@@ -131,6 +131,12 @@ export default {
     }
   },
   computed: {
+    //Has permissions
+    hasPermission() {
+      return {
+        addresses: this.$auth.hasAccess('profile.addresses.manage')
+      }
+    },
     //return formId from current role
     roleFormId() {
       let roleId = this.$store.state.quserAuth.selectedRoleId
@@ -148,7 +154,10 @@ export default {
           label: this.$tr('ui.label.profile'), value: 'profile',
           vIf: this.roleFormId && this.profileFormBlocks.length ? true : false
         },
-        {label: this.$trp('ui.label.address'), value: 'address'},
+        {
+          label: this.$trp('ui.label.address'), value: 'address',
+          vIf: this.hasPermission.addresses
+        },
         {label: this.$tr('ui.label.paymentMethod'), value: 'paymentMethod'}
       ]
     },
