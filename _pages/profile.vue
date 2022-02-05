@@ -335,6 +335,17 @@ export default {
           //set to profile blocks
           this.profileFormBlocks = blocks.filter(item => item.name == 'fields')
 
+          if (this.profileFormBlocks && this.profileFormBlocks.length) {
+            this.profileFormBlocks[0].fields = {
+              mainImage: {
+                name: 'mainImage',
+                type: 'image',
+                colClass : 'col-12'
+              },
+              ...this.profileFormBlocks[0].fields
+            }
+          }
+
           this.loading = false
           resolve(response.data)
         }).catch(error => {
@@ -355,7 +366,7 @@ export default {
           if (this.mainFields.includes(fieldName)) formDataProfile[fieldName] = formData[fieldName]
           else {//Set fields data
             if (!formDataProfile.fields) formDataProfile.fields = []
-            formDataProfile.fields.push({name: fieldName, value: formData[fieldName]})
+            formDataProfile.fields.push({name: fieldName, value: formData[fieldName] || ''})
           }
         })
         //Change form data
