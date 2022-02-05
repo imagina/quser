@@ -9,7 +9,7 @@
     <div id="formContent">
       <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
                     :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
-                    default-col-class="col-12" use-captcha/>
+                    default-col-class="col-12" :use-captcha="settings.activateCaptcha ? true : false"/>
     </div>
     <!--Login-->
     <div class="text-center full-width">
@@ -152,6 +152,7 @@ export default {
         terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
         rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister'),
         authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authRegisterCaption'),
+        activateCaptcha: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::activateCaptcha')),
       }
     },
     //Termns and conditions
