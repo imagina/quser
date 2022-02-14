@@ -2,7 +2,7 @@
   <div id="formLoginComponent" :style="'max-width: '+(props.horizontal ? '700px' : '400px')">
     <!--Title-->
     <div class="box-title text-uppercase q-mb-sm text-center">
-      {{ $tr('quser.layout.label.login') }}
+      {{ $tr('iprofile.cms.label.login') }}
     </div>
     <!--Caption-->
     <div v-if="settings.authLoginCaption && (settings.authLoginCaption != 'null')"
@@ -11,21 +11,21 @@
     </div>
     <!--Form-->
     <q-form @submit="authenticate()" class="row q-col-gutter-x-sm q-pt-sm"
-            autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+            autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
       <!-- User field -->
       <div :class="columnsFieldsClass">
         <q-input name="username" autofocus ref="username" dense
                  v-model="form.username" type="text" color="primary" outlined
-                 :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 :label="$tr('ui.form.email')"/>
+                 :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
+                 :label="$tr('isite.cms.form.email')"/>
       </div>
 
       <!-- Password field -->
       <div :class="columnsFieldsClass">
         <q-input name="password" ref="password" dense v-model="form.password"
                  :type="isPwd ? 'password' : 'text'" color="primary" outlined
-                 :rules="[val => !!val || $tr('ui.message.fieldRequired')]"
-                 :label="$tr('ui.form.password')">
+                 :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
+                 :label="$tr('isite.cms.form.password')">
           <template v-slot:append>
             <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                     @click="isPwd = !isPwd"/>
@@ -36,12 +36,12 @@
       <!--Actions-->
       <div id="formActions" :class="`row full-width q-mb-md ${withRegister ? 'justify-between' : 'justify-end'}`">
         <!--Register-->
-        <q-btn :label="$tr('quser.layout.label.createAccount')" unelevated no-caps v-if="withRegister"
+        <q-btn :label="$tr('iprofile.cms.label.createAccount')" unelevated no-caps v-if="withRegister"
                :to="{name : 'auth.register',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"
                rounded/>
         <!-- Button login -->
         <q-btn :loading="loading" type="submit" color="primary" rounded unelevated no-caps>
-          {{ $tr('quser.layout.label.login') }}
+          {{ $tr('iprofile.cms.label.login') }}
           <template v-slot:loading>
             <q-spinner-oval/>
           </template>
@@ -50,7 +50,7 @@
 
       <!--Reset Password-->
       <div class="text-center full-width">
-        <q-btn :label="$tr('quser.layout.label.resetPassword')" unelevated no-caps
+        <q-btn :label="$tr('iprofile.cms.label.resetPassword')" unelevated no-caps
                :to="{name : 'auth.reset.password',query : this.$route.query}" color="blue-grey" rounded flat/>
       </div>
     </q-form>
@@ -126,7 +126,7 @@ export default {
           this.inRequest = false
           this.$emit('logged')
         }).catch(error => {
-          this.$alert.error(this.$tr('quser.layout.message.userOrPasswordInvalid'))
+          this.$alert.error(this.$tr('iprofile.cms.message.userOrPasswordInvalid'))
           this.loading = false
           this.inRequest = false
         })

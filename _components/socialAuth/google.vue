@@ -87,7 +87,7 @@ export default {
       //Validate response
       if (!token) {
         this.loading = false
-        return this.$alert.error(this.$tr('ui.message.errorRequest'))
+        return this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
       }
 
       //Dispath auth social network
@@ -98,7 +98,7 @@ export default {
         this.$emit('logged')
         this.loading = false
       }).catch(error => {
-        this.$alert.error(this.$tr('ui.message.errorRequest'))
+        this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
         this.loading = false
       })
     }

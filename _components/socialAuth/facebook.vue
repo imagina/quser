@@ -89,7 +89,7 @@ export default {
         this.$emit('logged')
         this.loading = false
       }).catch(error => {
-        this.$alert.error(this.$tr('ui.message.errorRequest'))
+        this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
         this.loading = false
       })
     }

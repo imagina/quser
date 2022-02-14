@@ -23,7 +23,7 @@ export default {
     quickCardParams() {
       return {
         type: 'list-v',
-        title: this.$tr('quser.layout.quickCard.lastUsers'),
+        title: this.$tr('iprofile.cms.quickCard.lastUsers'),
         icon: 'fas fa-users',
         apiRoute: 'apiRoutes.quser.users',
         requestParams: {

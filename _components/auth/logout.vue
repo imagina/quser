@@ -2,9 +2,9 @@
   <div id="pageLogout" class="text-center">
     <q-icon name="fas fa-user-lock" color="primary" size="60px"/>
     <div class="text-grey-8 q-headline q-mt-md">
-      {{ $tr('quser.layout.message.logout') }}
+      {{ $tr('iprofile.cms.message.logout') }}
     </div>
-    <q-btn :label="$tr('quser.layout.label.login')" color="primary"
+    <q-btn :label="$tr('iprofile.cms.label.login')" color="primary"
            :loading="loading" rounded unelevated
            class="q-mt-md" :to="routeToLogin"/>
   </div>

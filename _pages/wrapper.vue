@@ -33,7 +33,7 @@
               <q-separator class="q-mb-md"/>
               <!--Title-->
               <div class="box-title text-uppercase q-mb-sm text-center">
-                {{ $tr('quser.layout.message.quickAccess') }}
+                {{ $tr('iprofile.cms.message.quickAccess') }}
               </div>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">

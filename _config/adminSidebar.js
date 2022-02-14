@@ -3,7 +3,7 @@ const pages = config('pages') // Get Pages from config
 //User
 export default [
   {
-    title: 'quser.sidebar.adminGroup',
+    title: 'iprofile.cms.sidebar.adminGroup',
     icon: 'fas fa-users',
     children: [
       pages.quser.userIndex,//User Index

@@ -102,20 +102,20 @@ export default {
         //Create information blocks
         item.informationBlocks = [
           {
-            label: this.$tr('ui.label.role'),
+            label: this.$tr('isite.cms.label.role'),
             icon: 'fas fa-user',
             value: item.roles ? item.roles.map(item => {
               return item.name
             }).join(', ') : ''
           },
           {
-            label: this.$tr('ui.label.email'),
+            label: this.$tr('isite.cms.label.email'),
             icon: 'fas fa-envelope',
             copy: item.email,
             value: item.email
           },
           {
-            label: this.$tr('ui.label.phone'),
+            label: this.$tr('isite.cms.label.phone'),
             icon: 'fas fa-phone',
             copy: fields.cellularPhone ? fields.cellularPhone.value : false,
             value: fields.cellularPhone ? this.$helper.maskPhone(fields.cellularPhone.value) : '-'
@@ -142,7 +142,7 @@ export default {
             value: null,
             type: 'select',
             props: {
-              label: this.$tr('ui.label.role'),
+              label: this.$tr('isite.cms.label.role'),
               clearable : true
             },
             loadOptions: {

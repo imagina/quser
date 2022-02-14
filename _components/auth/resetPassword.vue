@@ -3,18 +3,18 @@
     <div id="formResetPasswordContent">
       <!--Title-->
       <div class="box-title text-uppercase q-mb-sm text-center">
-        {{ $tr('quser.layout.label.resetPassword') }}
+        {{ $tr('iprofile.cms.label.resetPassword') }}
       </div>
 
       <!--Form-->
       <q-form @submit="resetPassword()" autocomplete="off"
-              @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+              @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
         <!--Email field-->
         <q-input name="username" autofocus ref="username" autocomplete="off" outlined dense
-                 :label="`${$tr('ui.form.email')} *`" v-model="form.username" type="text" color="blue-grey"
+                 :label="`${$tr('isite.cms.form.email')} *`" v-model="form.username" type="text" color="blue-grey"
                  class="q-mb-sm" :rules="[
-                      val => !!val || $tr('ui.message.fieldRequired'),
-                      val => $helper.validateEmail(val) || $tr('ui.message.fieldEmail')]"/>
+                      val => !!val || $tr('isite.cms.message.fieldRequired'),
+                      val => $helper.validateEmail(val) || $tr('isite.cms.message.fieldEmail')]"/>
 
         <!--Captcha-->
         <dynamic-field :field="{type : 'captcha'}" v-model="form.captcha"/>
@@ -22,14 +22,14 @@
         <!--Actions-->
         <div class="row justify-between">
           <!--Button Login-->
-          <q-btn :label="$tr('quser.layout.label.login')" no-caps rounded unelevated
+          <q-btn :label="$tr('iprofile.cms.label.login')" no-caps rounded unelevated
                  :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"/>
           <!--Button submit-->
-          <q-btn :loading="loading" color="primary" type="submit" :label="$tr('ui.label.reset')"
+          <q-btn :loading="loading" color="primary" type="submit" :label="$tr('isite.cms.label.reset')"
                  unelevated rounded no-caps>
             <div slot="loading">
               <q-spinner-oval class="on-left"/>
-              {{ `${$tr('ui.label.validating')}...` }}
+              {{ `${$tr('isite.cms.label.validating')}...` }}
             </div>
           </q-btn>
         </div>
@@ -41,7 +41,7 @@
       <q-card>
         <q-card-section>
           <!--Message-->
-          <p class="text-subtitle1 text-justify">{{ $tr('quser.layout.message.passwordUpdated') }}</p>
+          <p class="text-subtitle1 text-justify">{{ $tr('iprofile.cms.message.passwordUpdated') }}</p>
           <!--Button login-->
           <div class="text-center q-mt-sm">
             <q-btn unelevated rounded label="Iniciar sesion" :to="{name : 'auth.login'}" color="primary"/>

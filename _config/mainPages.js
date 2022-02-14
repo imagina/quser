@@ -7,7 +7,7 @@ export default {
     name: 'auth.login',
     page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.login',
+    title: 'iprofile.cms.sidebar.login',
     icon: 'fas fa-chart-bar',
     authenticated: true,
     authType: 'login'
@@ -20,7 +20,7 @@ export default {
     name: 'auth.logout',
     page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.logout',
+    title: 'iprofile.cms.sidebar.logout',
     icon: 'fas fa-chart-bar',
     authType : 'logout'
   },
@@ -32,7 +32,7 @@ export default {
     name: 'auth.register',
     page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.register',
+    title: 'iprofile.cms.sidebar.register',
     icon: 'fas fa-chart-bar',
     authType: 'register'
   },
@@ -44,7 +44,7 @@ export default {
     name: 'auth.reset.password',
     page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.resetPassword',
+    title: 'iprofile.cms.sidebar.resetPassword',
     icon: 'fas fa-chart-bar',
     authType: 'resetPassword'
   },
@@ -56,7 +56,7 @@ export default {
     name: 'auth.reset-complete',
     page: () => import('@imagina/quser/_pages/resetPasswordComplete'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
-    title: 'quser.sidebar.resetPassword',
+    title: 'iprofile.cms.sidebar.resetPassword',
     icon: 'fas fa-chart-bar',
     //middleware: [auth]
   },
@@ -68,7 +68,7 @@ export default {
     name: 'user.profile.me',
     page: () => import('@imagina/quser/_pages/profile'),
     layout: () => import('@imagina/qsite/_layouts/master'),
-    title: 'quser.sidebar.panelProfile',
+    title: 'iprofile.cms.sidebar.panelProfile',
     icon: 'fas fa-user-circle',
     authenticated: true,
     subHeader: {

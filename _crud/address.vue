@@ -17,39 +17,39 @@ export default {
         apiRoute: 'apiRoutes.quser.addresses',
         permission: 'profile.addresses',
         create: {
-          title: this.$tr('quser.layout.newAddress'),
+          title: this.$tr('iprofile.cms.newAddress'),
         },
         read: {
-          title: this.$trp('ui.label.address'),
+          title: this.$trp('isite.cms.label.address'),
           icon: 'fas fa-map-marker-alt',
           search: false,
           columns: [
             {
-              name: 'name', label: this.$tr('ui.form.name'), field: 'firstName',
+              name: 'name', label: this.$tr('isite.cms.form.name'), field: 'firstName',
               align: 'left', format: (val, row) => `${row.firstName} ${row.lastName}`
             },
             {
-              name: 'country', label: this.$tr('ui.label.country'), field: 'country',
+              name: 'country', label: this.$tr('isite.cms.label.country'), field: 'country',
               format: val => val ? val.name : '-', align: 'left'
             },
             {
-              name: 'state', label: this.$tr('ui.form.province'), field: 'state',
+              name: 'state', label: this.$tr('isite.cms.form.province'), field: 'state',
               format: val => val || '-', align: 'left'
             },
             {
-              name: 'city', label: this.$tr('ui.form.city'), field: 'city',
+              name: 'city', label: this.$tr('isite.cms.form.city'), field: 'city',
               format: val => val || '-', align: 'left'
             },
             {
-              name: 'address', label: this.$tr('ui.form.address'), field: 'address1',
+              name: 'address', label: this.$tr('isite.cms.form.address'), field: 'address1',
               classes: 'ellipsis', style: 'max-width : 250px', format: val => val || '-', align: 'left'
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           requestParams: {filter: {userId: this.$store.state.quserAuth.userId}}
         },
         update: {
-          title: this.$tr('quser.layout.updateAddress'),
+          title: this.$tr('iprofile.cms.updateAddress'),
           requestParams: {include: ''}
         },
         delete: true,
@@ -60,9 +60,9 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.firstName')}*`,
+              label: `${this.$tr('isite.cms.form.firstName')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -70,9 +70,9 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.lastName')}*`,
+              label: `${this.$tr('isite.cms.form.lastName')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -80,9 +80,9 @@ export default {
             value: null,
             type: 'select',
             props: {
-              label: this.$tr('ui.label.country') + '*',
+              label: this.$tr('isite.cms.label.country') + '*',
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             },
             loadOptions: {
@@ -94,10 +94,10 @@ export default {
             value: null,
             type: 'select',
             props: {
-              label: this.$tr('ui.label.department') + '*',
+              label: this.$tr('isite.cms.label.department') + '*',
               readonly: (this.crudInfo.countryId ? false : true),
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             },
             loadOptions: {
@@ -110,10 +110,10 @@ export default {
             value: null,
             type: 'select',
             props: {
-              label: this.$tr('ui.form.city') + '*',
+              label: this.$tr('isite.cms.form.city') + '*',
               readonly: (this.crudInfo.provinceId ? false : true),
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             },
             loadOptions: {
@@ -126,9 +126,9 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.address')}*`,
+              label: `${this.$tr('isite.cms.form.address')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -138,12 +138,12 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: this.$tr('ui.label.phone') + '*',
+              label: this.$tr('isite.cms.label.phone') + '*',
               mask: 'phone',
               clearable: true,
               unmaskedValue: true,
               rules: [
-                val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng', {num: 10})
+                val => !val || val.length == 10 || this.$tr('isite.cms.message.fieldMinLeng', {num: 10})
               ]
             }
           },
@@ -152,9 +152,9 @@ export default {
             type: 'select',
             isFakeField: true,
             props: {
-              label: this.$tr('ui.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
+              label: this.$tr('isite.cms.form.identificationType') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
               rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
-                [val => !!val || this.$tr('ui.message.fieldRequired')],
+                [val => !!val || this.$tr('isite.cms.message.fieldRequired')],
               options: (this.extraFields.documentType && this.extraFields.documentType.options) ?
                 this.extraFields.documentType.options.filter(item => this.extraFields.documentType.availableOptions.indexOf(item.value) >= 0) : []
             }
@@ -165,16 +165,16 @@ export default {
             isFakeField: true,
             props: {
               type: 'number',
-              label: this.$tr('ui.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
+              label: this.$tr('isite.cms.form.identification') + (this.extraFields.documentType && this.extraFields.documentType.required ? '*' : ''),
               rules: !this.extraFields.documentType || !this.extraFields.documentType.required ? [] :
-                [val => !!val || this.$tr('ui.message.fieldRequired')]
+                [val => !!val || this.$tr('isite.cms.message.fieldRequired')]
             }
           },
           company: {
             value: null,
             type: 'input',
             props: {
-              label: this.$tr('ui.label.company'),
+              label: this.$tr('isite.cms.label.company'),
               clearable: true,
             }
           },
@@ -183,7 +183,7 @@ export default {
             type: 'input',
             isFakeField: true,
             props: {
-              label: `${this.$trp('ui.form.comment')}`,
+              label: `${this.$trp('isite.cms.form.comment')}`,
               type: 'textarea',
               rows: "3",
             },

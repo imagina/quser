@@ -8,7 +8,7 @@ export default {
     crud: import('@imagina/quser/_crud/users'),
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
-    title: 'quser.sidebar.adminUserIndex',
+    title: 'iprofile.cms.sidebar.adminUserIndex',
     icon: 'fas fa-users',
     authenticated: true,
     subHeader: {
@@ -25,7 +25,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     isCrud: true,
-    title: 'quser.sidebar.adminUserDepartments',
+    title: 'iprofile.cms.sidebar.adminUserDepartments',
     icon: 'fas fa-people-arrows',
     authenticated: true,
     subHeader: {
@@ -43,7 +43,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     isCrud: true,
-    title: 'quser.sidebar.adminUserRoles',
+    title: 'iprofile.cms.sidebar.adminUserRoles',
     icon: 'fas fa-user-tag',
     authenticated: true,
     subHeader: {
@@ -59,7 +59,7 @@ export default {
     name: 'quser.admin.directory',
     page: () => import('@imagina/quser/_pages/_admin/directory'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
-    title: 'quser.sidebar.adminDirectory',
+    title: 'iprofile.cms.sidebar.adminDirectory',
     icon: 'fas fa-address-book',
     authenticated: true,
     subHeader: {

@@ -8,12 +8,12 @@
     <!--Dynamic form-->
     <div id="formContent">
       <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="register()" :actions="dynamicForm.actions"
-                    :title="$tr('quser.layout.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
+                    :title="$tr('iprofile.cms.label.createAccount').toUpperCase()" class="q-mb-md" :loading="loading"
                     default-col-class="col-12" :use-captcha="settings.activateCaptcha ? true : false"/>
     </div>
     <!--Login-->
     <div class="text-center full-width">
-      <q-btn :label="$tr('quser.layout.label.login')" unelevated no-caps
+      <q-btn :label="$tr('iprofile.cms.label.login')" unelevated no-caps
              :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey" rounded flat/>
     </div>
   </div>
@@ -54,7 +54,7 @@ export default {
       let response = {
         actions: {
           submit: {
-            label: this.$tr('quser.layout.label.createAccount'),
+            label: this.$tr('iprofile.cms.label.createAccount'),
             color: 'primary',
             icon: null
           }
@@ -69,10 +69,10 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  label: `${this.$tr('ui.form.email')}*`,
+                  label: `${this.$tr('isite.cms.form.email')}*`,
                   rules: [
-                    val => !!val || this.$tr('ui.message.fieldRequired'),
-                    val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                    val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                    val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
                   ]
                 }
               },
@@ -81,12 +81,12 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  label: `${this.$trp('ui.form.password')}*`,
+                  label: `${this.$trp('isite.cms.form.password')}*`,
                   type: 'password',
                   vIf: this.form.changePassword,
                   rules: [
-                    val => !!val || this.$tr('ui.message.fieldRequired'),
-                    val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
+                    val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                    val => val.length >= 6 || this.$tr('isite.cms.message.fieldMinLeng', {num: 6})
                   ]
                 }
               },
@@ -95,12 +95,12 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  label: `${this.$trp('ui.form.checkPassword')}*`,
+                  label: `${this.$trp('isite.cms.form.checkPassword')}*`,
                   type: 'password',
                   vIf: this.form.changePassword,
                   rules: [
-                    val => !!val || this.$tr('ui.message.fieldRequired'),
-                    val => (this.form['main-password'] == val) || this.$tr('ui.message.fieldCheckPassword'),
+                    val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                    val => (this.form['main-password'] == val) || this.$tr('isite.cms.message.fieldCheckPassword'),
                   ]
                 }
               },
@@ -123,10 +123,10 @@ export default {
               colClass: 'col-12',
               props: {
                 options: this.authRoles.map(item => {
-                  return {label: `${this.$tr('quser.layout.label.registerAs')} ${item.name}`, value: item.id}
+                  return {label: `${this.$tr('iprofile.cms.label.registerAs')} ${item.name}`, value: item.id}
                 }),
                 color: 'secondary',
-                rules: [val => !!val || this.$tr('ui.message.fieldRequired')]
+                rules: [val => !!val || this.$tr('isite.cms.message.fieldRequired')]
               }
             }
           }
@@ -166,9 +166,9 @@ export default {
       //Add links to terms and conditions
       let concatData = ''
       if (settings.politics)
-        concatData += `<a href="${settings.politics}" target="_blank" class="text-green"><b>${this.$tr('quser.layout.message.privacyPolicy')}</b></a>,`
+        concatData += `<a href="${settings.politics}" target="_blank" class="text-green"><b>${this.$tr('iprofile.cms.message.privacyPolicy')}</b></a>,`
       if (settings.terms)
-        concatData += `<a href="${settings.terms}" target="_blank" class="text-green"><b>${this.$tr('quser.layout.message.termsAndConditions')}</b></a>,`
+        concatData += `<a href="${settings.terms}" target="_blank" class="text-green"><b>${this.$tr('iprofile.cms.message.termsAndConditions')}</b></a>,`
 
       //Default response
       let response = {
@@ -176,8 +176,8 @@ export default {
         value: false,
         type: 'checkbox',
         props: {
-          rules: [val => !!val || this.$tr('ui.message.fieldRequired')],
-          label: this.$tr('quser.layout.message.privacyData', {
+          rules: [val => !!val || this.$tr('isite.cms.message.fieldRequired')],
+          label: this.$tr('iprofile.cms.message.privacyData', {
             concatData: concatData,
             siteName: this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name')
           }),

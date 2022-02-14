@@ -9,30 +9,30 @@
           apiRoute: 'apiRoutes.quser.fields',
           permission: 'profile.fields',
           create: {
-            title: this.$tr('quser.layout.newContact'),
+            title: this.$tr('iprofile.cms.newContact'),
           },
           read: {
-            title: this.$trp('ui.label.contact'),
+            title: this.$trp('isite.cms.label.contact'),
             icon: 'fas fa-users',
             search: false,
             columns: [
               {
-                name: 'firstName', label: this.$tr('ui.form.firstName'), field: 'first_name',
+                name: 'firstName', label: this.$tr('isite.cms.form.firstName'), field: 'first_name',
                 format: val => val || '-', align: 'left'
               },
               {
-                name: 'lastName', label: this.$tr('ui.form.lastName'), field: 'last_name',
+                name: 'lastName', label: this.$tr('isite.cms.form.lastName'), field: 'last_name',
                 format: val => val || '-', align: 'left'
               },
               {
-                name: 'phone', label: this.$tr('ui.form.phone'), field: 'phone',
+                name: 'phone', label: this.$tr('isite.cms.form.phone'), field: 'phone',
                 format: val => this.$helper.maskPhone(val.toString()) || '-', align: 'left'
               },
               {
-                name: 'email', label: this.$tr('ui.form.email'), field: 'email',
+                name: 'email', label: this.$tr('isite.cms.form.email'), field: 'email',
                 format: val => val || '-', align: 'left'
               },
-              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+              {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
             ],
             requestParams: {
               filter: {
@@ -42,7 +42,7 @@
             }
           },
           update: {
-            title: this.$tr('quser.layout.updateContact'),
+            title: this.$tr('iprofile.cms.updateContact'),
             requestParams: {
               filter: {
                 userId: this.$store.state.quserAuth.userId,
@@ -59,9 +59,9 @@
               value: null,
               type: 'input',
               props : {
-                label: `${this.$tr('ui.form.firstName')}*`,
+                label: `${this.$tr('isite.cms.form.firstName')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
               }
             },
@@ -70,9 +70,9 @@
               value: null,
               type: 'input',
               props : {
-                label: `${this.$tr('ui.form.lastName')}*`,
+                label: `${this.$tr('isite.cms.form.lastName')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
               }
             },
@@ -80,12 +80,12 @@
               value: null,
               type: 'input',
               props : {
-                label: `${this.$tr('ui.form.phone')}*`,
+                label: `${this.$tr('isite.cms.form.phone')}*`,
                 mask:'phone',
                 unmaskedValue : true,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => !val || val.length == 10 || this.$tr('ui.message.fieldMinLeng',{num : 10})
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                  val => !val || val.length == 10 || this.$tr('isite.cms.message.fieldMinLeng',{num : 10})
                 ],
               }
             },
@@ -93,10 +93,10 @@
               value: null,
               type: 'input',
               props : {
-                label: `${this.$tr('ui.form.email')}*`,
+                label: `${this.$tr('isite.cms.form.email')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                  val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
                 ],
               }
             },

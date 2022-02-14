@@ -3,8 +3,8 @@
     <!--Tab-->
     <q-tabs v-model="tabModel" dense class="text-grey" active-color="primary"
             indicator-color="primary" align="justify">
-      <q-tab name="tab-login" :label="$tr('quser.layout.label.login')"/>
-      <q-tab name="tab-register" v-if="withRegister" :label="$tr('quser.layout.label.createAccount')"/>
+      <q-tab name="tab-login" :label="$tr('iprofile.cms.label.login')"/>
+      <q-tab name="tab-register" v-if="withRegister" :label="$tr('iprofile.cms.label.createAccount')"/>
     </q-tabs>
 
     <q-separator/>
@@ -29,7 +29,7 @@
 
     <!--Social Auth-->
     <div class="socialAuth q-py-sm text-center" v-if="!isIadmin">
-      <div class="text-grey-6 q-mb-xs">{{$tr('quser.layout.message.quickAccess')}}</div>
+      <div class="text-grey-6 q-mb-xs">{{$tr('iprofile.cms.message.quickAccess')}}</div>
       <!--google-->
       <google-auth @logged="emitLogged()"/>
       <!--google-->

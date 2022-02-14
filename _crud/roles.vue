@@ -15,31 +15,31 @@ export default {
         permission: 'profile.role',
         extraFormFields: 'Iprofile.crud-fields.roles',
         create: {
-          title: this.$tr('quser.layout.newRole'),
+          title: this.$tr('iprofile.cms.newRole'),
         },
         read: {
           columns: [
-            {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-            {name: 'name', label: this.$tr('ui.form.name'), field: 'name', align: 'rigth'},
-            {name: 'slug', label: this.$tr('ui.form.slug'), field: 'slug', align: 'left'},
+            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
+            {name: 'name', label: this.$tr('isite.cms.form.name'), field: 'name', align: 'rigth'},
+            {name: 'slug', label: this.$tr('isite.cms.form.slug'), field: 'slug', align: 'left'},
             {
-              name: 'workSpace', label: this.$tr('ui.label.workSpace'), field: 'settings',
+              name: 'workSpace', label: this.$tr('isite.cms.label.workSpace'), field: 'settings',
               align: 'left', format: val => val.workSpace || '-'
             },
             {
-              name: 'form', label: this.$tr('ui.label.form'), field: 'form',
+              name: 'form', label: this.$tr('isite.cms.label.form'), field: 'form',
               align: 'left', format: val => val ? val.title : '-'
             },
             {
-              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           requestParams: {include: ''}
         },
         update: {
-          title: this.$tr('quser.layout.updateRole'),
+          title: this.$tr('iprofile.cms.updateRole'),
           requestParams: {include: ''}
         },
         delete: true,
@@ -50,9 +50,9 @@ export default {
             value: '',
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.name')}*`,
+              label: `${this.$tr('isite.cms.form.name')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             },
             validateField: {
@@ -65,9 +65,9 @@ export default {
             value: '',
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.slug')}*`,
+              label: `${this.$tr('isite.cms.form.slug')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -77,7 +77,7 @@ export default {
               crudType: 'select',
               crudData: import('@imagina/qform/_crud/crudForms'),
               crudProps: {
-                label: `${this.$tr('ui.label.form')}`,
+                label: `${this.$tr('isite.cms.label.form')}`,
               },
               config: {
                 options: {
@@ -125,10 +125,10 @@ export default {
             type: 'select',
             fakeFieldName: 'settings',
             props: {
-              label: this.$tr('quser.layout.label.incognitoProfile'),
+              label: this.$tr('iprofile.cms.label.incognitoProfile'),
               options: [
-                {label: this.$tr('ui.label.yes'), value: 1},
-                {label: this.$tr('ui.label.no'), value: 0},
+                {label: this.$tr('isite.cms.label.yes'), value: 1},
+                {label: this.$tr('isite.cms.label.no'), value: 0},
               ]
             }
           },
@@ -137,7 +137,7 @@ export default {
             type: 'select',
             fakeFieldName: 'settings',
             props: {
-              label: this.$tr('ui.label.workSpace'),
+              label: this.$tr('isite.cms.label.workSpace'),
               options: [
                 {label: 'Iadmin', value: 'iadmin'},
                 {label: 'Ipanel', value: 'ipanel'},

@@ -15,51 +15,51 @@ export default {
         permission: 'profile.user',
         extraFormFields: 'Iprofile.crud-fields.users',
         create: {
-          title: this.$tr('quser.layout.newUser'),
+          title: this.$tr('iprofile.cms.newUser'),
         },
         read: {
           requestParams: {include: 'roles,departments'},
           columns: [
-            {name: 'id', label: this.$tr('ui.form.id'), field: 'id'},
+            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
             {
-              name: 'first_name', label: this.$tr('ui.form.name'), field: 'fullName',
+              name: 'first_name', label: this.$tr('isite.cms.form.name'), field: 'fullName',
               align: 'left', sortable: true
             },
             {
-              name: 'email', label: `${this.$tr('ui.form.email')} / ${this.$trp('ui.form.userName')}`,
+              name: 'email', label: `${this.$tr('isite.cms.form.email')} / ${this.$trp('isite.cms.form.userName')}`,
               field: 'email', align: 'left', sortable: true
             },
             {
-              name: 'isActivated', label: this.$tr('ui.form.status'), field: 'isActivated',
+              name: 'isActivated', label: this.$tr('isite.cms.form.status'), field: 'isActivated',
               asStatus: true
             },
             {
-              name: 'roles', label: this.$trp('ui.label.role'), field: 'roles',
+              name: 'roles', label: this.$trp('isite.cms.label.role'), field: 'roles',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
               format: val => val ? val.map(item => {
                 return item.name
               }).join(', ') : ''
             },
             {
-              name: 'departments', label: this.$trp('quser.layout.label.userGroup'), field: 'departments',
+              name: 'departments', label: this.$trp('iprofile.cms.label.userGroup'), field: 'departments',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
               format: val => val ? val.map(item => {
                 return item.title
               }).join(', ') : ''
             },
             {
-              name: 'last_loging', label: this.$tr('quser.layout.form.lastLogin'), field: 'lastLoginDate',
+              name: 'last_loging', label: this.$tr('iprofile.cms.form.lastLogin'), field: 'lastLoginDate',
               align: 'left', format: val => val ? this.$trd(val) : '-',
             },
             {
-              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
             {
-              name: 'updated_at', label: this.$tr('ui.form.updatedAt'), field: 'updatedAt', align: 'left',
+              name: 'updated_at', label: this.$tr('isite.cms.form.updatedAt'), field: 'updatedAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           filters: {
             roleId: {
@@ -70,7 +70,7 @@ export default {
                 select: {label: 'name', id: 'id'}
               },
               props: {
-                label: `${this.$tr('ui.label.role')}:`,
+                label: `${this.$tr('isite.cms.label.role')}:`,
                 clearable: true
               }
             },
@@ -82,7 +82,7 @@ export default {
                 apiRoute: 'apiRoutes.quser.departments'
               },
               props: {
-                label: `${this.$tr('ui.label.department')}:`,
+                label: `${this.$tr('isite.cms.label.department')}:`,
                 clearable: true
               }
             },
@@ -90,10 +90,10 @@ export default {
               value: null,
               type: 'select',
               props: {
-                label: `${this.$tr('ui.form.status')}:`,
+                label: `${this.$tr('isite.cms.form.status')}:`,
                 options: [
-                  {label: this.$tr('ui.label.enabled'), value: '1'},
-                  {label: this.$tr('ui.label.disabled'), value: '0'},
+                  {label: this.$tr('isite.cms.label.enabled'), value: '1'},
+                  {label: this.$tr('isite.cms.label.disabled'), value: '0'},
                 ],
                 clearable: true
               }
@@ -101,7 +101,7 @@ export default {
           }
         },
         update: {
-          title: this.$tr('quser.layout.updateUser'),
+          title: this.$tr('iprofile.cms.updateUser'),
           requestParams: {include: 'roles,departments,settings'}
         },
         delete: false,
@@ -112,9 +112,9 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$trp('ui.form.firstName')} *`,
+              label: `${this.$trp('isite.cms.form.firstName')} *`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ]
             }
           },
@@ -122,9 +122,9 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$trp('ui.form.lastName')}*`,
+              label: `${this.$trp('isite.cms.form.lastName')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             }
           },
@@ -132,10 +132,10 @@ export default {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.email')} / ${this.$trp('ui.form.userName')} *`,
+              label: `${this.$tr('isite.cms.form.email')} / ${this.$trp('isite.cms.form.userName')} *`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
-                //val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
+                //val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
               ],
             }
           },
@@ -143,10 +143,10 @@ export default {
             value: '1',
             type: 'select',
             props: {
-              label: `${this.$tr('ui.form.status')}:`,
+              label: `${this.$tr('isite.cms.form.status')}:`,
               options: [
-                {label: this.$tr('ui.label.enabled'), value: '1'},
-                {label: this.$tr('ui.label.disabled'), value: '0'},
+                {label: this.$tr('isite.cms.label.enabled'), value: '1'},
+                {label: this.$tr('isite.cms.label.disabled'), value: '0'},
               ],
             }
           },
@@ -155,7 +155,7 @@ export default {
             type: 'checkbox',
             noCrud: true,
             props: {
-              label: `${this.$tr('ui.message.updatePassword')}*`,
+              label: `${this.$tr('isite.cms.message.updatePassword')}*`,
               vIf: this.crudInfo.typeForm == 'update'
             }
           },
@@ -164,12 +164,12 @@ export default {
             type: 'input',
             noCrud: ((this.crudInfo.typeForm == 'update') && !this.crudInfo.changePassword) ? true : false,
             props: {
-              label: `${this.$trp('ui.form.password')}*`,
+              label: `${this.$trp('isite.cms.form.password')}*`,
               type: 'password',
               vIf: (this.crudInfo.typeForm == 'create') || this.crudInfo.changePassword,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired'),
-                val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
+                val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                val => val.length >= 6 || this.$tr('isite.cms.message.fieldMinLeng', {num: 6})
               ]
             }
           },
@@ -178,12 +178,12 @@ export default {
             type: 'input',
             noCrud: ((this.crudInfo.typeForm == 'update') && !this.crudInfo.changePassword) ? true : false,
             props: {
-              label: `${this.$trp('ui.form.checkPassword')}*`,
+              label: `${this.$trp('isite.cms.form.checkPassword')}*`,
               type: 'password',
               vIf: (this.crudInfo.typeForm == 'create') || this.crudInfo.changePassword,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired'),
-                val => this.crudInfo.password == val || this.$tr('ui.message.fieldCheckPassword'),
+                val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                val => this.crudInfo.password == val || this.$tr('isite.cms.message.fieldCheckPassword'),
               ]
             }
           },
@@ -201,11 +201,11 @@ export default {
               crudType: 'select',
               crudData: import('@imagina/quser/_crud/roles'),
               crudProps: {
-                label: `${this.$trp('ui.label.role', {capitalize: true})}*`,
+                label: `${this.$trp('isite.cms.label.role', {capitalize: true})}*`,
                 multiple: true,
                 useChips: true,
                 rules: [
-                  val => (!!val && val.length) || this.$tr('ui.message.fieldRequired')
+                  val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
                 ]
               },
               config: {options: {label: 'name', value: 'id'}},
@@ -218,11 +218,11 @@ export default {
               crudType: 'select',
               crudData: import('@imagina/quser/_crud/departments'),
               crudProps: {
-                label: `${this.$trp('quser.layout.label.userGroup')}*`,
+                label: `${this.$trp('iprofile.cms.label.userGroup')}*`,
                 multiple: true,
                 useChips: true,
                 rules: [
-                  val => (!!val && val.length) || this.$tr('ui.message.fieldRequired')
+                  val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
                 ]
               },
             }

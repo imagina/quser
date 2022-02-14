@@ -31,7 +31,7 @@
                 <q-separator class="q-mt-sm q-mb-md"/>
                 <!--Form-->
                 <q-form @submit="updateUserData(form.session)" ref="formRegister" autocomplete="off"
-                        class="row q-col-gutter-x-md" @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+                        class="row q-col-gutter-x-md" @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
                   <!--Fields-->
                   <div v-for="(field, fieldKey) in formsData.session.fields" :key="fieldKey"
                        :class="field.colClass || 'col-12'">
@@ -40,7 +40,7 @@
                   <!--Actions-->
                   <div id="profileActions" class="col-12 text-right">
                     <!--Save-->
-                    <q-btn :label="$tr('ui.label.save')" rounded unelevated color="green" type="submit"/>
+                    <q-btn :label="$tr('isite.cms.label.save')" rounded unelevated color="green" type="submit"/>
                   </div>
                 </q-form>
               </div>
@@ -51,7 +51,7 @@
               <div class="box box-auto-height q-mb-md">
                 <div class="box-title row items-center">
                   <q-icon name="fas fa-user" size="22px" class="q-mr-sm"/>
-                  {{ $tr('ui.label.profile') }}
+                  {{ $tr('isite.cms.label.profile') }}
                 </div>
               </div>
               <!--Form-->
@@ -118,13 +118,13 @@ export default {
     //Profile menu options
     menuOptions() {
       return [
-        {label: this.$tr('ui.label.session'), value: 'session'},
+        {label: this.$tr('isite.cms.label.session'), value: 'session'},
         {
-          label: this.$tr('ui.label.profile'), value: 'profile',
+          label: this.$tr('isite.cms.label.profile'), value: 'profile',
           vIf: this.roleFormId && this.profileFormBlocks.length ? true : false
         },
         {
-          label: this.$trp('ui.label.address'), value: 'address',
+          label: this.$trp('isite.cms.label.address'), value: 'address',
           vIf: this.hasPermission.addresses
         }
       ]
@@ -138,17 +138,17 @@ export default {
       return {
         session: {
           icon: 'fas fa-sign-in-alt',
-          title: this.$tr('ui.label.session'),
+          title: this.$tr('isite.cms.label.session'),
           fields: {
             email: {
               value: this.userData.email,
               type: 'input',
               colClass: 'col-12 col-md-6',
               props: {
-                label: `${this.$tr('ui.form.email')}*`,
+                label: `${this.$tr('isite.cms.form.email')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => this.$helper.validateEmail(val) || this.$tr('ui.message.fieldEmail')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                  val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
                 ],
               }
             },
@@ -157,7 +157,7 @@ export default {
               type: 'checkbox',
               colClass: 'col-12 col-md-6',
               props: {
-                label: `${this.$tr('ui.message.updatePassword')}`,
+                label: `${this.$tr('isite.cms.message.updatePassword')}`,
                 trueValue: 1,
                 falseValue: 0,
               }
@@ -167,12 +167,12 @@ export default {
               type: 'input',
               colClass: 'col-12 col-md-6',
               props: {
-                label: `${this.$trp('ui.form.password')}*`,
+                label: `${this.$trp('isite.cms.form.password')}*`,
                 type: 'password',
                 vIf: this.form.session.changePassword,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => val.length >= 6 || this.$tr('ui.message.fieldMinLeng', {num: 6})
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                  val => val.length >= 6 || this.$tr('isite.cms.message.fieldMinLeng', {num: 6})
                 ]
               }
             },
@@ -181,12 +181,12 @@ export default {
               type: 'input',
               colClass: 'col-12 col-md-6',
               props: {
-                label: `${this.$trp('ui.form.checkPassword')}*`,
+                label: `${this.$trp('isite.cms.form.checkPassword')}*`,
                 type: 'password',
                 vIf: this.form.session.changePassword,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired'),
-                  val => (this.form.session.password == val) || this.$tr('ui.message.fieldCheckPassword'),
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                  val => (this.form.session.password == val) || this.$tr('isite.cms.message.fieldCheckPassword'),
                 ]
               }
             },
@@ -302,10 +302,10 @@ export default {
       formData = {email: this.userData.email, ...formData, id: this.userData.id, isActivated: true}
       //Request
       this.$crud.update('apiRoutes.quser.users', this.userData.id, formData).then(async response => {
-        this.$alert.success({message: this.$tr('ui.message.recordUpdated')})
+        this.$alert.success({message: this.$tr('isite.cms.message.recordUpdated')})
         this.loading = false
       }).catch(error => {
-        this.$alert.error({message: this.$tr('ui.message.recordNoUpdated')})
+        this.$alert.error({message: this.$tr('isite.cms.message.recordNoUpdated')})
         this.loading = false
       })
     }

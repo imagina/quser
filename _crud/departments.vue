@@ -15,25 +15,25 @@ export default {
         permission: 'profile.departments',
         extraFormFields: 'Iprofile.crud-fields.departments',
         create: {
-          title: this.$tr('quser.layout.newDepartment'),
+          title: this.$tr('iprofile.cms.newDepartment'),
         },
         read: {
           columns: [
-            {name: 'id', label: this.$tr('ui.form.id'), field: 'id', style: 'width: 50px'},
-            {name: 'title', label: this.$tr('ui.form.title'), field: 'title', align: 'rigth'},
+            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
+            {name: 'title', label: this.$tr('isite.cms.form.title'), field: 'title', align: 'rigth'},
             {
-              name: 'parent', label: this.$tr('ui.form.parent'), field: 'parent', align: 'left',
+              name: 'parent', label: this.$tr('isite.cms.form.parent'), field: 'parent', align: 'left',
               format: val => val ? (val.title ? val.title : '-') : '-'
             },
             {
-              name: 'internal', label: this.$tr('ui.form.type'), field: 'internal', align: 'left',
-              format: val => val ? this.$tr('ui.label.internal') : this.$tr('ui.label.external')
+              name: 'internal', label: this.$tr('isite.cms.form.type'), field: 'internal', align: 'left',
+              format: val => val ? this.$tr('isite.cms.label.internal') : this.$tr('isite.cms.label.external')
             },
             {
-              name: 'created_at', label: this.$tr('ui.form.createdAt'), field: 'createdAt', align: 'left',
+              name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
-            {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
           requestParams: {include: 'parent'},
           filters: {
@@ -41,11 +41,11 @@ export default {
               value: null,
               type: 'select',
               props: {
-                label: this.$tr('ui.form.type'),
+                label: this.$tr('isite.cms.form.type'),
                 clearable: true,
                 options: [
-                  {label: this.$tr('ui.label.internal'), value: 1},
-                  {label: this.$tr('ui.label.external'), value: 0},
+                  {label: this.$tr('isite.cms.label.internal'), value: 1},
+                  {label: this.$tr('isite.cms.label.external'), value: 0},
                 ],
               }
             },
@@ -57,14 +57,14 @@ export default {
                 requestParams: {include: 'parent'}
               },
               props: {
-                label: this.$tr('ui.form.parent'),
+                label: this.$tr('isite.cms.form.parent'),
                 clearable : true
               }
             },
           }
         },
         update: {
-          title: this.$tr('quser.layout.updateDepartment'),
+          title: this.$tr('iprofile.cms.updateDepartment'),
           requestParams: {include: 'parent'}
         },
         delete: true,
@@ -75,9 +75,9 @@ export default {
             value: '',
             type: 'input',
             props: {
-              label: `${this.$tr('ui.form.title')}*`,
+              label: `${this.$tr('isite.cms.form.title')}*`,
               rules: [
-                val => !!val || this.$tr('ui.message.fieldRequired')
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
             },
             validateField: {
@@ -89,10 +89,10 @@ export default {
             value: 1,
             type: 'select',
             props: {
-              label: this.$tr('ui.form.type'),
+              label: this.$tr('isite.cms.form.type'),
               options: [
-                {label: this.$tr('ui.label.internal'), value: 1},
-                {label: this.$tr('ui.label.external'), value: 0},
+                {label: this.$tr('isite.cms.label.internal'), value: 1},
+                {label: this.$tr('isite.cms.label.external'), value: 0},
               ],
             }
           },
@@ -104,7 +104,7 @@ export default {
               requestParams: {include: 'parent'}
             },
             props: {
-              label: this.$tr('ui.form.parent'),
+              label: this.$tr('isite.cms.form.parent'),
               clearable : true
             }
           },

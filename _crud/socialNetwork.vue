@@ -8,22 +8,22 @@
           apiRoute: 'apiRoutes.quser.fields',
           permission: 'profile.fields',
           create: {
-            title: this.$tr('quser.layout.newSocialNetwork'),
+            title: this.$tr('iprofile.cms.newSocialNetwork'),
           },
           read: {
-            title: this.$trp('ui.label.socialNetwork'),
+            title: this.$trp('isite.cms.label.socialNetwork'),
             icon: 'fas fa-mouse-pointer',
             search: false,
             columns: [
               {
-                name: 'type', label: this.$tr('ui.form.socialNetwork'), field: 'type',
+                name: 'type', label: this.$tr('isite.cms.form.socialNetwork'), field: 'type',
                 format: val => val || '-', align: 'left'
               },
               {
-                name: 'value', label: this.$tr('ui.form.reference'), field: 'value',
+                name: 'value', label: this.$tr('isite.cms.form.reference'), field: 'value',
                 format: val => val || '-', align: 'left'
               },
-              {name: 'actions', label: this.$tr('ui.form.actions'), align: 'left'},
+              {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
             ],
             requestParams: {
               filter: {
@@ -33,7 +33,7 @@
             }
           },
           update: {
-            title: this.$tr('quser.layout.updateSocialNetwork'),
+            title: this.$tr('iprofile.cms.updateSocialNetwork'),
             requestParams: {
               filter: {
                 userId: this.$store.state.quserAuth.userId,
@@ -50,7 +50,7 @@
               value: null,
               type: 'select',
               props: {
-                label: `${this.$tr('ui.form.socialNetwork')}*`,
+                label: `${this.$tr('isite.cms.form.socialNetwork')}*`,
                 options: [
                   {
                     label: 'Facebook',
@@ -78,7 +78,7 @@
                   }
                 ],
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
               }
             },
@@ -87,9 +87,9 @@
               value: null,
               type: 'input',
               props : {
-                label: `${this.$tr('ui.form.reference')}*`,
+                label: `${this.$tr('isite.cms.form.reference')}*`,
                 rules: [
-                  val => !!val || this.$tr('ui.message.fieldRequired')
+                  val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 ],
               }
             },

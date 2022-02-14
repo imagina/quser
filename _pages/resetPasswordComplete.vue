@@ -4,33 +4,33 @@
     <q-card>
       <q-card-section class="q-py-sm">
         <!--Title-->
-        <div class="text-primary text-h6">{{$tr('quser.layout.label.reset')}}</div>
+        <div class="text-primary text-h6">{{$tr('iprofile.cms.label.reset')}}</div>
 
         <q-separator class="q-mt-xs q-mb-md"/>
 
         <!--Form-->
         <q-form @submit="changePassword()" autocomplete="off"
-                @validation-error="$alert.error($tr('ui.message.formInvalid'))">
+                @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
           <!--Password-->
           <q-input name="username" autofocus ref="username" autocomplete="off" outlined dense
-                   :label="`${$tr('ui.form.password')} *`" v-model="form.password" type="password" color="blue-grey"
-                   :rules="[val => !!val || $tr('ui.message.fieldRequired')]"/>
+                   :label="`${$tr('isite.cms.form.password')} *`" v-model="form.password" type="password" color="blue-grey"
+                   :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"/>
 
           <!--Email field-->
           <q-input name="username" ref="username" autocomplete="off" outlined dense
-                   :label="`${$tr('ui.form.checkPassword')} *`" v-model="form.passwordConfirmation"
+                   :label="`${$tr('isite.cms.form.checkPassword')} *`" v-model="form.passwordConfirmation"
                    type="password" color="blue-grey" :rules="[
-                    val => !!val || $tr('ui.message.fieldRequired'),
-                    val => val == form.password || $tr('ui.message.fieldCheckPassword')
+                    val => !!val || $tr('isite.cms.message.fieldRequired'),
+                    val => val == form.password || $tr('isite.cms.message.fieldCheckPassword')
                    ]"/>
 
           <!--Button submit-->
           <div class="text-center">
             <q-btn :loading="loading" color="primary" type="submit"
-                   :label="$tr('quser.layout.label.resetPassword')">
+                   :label="$tr('iprofile.cms.label.resetPassword')">
               <div slot="loading">
                 <q-spinner-oval class="on-left"/>
-                {{`${$tr('ui.label.validating')}...`}}
+                {{`${$tr('isite.cms.label.validating')}...`}}
               </div>
             </q-btn>
           </div>
@@ -50,16 +50,16 @@
           <!--Title-->
           <div class="text-green text-center text-h6">
             <q-icon name="fas fa-check" size="20px"/>
-            {{$tr('ui.label.ready')}}
+            {{$tr('isite.cms.label.ready')}}
           </div>
 
           <!--Message-->
           <p class="text-subtitle1 text-justify">
-            {{$tr('quser.layout.message.changend')}}
+            {{$tr('iprofile.cms.message.changend')}}
           </p>
           <!--Button login-->
           <div class="text-center q-mt-sm">
-            <q-btn :label="$tr('quser.layout.label.login')"
+            <q-btn :label="$tr('iprofile.cms.label.login')"
                    :to="{name : 'auth.login', query : {email : email}}" color="primary"/>
           </div>
         </q-card-section>
@@ -98,7 +98,7 @@
           if(response.data && response.data.email) this.email = response.data.email
           this.showMessage = true
         }).catch(error => {
-          this.$alert.error(this.$tr('ui.message.errorRequest'))
+          this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
           this.loading = false
         });
       },
