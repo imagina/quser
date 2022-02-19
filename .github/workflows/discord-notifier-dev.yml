@@ -1,0 +1,15 @@
+name: Discord Notifier Dev
+on:
+  push:
+    branches: [ dev ]
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: fateyan/action-discord-notifier@v1
+        with:
+          message-title: New Commits to [quser]
+          webhook: ${{ secrets.DISCORD_WEBHOOK_DEV }}
