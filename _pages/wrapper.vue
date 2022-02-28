@@ -108,11 +108,12 @@ export default {
     //Redirect after user be logged
     redirectAfterLogin() {
       //Get workSapce assigned from user Role. if not found it, set `iadmin` as default
+      let windowLastRoute = this.$route.query.redirectTo || false
       let settingsProfile = this.$store.state.quserAuth.settings
       let workSpace = settingsProfile.workSpace || 'iadmin'
 
       //Redirect to same workSpace
-      if (workSpace == config('app.mode')) this.$router.push({name: 'app.home'})
+      if (windowLastRoute || (workSpace == config('app.mode'))) this.$router.push({name: 'app.home'})
       //Redirect to assigned workSpace
       else this.$helper.openExternalURL(`${this.$store.state.qsiteApp.baseUrl}/${workSpace}`, false)
     }
