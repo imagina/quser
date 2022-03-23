@@ -26,7 +26,7 @@ export default {
               format: val => val ? (val.title ? val.title : '-') : '-'
             },
             {
-              name: 'internal', label: this.$tr('isite.cms.form.type'), field: 'internal', align: 'left',
+              name: 'isInternal', label: this.$tr('isite.cms.form.type'), field: 'isInternal', align: 'left',
               format: val => val ? this.$tr('isite.cms.label.internal') : this.$tr('isite.cms.label.external')
             },
             {
@@ -37,7 +37,7 @@ export default {
           ],
           requestParams: {include: 'parent'},
           filters: {
-            internal: {
+            isInternal: {
               value: null,
               type: 'select',
               props: {
@@ -85,7 +85,7 @@ export default {
               crudId: this.crudId,
             }
           },
-          internal: {
+          isInternal: {
             value: 1,
             type: 'select',
             props: {
