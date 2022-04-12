@@ -50,7 +50,7 @@
 
       <!--Reset Password-->
       <div class="text-center full-width">
-        <q-btn :label="$tr('iprofile.cms.label.resetPassword')" unelevated no-caps
+        <q-btn :label="$tr('iprofile.cms.label.resetPassword')" unelevated no-caps v-if="settings.allowResetPassword"
                :to="{name : 'auth.reset.password',query : this.$route.query}" color="blue-grey" rounded flat/>
       </div>
     </q-form>
@@ -92,6 +92,7 @@ export default {
     settings() {
       let response = {
         authLoginCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authLoginCaption'),
+        allowResetPassword: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowResetPassword'),
       }
 
       //response
@@ -142,7 +143,7 @@ export default {
         if (email) {
           this.form.username = email
           this.$refs.password.focus()
-          if(passwordFromUrl){
+          if (passwordFromUrl) {
             this.form.password = passwordFromUrl
             this.authenticate();
           }
