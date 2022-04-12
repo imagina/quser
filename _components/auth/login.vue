@@ -113,7 +113,7 @@ export default {
     //init
     init() {
       this.props = this.$clone(this.$props)
-      this.setEmail()
+      this.setAuthData()
     },
     //Login
     async authenticate() {
@@ -132,14 +132,20 @@ export default {
         })
       }
     },
-    //Set email
-    setEmail() {
+    //Set AuthData
+    setAuthData() {
       let emailFromUrl = this.$route.query.email
       let email = this.email ? this.$clone(this.email) : emailFromUrl
+      let passwordFromUrl = this.$route.query.password
       setTimeout(() => {
+        email ? this.form.username = email : false;
         if (email) {
           this.form.username = email
           this.$refs.password.focus()
+          if(passwordFromUrl){
+            this.form.password = passwordFromUrl
+            this.authenticate();
+          }
         } else {
           this.$refs.username.focus()
         }
