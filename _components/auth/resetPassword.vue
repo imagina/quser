@@ -37,11 +37,11 @@
     </div>
 
     <!--Dialog message-->
-    <q-dialog persistent v-model="showMessage">
+    <q-dialog persistent v-model="modal.show">
       <q-card>
         <q-card-section>
           <!--Message-->
-          <p class="text-subtitle1 text-justify">{{ $tr('iprofile.cms.message.passwordUpdated') }}</p>
+          <p class="text-subtitle1 text-justify">{{ modal.message }}</p>
           <!--Button login-->
           <div class="text-center q-mt-sm">
             <q-btn unelevated rounded label="Iniciar sesion" :to="{name : 'auth.login'}" color="primary"/>
@@ -69,11 +69,14 @@ export default {
   },
   data() {
     return {
+      loading: false,
       form: {
         username: ''
       },
-      showMessage: false,
-      loading: false,
+      modal: {
+        show: false,
+        message: null
+      },
     }
   },
   methods: {
@@ -83,7 +86,10 @@ export default {
       const {username, captcha} = this.form;
       this.$store.dispatch("quserAuth/RESET_PASSWORD_REQUEST", {username, captcha}).then((response) => {
         this.loading = false;
-        this.showMessage = true
+        this.modal = {
+          show: true,
+          message: response.data?.message || this.$tr('iprofile.cms.message.passwordUpdated')
+        }
       }).catch(error => {
         this.loading = false;
       });
