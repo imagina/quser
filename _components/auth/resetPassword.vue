@@ -90,8 +90,9 @@ export default {
           show: true,
           message: response.data?.message || this.$tr('iprofile.cms.message.passwordUpdated')
         }
-      }).catch(error => {
-        this.loading = false;
+      }).catch(({response}) => {
+        this.$alert.error(response.data.errors)
+        this.loading = false
       });
     },
 

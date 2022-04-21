@@ -54,10 +54,11 @@ export default {
     activated: true,
     path: '/auth/reset/:userId/:token',
     name: 'auth.reset-complete',
-    page: () => import('@imagina/quser/_pages/resetPasswordComplete'),
+    page: () => import('@imagina/quser/_pages/wrapper'),
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
     title: 'iprofile.cms.sidebar.resetPassword',
     icon: 'fas fa-chart-bar',
+    authType: 'resetPasswordComplete'
     //middleware: [auth]
   },
   //User Profile
