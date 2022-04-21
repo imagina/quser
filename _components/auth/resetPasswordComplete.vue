@@ -1,9 +1,5 @@
 <template>
-  <div id="authResetPassword" class="full-width flex flex-center">
-    <!-- logo -->
-    <div class="wrapp__logo logo-bg-primary q-mb-xl" v-if="!settings.hideLogo">
-      <img :src="settings.logo"></img>
-    </div>
+  <div id="authResetPassword" class="flex flex-center content-start">
     <!--Form-->
     <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="changePassword()" :actions="dynamicForm.actions"
                 :title="$tr('iprofile.cms.label.reset').toUpperCase()" class="q-mb-md"
@@ -49,20 +45,6 @@
       }
     },
     computed: {
-      settings() {
-        //Get auth banner
-        let authBanner = this.$store.getters['qsiteApp/getSettingMediaByName']('iprofile::authBanner')
-
-        let response = {
-          logo: this.$store.state.qsiteApp.logo,
-          authTitle: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authTitle'),
-          hideLogo: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::hideLogo')),
-          authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
-        }
-
-        //response
-        return response
-      },
       dynamicForm() {
         //Instace response
         let response = {
@@ -169,23 +151,8 @@
 
 <style lang="stylus">
   #authResetPassword
-    min-height 100vh
-    flex-direction column
     #progressContent
       .q-linear-progress
         background-color #fff
         color #fff !important
-    .wrapp__logo
-      text-align center
-      height 130px
-      max-height 270px
-      padding 15px
-      border-radius 10px
-      overflow hidden
-
-      img
-        margin-left auto
-        margin-right auto
-        max-height 100px
-        max-width 100%
 </style>
