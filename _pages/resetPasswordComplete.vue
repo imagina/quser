@@ -5,13 +5,16 @@
       <img :src="settings.logo"></img>
     </div>
     <!--Form-->
-    <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="changePassword()" :actions="dynamicForm.actions"
-                :title="$tr('iprofile.cms.label.reset').toUpperCase()" class="q-mb-md"
-                default-col-class="col-12"/>
-    <!--Form-->
-      <div class="text-center q-mt-sm">
-        <q-btn flat label="Iniciar sesion" :to="{name : 'auth.login'}" color="grey-8"/>
+    page
+    <div class="format-cotainer">
+      <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="changePassword()" :actions="dynamicForm.actions"
+                  :title="$tr('iprofile.cms.label.reset').toUpperCase()" class="q-mb-md"
+                  default-col-class="col-12"/>
+      <!--Form-->
+      <div id="btnGoLogin" class="text-center q-mt-sm ">
+        <q-btn class="text-capitalize" flat :label="$tr('iprofile.cms.label.login')" :to="{name : 'auth.login'}" color="grey-8"/>
       </div>
+    </div>
     <!--Dialog message-->
     <q-dialog persistent v-model="showMessage">
       <q-card>
@@ -171,6 +174,14 @@
   #authResetPassword
     min-height 100vh
     flex-direction column
+    .format-cotainer
+      position relative
+      #btnGoLogin
+        position absolute
+        bottom 31px
+        left 26px
+        a
+          border-radius 10px
     #progressContent
       .q-linear-progress
         background-color #fff
