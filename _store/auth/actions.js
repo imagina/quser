@@ -390,7 +390,7 @@ export const RESET_PASSWORD_REQUEST = ({commit, dispatch}, dataRequest) => {
   return new Promise(async (resolve, reject) => {
       //Request
       crud.post('apiRoutes.quser.authReset', {attributes: dataRequest}).then(response => {
-        dispatch('AUTH_LOGOUT').then(() => resolve(true)).catch(error => reject(error))
+        dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
       }).catch(error => reject(error))
     }
   )

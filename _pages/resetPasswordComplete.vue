@@ -5,7 +5,6 @@
       <img :src="settings.logo"></img>
     </div>
     <!--Form-->
-    page
     <div class="format-cotainer">
       <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="changePassword()" :actions="dynamicForm.actions"
                   :title="$tr('iprofile.cms.label.reset').toUpperCase()" class="q-mb-md"
