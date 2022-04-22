@@ -71,7 +71,8 @@ export default {
     return {
       loading: false,
       form: {
-        username: ''
+        username: '',
+        captcha: false
       },
       modal: {
         show: false,
@@ -88,7 +89,7 @@ export default {
         this.loading = false;
         this.modal = {
           show: true,
-          message: response.data?.message || this.$tr('iprofile.cms.message.passwordUpdated')
+          message: response.data?.message || this.$tr('iprofile.cms.message.reset')
         }
       }).catch(({response}) => {
         this.$alert.error(response.data.errors)
