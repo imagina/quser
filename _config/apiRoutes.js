@@ -24,6 +24,6 @@ export default {
   usersBirthday: `${urlBase}/users/birthday`,
   register: `${urlBase}/users/register`,
   changePassword: `${urlBase}/users/change-password`,
-  shouldChangePassword: `${urlBase}/users/password/validate-change`,
+  validateChangePassword: `${urlBase}/users/password/validate-change`,
   roles: `${urlBase}/roles`,
 }

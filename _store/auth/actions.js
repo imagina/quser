@@ -3,7 +3,6 @@ import crud from '@imagina/qcrud/_services/baseService'
 
 //Plugins
 import helper from '@imagina/qsite/_plugins/helper'
-import alert from '@imagina/qsite/_plugins/alert'
 import cache from '@imagina/qsite/_plugins/cache'
 import eventBus from '@imagina/qsite/_plugins/eventBus'
 
@@ -249,27 +248,19 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
 export const AUTH_FORCE_PASSWORD = ({commit, dispatch, state}) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log('entra en el passowoewier force ')
       const sessionData = await cache.get.item('sessionData')//Get  session Data
       //Validate session data
       if (!sessionData) {
         dispatch('AUTH_LOGOUT')//Logout
         return resolve(false)//Close if there isn't token
       }
-
-      //Set user token to axios
-      axios.defaults.headers.common['Authorization'] = sessionData.userToken
       //Request params
-      /* let params = {
-        refresh: true,
-        params: {include: 'organizations'}
-      } */
+      let requestParams = {
+        refresh: true
+      }
       //Get userData about password
-      crud.index('apiRoutes.quser.shouldChangePassword').then(async response => {
+      crud.index('apiRoutes.quser.validateChangePassword', requestParams).then(async response => {
         commit('SET_PASSWORD_CHANGE', response)
-        if(response.data.shouldChangePassword) {
-          alert.info(response.data.messages[0])
-        }
         resolve(true)
       }).catch(error => {
         console.error('[AUTH_FORCE_PASSWORD] ', error)
@@ -446,30 +437,6 @@ export const CHANGED_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
       crud.post('apiRoutes.quser.authChanged', dataRequest).then(response => {
         dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
       }).catch(error => reject(error));
-    }
-  )
-}
-
-//Change force password
-export const FORCE_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
-  return new Promise(async (resolve, reject) => {
-      //Request Data
-      let dataRequest = {
-        attributes: {
-          password: authData.password,
-          newPassword: authData.newPassword,
-          email: authData.email,
-        }
-      }
-      //Request
-      crud.post('apiRoutes.quser.changePassword', dataRequest)
-      .then(response => {
-        resolve(response)
-      })
-      .catch(async (error) => {
-        const data = await error.json() 
-        reject(data)
-      })
     }
   )
 }
