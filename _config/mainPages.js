@@ -61,6 +61,18 @@ export default {
     authType: 'resetPasswordComplete'
     //middleware: [auth]
   },
+  forceChangePassword: {
+    permission: null,
+    activated: true,
+    path: '/auth/force-change-password',
+    name: 'auth.reset-complete',
+    page: () => import('@imagina/quser/_pages/wrapper'),
+    layout: () => import('@imagina/qsite/_layouts/blank.vue'),
+    title: 'iprofile.cms.sidebar.resetPassword',
+    icon: 'fas fa-chart-bar',
+    authType: 'forceChangePassword'
+    //middleware: [auth]
+  },
   //User Profile
   userProfile: {
     permission: null,

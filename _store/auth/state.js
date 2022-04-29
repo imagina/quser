@@ -5,6 +5,7 @@ export default {
   userId: null,
   userData: null,
   permissions: null,
+  shouldChangePassword:null,
   settings: null,
   departments: [],
   selectedRoleId: false,
