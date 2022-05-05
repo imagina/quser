@@ -264,7 +264,7 @@ export const AUTH_FORCE_PASSWORD = ({commit, dispatch, state}) => {
         resolve(true)
       }).catch(error => {
         console.error('[AUTH_FORCE_PASSWORD] ', error)
-        reject(true)
+        resolve(false)
       })
     } catch (e) {
       console.error('[AUTH_FORCE_PASSWORD] ', e)
