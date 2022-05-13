@@ -215,6 +215,7 @@ export default {
         this.$crud.index('apiRoutes.quser.roles', requestParams).then(response => {
           this.authRoles = response.data
           this.loading = false
+          if (response.data.length == 1) this.getRoleForm()
           resolve(response.data)
         }).catch(error => {
           this.loading = false
