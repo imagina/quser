@@ -15,7 +15,7 @@ export const SET_DEPARTMENT_ID = (state, data) => {
 }
 
 export const SET_PASSWORD_CHANGE = (state, data) => {
-  state.shouldChangePassword = data.data
+  state.shouldChangePassword = data
 }
 
 export const SET_AUTHENTICATED = (state, data = true) => {

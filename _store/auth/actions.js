@@ -9,6 +9,7 @@ import eventBus from '@imagina/qsite/_plugins/eventBus'
 //Features
 import axios from 'axios'
 import config from '@imagina/qsite/_config/master/index'
+import {uid} from 'quasar'
 
 //Request Login
 export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
@@ -260,7 +261,10 @@ export const AUTH_FORCE_PASSWORD = ({commit, dispatch, state}) => {
       }
       //Get userData about password
       crud.index('apiRoutes.quser.validateChangePassword', requestParams).then(async response => {
-        commit('SET_PASSWORD_CHANGE', response)
+        commit('SET_PASSWORD_CHANGE', {
+          ...response.data,
+          uid: uid()
+        })
         resolve(true)
       }).catch(error => {
         console.error('[AUTH_FORCE_PASSWORD] ', error)
