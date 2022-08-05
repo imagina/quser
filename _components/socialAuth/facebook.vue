@@ -1,7 +1,13 @@
 <template>
-  <q-btn v-bind="propsButton" @click="signIn()" round unelevated v-if="appIdFacebook"/>
+  <socialBtn 
+    @click.native="signIn()" 
+    v-if="appIdFacebook" 
+    title="Continuar con Facebook"
+    :icon="require('@imagina/quser/_components/socialAuth/icons/facebook.svg')"
+  />
 </template>
 <script>
+import socialBtn from '@imagina/quser/_components/socialAuth/socialBtn.vue';
 export default {
   props: {
     buttonProps: {
@@ -10,7 +16,7 @@ export default {
       }
     }
   },
-  components: {},
+  components: {socialBtn},
   watch: {},
   mounted() {
     this.$nextTick(function () {

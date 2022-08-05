@@ -33,16 +33,13 @@
               <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
             <!--Auth social-->
-            <div style="min-height: auto" v-if="withAuthSocial">
+            <div style="min-height: auto" v-if="true">
               <q-separator class="q-mb-md"/>
-              <!--Title-->
-              <div class="box-title text-uppercase q-mb-sm text-center">
-                {{ $tr('iprofile.cms.message.quickAccess') }}
-              </div>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">
                 <google-auth/>
                 <facebook-auth/>
+                <microsoftAuth />
               </div>
             </div>
           </div>
@@ -63,10 +60,21 @@ import logout from '@imagina/quser/_components/auth/logout'
 
 import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
 import googleAuth from '@imagina/quser/_components/socialAuth/google'
+import microsoftAuth from '@imagina/quser/_components/socialAuth/microsoft';
 
 export default {
   props: {},
-  components: {loginForm, registerForm, resetPassword,forceChangePassword, logout, facebookAuth, googleAuth, resetPasswordComplete},
+  components: {
+    loginForm,
+    registerForm, 
+    resetPassword,
+    forceChangePassword, 
+    logout, 
+    facebookAuth, 
+    googleAuth, 
+    resetPasswordComplete,
+    microsoftAuth,
+  },
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)
   },
