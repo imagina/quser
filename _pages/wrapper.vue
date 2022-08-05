@@ -33,7 +33,7 @@
               <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
             <!--Auth social-->
-            <div style="min-height: auto" v-if="true">
+            <div style="min-height: auto" v-if="withAuthSocial">
               <q-separator class="q-mb-md"/>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">

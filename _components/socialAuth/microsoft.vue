@@ -3,6 +3,7 @@
         title="Continuar con Microsoft" 
         :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')"
         @click.native="signIn"
+        v-if="microsoftClient"
     />
 </template>
 
@@ -16,7 +17,10 @@ export default {
     computed: {
         token() {
             return storeMicrosoft().getToken();
-        }
+        },
+        microsoftClient() {
+            return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
+        },
     },
     methods: {
         async signIn() {
