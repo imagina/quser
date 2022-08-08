@@ -1,14 +1,12 @@
 import { reactive } from '@vue/composition-api';
 import baseService from '@imagina/qcrud/_services/baseService.js';
 import * as msal from "@azure/msal-browser";
-import store from '@imagina/quser/_store/index.js'
-console.log(store.auth.actions);
 
 const msalConfig = {
     auth: {
         clientId: "9565fd41-baa6-41ee-8e43-50cc4df0e1a5",
         authority: "https://login.microsoftonline.com/e5512bdb-4fa6-4e52-8f2a-af3270f25f34",
-        redirectUri: "http://localhost:8080",
+        redirectUri: window.location.origin,
     },
     cache: {
         cacheLocation: "sessionStorage",
