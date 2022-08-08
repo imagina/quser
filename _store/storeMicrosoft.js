@@ -1,6 +1,11 @@
 import { reactive } from '@vue/composition-api';
 import baseService from '@imagina/qcrud/_services/baseService.js';
 import * as msal from "@azure/msal-browser";
+import Vue from "vue";
+import Vuex from 'vuex';
+
+const coreStores = require('@imagina/qsite/_config/master/application/stores').default;
+const stores = new Vuex.Store({modules: coreStores, strict: process.env.DEV});
 
 const msalConfig = {
     auth: {
@@ -64,13 +69,18 @@ export default function storeMicrosoft() {
         return state.tokenRequest;
     }
     async function signIn() {
+        const prototype = Vue.prototype;
         try {
             const response = await myMSALObj.loginPopup(loginRequest);
             handleResponse(response);
-            setToken(response.accessToken);  
+            setToken(response.accessToken);
+            await stores.dispatch('quserAuth/AUTH_SOCIAL_NETWORK', {
+                type: 'microsoft',
+                token: state.token
+            });
         } catch (error) {
             setToken(null);
-            console.log(error);
+            prototype.$alert.error(prototype.$tr('isite.cms.message.errorRequest'))
         }
         
     }

@@ -25,16 +25,7 @@ export default {
     methods: {
         async signIn() {
             await storeMicrosoft().signIn();
-            await this.$store.dispatch('quserAuth/AUTH_SOCIAL_NETWORK', {
-                    type: 'microsoft',
-                    token: this.token
-                }).then(response => {
-                    this.$emit('logged')
-                    this.loading = false
-                }).catch(error => {
-                    this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
-                    this.loading = false
-                })
+            await this.$emit('logged');
         },
         signOut() {
             storeMicrosoft().signOut();
