@@ -2,7 +2,7 @@
   <socialBtn 
     @click.native="signIn()" 
     v-if="clientIdGoogle" 
-    title="Continuar con Google"
+    :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.google')}`"
     :icon="require('@imagina/quser/_components/socialAuth/icons/google.svg')"
   />
 </template>

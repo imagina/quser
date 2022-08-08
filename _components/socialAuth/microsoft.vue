@@ -1,6 +1,6 @@
 <template>
     <socialBtn 
-        title="Continuar con Microsoft" 
+        :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
         :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')"
         @click.native="signIn"
         v-if="microsoftClient"
