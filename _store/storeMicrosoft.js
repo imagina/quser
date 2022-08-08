@@ -104,6 +104,17 @@ export default function storeMicrosoft() {
     function getToken() {
         return state.token;
     }
+    function getAuthProvider() {
+        
+        baseService.index('apiRoutes.quser.authProviders',
+         {
+            refresh: true,
+         }).then((response) => {
+            console.log(response);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
     return {
         getMsalConfig,
         getLoginRequest,
@@ -114,5 +125,6 @@ export default function storeMicrosoft() {
         getToken,
         setToken,
         handleResponse,
+        getAuthProvider,
     }
 }
