@@ -7,6 +7,7 @@ const msalConfig = {
         clientId: "9565fd41-baa6-41ee-8e43-50cc4df0e1a5",
         authority: "https://login.microsoftonline.com/e5512bdb-4fa6-4e52-8f2a-af3270f25f34",
         redirectUri: window.location.origin,
+        postLogoutRedirectUri: window.location.origin
     },
     cache: {
         cacheLocation: "sessionStorage",
@@ -20,16 +21,12 @@ const msalConfig = {
                 }
                 switch (level) {
                     case msal.LogLevel.Error:
-                        console.error(message);
                         return;
                     case msal.LogLevel.Info:
-                        console.info(message);
                         return;
                     case msal.LogLevel.Verbose:
-                        console.debug(message);
                         return;
                     case msal.LogLevel.Warning:
-                        console.warn(message);
                         return;
                 }
             }
@@ -67,8 +64,15 @@ export default function storeMicrosoft() {
         return state.tokenRequest;
     }
     async function signIn() {
-        const response = await myMSALObj.loginPopup(loginRequest);
-        setToken(response.accessToken);
+        try {
+            const response = await myMSALObj.loginPopup(loginRequest);
+            handleResponse(response);
+            setToken(response.accessToken);  
+        } catch (error) {
+            setToken(null);
+            console.log(error);
+        }
+        
     }
     function handleResponse(response) {
         if (response) {
@@ -105,7 +109,6 @@ export default function storeMicrosoft() {
         return state.token;
     }
     function getAuthProvider() {
-        
         baseService.index('apiRoutes.quser.authProviders',
          {
             refresh: true,
@@ -113,6 +116,27 @@ export default function storeMicrosoft() {
             console.log(response);
         }).catch((err) => {
             console.log(err);
+        });
+    }
+    function getTokenPopup(request) {
+
+        request.account = myMSALObj.getAccountByUsername(username);
+        
+        return myMSALObj.acquireTokenSilent(request)
+            .catch(error => {
+                console.warn("silent token acquisition fails. acquiring token using popup");
+                if (error instanceof msal.InteractionRequiredAuthError) {
+                    // fallback to interaction when silent call fails
+                    return myMSALObj.acquireTokenPopup(request)
+                        .then(tokenResponse => {
+                            console.log(tokenResponse);
+                            return tokenResponse;
+                        }).catch(error => {
+                            console.error(error);
+                        });
+                } else {
+                    console.warn(error);   
+                }
         });
     }
     return {
@@ -126,5 +150,6 @@ export default function storeMicrosoft() {
         setToken,
         handleResponse,
         getAuthProvider,
+        getTokenPopup,
     }
 }
