@@ -19,7 +19,8 @@
             class="
                 tw-w-11/12 
                 tw-text-center 
-                tw-font-bold">
+                tw-font-bold"
+            >
                 {{ title }}
             </div>
         </div>

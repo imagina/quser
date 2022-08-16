@@ -30,7 +30,8 @@ const msalConfig = {
                         return;
                 }
             }
-        }
+        },
+        allowRedirectInIframe: true,
     }
 };
 
@@ -50,6 +51,9 @@ const state = reactive({
     tokenRequest,
     username: null,
     token: null,
+    loading: false,
+    cancelLogin: true,
+    cancelLogout: false,
 });
 const myMSALObj = new msal.PublicClientApplication(msalConfig);
 
@@ -63,14 +67,24 @@ export default function storeMicrosoft() {
     function getTokenRequest() {
         return state.tokenRequest;
     }
+    function getCancelLogin() {
+        return state.cancelLogin;
+    }
+    function setCancelLogin(value) {
+        state.cancelLogin = value;
+    }
     async function signIn() {
         try {
+            setCancelLogin(false);
+            showLoading();
             const response = await myMSALObj.loginPopup(loginRequest);
             handleResponse(response);
-            setToken(response.accessToken);  
+            setToken(response.accessToken);
+            hideLoading();
         } catch (error) {
             setToken(null);
-            console.log(error);
+            hideLoading();
+            setCancelLogin(true);
         }
         
     }
@@ -82,9 +96,9 @@ export default function storeMicrosoft() {
         }
     }
     async function signOut() {
-        const logoutRequest = {
-            account: myMSALObj.getAccountByUsername(state.username),
-        };
+            const logoutRequest = {
+                account: myMSALObj.getAccountByUsername(state.username),
+            };
     
         return myMSALObj.logoutPopup(logoutRequest);
     }
@@ -136,6 +150,18 @@ export default function storeMicrosoft() {
                 }
         });
     }
+    function hideLoading() {
+        state.loading = false;
+    }
+    function showLoading() {
+        state.loading = true;
+    }
+    function getLoading() {
+        return state.loading;
+    }
+    function getAllAccounts() {
+        return myMSALObj.getAccountByUsername(state.username);
+    }
     return {
         getMsalConfig,
         getLoginRequest,
@@ -148,5 +174,11 @@ export default function storeMicrosoft() {
         handleResponse,
         getAuthProvider,
         getTokenPopup,
+        hideLoading,
+        showLoading,
+        getLoading,
+        getCancelLogin,
+        getAllAccounts,
+        getCancelLogout,
     }
 }
