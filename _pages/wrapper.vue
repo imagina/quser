@@ -17,23 +17,25 @@
               <img :src="settings.logo"></img>
             </div>
             <!--Auth Type-->
-            <div class="q-mb-md" v-if="!microsoftClient">
+            <div class="q-mb-md">
               <!--Loggin-->
-              <login-form v-if="authType == 'login'" @logged="redirectAfterLogin()" class="full-width"/>
-              <!--Register-->
-              <register-form v-if="authType == 'register'" @logged="redirectAfterLogin()"
-                             class="full-width"/>
-              <!--Loggin-->
-              <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
-              <!-- reset password -->
-              <reset-password-complete v-if="authType == 'resetPasswordComplete'" class="full-width"/>
-              <!-- force change password -->
-              <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
+              <div v-if="allowLocalLogin">
+                  <login-form v-if="authType == 'login'" @logged="redirectAfterLogin()" class="full-width"/>
+                  <!--Register-->
+                  <register-form v-if="authType == 'register'" @logged="redirectAfterLogin()"
+                                class="full-width"/>
+                  <!--Loggin-->
+                  <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
+                  <!-- reset password -->
+                  <reset-password-complete v-if="authType == 'resetPasswordComplete'" class="full-width"/>
+                  <!-- force change password -->
+                  <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
+              </div>
               <!--logout-->
               <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
             <!--Auth social-->
-            <div style="min-height: auto" v-if="true">
+            <div style="min-height: auto" v-if="withAuthSocial">
               <q-separator class="q-mb-md"/>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">
@@ -116,6 +118,9 @@ export default {
     },
     microsoftClient() {
       return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
+    },
+    allowLocalLogin() {
+      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')
     },
   },
   methods: {
