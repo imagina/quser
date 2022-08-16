@@ -17,7 +17,7 @@
               <img :src="settings.logo"></img>
             </div>
             <!--Auth Type-->
-            <div class="q-mb-md">
+            <div class="q-mb-md" v-if="!microsoftClient">
               <!--Loggin-->
               <login-form v-if="authType == 'login'" @logged="redirectAfterLogin()" class="full-width"/>
               <!--Register-->
@@ -33,13 +33,13 @@
               <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
             <!--Auth social-->
-            <div style="min-height: auto" v-if="withAuthSocial">
+            <div style="min-height: auto" v-if="true">
               <q-separator class="q-mb-md"/>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">
                 <google-auth/>
                 <facebook-auth/>
-                <microsoftAuth />
+                <microsoftAuth @logged="redirectAfterLogin()" />
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default {
   data() {
     return {
       fromVueRoute: false,
-      appConfig: config('app')
+      appConfig: config('app'),
     }
   },
   computed: {
@@ -113,7 +113,10 @@ export default {
     withAuthSocial() {
       let hasSetting = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsersWithSocialNetworks'))
       return hasSetting/* && (config('app.mode') == 'ipanel'))*/ ? true : false
-    }
+    },
+    microsoftClient() {
+      return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
+    },
   },
   methods: {
     init() {

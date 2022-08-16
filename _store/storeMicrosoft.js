@@ -4,8 +4,8 @@ import * as msal from "@azure/msal-browser";
 
 const msalConfig = {
     auth: {
-        clientId: "9565fd41-baa6-41ee-8e43-50cc4df0e1a5",
-        authority: "https://login.microsoftonline.com/e5512bdb-4fa6-4e52-8f2a-af3270f25f34",
+        clientId: "43331c90-0692-47a9-a48f-662f1bbf9c3e",
+        authority: "https://login.microsoftonline.com/7e761206-66fa-448b-a3e6-6c0660e38ed5",
         redirectUri: window.location.origin,
         postLogoutRedirectUri: window.location.origin
     },
@@ -81,15 +81,12 @@ export default function storeMicrosoft() {
             selectAccount();
         }
     }
-    function signOut() {
+    async function signOut() {
         const logoutRequest = {
             account: myMSALObj.getAccountByUsername(state.username),
-            postLogoutRedirectUri: msalConfig.auth.redirectUri,
-            mainWindowRedirectUri: msalConfig.auth.redirectUri
         };
     
-        myMSALObj.logoutPopup(logoutRequest);
-        state.token = null;
+        return myMSALObj.logoutPopup(logoutRequest);
     }
     function selectAccount() {
         const currentAccounts = myMSALObj.getAllAccounts();

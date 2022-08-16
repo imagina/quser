@@ -36,9 +36,6 @@ export default {
                     this.loading = false
                 })
         },
-        signOut() {
-            storeMicrosoft().signOut();
-        }
     }
 }
 </script>
