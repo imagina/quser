@@ -19,7 +19,7 @@ export default {
             return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId') || true
         },
         loading() {
-            return storeMicrosoft().getLoading();
+                return storeMicrosoft().getLoading();
         },
         cancelLogin() {
             return storeMicrosoft().getCancelLogin();
@@ -35,10 +35,8 @@ export default {
                         token: this.token
                     }).then(response => {
                         this.$emit('logged')
-                        this.loading = false
                     }).catch(error => {
                         this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
-                        this.loading = false
                     })
                 }
             }

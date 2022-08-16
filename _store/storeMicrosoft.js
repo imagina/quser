@@ -179,6 +179,5 @@ export default function storeMicrosoft() {
         getLoading,
         getCancelLogin,
         getAllAccounts,
-        getCancelLogout,
     }
 }
