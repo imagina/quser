@@ -17,7 +17,7 @@ export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
     let dataRequest = {username: authData.username, password: authData.password}
 
     //Request login
-    axios.defaults.params.setting.authProvider = null;
+    axios.defaults.params.setting.authProvider = 'local';
     crud.post('apiRoutes.quser.authLogin', dataRequest).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
       resolve(true)
