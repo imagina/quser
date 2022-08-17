@@ -17,6 +17,7 @@ export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
     let dataRequest = {username: authData.username, password: authData.password}
 
     //Request login
+    axios.defaults.params.setting.authProvider = null;
     crud.post('apiRoutes.quser.authLogin', dataRequest).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
       resolve(true)
@@ -31,10 +32,9 @@ export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
   return new Promise((resolve, reject) => {
     let requestUrl = `apiRoutes.quser.authLoginSocialNetwork`
     let requestParams = {attributes: {token: params.token}, type: params.type}
-
+    axios.defaults.params.setting.authProvider = params.type;
     crud.post(requestUrl, requestParams).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
-      axios.defaults.params.setting.authProvider = params.type;
       resolve(true)
     }).catch(error => {
       console.warn(error)
