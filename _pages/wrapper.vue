@@ -82,6 +82,7 @@ export default {
   },
   mounted() {
     this.$nextTick(function () {
+      sessionStorage.removeItem('msal.interaction.status');
       this.init()
     })
   },
@@ -120,7 +121,7 @@ export default {
       return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
     },
     allowLocalLogin() {
-      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')
+      return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
     },
   },
   methods: {

@@ -98,9 +98,10 @@ export default function storeMicrosoft() {
     async function signOut() {
             const logoutRequest = {
                 account: myMSALObj.getAccountByUsername(state.username),
+                postLogoutRedirectUri: `${window.location.origin}#/auth/logout/`
             };
     
-        return myMSALObj.logoutPopup(logoutRequest);
+        return myMSALObj.logoutRedirect(logoutRequest);
     }
     function selectAccount() {
         const currentAccounts = myMSALObj.getAllAccounts();
