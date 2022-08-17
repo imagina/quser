@@ -18,6 +18,7 @@ export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
 
     //Request login
     axios.defaults.params.setting.authProvider = 'local';
+    axios.defaults.params.setting.access_token = null;
     crud.post('apiRoutes.quser.authLogin', dataRequest).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
       resolve(true)
@@ -33,6 +34,7 @@ export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
     let requestUrl = `apiRoutes.quser.authLoginSocialNetwork`
     let requestParams = {attributes: {token: params.token}, type: params.type}
     axios.defaults.params.setting.authProvider = params.type;
+    axios.defaults.params.setting.access_token = params.token;
     crud.post(requestUrl, requestParams).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
       resolve(true)
