@@ -15,6 +15,9 @@ export default {
         token() {
             return storeMicrosoft().getToken();
         },
+        dataSocial() {
+            return storeMicrosoft().getDataLogin();
+        },
         microsoftClient() {
             return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId') || true
         },
@@ -32,7 +35,8 @@ export default {
                 if (!this.cancelLogin) {
                     await this.$store.dispatch('quserAuth/AUTH_SOCIAL_NETWORK', {
                         type: 'microsoft',
-                        token: this.token
+                        token: this.token,
+                        data: this.dataSocial
                     }).then(response => {
                         this.$emit('logged')
                     }).catch(error => {

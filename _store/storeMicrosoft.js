@@ -54,6 +54,7 @@ const state = reactive({
     loading: false,
     cancelLogin: true,
     cancelLogout: false,
+    dataLogin: {},
 });
 const myMSALObj = new msal.PublicClientApplication(msalConfig);
 
@@ -80,11 +81,13 @@ export default function storeMicrosoft() {
             const response = await myMSALObj.loginPopup(loginRequest);
             handleResponse(response);
             setToken(response.accessToken);
+            setDataLogin(response);
             hideLoading();
         } catch (error) {
             setToken(null);
             hideLoading();
             setCancelLogin(true);
+            setDataLogin({});
         }
         
     }
@@ -163,6 +166,12 @@ export default function storeMicrosoft() {
     function getAllAccounts() {
         return myMSALObj.getAccountByUsername(state.username);
     }
+    function setDataLogin(data) {
+        state.dataLogin = data;
+    }
+    function getDataLogin() {
+        return state.dataLogin;
+    }
     return {
         getMsalConfig,
         getLoginRequest,
@@ -180,5 +189,7 @@ export default function storeMicrosoft() {
         getLoading,
         getCancelLogin,
         getAllAccounts,
+        setDataLogin,
+        getDataLogin,
     }
 }
