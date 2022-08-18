@@ -39,6 +39,7 @@ export default {
                         socialData: this.socialData
                     }).then(response => {
                         this.$emit('logged')
+                        sessionStorage.setItem('socialType', 'microsoft');
                     }).catch(error => {
                         this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
                     })

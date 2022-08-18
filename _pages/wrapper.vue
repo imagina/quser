@@ -83,6 +83,7 @@ export default {
   mounted() {
     this.$nextTick(function () {
       sessionStorage.removeItem('msal.interaction.status');
+      sessionStorage.removeItem('socialType');
       this.init()
     })
   },

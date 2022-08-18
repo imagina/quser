@@ -54,13 +54,13 @@ export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
 
       //Search sesion data in storage if not exist
       data = data || await cache.get.item('sessionData')
-
       if (data) {
         commit('AUTH_SUCCESS', data)//commit userdata in store
         await dispatch('SET_ROLE_DEPARTMENT')//Set role and department
         await dispatch('SET_PERMISSIONS')//Set Permissions
         await dispatch('SET_SETTINGS')//Set settings
         axios.defaults.headers.common['Authorization'] = data.userToken//Set default headers to axios
+        axios.defaults.params.setting.authProvider = sessionStorage.getItem('socialType') || 'local';
         await cache.set('sessionData', data)//Save session data in storage
         commit('SET_AUTHENTICATED')
         await dispatch('SET_ORGANIZATION')//Set settings
