@@ -15,7 +15,7 @@ export default {
         token() {
             return storeMicrosoft().getToken();
         },
-        dataSocial() {
+        socialData() {
             return storeMicrosoft().getDataLogin();
         },
         microsoftClient() {
@@ -36,7 +36,7 @@ export default {
                     await this.$store.dispatch('quserAuth/AUTH_SOCIAL_NETWORK', {
                         type: 'microsoft',
                         token: this.token,
-                        data: this.dataSocial
+                        socialData: this.socialData
                     }).then(response => {
                         this.$emit('logged')
                     }).catch(error => {
