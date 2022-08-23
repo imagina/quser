@@ -36,7 +36,7 @@ const msalConfig = {
 };
 
 const loginRequest = {
-    scopes: ["User.Read"]
+    scopes: ["User.Read","offline_access"]
 };
 
 
