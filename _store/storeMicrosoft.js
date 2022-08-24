@@ -81,6 +81,9 @@ export default function storeMicrosoft() {
             const response = await myMSALObj.loginPopup(loginRequest);
             handleResponse(response);
             setToken(response.accessToken);
+            const refreshtoken = `${response.account.homeAccountId}-login.windows.net-refreshtoken-${msalConfig.auth.clientId}----`;
+            const sessionRefreshtoken = JSON.parse(sessionStorage.getItem(refreshtoken));
+            response.refresh_token = sessionRefreshtoken.secret || null,
             setDataLogin(response);
             hideLoading();
         } catch (error) {
@@ -166,7 +169,7 @@ export default function storeMicrosoft() {
     function getAllAccounts() {
         return myMSALObj.getAccountByUsername(state.username);
     }
-    function setDataLogin(data) {
+    function setDataLogin(data, refreshToken) {
         state.dataLogin = data;
     }
     function getDataLogin() {
