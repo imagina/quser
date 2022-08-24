@@ -32,7 +32,7 @@ export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
   return new Promise((resolve, reject) => {
     let requestUrl = `apiRoutes.quser.authLoginSocialNetwork`
     const socialData = params.socialData ? params.socialData : '';
-    let requestParams = {attributes: {token: params.token}, type: params.type, socialData }
+    let requestParams = {attributes: {token: params.token, socialData}, type: params.type }
     axios.defaults.params.setting.authProvider = params.type;
     crud.post(requestUrl, requestParams).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
