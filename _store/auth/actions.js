@@ -34,6 +34,7 @@ export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
     const socialData = params.socialData ? params.socialData : '';
     let requestParams = {attributes: {token: params.token, socialData}, type: params.type }
     axios.defaults.params.setting.authProvider = params.type;
+    axios.defaults.headers.common['Authorization'] = null;
     crud.post(requestUrl, requestParams).then(async response => {
       await dispatch('AUTH_SUCCESS', response.data)
       resolve(true)
