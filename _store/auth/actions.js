@@ -292,6 +292,7 @@ export const AUTH_LOGOUT = async ({commit, dispatch, state}) => {
       }
       await dispatch('qsiteApp/RESET_STORE', null, {root: true})//Reset Store
       await cache.restore(config('app.saveCache.logout'))//Reset cache
+      await cache.remove('sessionData');
       resolve(true)
     } catch (e) {
       console.error('[AUTH LOGOUT] ', e)
@@ -403,15 +404,15 @@ export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
   let sesionData = await cache.get.item('sessionData')
 
   if (sesionData) {
-    let inTenMinutosDate = helper.timestamp() + (60000 * 10)//Current date plus 10 minutes
+    let inTenMinutosDate = helper.timestamp() + (60000 * 5)//Current date plus 5 minutes
     let expiresIn = helper.timestamp(sesionData.expiresIn)//Get timestamp expiresIn
-
     //If token expires in ten minute, refresh
     if (expiresIn <= inTenMinutosDate) {
       //Request to refresh token
-      crud.index('apiRoutes.quser.refreshToken').then(response => {
+      crud.post('apiRoutes.quser.refreshToken').then(async (response) => {
         sesionData.expiresIn = response.data.expiresIn//Get expires in
         cache.set('sessionData', sesionData)//Update expiresIn in sessionData
+        await dispatch('AUTH_SUCCESS', response.data);
       }).catch(error => {
         console.error('[REFRESH_TOKEN] ', error)
       })
