@@ -9,7 +9,7 @@ export default {
     page: () => import('@imagina/qcrud/_pages/admin/crudPage'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iprofile.cms.sidebar.adminUserIndex',
-    icon: 'fas fa-users',
+    icon: 'fal fa-users',
     authenticated: true,
     subHeader: {
       refresh: true
@@ -26,7 +26,7 @@ export default {
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     isCrud: true,
     title: 'iprofile.cms.sidebar.adminUserDepartments',
-    icon: 'fas fa-people-arrows',
+    icon: 'fal fa-people-arrows',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -44,7 +44,7 @@ export default {
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     isCrud: true,
     title: 'iprofile.cms.sidebar.adminUserRoles',
-    icon: 'fas fa-user-tag',
+    icon: 'fal fa-user-tag',
     authenticated: true,
     subHeader: {
       refresh: true,
@@ -60,7 +60,7 @@ export default {
     page: () => import('@imagina/quser/_pages/_admin/directory'),
     layout: () => import('@imagina/qsite/_layouts/master.vue'),
     title: 'iprofile.cms.sidebar.adminDirectory',
-    icon: 'fas fa-address-book',
+    icon: 'fal fa-address-book',
     authenticated: true,
     subHeader: {
       refresh: true,

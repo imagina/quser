@@ -4,7 +4,7 @@ const pages = config('pages') // Get Pages from config
 export default [
   {
     title: 'iprofile.cms.sidebar.adminGroup',
-    icon: 'fas fa-users',
+    icon: 'fal fa-users',
     children: [
       pages.quser.userIndex,//User Index
       pages.quser.userDepartments,//Departments Index
