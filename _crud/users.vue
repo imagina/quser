@@ -26,8 +26,12 @@ export default {
               align: 'left', sortable: true
             },
             {
-              name: 'email', label: `${this.$tr('isite.cms.form.email')} / ${this.$trp('isite.cms.form.userName')}`,
+              name: 'email', label: this.$tr('isite.cms.form.email'),
               field: 'email', align: 'left', sortable: true
+            },
+            {
+              name: 'userName', label: this.$trp('isite.cms.form.userName'),
+              field: 'userName', align: 'left', sortable: true, vIf: this.customLogin
             },
             {
               name: 'isActivated', label: this.$tr('isite.cms.form.status'), field: 'isActivated',
@@ -60,7 +64,7 @@ export default {
               format: val => val ? this.$trd(val) : '-',
             },
             {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
-          ],
+          ].filter(item => item.vIf != undefined ? item.vIf : true),
           filters: {
             roleId: {
               value: null,
@@ -128,11 +132,23 @@ export default {
               ],
             }
           },
+          userName: {
+            value: null,
+            type: 'input',
+            props: {
+              label: `${this.$trp('isite.cms.form.userName')} *`,
+              vIf: this.customLogin,
+              rules: [
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
+                //val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
+              ],
+            }
+          },
           email: {
             value: null,
             type: 'input',
             props: {
-              label: `${this.$tr('isite.cms.form.email')} / ${this.$trp('isite.cms.form.userName')} *`,
+              label: `${this.$tr('isite.cms.form.email')} *`,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 //val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
@@ -231,7 +247,7 @@ export default {
             value: [],
             type: 'select',
             fakeFieldName: 'settings',
-            permission : 'profile.permissions.manage',
+            permission: 'profile.permissions.manage',
             props: {
               label: 'Can manage users with following roles',
               multiple: true,
@@ -247,7 +263,7 @@ export default {
             value: [],
             type: 'select',
             fakeFieldName: 'settings',
-            permission : 'profile.permissions.manage',
+            permission: 'profile.permissions.manage',
             props: {
               label: 'Can manage departments under following User groups',
               multiple: true,
@@ -265,6 +281,11 @@ export default {
     //Crud info
     crudInfo() {
       return this.$store.state.qcrudComponent.component[this.crudId] || {}
+    },
+    //Setting custom login
+    customLogin() {
+      var setting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::customLogin') || []
+      return setting.length ? true : false
     }
   },
 }
