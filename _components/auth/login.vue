@@ -17,7 +17,7 @@
         <q-input name="username" autofocus ref="username" dense
                  v-model="form.username" type="text" color="primary" outlined
                  :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
-                 :label="$tr('isite.cms.form.email')"/>
+                 :label="`${$tr('isite.cms.form.email')} / ${$tr('isite.cms.form.userName')}`"/>
       </div>
 
       <!-- Password field -->
