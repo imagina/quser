@@ -22,7 +22,7 @@
               <div v-if="allowLocalLogin">
                   <login-form v-if="authType == 'login'" @logged="redirectAfterLogin()" class="full-width"/>
                   <!--Register-->
-                  <register-form v-if="authType == 'register'" @logged="redirectAfterLogin()"
+                  <register-form v-if="authType == 'register'" @logged="checkAfterLogin()"
                                 class="full-width"/>
                   <!--Loggin-->
                   <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
@@ -41,7 +41,7 @@
               <div class="row justify-center q-gutter-sm">
                 <google-auth/>
                 <facebook-auth/>
-                <microsoftAuth @logged="redirectAfterLogin()" />
+                <microsoftAuth @logged="checkAfterLogin()" />
               </div>
             </div>
           </div>
@@ -59,10 +59,14 @@ import resetPassword from '@imagina/quser/_components/auth/resetPassword'
 import resetPasswordComplete from '@imagina/quser/_components/auth/resetPasswordComplete'
 import forceChangePassword from '@imagina/quser/_components/auth/forceChangePassword'
 import logout from '@imagina/quser/_components/auth/logout'
+import masterModal from '@imagina/qsite/_components/master/masterModal'
 
 import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
 import googleAuth from '@imagina/quser/_components/socialAuth/google'
-import microsoftAuth from '@imagina/quser/_components/socialAuth/microsoft';
+import microsoftAuth from '@imagina/quser/_components/socialAuth/microsoft'
+import axios from "axios"
+import moment from "moment";
+import momenttz from 'moment-timezone';
 
 export default {
   props: {},
@@ -76,6 +80,7 @@ export default {
     googleAuth, 
     resetPasswordComplete,
     microsoftAuth,
+    masterModal
   },
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)
@@ -129,8 +134,22 @@ export default {
     init() {
 
     },
+    checkAfterLogin(){
+      //preguntar por setting para validar timeZone
+      this.checkTimeZone()
+      //else
+      this.redirectAfterLogin()
+    },
+    checkTimeZone(){
+      //Modal persistent...
+      //si no tiene timezone abre modal - Seleccione timezone - requestAsync put actualizando timeZone
+      // check si guardo timezone...
+      axios.defaults.params.setting.timezone = moment.tz.guess()
+      // redirectAfterLogin
+    },
     //Redirect after user be logged
     redirectAfterLogin() {
+      //sino hace el resto
       //Get workSapce assigned from user Role. if not found it, set `iadmin` as default
       let windowLastRoute = this.$route.query.redirectTo || false
       let settingsProfile = this.$store.state.quserAuth.settings
