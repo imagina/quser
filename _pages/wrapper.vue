@@ -20,7 +20,7 @@
             <div class="q-mb-md">
               <!--Loggin-->
               <div v-if="allowLocalLogin">
-                  <login-form v-if="authType == 'login'" @logged="redirectAfterLogin()" class="full-width"/>
+                  <login-form v-if="authType == 'login'" @logged="checkAfterLogin()" class="full-width"/>
                   <!--Register-->
                   <register-form v-if="authType == 'register'" @logged="checkAfterLogin()"
                                 class="full-width"/>
