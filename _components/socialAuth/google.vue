@@ -1,7 +1,7 @@
 <template>
   <socialBtn 
-    @click.native="signIn()" 
     v-if="clientIdGoogle" 
+    @click.native="signIn()" 
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.google')}`"
     :icon="require('@imagina/quser/_components/socialAuth/icons/google.svg')"
   />
@@ -56,7 +56,8 @@ export default {
     //Load Client ID
     loadClientId() {
       setTimeout(() => {
-        let clientId = this.clientIdGoogle
+        let clientId = this.clientIdGoogle || null;
+        if(!clientId) return;
         gapi.load('auth2', () => {
           gapi.auth2.init({client_id: clientId}).then(() => {
             this.success = true
