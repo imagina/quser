@@ -36,7 +36,7 @@ const msalConfig = {
 };
 
 const loginRequest = {
-    scopes: ["User.Read","offline_access"]
+    scopes: ["User.Read", "offline_access"]
 };
 
 
@@ -84,15 +84,16 @@ export default function storeMicrosoft() {
             const refreshtoken = `${response.account.homeAccountId}-login.windows.net-refreshtoken-${msalConfig.auth.clientId}----`;
             const sessionRefreshtoken = JSON.parse(sessionStorage.getItem(refreshtoken));
             response.refresh_token = sessionRefreshtoken.secret || null,
-            setDataLogin(response);
+                setDataLogin(response);
             hideLoading();
         } catch (error) {
+            console.log(error);
             setToken(null);
             hideLoading();
             setCancelLogin(true);
             setDataLogin({});
         }
-        
+
     }
     function handleResponse(response) {
         if (response) {
@@ -102,12 +103,16 @@ export default function storeMicrosoft() {
         }
     }
     async function signOut() {
+        try {
             const logoutRequest = {
                 account: myMSALObj.getAccountByUsername(state.username),
                 postLogoutRedirectUri: `${window.location.origin}#/auth/logout/`
             };
     
-        return myMSALObj.logoutRedirect(logoutRequest);
+            return myMSALObj.logoutRedirect(logoutRequest); 
+        } catch (error) {
+            console.log(error);
+        }
     }
     function selectAccount() {
         const currentAccounts = myMSALObj.getAllAccounts();
@@ -128,18 +133,18 @@ export default function storeMicrosoft() {
     }
     function getAuthProvider() {
         baseService.index('apiRoutes.quser.authProviders',
-         {
-            refresh: true,
-         }).then((response) => {
-            console.log(response);
-        }).catch((err) => {
-            console.log(err);
-        });
+            {
+                refresh: true,
+            }).then((response) => {
+                console.log(response);
+            }).catch((err) => {
+                console.log(err);
+            });
     }
     function getTokenPopup(request) {
 
         request.account = myMSALObj.getAccountByUsername(username);
-        
+
         return myMSALObj.acquireTokenSilent(request)
             .catch(error => {
                 console.warn("silent token acquisition fails. acquiring token using popup");
@@ -153,9 +158,9 @@ export default function storeMicrosoft() {
                             console.error(error);
                         });
                 } else {
-                    console.warn(error);   
+                    console.warn(error);
                 }
-        });
+            });
     }
     function hideLoading() {
         state.loading = false;
