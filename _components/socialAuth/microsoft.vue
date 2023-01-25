@@ -1,7 +1,10 @@
 <template>
-    <socialBtn :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
-        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')" @click.native="signIn"
-        v-if="microsoftClient" />
+    <socialBtn
+        v-if="microsoftClient"
+        :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
+        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')" 
+        @click.native="signIn"
+    />
 </template>
 
 <script>
