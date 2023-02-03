@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import storeMicrosoft from '@imagina/quser/_store/storeMicrosoft.js'
 export default {
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)
@@ -26,7 +27,14 @@ export default {
     this.loading = true
     this.$nextTick(async function () {
       await this.$store.dispatch("quserAuth/AUTH_LOGOUT")
-      this.loading = false
+      this.loading = false;
+      const userName = localStorage.getItem('userName');
+      if(userName) await storeMicrosoft().setUsername(userName);
+      const socialType = localStorage.getItem('socialType');
+      if (socialType && socialType === 'microsoft') {
+        await storeMicrosoft().signOut();
+      }
+      
     })
   },
   computed: {
