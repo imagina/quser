@@ -10,7 +10,7 @@ const msalConfig = {
         postLogoutRedirectUri: window.location.origin
     },
     cache: {
-        cacheLocation: "sessionStorage",
+        cacheLocation: "localStorage",
         storeAuthStateInCookie: false,
     },
     system: {
@@ -36,7 +36,7 @@ const msalConfig = {
 };
 
 const loginRequest = {
-    scopes: ["User.Read","offline_access"]
+    scopes: ["User.Read", "offline_access"]
 };
 
 
@@ -82,7 +82,7 @@ export default function storeMicrosoft() {
             handleResponse(response);
             setToken(response.accessToken);
             const refreshtoken = `${response.account.homeAccountId}-login.windows.net-refreshtoken-${msalConfig.auth.clientId}----`;
-            const sessionRefreshtoken = JSON.parse(sessionStorage.getItem(refreshtoken));
+            const sessionRefreshtoken = JSON.parse(localStorage.getItem(refreshtoken));
             response.refresh_token = sessionRefreshtoken.secret || null,
             setDataLogin(response);
             hideLoading();
@@ -92,22 +92,44 @@ export default function storeMicrosoft() {
             setCancelLogin(true);
             setDataLogin({});
         }
-        
+
     }
     function handleResponse(response) {
         if (response) {
-            state.username = response.account.username;
+            setUsername(response.account.username);
+            
         } else {
             selectAccount();
         }
     }
+    function setUsername(value) {
+        state.username = value
+        localStorage.setItem('userName', value);
+    }
     async function signOut() {
+        try {
+            if(!state.username) return;
+            await ssoSilent();
+            const userName = myMSALObj.getAccountByUsername(state.username);
+            if(!userName) return;
             const logoutRequest = {
-                account: myMSALObj.getAccountByUsername(state.username),
+                account: userName,
                 postLogoutRedirectUri: `${window.location.origin}#/auth/logout/`
             };
-    
-        return myMSALObj.logoutRedirect(logoutRequest);
+            await myMSALObj.logoutRedirect(logoutRequest);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async function ssoSilent() {
+        try {
+            return await myMSALObj.ssoSilent(loginRequest) || null;
+        } catch (err) {
+            if (err.name === 'InteractionRequiredAuthError') {
+                localStorage.removeItem('socialType');
+                localStorage.removeItem('userName');
+            }
+        }
     }
     function selectAccount() {
         const currentAccounts = myMSALObj.getAllAccounts();
@@ -128,18 +150,18 @@ export default function storeMicrosoft() {
     }
     function getAuthProvider() {
         baseService.index('apiRoutes.quser.authProviders',
-         {
-            refresh: true,
-         }).then((response) => {
-            console.log(response);
-        }).catch((err) => {
-            console.log(err);
-        });
+            {
+                refresh: true,
+            }).then((response) => {
+                console.log(response);
+            }).catch((err) => {
+                console.log(err);
+            });
     }
     function getTokenPopup(request) {
 
         request.account = myMSALObj.getAccountByUsername(username);
-        
+
         return myMSALObj.acquireTokenSilent(request)
             .catch(error => {
                 console.warn("silent token acquisition fails. acquiring token using popup");
@@ -153,9 +175,9 @@ export default function storeMicrosoft() {
                             console.error(error);
                         });
                 } else {
-                    console.warn(error);   
+                    console.warn(error);
                 }
-        });
+            });
     }
     function hideLoading() {
         state.loading = false;
@@ -194,5 +216,6 @@ export default function storeMicrosoft() {
         getAllAccounts,
         setDataLogin,
         getDataLogin,
+        setUsername,
     }
 }

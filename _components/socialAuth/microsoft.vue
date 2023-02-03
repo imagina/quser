@@ -1,7 +1,10 @@
 <template>
-    <socialBtn :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
-        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')" @click.native="signIn"
-        v-if="microsoftClient" />
+    <socialBtn
+        v-if="microsoftClient"
+        :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
+        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')" 
+        @click.native="signIn"
+    />
 </template>
 
 <script>
@@ -39,7 +42,7 @@ export default {
                         socialData: this.socialData
                     }).then(response => {
                         this.$emit('logged')
-                        sessionStorage.setItem('socialType', 'microsoft');
+                        localStorage.setItem('socialType', 'microsoft');
                     }).catch(error => {
                         this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
                     })
