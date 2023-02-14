@@ -69,7 +69,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  label: `${this.$tr('isite.cms.form.email')}}*`,
+                  label: `${this.$tr('isite.cms.form.email')}*`,
                   rules: [
                     val => !!val || this.$tr('isite.cms.message.fieldRequired'),
                     val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
