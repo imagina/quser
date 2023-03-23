@@ -9,12 +9,12 @@ import eventBus from '@imagina/qsite/_plugins/eventBus'
 //Features
 import axios from 'axios'
 import config from '@imagina/qsite/_config/master/index'
-import {uid} from 'quasar'
+import { uid } from 'quasar'
 
 //Request Login
-export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
+export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
   return new Promise(async (resolve, reject) => {
-    let dataRequest = {username: authData.username, password: authData.password}
+    let dataRequest = { username: authData.username, password: authData.password }
     axios.defaults.headers.common['Authorization'] = null;
     //Request login
     axios.defaults.params.setting.authProvider = 'local';
@@ -28,11 +28,11 @@ export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
 }
 
 //Request login with Social Networks
-export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
+export const AUTH_SOCIAL_NETWORK = ({ dispatch, state }, params) => {
   return new Promise((resolve, reject) => {
     let requestUrl = `apiRoutes.quser.authLoginSocialNetwork`
     const socialData = params.socialData ? params.socialData : '';
-    let requestParams = {attributes: {token: params.token, socialData}, type: params.type }
+    let requestParams = { attributes: { token: params.token, socialData }, type: params.type }
     axios.defaults.params.setting.authProvider = params.type;
     axios.defaults.headers.common['Authorization'] = null;
     crud.post(requestUrl, requestParams).then(async response => {
@@ -46,7 +46,7 @@ export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
 }
 
 //Set user Data
-export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
+export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
   return new Promise(async (resolve, reject) => {
     try {
       //Validate if is impersonating
@@ -79,7 +79,7 @@ export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
 }
 
 //Set user role and user department
-export const SET_ROLE_DEPARTMENT = ({state, commit, getters}, params = {}) => {
+export const SET_ROLE_DEPARTMENT = ({ state, commit, getters }, params = {}) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!config('app.forceRoleAndDepartment')) return resolve(true)
@@ -113,7 +113,7 @@ export const SET_ROLE_DEPARTMENT = ({state, commit, getters}, params = {}) => {
       await cache.set('auth.role.id', roleUser)
       await cache.set('auth.department.id', departmentUser)
 
-      resolve({departmentId: departmentUser, roleId: roleUser})//Response
+      resolve({ departmentId: departmentUser, roleId: roleUser })//Response
     } catch (e) {
       console.error('[AUTH SET ROLE] ', e)
       reject(e)
@@ -122,7 +122,7 @@ export const SET_ROLE_DEPARTMENT = ({state, commit, getters}, params = {}) => {
 }
 
 //Set permission of user
-export const SET_PERMISSIONS = ({dispatch, commit, state}) => {
+export const SET_PERMISSIONS = ({ dispatch, commit, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       let permissions = []//Default data
@@ -135,7 +135,7 @@ export const SET_PERMISSIONS = ({dispatch, commit, state}) => {
         const userPermissions = state.userData.permissions//Get user permissions
 
         //Merge permissions
-        permissions = {...rolePermissions, ...userPermissions}
+        permissions = { ...rolePermissions, ...userPermissions }
       } else {//Set all permissions of user
         permissions = state.userData.allPermissions
       }
@@ -151,7 +151,7 @@ export const SET_PERMISSIONS = ({dispatch, commit, state}) => {
 }
 
 //Set settings of user
-export const SET_SETTINGS = ({dispatch, commit, state}) => {
+export const SET_SETTINGS = ({ dispatch, commit, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       let settings = {}//All settings
@@ -190,7 +190,7 @@ export const SET_SETTINGS = ({dispatch, commit, state}) => {
 }
 
 //Try login
-export const AUTH_TRYAUTOLOGIN = ({commit, dispatch, state}) => {
+export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       let sessionData = await cache.get.item('sessionData')
@@ -212,7 +212,7 @@ export const AUTH_TRYAUTOLOGIN = ({commit, dispatch, state}) => {
 }
 
 //Refresh user Data
-export const AUTH_UPDATE = ({commit, dispatch, state}) => {
+export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       let sessionData = await cache.get.item('sessionData')//Get  session Data
@@ -227,7 +227,7 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
       //Request params
       let params = {
         refresh: true,
-        params: {include: 'organizations'}
+        params: { include: 'organizations' }
       }
 
       //Get userData
@@ -235,6 +235,21 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
         if (response.status != 200) return reject(true)//Logout
         sessionData.userData = response.data.userData//Update userData of sessiondata
         await cache.set('sessionData', sessionData)//Update sessionData in cache
+
+        //TODO dispatch global event ME
+
+        //QOFfLINE
+        //cada vez ue ocurra el ME intente ejecutar todos los offlineRequests
+        //encender variable en storage precatch=true
+        //listener del navigator.online reactiva el precatch: cada vez que vuelva a online precatch=false
+        // if (!localStorage.getItem("testApi")) {
+        //   localStorage.setItem("testApi", "true")
+        //   sessionData.userData.roles.forEach(role => {
+        //     role.options.offlineRequests.forEach(async (offlineReq) => {
+        //       await crud.index(offlineReq.apiRoute, { params: { ...offlineReq.requestParams } });
+        //     });
+        //   })
+        // }
         await dispatch('AUTH_SUCCESS')//Auth success
 
         resolve(true)
@@ -249,7 +264,7 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
   })
 }
 //Refresh user Data
-export const AUTH_FORCE_PASSWORD = ({commit, dispatch, state}) => {
+export const AUTH_FORCE_PASSWORD = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       const sessionData = await cache.get.item('sessionData')//Get  session Data
@@ -281,7 +296,7 @@ export const AUTH_FORCE_PASSWORD = ({commit, dispatch, state}) => {
 }
 
 //Logout
-export const AUTH_LOGOUT = async ({commit, dispatch, state}) => {
+export const AUTH_LOGOUT = async ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       //Request to Logout in backend
@@ -290,7 +305,7 @@ export const AUTH_LOGOUT = async ({commit, dispatch, state}) => {
           console.error(error)
         })
       }
-      await dispatch('qsiteApp/RESET_STORE', null, {root: true})//Reset Store
+      await dispatch('qsiteApp/RESET_STORE', null, { root: true })//Reset Store
       await cache.restore(config('app.saveCache.logout'))//Reset cache
       await cache.remove('sessionData');
       resolve(true)
@@ -302,11 +317,11 @@ export const AUTH_LOGOUT = async ({commit, dispatch, state}) => {
 }
 
 //Get departments
-export const GET_DEPARTMENTS = ({commit, dispatch}) => {
+export const GET_DEPARTMENTS = ({ commit, dispatch }) => {
   return new Promise((resolve, reject) => {
     try {
       let configName = 'apiRoutes.quser.departments'
-      crud.index(configName, {params: {filter: {}}}).then(response => {
+      crud.index(configName, { params: { filter: {} } }).then(response => {
         commit('OBTAINED_DEPARTMENTS', response.data)
         resolve(true)
       }).catch(error => {
@@ -321,7 +336,7 @@ export const GET_DEPARTMENTS = ({commit, dispatch}) => {
 }
 
 //Impersonate User
-export const USER_IMPERSONATE = ({commit, dispatch, state}, userId = false) => {
+export const USER_IMPERSONATE = ({ commit, dispatch, state }, userId = false) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!userId) return reject('User Id is required')
@@ -356,7 +371,7 @@ export const USER_IMPERSONATE = ({commit, dispatch, state}, userId = false) => {
           expiresIn: response.data.expiresIn
         })
 
-        await dispatch('qsiteApp/REFRESH_PAGE', null, {root: true})
+        await dispatch('qsiteApp/REFRESH_PAGE', null, { root: true })
         resolve(true)
       }).catch(error => {
         console.error('[AUTH ACTION] impersonate', error)
@@ -371,7 +386,7 @@ export const USER_IMPERSONATE = ({commit, dispatch, state}, userId = false) => {
 }
 
 //Leave impersonation
-export const USER_LEAVE_IMPERSONATE = ({commit, dispatch, state}) => {
+export const USER_LEAVE_IMPERSONATE = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       //Get original user
@@ -390,7 +405,7 @@ export const USER_LEAVE_IMPERSONATE = ({commit, dispatch, state}) => {
       //AUTH success
       await dispatch('AUTH_SUCCESS', impersonatorData.sessionData)
 
-      await dispatch('qsiteApp/REFRESH_PAGE', null, {root: true})
+      await dispatch('qsiteApp/REFRESH_PAGE', null, { root: true })
       resolve(true)
     } catch (e) {
       console.error('[USER LEAVE IMPERSONATE] ', e)
@@ -400,7 +415,7 @@ export const USER_LEAVE_IMPERSONATE = ({commit, dispatch, state}) => {
 }
 
 //Refresh user token
-export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
+export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
   let sesionData = await cache.get.item('sessionData')
 
   if (sesionData) {
@@ -421,36 +436,36 @@ export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
 }
 
 //Reset password request
-export const RESET_PASSWORD_REQUEST = ({commit, dispatch}, dataRequest) => {
+export const RESET_PASSWORD_REQUEST = ({ commit, dispatch }, dataRequest) => {
   return new Promise(async (resolve, reject) => {
-      //Request
-      crud.post('apiRoutes.quser.authReset', {attributes: dataRequest}).then(response => {
-        dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
-      }).catch(error => reject(error))
-    }
+    //Request
+    crud.post('apiRoutes.quser.authReset', { attributes: dataRequest }).then(response => {
+      dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
+    }).catch(error => reject(error))
+  }
   )
 }
 
 //Change password
-export const CHANGED_PASSWORD_REQUEST = ({commit, dispatch}, authData) => {
+export const CHANGED_PASSWORD_REQUEST = ({ commit, dispatch }, authData) => {
   return new Promise(async (resolve, reject) => {
-      //Request Data
-      let dataRequest = {
-        password: authData.password,
-        password_confirmation: authData.passwordConfirmation,
-        userId: authData.userId,
-        code: authData.token
-      }
-      //Request
-      crud.post('apiRoutes.quser.authChanged', dataRequest).then(response => {
-        dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
-      }).catch(error => reject(error));
+    //Request Data
+    let dataRequest = {
+      password: authData.password,
+      password_confirmation: authData.passwordConfirmation,
+      userId: authData.userId,
+      code: authData.token
     }
+    //Request
+    crud.post('apiRoutes.quser.authChanged', dataRequest).then(response => {
+      dispatch('AUTH_LOGOUT').then(() => resolve(response)).catch(error => reject(error))
+    }).catch(error => reject(error));
+  }
   )
 }
 
 //Open modal sesion
-export const VALIDATE_SESION = ({commit, dispatch, state}, params = {}) => {
+export const VALIDATE_SESION = ({ commit, dispatch, state }, params = {}) => {
   return new Promise(resolve => {
     if (state.authenticated) return resolve(true)
     params = params || {}
@@ -462,7 +477,7 @@ export const VALIDATE_SESION = ({commit, dispatch, state}, params = {}) => {
 }
 
 //Open modal sesion
-export const SET_ORGANIZATION = ({commit, dispatch, state}, params = {}) => {
+export const SET_ORGANIZATION = ({ commit, dispatch, state }, params = {}) => {
   return new Promise(async resolve => {
     //get user organizations
     let organizations = state.organizations || []
