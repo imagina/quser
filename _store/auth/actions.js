@@ -63,6 +63,12 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
         axios.defaults.headers.common['Authorization'] = data.userToken//Set default headers to axios
         axios.defaults.params.setting.authProvider = sessionStorage.getItem('socialType') || 'local';
         await cache.set('sessionData', data)//Save session data in storage
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage({
+            type: 'sessionData',
+            payload: data
+          })
+        }
         commit('SET_AUTHENTICATED')
         await dispatch('SET_ORGANIZATION')//Set settings
         return resolve(true)//Resolve
