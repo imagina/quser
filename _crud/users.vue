@@ -137,7 +137,10 @@ export default {
             type: 'input',
             props: {
               label: `${this.$trp('isite.cms.form.userName')} *`,
-              vIf: this.customLogin
+              vIf: this.customLogin,
+              rules: [
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
+              ],
             }
           },
           email: {
@@ -281,7 +284,7 @@ export default {
     //Setting custom login
     customLogin() {
       var setting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::customLogin') || []
-      return setting.length ? true : false
+      return setting.includes("user_name")
     }
   },
 }
