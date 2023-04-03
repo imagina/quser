@@ -137,11 +137,7 @@ export default {
             type: 'input',
             props: {
               label: `${this.$trp('isite.cms.form.userName')} *`,
-              vIf: this.customLogin,
-              rules: [
-                val => !!val || this.$tr('isite.cms.message.fieldRequired')
-                //val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
-              ],
+              vIf: this.customLogin
             }
           },
           email: {
