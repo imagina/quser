@@ -80,6 +80,7 @@ export default {
                 label: `${this.$tr('isite.cms.label.form')}`,
               },
               config: {
+                clearable : true,
                 options: {
                   label: 'title', value: 'id'
                 }
