@@ -82,7 +82,7 @@ export default {
     page: () => import('@imagina/quser/_pages/profile'),
     layout: () => import('@imagina/qsite/_layouts/master'),
     title: 'iprofile.cms.sidebar.panelProfile',
-    icon: 'fas fa-user-circle',
+    icon: 'fa-light fa-circle-user',
     authenticated: true,
     subHeader: {
       refresh: true
