@@ -184,6 +184,7 @@ export default {
 
           resolve(tree)//Response
         }).catch(error => {
+          this.$apiResponse.handleError(error, () => {})
         })
       })
     }

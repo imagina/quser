@@ -143,7 +143,7 @@ export default {
             type: 'select',
             props: {
               label: this.$tr('isite.cms.label.role'),
-              clearable : true
+              clearable: true
             },
             loadOptions: {
               apiRoute: 'apiRoutes.quser.roles',
@@ -173,7 +173,7 @@ export default {
           }
         }
         //Validate role filter
-        if(!requestParams.params.filter.roleId)
+        if (!requestParams.params.filter.roleId)
           requestParams.params.filter.roleId = this.rolesToDirectory
         //Request
         this.$crud.index('apiRoutes.quser.users', requestParams).then(response => {
@@ -182,8 +182,10 @@ export default {
           this.loading = false
           resolve(response.data)
         }).catch(error => {
-          this.loading = false
-          reject(error)
+          this.$apiResponse.handleError(error, () => {
+            this.loading = false
+            reject(error)
+          })
         })
       })
     }

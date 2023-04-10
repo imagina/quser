@@ -1,7 +1,7 @@
 <template>
-  <socialBtn 
-    @click.native="signIn()" 
-    v-if="appIdFacebook" 
+  <socialBtn
+    @click.native="signIn()"
+    v-if="appIdFacebook"
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.facebook')}`"
     :icon="require('@imagina/quser/_components/socialAuth/icons/facebook.svg')"
   />
@@ -95,8 +95,10 @@ export default {
         this.$emit('logged')
         this.loading = false
       }).catch(error => {
-        this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
-        this.loading = false
+        this.$apiResponse.handleError(error, () => {
+          this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
+          this.loading = false
+        })
       })
     }
   }

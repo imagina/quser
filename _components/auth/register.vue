@@ -218,8 +218,10 @@ export default {
           if (response.data.length == 1) this.getRoleForm()
           resolve(response.data)
         }).catch(error => {
-          this.loading = false
-          reject(error)
+          this.$apiResponse.handleError(error, () => {
+            this.loading = false
+            reject(error)
+          })
         })
       })
     },
@@ -261,8 +263,10 @@ export default {
           resolve(response.data)
           this.loading = false
         }).catch(error => {
-          reject(error)
-          this.loading = false
+          this.$apiResponse.handleError(error, () => {
+            reject(error)
+            this.loading = false
+          })
         })
       })
     },

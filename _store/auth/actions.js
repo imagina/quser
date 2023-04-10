@@ -5,6 +5,7 @@ import crud from '@imagina/qcrud/_services/baseService'
 import helper from '@imagina/qsite/_plugins/helper'
 import cache from '@imagina/qsite/_plugins/cache'
 import eventBus from '@imagina/qsite/_plugins/eventBus'
+import apiResponse from '@imagina/qcrud/_plugins/apiResponse'
 
 //Features
 import axios from 'axios'
@@ -32,7 +33,7 @@ export const AUTH_SOCIAL_NETWORK = ({dispatch, state}, params) => {
   return new Promise((resolve, reject) => {
     let requestUrl = `apiRoutes.quser.authLoginSocialNetwork`
     const socialData = params.socialData ? params.socialData : '';
-    let requestParams = {attributes: {token: params.token, socialData}, type: params.type }
+    let requestParams = {attributes: {token: params.token, socialData}, type: params.type}
     axios.defaults.params.setting.authProvider = params.type;
     axios.defaults.headers.common['Authorization'] = null;
     crud.post(requestUrl, requestParams).then(async response => {
@@ -239,7 +240,9 @@ export const AUTH_UPDATE = ({commit, dispatch, state}) => {
 
         resolve(true)
       }).catch(error => {
-        console.error('[AUTH_UPDATE] ', error)
+        apiResponse.handleError(error, () => {
+          console.error('[AUTH_UPDATE] ', error)
+        })
         reject(true)
       })
     } catch (e) {
@@ -270,8 +273,10 @@ export const AUTH_FORCE_PASSWORD = ({commit, dispatch, state}) => {
         })
         resolve(true)
       }).catch(error => {
-        console.error('[AUTH_FORCE_PASSWORD] ', error)
-        resolve(false)
+        apiResponse.handleError(error, () => {
+          console.error('[AUTH_FORCE_PASSWORD] ', error)
+          resolve(false)
+        })
       })
     } catch (e) {
       console.error('[AUTH_FORCE_PASSWORD] ', e)
