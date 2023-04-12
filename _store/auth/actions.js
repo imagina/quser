@@ -60,6 +60,9 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
         await dispatch('SET_ROLE_DEPARTMENT')//Set role and department
         await dispatch('SET_PERMISSIONS')//Set Permissions
         await dispatch('SET_SETTINGS')//Set settings
+
+        dispatch('qofflineMaster/REFRESH_OFFLINE', {}, {root : true})//initialize offline
+
         axios.defaults.headers.common['Authorization'] = data.userToken//Set default headers to axios
         axios.defaults.params.setting.authProvider = sessionStorage.getItem('socialType') || 'local';
         await cache.set('sessionData', data)//Save session data in storage
