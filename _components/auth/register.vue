@@ -48,6 +48,12 @@ export default {
       mainFields: ['roleId', 'email', 'password', 'passwordConfirmation', 'firstName', 'lastName', 'captcha'],
     }
   },
+  props: {
+    rolesToRegister: {
+      type: String,
+      default: 'iprofile::rolesToRegister'
+    }
+  },
   computed: {
     dynamicForm() {
       //Instace response
@@ -137,7 +143,7 @@ export default {
       response.blocks.forEach((block, blockKey) => {
         let fields = {}
         Object.keys(block.fields).forEach(fieldKey =>
-            fields[`${block.name}-${fieldKey}`] = {...block.fields[fieldKey], name: `${block.name}-${fieldKey}`}
+          fields[`${block.name}-${fieldKey}`] = {...block.fields[fieldKey], name: `${block.name}-${fieldKey}`}
         )
         response.blocks[blockKey].fields = fields
       })
@@ -150,7 +156,8 @@ export default {
       return {
         politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
         terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
-        rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister'),
+        rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName'](this.rolesToRegister) ||
+          this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister'),
         authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authRegisterCaption'),
         activateCaptcha: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::activateCaptcha')),
       }
@@ -218,8 +225,10 @@ export default {
           if (response.data.length == 1) this.getRoleForm()
           resolve(response.data)
         }).catch(error => {
-          this.loading = false
-          reject(error)
+          this.$apiResponse.handleError(error, () => {
+            this.loading = false
+            reject(error)
+          })
         })
       })
     },
@@ -230,7 +239,7 @@ export default {
         this.extraBlocks = []
         //Get Role selected
         let roleSelected = !this.form['role-roleId'] ? this.authRoles[0] :
-            this.authRoles.find(item => item.id == this.form['role-roleId'])
+          this.authRoles.find(item => item.id == this.form['role-roleId'])
 
         //validate role
         if (!roleSelected || !roleSelected.formId) return reject(false)
@@ -261,8 +270,10 @@ export default {
           resolve(response.data)
           this.loading = false
         }).catch(error => {
-          reject(error)
-          this.loading = false
+          this.$apiResponse.handleError(error, () => {
+            reject(error)
+            this.loading = false
+          })
         })
       })
     },

@@ -161,8 +161,10 @@
           if(response.data && response.data.email) this.email = response.data.email
           this.showMessage = true
         }).catch(error => {
-          this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
-          this.loading = false
+          this.$apiResponse.handleError(error, () => {
+            this.$alert.error(this.$tr('isite.cms.message.errorRequest'))
+            this.loading = false
+          })
         });
       },
     }

@@ -31,7 +31,8 @@
                 <q-separator class="q-mt-sm q-mb-md"/>
                 <!--Form-->
                 <q-form @submit="updateUserData(form.session)" ref="formRegister" autocomplete="off"
-                        class="row q-col-gutter-x-md" @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
+                        class="row q-col-gutter-x-md"
+                        @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
                   <!--Fields-->
                   <div v-for="(field, fieldKey) in formsData.session.fields" :key="fieldKey"
                        :class="field.colClass || 'col-12'">
@@ -266,7 +267,7 @@ export default {
               mainImage: {
                 name: 'mainImage',
                 type: 'image',
-                colClass : 'col-12'
+                colClass: 'col-12'
               },
               ...this.profileFormBlocks[0].fields
             }
@@ -275,8 +276,10 @@ export default {
           this.loading = false
           resolve(response.data)
         }).catch(error => {
-          reject(error)
-          this.loading = false
+          this.$apiResponse.handleError(error, () => {
+            reject(error)
+            this.loading = false
+          })
         })
       })
     },
