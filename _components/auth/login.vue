@@ -14,7 +14,7 @@
             autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
       <!-- User field -->
       <div :class="columnsFieldsClass">
-        <q-input name="username" autofocus ref="username" dense
+        <q-input name="username" autofocus ref="username" dense data-test-id="loginUserNameField"
                  v-model="form.username" type="text" color="primary" outlined
                  :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
                  :label="`${$tr('isite.cms.form.email')} / ${$tr('isite.cms.form.userName')}`"/>
@@ -25,7 +25,9 @@
         <q-input name="password" ref="password" dense v-model="form.password"
                  :type="isPwd ? 'password' : 'text'" color="primary" outlined
                  :rules="[val => !!val || $tr('isite.cms.message.fieldRequired')]"
-                 :label="$tr('isite.cms.form.password')">
+                 :label="$tr('isite.cms.form.password')"
+                 data-test-id="loginPasswordField"
+        >
           <template v-slot:append>
             <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
                     @click="isPwd = !isPwd"/>
