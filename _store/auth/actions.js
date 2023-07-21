@@ -11,6 +11,7 @@ import apiResponse from '@imagina/qcrud/_plugins/apiResponse'
 import axios from 'axios'
 import config from '@imagina/qsite/_config/master/index'
 import {uid} from 'quasar'
+import { getTokenFirebase } from '@imagina/qnotification/_plugins/firebase.js'
 
 //Request Login
 export const AUTH_REQUEST = ({commit, dispatch, state}, authData) => {
@@ -66,6 +67,7 @@ export const AUTH_SUCCESS = ({commit, dispatch, state}, data = false) => {
         await cache.set('sessionData', data)//Save session data in storage
         commit('SET_AUTHENTICATED')
         await dispatch('SET_ORGANIZATION')//Set settings
+        await getTokenFirebase();
         return resolve(true)//Resolve
       } else {
         console.info('[AUTH_SUCCESS]::LOGOUT')
