@@ -87,7 +87,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  label: `${this.$trp('isite.cms.form.password')}*`,
+                  label: `${this.$tr('isite.cms.form.password')}*`,
                   type: 'password',
                   vIf: this.form.changePassword,
                   rules: [
@@ -101,7 +101,7 @@ export default {
                 type: 'input',
                 colClass: 'col-12',
                 props: {
-                  label: `${this.$trp('isite.cms.form.checkPassword')}*`,
+                  label: `${this.$tr('isite.cms.form.checkPassword')}*`,
                   type: 'password',
                   vIf: this.form.changePassword,
                   rules: [

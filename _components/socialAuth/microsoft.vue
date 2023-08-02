@@ -2,7 +2,7 @@
     <socialBtn
         v-if="microsoftClient"
         :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
-        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')" 
+        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')"
         @click.native="signIn"
     />
 </template>
@@ -22,7 +22,7 @@ export default {
             return storeMicrosoft().getDataLogin();
         },
         microsoftClient() {
-            return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId') || true
+            return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId') || false
         },
         loading() {
                 return storeMicrosoft().getLoading();
