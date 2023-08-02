@@ -410,7 +410,7 @@ export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
     let sesionData = await cache.get.item('sessionData')
 
     if (sesionData & !state.isRefreshing) {
-      let inTenMinutosDate = helper.timestamp() + (60000 * 0.1)//Current date plus 5 minutes
+      let inTenMinutosDate = helper.timestamp() + (60000 * 5)//Current date plus 5 minutes
       let expiresIn = helper.timestamp(sesionData.expiresIn)//Get timestamp expiresIn
       //If token expires in ten minute, refresh
       if (expiresIn <= inTenMinutosDate) {
