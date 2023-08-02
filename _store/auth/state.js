@@ -11,5 +11,6 @@ export default {
   selectedRoleId: false,
   selectedDepartmentId: false,
   organizations: [],
-  organizationId: null
+  organizationId: null,
+  isRefreshing: false,
 }

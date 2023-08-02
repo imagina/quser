@@ -405,23 +405,31 @@ export const USER_LEAVE_IMPERSONATE = ({commit, dispatch, state}) => {
 }
 
 //Refresh user token
-export const REFRESH_TOKEN = async ({commit, dispatch, state}) => {
-  let sesionData = await cache.get.item('sessionData')
+export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
+  try {
+    let sesionData = await cache.get.item('sessionData')
 
-  if (sesionData) {
-    let inTenMinutosDate = helper.timestamp() + (60000 * 5)//Current date plus 5 minutes
-    let expiresIn = helper.timestamp(sesionData.expiresIn)//Get timestamp expiresIn
-    //If token expires in ten minute, refresh
-    if (expiresIn <= inTenMinutosDate) {
-      //Request to refresh token
-      crud.post('apiRoutes.quser.refreshToken').then(async (response) => {
-        sesionData.expiresIn = response.data.expiresIn//Get expires in
-        cache.set('sessionData', sesionData)//Update expiresIn in sessionData
-        await dispatch('AUTH_SUCCESS', response.data);
-      }).catch(error => {
-        console.error('[REFRESH_TOKEN] ', error)
-      })
+    if (sesionData & !state.isRefreshing) {
+      let inTenMinutosDate = helper.timestamp() + (60000 * 0.1)//Current date plus 5 minutes
+      let expiresIn = helper.timestamp(sesionData.expiresIn)//Get timestamp expiresIn
+      //If token expires in ten minute, refresh
+      if (expiresIn <= inTenMinutosDate) {
+        //Request to refresh token
+        commit('SET_REFREHING', true);
+        await crud.post('apiRoutes.quser.refreshToken').then(async (response) => {
+          sesionData.expiresIn = response.data.expiresIn//Get expires in
+          cache.set('sessionData', sesionData)//Update expiresIn in sessionData
+          await dispatch('AUTH_SUCCESS', response.data);
+          commit('SET_REFREHING', false);
+        }).catch(error => {
+          console.error('[REFRESH_TOKEN] ', error)
+          commit('SET_REFREHING', false);
+        })
+      }
     }
+  } catch (error) {
+    commit('SET_REFREHING', false);
+    console.log(error, 'REFRESH_TOKEN');
   }
 }
 
