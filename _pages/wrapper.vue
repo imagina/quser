@@ -39,9 +39,9 @@
               <q-separator class="q-mb-md"/>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">
-                <google-auth/>
-                <facebook-auth/>
-                <microsoftAuth @logged="checkAfterLogin()" />
+                <google-auth @logged="checkAfterLogin"/>
+                <facebook-auth @logged="checkAfterLogin"/>
+                <microsoftAuth @logged="checkAfterLogin" />
               </div>
             </div>
           </div>
@@ -72,12 +72,12 @@ export default {
   props: {},
   components: {
     loginForm,
-    registerForm, 
+    registerForm,
     resetPassword,
-    forceChangePassword, 
-    logout, 
-    facebookAuth, 
-    googleAuth, 
+    forceChangePassword,
+    logout,
+    facebookAuth,
+    googleAuth,
     resetPasswordComplete,
     microsoftAuth,
     masterModal
@@ -121,7 +121,7 @@ export default {
     //Validate if load social auth
     withAuthSocial() {
       let hasSetting = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsersWithSocialNetworks'))
-      return hasSetting/* && (config('app.mode') == 'ipanel'))*/ ? true : false
+      return hasSetting && (this.authType != "logout")
     },
     microsoftClient() {
       return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
@@ -153,7 +153,8 @@ export default {
       //Get workSapce assigned from user Role. if not found it, set `iadmin` as default
       let windowLastRoute = this.$route.query.redirectTo || false
       let settingsProfile = this.$store.state.quserAuth.settings
-      let workSpace = settingsProfile.workSpace || 'iadmin'
+      let workSpace = settingsProfile?.workSpace || 'iadmin'
+      return console.warn(workSpace, config('app.mode'))
 
       //Redirect to same workSpace
       if (windowLastRoute || (workSpace == config('app.mode'))) this.$router.push({name: 'app.home'})
