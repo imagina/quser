@@ -154,7 +154,6 @@ export default {
       let windowLastRoute = this.$route.query.redirectTo || false
       let settingsProfile = this.$store.state.quserAuth.settings
       let workSpace = settingsProfile?.workSpace || 'iadmin'
-      return console.warn(workSpace, config('app.mode'))
 
       //Redirect to same workSpace
       if (windowLastRoute || (workSpace == config('app.mode'))) this.$router.push({name: 'app.home'})
