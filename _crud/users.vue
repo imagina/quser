@@ -154,6 +154,14 @@ export default {
               ],
             }
           },
+          phone: {
+            value: null,
+            type: 'localizedPhone',
+            props: {
+              label: `${this.$tr('isite.cms.form.phone')}`,
+              mask:"##########",
+            },
+          },
           isActivated: {
             value: '1',
             type: 'select',
