@@ -2,6 +2,7 @@
   <socialBtn
     @click.native="signIn()"
     v-if="appIdFacebook"
+    :loading="loading"
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.facebook')}`"
     :icon="require('@imagina/quser/_components/socialAuth/icons/facebook.svg')"
   />
