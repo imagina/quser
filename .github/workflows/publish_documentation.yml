@@ -1,0 +1,27 @@
+name: Publish documentation
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  copy_to_another_repo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Publish documentation (Quser)
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.REPO_DOCS_KEY }}
+        with:
+          source_file: '_docs/Quser'
+          destination_repo: 'imagina/docs-weygo'
+          destination_branch: 'main'
+          destination_folder: './docs/VueJs/modules'
+          user_email: 'carlosdevia@imaginacolombia.com'
+          user_name: 'imagina'
+          commit_message: '+Added: Quser Doc'
