@@ -20,7 +20,7 @@
             <div class="q-mb-md">
               <!--Loggin-->
               <div v-if="allowLocalLogin">
-                <div v-if="allowEmailLogin === 'withPassword'">
+                <div v-if="modeAuthType === 'withPassword'">
                   <login-form v-if="authType == 'login'" @logged="checkAfterLogin()" class="full-width"/>
                   <!--Register-->
                   <register-form v-if="authType == 'register'" @logged="checkAfterLogin()"
@@ -33,7 +33,7 @@
                   <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
                 </div>
                 <!--Login  With Email-->
-                <email-auth v-if="allowEmailLogin === 'withEmail'" class="full-width"/>
+                <email-auth v-if="modeAuthType === 'withEmail'" class="full-width"/>
               </div>
               <!--logout-->
               <logout v-if="authType == 'logout'" class="full-width"/>
@@ -135,7 +135,7 @@ export default {
     allowLocalLogin() {
       return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
     },
-    allowEmailLogin() {
+    modeAuthType() {
       return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authType')
     }
   },
