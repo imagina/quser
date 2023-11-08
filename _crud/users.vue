@@ -211,35 +211,21 @@ export default {
           },
           roles: {
             value: [],
-            type: 'select',
+            type: 'crud',
             props: {
-              label: 'test role',
-              multiple: true,
-              clearable: true,
-              useChips: true
-            },
-            loadOptions: {
-              apiRoute: 'apiRoutes.quser.roles',
-              select: {label: 'name', id: 'id'}
+              crudType: 'select',
+              crudData: import('@imagina/quser/_crud/roles'),
+              crudProps: {
+                label: `${this.$trp('isite.cms.label.role', {capitalize: true})}*`,
+                multiple: true,
+                useChips: true,
+                rules: [
+                  val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
+                ]
+              },
+              config: {options: {label: 'name', value: 'id'}},
             }
           },
-          // roles: {
-          //   value: [],
-          //   type: 'crud',
-          //   props: {
-          //     crudType: 'select',
-          //     crudData: import('@imagina/quser/_crud/roles'),
-          //     crudProps: {
-          //       label: `${this.$trp('isite.cms.label.role', {capitalize: true})}*`,
-          //       multiple: true,
-          //       useChips: true,
-          //       rules: [
-          //         val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
-          //       ]
-          //     },
-          //     config: {options: {label: 'name', value: 'id'}},
-          //   }
-          // },
           departments: {
             value: [],
             type: 'crud',
