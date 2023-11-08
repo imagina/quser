@@ -31,7 +31,9 @@ export default {
     lastLogin: 'Last login',
     defaultAddress: 'Default address',
     documentType: 'Document type',
-    documentnumber: 'Document number'
+    documentnumber: 'Document number',
+    emailLogin: 'Continue With Email',
+    sendEmailToVerify: 'We have sent an email to <b>{email}</b> where you will find a secure link to access. Please check your inbox to access securely.'
   },
   message: {
     emailExist: 'Email already exist',

@@ -19,7 +19,7 @@
             <!--Auth Type-->
             <div class="q-mb-md">
               <!--Loggin-->
-              <div v-if="allowLocalLogin">
+              <div v-if="allowLocalLogin && !allowEmailLogin">
                   <login-form v-if="authType == 'login'" @logged="checkAfterLogin()" class="full-width"/>
                   <!--Register-->
                   <register-form v-if="authType == 'register'" @logged="checkAfterLogin()"
@@ -31,6 +31,8 @@
                   <!-- force change password -->
                   <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
               </div>
+              <!--Login  With Email-->
+              <email-auth v-if="allowEmailLogin && authType != 'logout'" class="full-width"/>
               <!--logout-->
               <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
@@ -61,6 +63,7 @@ import forceChangePassword from '@imagina/quser/_components/auth/forceChangePass
 import logout from '@imagina/quser/_components/auth/logout'
 import masterModal from '@imagina/qsite/_components/master/masterModal'
 
+import emailAuth from '@imagina/quser/_components/auth/emailAuth'
 import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
 import googleAuth from '@imagina/quser/_components/socialAuth/google'
 import microsoftAuth from '@imagina/quser/_components/socialAuth/microsoft'
@@ -80,7 +83,8 @@ export default {
     googleAuth, 
     resetPasswordComplete,
     microsoftAuth,
-    masterModal
+    masterModal,
+    emailAuth
   },
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)
@@ -129,6 +133,9 @@ export default {
     allowLocalLogin() {
       return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
     },
+    allowEmailLogin() {
+      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authType') === 'withEmail'
+    }
   },
   methods: {
     init() {
