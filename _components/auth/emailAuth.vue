@@ -8,15 +8,7 @@
     <q-form @submit="authenticate()" class="row q-col-gutter-x-sm q-pt-sm"
             autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
       <!-- Email field -->
-      <div class="col-12">
-        <q-input name="email" autofocus ref="email" dense data-test-id="loginEmailField"
-                 v-model="email" type="text" color="primary" outlined
-                 :rules="[
-                     val => !!val || $tr('isite.cms.message.fieldRequired'),
-                     val => $helper.validateEmail(val) || $tr('isite.cms.message.fieldEmail')
-                 ]"
-                 :label="$tr('isite.cms.form.email')"/>
-      </div>
+      <dynamic-field class="col-12" v-model="email" :field="emailConfig"/>
 
       <!--Actions-->
       <div id="formActions" class="row full-width q-mb-md">
@@ -38,9 +30,7 @@ export default {
   components: {},
   watch: {},
   mounted() {
-    this.$nextTick(function () {
-      this.init()
-    })
+    this.$nextTick(function () {})
   },
   data() {
     return {
@@ -48,11 +38,23 @@ export default {
       email: ''
     }
   },
-  computed: {},
+  computed: {
+    emailConfig() {
+      return  {
+        value: null,
+        type: 'input',
+        props: {
+          label: this.$tr('isite.cms.form.email'),
+          rules: [
+            val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+            val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
+          ],
+        }
+      }
+    }
+  },
   methods: {
-    init() {
-      this.$root.$on('page.data.refresh', () => this.getData(true))
-    },
+    init() {},
     //Get data
     authenticate() {
       this.loading = true;

@@ -19,20 +19,22 @@
             <!--Auth Type-->
             <div class="q-mb-md">
               <!--Loggin-->
-              <div v-if="allowLocalLogin && !allowEmailLogin">
+              <div v-if="allowLocalLogin">
+                <div v-if="allowEmailLogin === 'withPassword'">
                   <login-form v-if="authType == 'login'" @logged="checkAfterLogin()" class="full-width"/>
                   <!--Register-->
                   <register-form v-if="authType == 'register'" @logged="checkAfterLogin()"
-                                class="full-width"/>
+                                 class="full-width"/>
                   <!--Loggin-->
                   <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
                   <!-- reset password -->
                   <reset-password-complete v-if="authType == 'resetPasswordComplete'" class="full-width"/>
                   <!-- force change password -->
                   <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
+                </div>
+                <!--Login  With Email-->
+                <email-auth v-if="allowEmailLogin === 'withEmail'" class="full-width"/>
               </div>
-              <!--Login  With Email-->
-              <email-auth v-if="allowEmailLogin && authType != 'logout'" class="full-width"/>
               <!--logout-->
               <logout v-if="authType == 'logout'" class="full-width"/>
             </div>
@@ -134,7 +136,7 @@ export default {
       return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
     },
     allowEmailLogin() {
-      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authType') === 'withEmail'
+      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authType')
     }
   },
   methods: {
