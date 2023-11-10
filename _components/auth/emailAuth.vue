@@ -59,20 +59,30 @@ export default {
     authenticate() {
       this.loading = true;
 
-      this.$alert.info({
-        mode: 'modal',
-        message: this.$tr('iprofile.cms.form.sendEmailToVerify', { email: this.email }),
-        actions: [
-          {
-            label: this.$tr('isite.cms.label.ok'),
-            color: 'green',
-            handler: () => {
-              this.email = '';
-              this.loading = false;
+      //Create request
+      const requestParams = {
+        attributes: {
+          email: this.email,
+          redirectTo: window.location.href
+        }
+      }
+
+      this.$crud.post('apiRoutes.quser.validateEmail', requestParams).then(response => {
+        this.$alert.info({
+          mode: 'modal',
+          message: this.$tr('iprofile.cms.form.sendEmailToVerify', { email: this.email }),
+          actions: [
+            {
+              label: this.$tr('isite.cms.label.ok'),
+              color: 'green',
+              handler: () => {
+                this.email = '';
+                this.loading = false;
+              }
             }
-          }
-        ]
-      })
+          ]
+        })
+      }).catch(error => this.$alert.error({ message: error }))
 
     }
   }
