@@ -33,7 +33,7 @@
                   <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
                 </div>
                 <!--Login  With Email-->
-                <email-auth v-if="modeAuthType === 'withEmail'" class="full-width"/>
+                <email-auth v-if="['login', 'register'].includes(authType) && modeAuthType === 'withEmail'" class="full-width"/>
               </div>
               <!--logout-->
               <logout v-if="authType == 'logout'" class="full-width"/>
