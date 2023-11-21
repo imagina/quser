@@ -112,6 +112,19 @@ export default {
         formLeft: {
           id: {value: null},
           userId: {value: this.$store.state.quserAuth.userId},
+          mediasSingle: {
+            value: {},
+            type: 'media',
+            props: {
+              label: this.$tr('isite.cms.label.mainImage'),
+              accept: 'images',
+              directUpload: true,
+              multiple: false,
+              zone: 'profile',
+              entity: "Modules\\User\\Entities\\Sentinel\\User",
+              entityId: {value: this.$store.state.quserAuth.userId}
+            }
+          },
           firstName: {
             value: null,
             type: 'input',
