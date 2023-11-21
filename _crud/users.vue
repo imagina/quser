@@ -116,7 +116,7 @@ export default {
             value: {},
             type: 'media',
             props: {
-              label: this.$tr('isite.cms.label.mainImage'),
+              label: this.$tr('iprofile.cms.label.profilePicture'),
               accept: 'images',
               directUpload: true,
               multiple: false,
