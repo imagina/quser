@@ -103,3 +103,13 @@ export const getOrganization = (state => (id = false) => {
   //Repsonse
   return state.organizations.find(item => item.id == organizationId)
 })
+
+//Profile image object { ...smallThumb, mediumThumb, path...  }
+export const profileImage = (state =>  {
+  if(state.userData.mediaFiles){
+    
+    return state.userData.mediaFiles.profile
+  }
+  const defaultPicture = state.userData.mainImage
+  return { smallThumb: defaultPicture, mediumThumb: defaultPicture }
+})

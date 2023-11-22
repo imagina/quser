@@ -10,6 +10,11 @@
         <!--Menu-->
         <div id="menuContent" class="col-12 col-md-3">
           <div class="box box-auto-height">
+            <!--Profile picture -->
+            <div id="profilePicture" v-for="(field, fieldKey) in formsData.profile.fields" :key="fieldKey"
+                       :class="field.colClass || 'col-12 q-mb-md'">
+                <dynamic-field :field="field" :itemId="userData.id" v-model="form.session[fieldKey]"/>
+            </div>
             <q-tabs v-model="menuOption" vertical active-color="primary">
               <q-tab v-for="(opt, keyOpt) in menuOptions" :key="keyOpt" :name="opt.value" :label="opt.label"
                      no-caps v-if="(opt.vIf != undefined) ? opt.vIf : true"/>
@@ -192,6 +197,24 @@ export default {
               }
             },
           }
+        },
+        profile: {
+          fields: {
+            mediasSingle: {
+              name: 'mediasSingle',
+              value: {},
+              type: 'media',
+              props: {
+                label: this.$tr('iprofile.cms.label.profilePicture'),
+                accept: 'images',
+                directUpload: true,
+                multiple: false,
+                zone: 'profile',
+                entity: "Modules\\User\\Entities\\Sentinel\\User",
+                entityId: null,
+              }
+            },
+          }
         }
       }
     }
@@ -343,4 +366,7 @@ export default {
       .q-tab-panel
         padding 0
 
+#profilePicture
+  .file-card_img
+    height 200px !important
 </style>
