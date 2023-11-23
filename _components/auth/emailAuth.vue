@@ -70,10 +70,10 @@ export default {
       this.$crud.post('apiRoutes.quser.validateEmail', requestParams).then(response => {
         this.$alert.info({
           mode: 'modal',
-          message: this.$tr('iprofile.cms.form.sendEmailToVerify', { email: this.email }),
+          message: `<div class="text-justify">${this.$tr('iprofile.cms.form.sendEmailToVerify', { email: this.email })}</div>`,
           actions: [
             {
-              label: this.$tr('isite.cms.label.ok'),
+              label: this.$tr('isite.cms.label.accept'),
               color: 'green',
               handler: () => {
                 this.email = '';
