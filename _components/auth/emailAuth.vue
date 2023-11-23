@@ -7,6 +7,9 @@
 
     <q-form @submit="authenticate()" class="row q-col-gutter-x-sm q-pt-sm"
             autocorrect="off" autocomplete="off" @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
+      <!-- Intro Message -->
+      <div class="text-justiy q-mb-md">{{ $tr('iprofile.cms.form.introMessage') }}</div>
+
       <!-- Email field -->
       <dynamic-field class="col-12" v-model="email" :field="emailConfig"/>
 
