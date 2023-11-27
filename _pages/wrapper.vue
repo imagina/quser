@@ -163,11 +163,12 @@ export default {
       let windowLastRoute = this.$route.query.redirectTo || false
       let settingsProfile = this.$store.state.quserAuth.settings
       let workSpace = settingsProfile?.workSpace || 'iadmin'
+      const redirectToWorkSpace = window.location.href.replace(this.appConfig.mode, workSpace)
 
       //Redirect to same workSpace
       if (windowLastRoute || (workSpace == config('app.mode'))) this.$router.push({name: 'app.home'})
       //Redirect to assigned workSpace
-      else this.$helper.openExternalURL(`${this.$store.state.qsiteApp.baseUrl}/${workSpace}`, false)
+      else this.$helper.openExternalURL(redirectToWorkSpace, false)
     }
   }
 }

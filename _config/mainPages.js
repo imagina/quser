@@ -34,6 +34,7 @@ export default {
     layout: () => import('@imagina/qsite/_layouts/blank.vue'),
     title: 'iprofile.cms.sidebar.register',
     icon: 'fas fa-chart-bar',
+    authenticated: true,
     authType: 'register'
   },
   //reset
