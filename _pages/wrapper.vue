@@ -136,7 +136,7 @@ export default {
       return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
     },
     modeAuthType() {
-      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authType') || "withPassword"
+      return this.$store.getters['qsiteApp/getConfigApp']('iprofile.authType') || "withPassword"
     }
   },
   methods: {
