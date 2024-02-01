@@ -325,7 +325,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 #formLoginComponent
   max-width 400px
 

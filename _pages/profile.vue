@@ -339,7 +339,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 #profilePage
   #menuContent
     .q-tab__indicator

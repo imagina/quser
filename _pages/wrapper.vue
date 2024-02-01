@@ -174,7 +174,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 #authWrapperPage
   background-color white
   min-height 100vh

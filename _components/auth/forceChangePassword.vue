@@ -136,7 +136,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="sass">
 #authResetPassword
   .format-cotainer
     position relative

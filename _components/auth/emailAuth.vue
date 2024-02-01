@@ -15,9 +15,9 @@
         <div class="text-body2">
           {{ $tr('iprofile.cms.form.checkYourSpamFolder') }}
         </div>
-        <q-btn 
+        <q-btn
           class="q-mt-lg"
-          @click="init()"        
+          @click="init()"
           :label="$tr('iprofile.cms.form.resendEmail')"
           color="primary"
           rounded
@@ -62,7 +62,7 @@ export default {
       loading: false,
       email: '',
       sentEmailLabel: '',
-      sent: false, 
+      sent: false,
     }
   },
   computed: {
@@ -109,5 +109,5 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="sass">
 </style>

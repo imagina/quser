@@ -91,7 +91,7 @@
     }
   }
 </script>
-<style lang="stylus">
+<style lang="sass">
   #authLoginRegister
     #formAuthPage
       &.form-content
