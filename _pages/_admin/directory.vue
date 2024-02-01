@@ -192,7 +192,7 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style lang="scss">
 #directoryCorporativePage
   #usersContent
     .user-card

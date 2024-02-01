@@ -171,7 +171,7 @@
   }
 </script>
 
-<style lang="sass">
+<style lang="scss">
   #authResetPassword
     min-height 100vh
     flex-direction column

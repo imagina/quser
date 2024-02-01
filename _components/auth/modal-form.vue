@@ -50,7 +50,7 @@
     }
   }
 </script>
-<style lang="sass">
+<style lang="scss">
   #modalFormLogin
     .q-card
       box-shadow none

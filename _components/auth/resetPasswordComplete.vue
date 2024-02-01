@@ -153,7 +153,7 @@
   }
 </script>
 
-<style lang="sass">
+<style lang="scss">
   #authResetPassword
     .format-cotainer
       position relative
