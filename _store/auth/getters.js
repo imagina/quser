@@ -63,7 +63,7 @@ export const hasAccess = (state) => (can, params = {}) => {
   }
 
   //Validate params
-  if (!can || !permissions) return true
+  if (!can || !permissions) return false
 
   //Validate permission
   if (permissions && Object.keys(permissions).length)
@@ -107,7 +107,7 @@ export const getOrganization = (state => (id = false) => {
 //Profile image object { ...smallThumb, mediumThumb, path...  }
 export const profileImage = (state =>  {
   if(state.userData.mediaFiles){
-    
+
     return state.userData.mediaFiles.profile
   }
   const defaultPicture = state.userData.mainImage
