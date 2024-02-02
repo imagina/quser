@@ -154,17 +154,23 @@
 </script>
 
 <style lang="scss">
-  #authResetPassword
-    .format-cotainer
-      position relative
-      #btnGoLogin
-        position absolute
-        bottom 31px
-        left 26px
-        a
-          border-radius 10px
-    #progressContent
-      .q-linear-progress
-        background-color #fff
-        color #fff !important
+  #authResetPassword {
+    .format-cotainer {
+      position: relative;
+      #btnGoLogin {
+        position: absolute;
+        bottom: 31px;
+        left: 26px;
+        a {
+          border-radius: 10px;
+        }
+      }
+    }
+    #progressContent {
+      .q-linear-progress {
+        background-color: #fff;
+        color: #fff !important;
+      }
+    }
+  }
 </style>

@@ -51,7 +51,9 @@
   }
 </script>
 <style lang="scss">
-  #modalFormLogin
-    .q-card
-      box-shadow none
+  #modalFormLogin {
+    .q-card {
+      box-shadow: none;
+    }
+  }
 </style>

@@ -92,21 +92,27 @@
   }
 </script>
 <style lang="scss">
-  #authLoginRegister
-    #formAuthPage
-      &.form-content
-        max-width 100%
+  #authLoginRegister {
+    #formAuthPage {
+      &.form-content {
+        max-width: 100%;
 
-        .form-title
-          color $blue-grey
-          text-align center
-          border-bottom 2px solid #f1f1f1
-          font-size 34px
-          margin 0 0 10px 0
+        .form-title {
+          color: $blue-grey;
+          text-align: center;
+          border-bottom: 2px solid #f1f1f1;
+          font-size: 34px;
+          margin: 0 0 10px 0;
+        }
 
-        .input-title
-          font-size 16px
+        .input-title {
+          font-size: 16px;
 
-          .q-icon
-            margin-right 5px
+          .q-icon {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
 </style>

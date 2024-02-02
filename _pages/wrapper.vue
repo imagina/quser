@@ -175,44 +175,51 @@ export default {
 </script>
 
 <style lang="scss">
-#authWrapperPage
-  background-color white
-  min-height 100vh
+#authWrapperPage {
+  background-color: white;
+  min-height: 100vh;
 
-  .wrapp__banner
-    background $custom-accent-color
-    background-size cover
-    background-repeat no-repeat
-    background-position center
+  .wrapp__banner {
+    background: $custom-accent-color;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-  .wrapp__content
-    height 100vh
+  .wrapp__content {
+    height: 100vh;
 
-    .wrapp__content_sub
-      max-width 400px
-      width 400px
+    .wrapp__content_sub {
+      max-width: 400px;
+      width: 400px;
+    }
 
-    .wrapp__title
-      color $primary
-      font-weight bold
-      font-size 30px
-      text-align center
+    .wrapp__title {
+      color: $primary;
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+    }
 
-    .wrapp__logo
-      text-align center
-      position relative
-      height 130px
-      max-height 270px
-      padding 15px
-      border-radius 10px
-      overflow hidden
+    .wrapp__logo {
+      text-align: center;
+      position: relative;
+      height: 130px;
+      max-height: 270px;
+      padding: 15px;
+      border-radius: 10px;
+      overflow: hidden;
 
-      img
-        position absolute
-        left 0
-        right 0
-        margin-left auto
-        margin-right auto
-        max-height 100px
-        max-width 100%
+      img {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 100px;
+        max-width: 100%;
+      }
+    }
+  }
+}
 </style>

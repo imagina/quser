@@ -137,20 +137,26 @@ export default {
 </script>
 
 <style lang="scss">
-#authResetPassword
-  .format-cotainer
-    position relative
+#authResetPassword {
+  .format-container {
+    position: relative;
 
-    #btnGoLogin
-      position absolute
-      bottom 31px
-      left 26px
+    #btnGoLogin {
+      position: absolute;
+      bottom: 31px;
+      left: 26px;
 
-      a
-        border-radius 10px
+      a {
+        border-radius: 10px;
+      }
+    }
+  }
 
-  #progressContent
-    .q-linear-progress
-      background-color #fff
-      color #fff !important
+  #progressContent {
+    .q-linear-progress {
+      background-color: #fff;
+      color: #fff !important;
+    }
+  }
+}
 </style>
