@@ -340,33 +340,45 @@ export default {
 </script>
 
 <style lang="scss">
-#profilePage
-  #menuContent
-    .q-tab__indicator
-      width 4px
-      border-radius 2px
+#profilePage {
+  #menuContent {
+    .q-tab__indicator {
+      width: 4px;
+      border-radius: 2px;
+    }
 
-    .q-tab
-      border-bottom 1px solid $grey-3
+    .q-tab {
+      border-bottom: 1px solid $grey-3;
 
-      &:last-child
-        border none
+      &:last-child {
+        border: none;
+      }
+    }
 
-    .q-tab__content
-      width 100%
+    .q-tab__content {
+      width: 100%;
 
-      .q-tab__label
-        width 100%
-        text-align left
+      .q-tab__label {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
 
-  #formContent
-    .q-tab-panels
-      background-color transparent
+  #formContent {
+    .q-tab-panels {
+      background-color: transparent;
 
-      .q-tab-panel
-        padding 0
+      .q-tab-panel {
+        padding: 0;
+      }
+    }
+  }
+}
 
-#profilePicture
-  .file-card_img
-    height 200px !important
+#profilePicture {
+  .file-card_img {
+    height: 200px !important;
+  }
+}
 </style>
