@@ -16,17 +16,18 @@
 </template>
 <script>
   import formLogin from '@imagina/quser/_components/auth/form'
+  import eventBus from '@imagina/qsite/_plugins/eventBus'
 
   export default {
     props: {},
     components: {formLogin},
     watch: {},
     beforeDestroy() {
-      this.$eventBus.$off('open-auth-login')
+      eventBus.off('open-auth-login')
     },
     created() {
       this.$nextTick(function () {
-        this.$eventBus.$on('open-auth-login', () => {
+        eventBus.on('open-auth-login', () => {
           this.show = true
         })
       })
@@ -44,8 +45,8 @@
     methods: {
       emitResponse() {
         this.show = false
-        this.$eventBus.$emit('auth-callback')
-        setTimeout(() => this.$eventBus.$off('auth-callback'), 1000)
+        eventBus.emit('auth-callback')
+        setTimeout(() => eventBus.off('auth-callback'), 1000)
       }
     }
   }
