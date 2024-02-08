@@ -64,7 +64,7 @@ export default {
               format: val => val ? this.$trd(val) : '-',
             },
             {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
-          ].filter(item => item.vIf != undefined ? item.vIf : true),
+          ].filter(item => item?.vIf != undefined ? item?.vIf : true),
           filters: {
             roleId: {
               value: null,

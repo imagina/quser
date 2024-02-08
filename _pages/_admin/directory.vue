@@ -61,6 +61,8 @@
   </div>
 </template>
 <script>
+import eventBus from '@imagina/qsite/_plugins/eventBus'
+
 export default {
   props: {},
   components: {},
@@ -131,7 +133,7 @@ export default {
       this.setFilters()//Set filters
       this.getData()//Get data
       //Listen event refresh
-      this.$root.$on('page.data.refresh', () => this.getData(true))
+      eventBus.on('page.data.refresh', () => this.getData(true))
     },
     //Set filters
     setFilters() {
