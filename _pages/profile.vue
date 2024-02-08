@@ -17,7 +17,7 @@
             </div>
             <q-tabs v-model="menuOption" vertical active-color="primary">
               <q-tab v-for="(opt, keyOpt) in menuOptions" :key="keyOpt" :name="opt.value" :label="opt.label"
-                     no-caps v-if="(opt.vIf != undefined) ? opt.vIf : true"/>
+                     no-caps v-if="(opt?.vIf != undefined) ? opt?.vIf : true"/>
             </q-tabs>
           </div>
         </div>
@@ -80,9 +80,11 @@
 </template>
 
 <script>
+import eventBus from '@imagina/qsite/_plugins/eventBus'
+
 export default {
   beforeDestroy() {
-    this.$root.$off('page.data.refresh')
+    eventBus.off('page.data.refresh')
   },
   props: {},
   components: {},
@@ -223,7 +225,7 @@ export default {
     //init
     async init() {
       this.loadPage()
-      this.$root.$on('page.data.refresh', () => {
+      eventBus.on('page.data.refresh', () => {
         this.loadPage()
       })
     },
