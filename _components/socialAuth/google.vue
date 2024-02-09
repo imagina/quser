@@ -4,12 +4,12 @@
     :loading="loading"
     @click.native="signIn()"
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.google')}`"
-    :icon="require('@imagina/quser/_components/socialAuth/icons/google.svg')"
+    :icon="require('modules/quser/_components/socialAuth/icons/google.svg')"
   />
 </template>
 
 <script>
-import socialBtn from '@imagina/quser/_components/socialAuth/socialBtn.vue';
+import socialBtn from 'modules/quser/_components/socialAuth/socialBtn.vue';
 
 export default {
   props: {

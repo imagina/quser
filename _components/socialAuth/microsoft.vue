@@ -2,14 +2,14 @@
     <socialBtn
         v-if="microsoftClient"
         :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.microsoft')}`"
-        :icon="require('@imagina/quser/_components/socialAuth/icons/microsoft.svg')"
+        :icon="require('modules/quser/_components/socialAuth/icons/microsoft.svg')"
         @click.native="signIn"
     />
 </template>
 
 <script>
-import storeMicrosoft from '@imagina/quser/_store/storeMicrosoft.js'
-import socialBtn from '@imagina/quser/_components/socialAuth/socialBtn.vue'
+import storeMicrosoft from 'modules/quser/_store/storeMicrosoft.js'
+import socialBtn from 'modules/quser/_components/socialAuth/socialBtn.vue'
 export default {
     components: {
         socialBtn,

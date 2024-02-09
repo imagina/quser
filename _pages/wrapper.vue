@@ -57,18 +57,18 @@
 
 <script>
 //components
-import loginForm from '@imagina/quser/_components/auth/login'
-import registerForm from '@imagina/quser/_components/auth/register'
-import resetPassword from '@imagina/quser/_components/auth/resetPassword'
-import resetPasswordComplete from '@imagina/quser/_components/auth/resetPasswordComplete'
-import forceChangePassword from '@imagina/quser/_components/auth/forceChangePassword'
-import logout from '@imagina/quser/_components/auth/logout'
-import masterModal from '@imagina/qsite/_components/master/masterModal'
+import loginForm from 'modules/quser/_components/auth/login'
+import registerForm from 'modules/quser/_components/auth/register'
+import resetPassword from 'modules/quser/_components/auth/resetPassword'
+import resetPasswordComplete from 'modules/quser/_components/auth/resetPasswordComplete'
+import forceChangePassword from 'modules/quser/_components/auth/forceChangePassword'
+import logout from 'modules/quser/_components/auth/logout'
+import masterModal from 'modules/qsite/_components/master/masterModal'
 
-import emailAuth from '@imagina/quser/_components/auth/emailAuth'
-import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
-import googleAuth from '@imagina/quser/_components/socialAuth/google'
-import microsoftAuth from '@imagina/quser/_components/socialAuth/microsoft'
+import emailAuth from 'modules/quser/_components/auth/emailAuth'
+import facebookAuth from 'modules/quser/_components/socialAuth/facebook'
+import googleAuth from 'modules/quser/_components/socialAuth/google'
+import microsoftAuth from 'modules/quser/_components/socialAuth/microsoft'
 import axios from "axios"
 import moment from "moment";
 import momenttz from 'moment-timezone';

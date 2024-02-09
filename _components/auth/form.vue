@@ -39,10 +39,10 @@
 </template>
 <script>
   //components
-  import loginForm from '@imagina/quser/_components/auth/login'
-  import registerForm from '@imagina/quser/_components/auth/register'
-  import googleAuth from '@imagina/quser/_components/socialAuth/google'
-  import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
+  import loginForm from 'modules/quser/_components/auth/login'
+  import registerForm from 'modules/quser/_components/auth/register'
+  import googleAuth from 'modules/quser/_components/socialAuth/google'
+  import facebookAuth from 'modules/quser/_components/socialAuth/facebook'
 
   export default {
     props: {
