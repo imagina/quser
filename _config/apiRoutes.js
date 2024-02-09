@@ -26,5 +26,6 @@ export default {
   changePassword: `${urlBase}/users/change-password`,
   validateChangePassword: `${urlBase}/users/password/validate-change`,
   roles: `${urlBase}/roles`,
-  authProviders: `${urlBase}/auth/providers`
+  authProviders: `${urlBase}/auth/providers`,
+  validateEmail: `${urlBase}/auth/access-with-email`
 }

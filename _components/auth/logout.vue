@@ -34,7 +34,7 @@ export default {
       if (socialType && socialType === 'microsoft') {
         await storeMicrosoft().signOut();
       }
-      
+
     })
   },
   computed: {
@@ -45,5 +45,5 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 </style>

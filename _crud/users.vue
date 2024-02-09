@@ -64,7 +64,7 @@ export default {
               format: val => val ? this.$trd(val) : '-',
             },
             {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
-          ].filter(item => item.vIf != undefined ? item.vIf : true),
+          ].filter(item => item?.vIf != undefined ? item?.vIf : true),
           filters: {
             roleId: {
               value: null,
@@ -153,6 +153,14 @@ export default {
                 //val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
               ],
             }
+          },
+          phone: {
+            value: null,
+            type: 'localizedPhone',
+            props: {
+              label: `${this.$tr('isite.cms.form.phone')}`,
+              mask:"##########",
+            },
           },
           isActivated: {
             value: '1',
@@ -272,6 +280,19 @@ export default {
             loadOptions: {
               apiRoute: 'apiRoutes.quser.departments',
               requestParams: {include: ''}
+            }
+          },
+          mediasSingle: {
+            value: {},
+            type: 'media',
+            props: {
+              label: this.$tr('iprofile.cms.label.profilePicture'),
+              accept: 'images',
+              directUpload: true,
+              multiple: false,
+              zone: 'profile',
+              entity: "Modules\\User\\Entities\\Sentinel\\User",
+              entityId: {value: this.$store.state.quserAuth.userId}
             }
           },
         }

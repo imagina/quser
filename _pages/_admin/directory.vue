@@ -61,6 +61,8 @@
   </div>
 </template>
 <script>
+import eventBus from '@imagina/qsite/_plugins/eventBus'
+
 export default {
   props: {},
   components: {},
@@ -131,7 +133,7 @@ export default {
       this.setFilters()//Set filters
       this.getData()//Get data
       //Listen event refresh
-      this.$root.$on('page.data.refresh', () => this.getData(true))
+      eventBus.on('page.data.refresh', () => this.getData(true))
     },
     //Set filters
     setFilters() {
@@ -192,23 +194,28 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
-#directoryCorporativePage
-  #usersContent
-    .user-card
-      background #f7f7f7
-      border-radius 8px
-      padding 15px
+<style lang="scss">
+#directoryCorporativePage {
+  #usersContent {
+    .user-card {
+      background: #f7f7f7;
+      border-radius: 8px;
+      padding: 15px;
 
-      .img-content
-        border 1px solid $grey-5
-        border-radius 50%
-        height 130px
-        width 130px
-        padding 6px
-        margin auto
-        overflow hidden
+      .img-content {
+        border: 1px solid $grey-5;
+        border-radius: 50%;
+        height: 130px;
+        width: 130px;
+        padding: 6px;
+        margin: auto;
+        overflow: hidden;
 
-        .avatar-img-content
-          border-radius 50% !important
+        .avatar-img-content {
+          border-radius: 50% !important;
+        }
+      }
+    }
+  }
+}
 </style>

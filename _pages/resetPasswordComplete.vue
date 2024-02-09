@@ -171,33 +171,41 @@
   }
 </script>
 
-<style lang="stylus">
-  #authResetPassword
-    min-height 100vh
-    flex-direction column
-    .format-cotainer
-      position relative
-      #btnGoLogin
-        position absolute
-        bottom 31px
-        left 26px
-        a
-          border-radius 10px
-    #progressContent
-      .q-linear-progress
-        background-color #fff
-        color #fff !important
-    .wrapp__logo
-      text-align center
-      height 130px
-      max-height 270px
-      padding 15px
-      border-radius 10px
-      overflow hidden
+<style lang="scss">
+  #authResetPassword {
+    min-height: 100vh;
+    flex-direction: column;
+    .format-cotainer {
+      position: relative;
+      #btnGoLogin {
+        position: absolute;
+        bottom: 31px;
+        left: 26px;
+        a {
+          border-radius: 10px;
+        }
+      }
+    }
+    #progressContent {
+      .q-linear-progress {
+        background-color: #fff;
+        color: #fff !important;
+      }
+    }
+    .wrapp__logo {
+      text-align: center;
+      height: 130px;
+      max-height: 270px;
+      padding: 15px;
+      border-radius: 10px;
+      overflow: hidden;
 
-      img
-        margin-left auto
-        margin-right auto
-        max-height 100px
-        max-width 100%
+      img {
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 100px;
+        max-width: 100%;
+      }
+    }
+  }
 </style>

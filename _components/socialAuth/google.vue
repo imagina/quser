@@ -1,7 +1,8 @@
 <template>
-  <socialBtn 
-    v-if="clientIdGoogle" 
-    @click.native="signIn()" 
+  <socialBtn
+    v-if="clientIdGoogle"
+    :loading="loading"
+    @click.native="signIn()"
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.google')}`"
     :icon="require('@imagina/quser/_components/socialAuth/icons/google.svg')"
   />
@@ -49,7 +50,7 @@ export default {
     //add CDN  to head
     addCDN() {
       let cdn = document.createElement('script')//create CDN google recaptcha
-      cdn.setAttribute('src', 'https://apis.google.com/js/platform.js')
+      cdn.setAttribute('src', 'https://accounts.google.com/gsi/client')
       cdn.onload = this.loadClientId()//callback when loaded cdn
       document.head.appendChild(cdn)//add to head
     },
@@ -58,39 +59,24 @@ export default {
       setTimeout(() => {
         let clientId = this.clientIdGoogle || null;
         if(!clientId) return;
-        gapi.load('auth2', () => {
-          gapi.auth2.init({client_id: clientId}).then(() => {
-            this.success = true
-          }).catch(error => {
-          })
-        })
+
+        // Initialize Google Identity Services
+        google.accounts.id.initialize({
+          client_id: clientId,
+          callback: this.login,
+          scope: 'profile email openid',
+          cancel_on_tap_outside: false,
+          context: 'use'
+        });
       }, 500)
     },
     //SignIn method
-    signIn() {
-      let auth2 = gapi.auth2.getAuthInstance();
-      let app = this
-      this.loading = true
-
-      auth2.signIn({'scope': 'profile email'}).then(response => {
-        app.login(response)
-        this.loading = false
-      }).catch(error => {
-        this.loading = false
-      })
+    signIn(response) {
+      google.accounts.id.prompt()
     },
     //Request Login
     login(response) {
-      let token = false;
-
-      // Finding access_token in google response
-      for (var k in response)
-        if (typeof response[k] == "object") {
-          let object = response[k];
-          for (var j in object)
-            if (j == "access_token")
-              token = object[j]
-        }
+      let token = response.credential
 
       //Validate response
       if (!token) {
@@ -113,6 +99,6 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="scss">
 
 </style>

@@ -20,16 +20,20 @@
             <div class="q-mb-md">
               <!--Loggin-->
               <div v-if="allowLocalLogin">
+                <div v-if="modeAuthType === 'withPassword'">
                   <login-form v-if="authType == 'login'" @logged="checkAfterLogin()" class="full-width"/>
                   <!--Register-->
                   <register-form v-if="authType == 'register'" @logged="checkAfterLogin()"
-                                class="full-width"/>
+                                 class="full-width"/>
                   <!--Loggin-->
                   <reset-password v-if="authType == 'resetPassword'" class="full-width"/>
                   <!-- reset password -->
                   <reset-password-complete v-if="authType == 'resetPasswordComplete'" class="full-width"/>
                   <!-- force change password -->
                   <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
+                </div>
+                <!--Login  With Email-->
+                <email-auth v-if="['login', 'register'].includes(authType) && modeAuthType === 'withEmail'" class="full-width"/>
               </div>
               <!--logout-->
               <logout v-if="authType == 'logout'" class="full-width"/>
@@ -39,9 +43,9 @@
               <q-separator class="q-mb-md"/>
               <!--Actions-->
               <div class="row justify-center q-gutter-sm">
-                <google-auth/>
-                <facebook-auth/>
-                <microsoftAuth @logged="checkAfterLogin()" />
+                <google-auth @logged="checkAfterLogin"/>
+                <facebook-auth @logged="checkAfterLogin"/>
+                <microsoftAuth @logged="checkAfterLogin" />
               </div>
             </div>
           </div>
@@ -61,6 +65,7 @@ import forceChangePassword from '@imagina/quser/_components/auth/forceChangePass
 import logout from '@imagina/quser/_components/auth/logout'
 import masterModal from '@imagina/qsite/_components/master/masterModal'
 
+import emailAuth from '@imagina/quser/_components/auth/emailAuth'
 import facebookAuth from '@imagina/quser/_components/socialAuth/facebook'
 import googleAuth from '@imagina/quser/_components/socialAuth/google'
 import microsoftAuth from '@imagina/quser/_components/socialAuth/microsoft'
@@ -72,15 +77,16 @@ export default {
   props: {},
   components: {
     loginForm,
-    registerForm, 
+    registerForm,
     resetPassword,
-    forceChangePassword, 
-    logout, 
-    facebookAuth, 
-    googleAuth, 
+    forceChangePassword,
+    logout,
+    facebookAuth,
+    googleAuth,
     resetPasswordComplete,
     microsoftAuth,
-    masterModal
+    masterModal,
+    emailAuth
   },
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)
@@ -121,7 +127,7 @@ export default {
     //Validate if load social auth
     withAuthSocial() {
       let hasSetting = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsersWithSocialNetworks'))
-      return hasSetting/* && (config('app.mode') == 'ipanel'))*/ ? true : false
+      return hasSetting && (this.authType != "logout")
     },
     microsoftClient() {
       return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
@@ -129,6 +135,9 @@ export default {
     allowLocalLogin() {
       return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
     },
+    modeAuthType() {
+      return this.$store.getters['qsiteApp/getConfigApp']('iprofile.authType') || "withPassword"
+    }
   },
   methods: {
     init() {
@@ -153,56 +162,64 @@ export default {
       //Get workSapce assigned from user Role. if not found it, set `iadmin` as default
       let windowLastRoute = this.$route.query.redirectTo || false
       let settingsProfile = this.$store.state.quserAuth.settings
-      let workSpace = settingsProfile.workSpace || 'iadmin'
+      let workSpace = settingsProfile?.workSpace || 'iadmin'
+      const redirectToWorkSpace = window.location.href.replace(this.appConfig.mode, workSpace)
 
       //Redirect to same workSpace
       if (windowLastRoute || (workSpace == config('app.mode'))) this.$router.push({name: 'app.home'})
       //Redirect to assigned workSpace
-      else this.$helper.openExternalURL(`${this.$store.state.qsiteApp.baseUrl}/${workSpace}`, false)
+      else this.$helper.openExternalURL(redirectToWorkSpace, false)
     }
   }
 }
 </script>
 
-<style lang="stylus">
-#authWrapperPage
-  background-color white
-  min-height 100vh
+<style lang="scss">
+#authWrapperPage {
+  background-color: white;
+  min-height: 100vh;
 
-  .wrapp__banner
-    background $custom-accent-color
-    background-size cover
-    background-repeat no-repeat
-    background-position center
+  .wrapp__banner {
+    background: $custom-accent-color;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-  .wrapp__content
-    height 100vh
+  .wrapp__content {
+    height: 100vh;
 
-    .wrapp__content_sub
-      max-width 400px
-      width 400px
+    .wrapp__content_sub {
+      max-width: 400px;
+      width: 400px;
+    }
 
-    .wrapp__title
-      color $primary
-      font-weight bold
-      font-size 30px
-      text-align center
+    .wrapp__title {
+      color: $primary;
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+    }
 
-    .wrapp__logo
-      text-align center
-      position relative
-      height 130px
-      max-height 270px
-      padding 15px
-      border-radius 10px
-      overflow hidden
+    .wrapp__logo {
+      text-align: center;
+      position: relative;
+      height: 130px;
+      max-height: 270px;
+      padding: 15px;
+      border-radius: 10px;
+      overflow: hidden;
 
-      img
-        position absolute
-        left 0
-        right 0
-        margin-left auto
-        margin-right auto
-        max-height 100px
-        max-width 100%
+      img {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 100px;
+        max-width: 100%;
+      }
+    }
+  }
+}
 </style>

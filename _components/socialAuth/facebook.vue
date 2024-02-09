@@ -2,6 +2,7 @@
   <socialBtn
     @click.native="signIn()"
     v-if="appIdFacebook"
+    :loading="loading"
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.facebook')}`"
     :icon="require('@imagina/quser/_components/socialAuth/icons/facebook.svg')"
   />
@@ -64,7 +65,7 @@ export default {
         js = d.createElement(s);
         js.id = id;
         js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
+        fjs?.parentNode?.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     },
     //SignIn method
@@ -104,6 +105,6 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="scss">
 
 </style>

@@ -10,9 +10,14 @@
         <!--Menu-->
         <div id="menuContent" class="col-12 col-md-3">
           <div class="box box-auto-height">
+            <!--Profile picture -->
+            <div id="profilePicture" v-for="(field, fieldKey) in formsData.profile.fields" :key="fieldKey"
+                       :class="field.colClass || 'col-12 q-mb-md'">
+                <dynamic-field :field="field" :itemId="userData.id" v-model="form.session[fieldKey]"/>
+            </div>
             <q-tabs v-model="menuOption" vertical active-color="primary">
               <q-tab v-for="(opt, keyOpt) in menuOptions" :key="keyOpt" :name="opt.value" :label="opt.label"
-                     no-caps v-if="(opt.vIf != undefined) ? opt.vIf : true"/>
+                     no-caps v-if="(opt?.vIf != undefined) ? opt?.vIf : true"/>
             </q-tabs>
           </div>
         </div>
@@ -75,9 +80,11 @@
 </template>
 
 <script>
+import eventBus from '@imagina/qsite/_plugins/eventBus'
+
 export default {
   beforeDestroy() {
-    this.$root.$off('page.data.refresh')
+    eventBus.off('page.data.refresh')
   },
   props: {},
   components: {},
@@ -192,6 +199,24 @@ export default {
               }
             },
           }
+        },
+        profile: {
+          fields: {
+            mediasSingle: {
+              name: 'mediasSingle',
+              value: {},
+              type: 'media',
+              props: {
+                label: this.$tr('iprofile.cms.label.profilePicture'),
+                accept: 'images',
+                directUpload: true,
+                multiple: false,
+                zone: 'profile',
+                entity: "Modules\\User\\Entities\\Sentinel\\User",
+                entityId: null,
+              }
+            },
+          }
         }
       }
     }
@@ -200,7 +225,7 @@ export default {
     //init
     async init() {
       this.loadPage()
-      this.$root.$on('page.data.refresh', () => {
+      eventBus.on('page.data.refresh', () => {
         this.loadPage()
       })
     },
@@ -316,31 +341,46 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-#profilePage
-  #menuContent
-    .q-tab__indicator
-      width 4px
-      border-radius 2px
+<style lang="scss">
+#profilePage {
+  #menuContent {
+    .q-tab__indicator {
+      width: 4px;
+      border-radius: 2px;
+    }
 
-    .q-tab
-      border-bottom 1px solid $grey-3
+    .q-tab {
+      border-bottom: 1px solid $grey-3;
 
-      &:last-child
-        border none
+      &:last-child {
+        border: none;
+      }
+    }
 
-    .q-tab__content
-      width 100%
+    .q-tab__content {
+      width: 100%;
 
-      .q-tab__label
-        width 100%
-        text-align left
+      .q-tab__label {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
 
-  #formContent
-    .q-tab-panels
-      background-color transparent
+  #formContent {
+    .q-tab-panels {
+      background-color: transparent;
 
-      .q-tab-panel
-        padding 0
+      .q-tab-panel {
+        padding: 0;
+      }
+    }
+  }
+}
 
+#profilePicture {
+  .file-card_img {
+    height: 200px !important;
+  }
+}
 </style>

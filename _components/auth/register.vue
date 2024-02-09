@@ -325,21 +325,26 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-#formLoginComponent
-  max-width 400px
+<style lang="scss">
+#formLoginComponent {
+  max-width: 400px;
 
-  #formContent
-    .q-option-group
-      width 100%
+  #formContent {
+    .q-option-group {
+      width: 100%;
 
-      .q-radio
-        width 100%
-        border 2px solid $secondary
-        border-radius $custom-radius-items
-        margin-bottom 10px
-        padding 10px
+      .q-radio {
+        width: 100%;
+        border: 2px solid $secondary;
+        border-radius: $custom-radius-items;
+        margin-bottom: 10px;
+        padding: 10px;
 
-        .q-radio__label
-          color $blue-grey
+        .q-radio__label {
+          color: $blue-grey;
+        }
+      }
+    }
+  }
+}
 </style>
