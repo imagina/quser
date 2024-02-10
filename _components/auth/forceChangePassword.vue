@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import crud from "@imagina/qcrud/_services/baseService";
+import crud from "modules/qcrud/_services/baseService";
 
 export default {
   data() {

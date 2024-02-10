@@ -3,7 +3,7 @@
 </template>
 <script>
 //Component
-import quickCard from '@imagina/qsite/_components/master/quickCard'
+import quickCard from 'modules/qsite/_components/master/quickCard'
 
 export default {
   props: {},

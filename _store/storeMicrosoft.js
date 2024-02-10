@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import baseService from '@imagina/qcrud/_services/baseService.js';
+import baseService from 'modules/qcrud/_services/baseService.js';
 import * as msal from "@azure/msal-browser";
 
 const msalConfig = {
@@ -97,7 +97,7 @@ export default function storeMicrosoft() {
     function handleResponse(response) {
         if (response) {
             setUsername(response.account.username);
-            
+
         } else {
             selectAccount();
         }

@@ -15,8 +15,8 @@
   </q-dialog>
 </template>
 <script>
-  import formLogin from '@imagina/quser/_components/auth/form'
-  import eventBus from '@imagina/qsite/_plugins/eventBus'
+  import formLogin from 'modules/quser/_components/auth/form'
+  import eventBus from 'modules/qsite/_plugins/eventBus'
 
   export default {
     props: {},

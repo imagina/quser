@@ -1,4 +1,4 @@
-import auth from '@imagina/quser/_store/auth/index'
+import auth from 'modules/quser/_store/auth/index'
 
 export default {
   auth : auth

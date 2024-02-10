@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import storeMicrosoft from '@imagina/quser/_store/storeMicrosoft.js'
+import storeMicrosoft from 'modules/quser/_store/storeMicrosoft.js'
 export default {
   beforeRouteEnter(to, from, next) {
     next(vm => vm.fromVueRoute = from.name || false)

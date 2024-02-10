@@ -4,11 +4,11 @@
     v-if="appIdFacebook"
     :loading="loading"
     :title="`${$tr('isite.cms.label.continueWith')} ${$tr('isite.cms.label.facebook')}`"
-    :icon="require('@imagina/quser/_components/socialAuth/icons/facebook.svg')"
+    :icon="require('modules/quser/_components/socialAuth/icons/facebook.svg')"
   />
 </template>
 <script>
-import socialBtn from '@imagina/quser/_components/socialAuth/socialBtn.vue';
+import socialBtn from 'modules/quser/_components/socialAuth/socialBtn.vue';
 export default {
   props: {
     buttonProps: {

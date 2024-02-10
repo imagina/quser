@@ -1,17 +1,17 @@
 //Services
-import crud from '@imagina/qcrud/_services/baseService'
+import crud from 'modules/qcrud/_services/baseService'
 
 //Plugins
-import helper from '@imagina/qsite/_plugins/helper'
-import cache from '@imagina/qsite/_plugins/cache'
-import eventBus from '@imagina/qsite/_plugins/eventBus'
-import apiResponse from '@imagina/qcrud/_plugins/apiResponse'
+import helper from 'modules/qsite/_plugins/helper'
+import cache from 'modules/qsite/_plugins/cache'
+import eventBus from 'modules/qsite/_plugins/eventBus'
+import apiResponse from 'modules/qcrud/_plugins/apiResponse'
 
 //Features
 import axios from 'axios'
-import config from '@imagina/qsite/_config/master/index'
+import config from 'modules/qsite/_config/master/index'
 import { uid } from 'quasar'
-import { getTokenFirebase } from '@imagina/qnotification/_plugins/firebase.js'
+import { getTokenFirebase } from 'modules/qnotification/_plugins/firebase.js'
 
 //Request Login
 export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {

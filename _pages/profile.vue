@@ -66,7 +66,7 @@
             </q-tab-panel>
             <!--Address-->
             <q-tab-panel name="address" v-if="hasPermission.addresses">
-              <crud :crud-data="import('@imagina/quser/_crud/address')"
+              <crud :crud-data="import('modules/quser/_crud/address')"
                     @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
                     @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
             </q-tab-panel>
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import eventBus from '@imagina/qsite/_plugins/eventBus'
+import eventBus from 'modules/qsite/_plugins/eventBus'
 
 export default {
   beforeDestroy() {
