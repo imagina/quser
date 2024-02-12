@@ -29,7 +29,7 @@
                  data-test-id="loginPasswordField"
         >
           <template v-slot:append>
-            <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
+            <q-icon :name="isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'" class="cursor-pointer"
                     @click="isPwd = !isPwd"/>
           </template>
         </q-input>
