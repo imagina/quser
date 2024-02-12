@@ -4,7 +4,7 @@
       <!--Header-->
       <q-card-section class="row items-center q-pa-none">
         <q-space/>
-        <q-btn icon="close" flat round dense v-close-popup @click="emitResponse()"/>
+        <q-btn icon="fa fa-close" flat round dense v-close-popup @click="emitResponse()"/>
       </q-card-section>
 
       <!--Form-->
