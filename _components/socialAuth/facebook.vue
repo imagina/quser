@@ -17,6 +17,7 @@ export default {
       }
     }
   },
+  emits: ['logged'],
   components: {socialBtn},
   watch: {},
   mounted() {

@@ -5,7 +5,7 @@
       <!--Search-->
       <div class="full-width row">
         <dynamic-field v-model="search" :field="searchField" class="col-12 col-md-4 col-xl-3"
-                       @input="getData()"/>
+                       @update:modelValue="getData()"/>
       </div>
       <!--Users-->
       <div id="usersContent" class="q-py-lg row q-col-gutter-lg">
@@ -53,7 +53,7 @@
       <!--Pagination-->
       <div class="row justify-end full-width">
         <q-pagination v-model="pagination.page" :max="pagination.lastPage" input color="grey-9"
-                      @input="(page) => {pagination.page = page; getData()}"/>
+                      @update:modelValue="(page) => {pagination.page = page; getData()}"/>
       </div>
       <!--Loading-->
       <inner-loading :visible="loading"/>
@@ -61,7 +61,7 @@
   </div>
 </template>
 <script>
-import eventBus from 'modules/qsite/_plugins/eventBus'
+import { eventBus } from 'src/plugins/utils'
 
 export default {
   props: {},

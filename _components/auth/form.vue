@@ -49,6 +49,7 @@
       horizontal: {type: Boolean, default: false},
       horizontalExtraFields: {type: Boolean, default: false}
     },
+    emits: ['logged','registered'],
     components: {
       loginForm,
       registerForm,

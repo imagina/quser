@@ -29,7 +29,7 @@
                  data-test-id="loginPasswordField"
         >
           <template v-slot:append>
-            <q-icon :name="isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'" class="cursor-pointer"
+            <q-icon :name="isPwd ? 'fa-light fa-eye-slash' : 'fa-light fa-eye'" class="cursor-pointer"
                     @click="isPwd = !isPwd"/>
           </template>
         </q-input>
@@ -65,6 +65,7 @@ export default {
     email: {default: null},
     horizontal: {type: Boolean, default: false}
   },
+  emits: ['logged'],
   watch: {
     email() {
       this.setEmail()
