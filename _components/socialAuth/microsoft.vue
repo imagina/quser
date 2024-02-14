@@ -14,6 +14,7 @@ export default {
     components: {
         socialBtn,
     },
+    emits: ['logged'],
     computed: {
         token() {
             return storeMicrosoft().getToken();

@@ -65,6 +65,7 @@ export default {
     email: {default: null},
     horizontal: {type: Boolean, default: false}
   },
+  emits: ['logged'],
   watch: {
     email() {
       this.setEmail()

@@ -22,6 +22,7 @@
 <script>
 export default {
   components: {},
+  emits: ['logged'],
   watch: {
     async watchRoleId(newValue, oldValue) {
       //Call role form
