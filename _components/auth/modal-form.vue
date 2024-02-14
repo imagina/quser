@@ -16,7 +16,7 @@
 </template>
 <script>
   import formLogin from 'modules/quser/_components/auth/form'
-  import eventBus from 'modules/qsite/_plugins/eventBus'
+  import { eventBus } from 'src/plugins/utils'
 
   export default {
     props: {},
