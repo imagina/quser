@@ -2,9 +2,7 @@
 import crud from 'modules/qcrud/_services/baseService'
 
 //Plugins
-import helper from 'modules/qsite/_plugins/helper'
-import cache from 'modules/qsite/_plugins/cache'
-import eventBus from 'modules/qsite/_plugins/eventBus'
+import { helper, cache, eventBus } from 'src/plugins/utils'
 import apiResponse from 'modules/qcrud/_plugins/apiResponse'
 
 //Features
