@@ -26,7 +26,7 @@
             <!--Image-->
             <div class="col-12 col-lg-5">
               <div class="img-content">
-                <avatar-image :src="user.mainImage" width="1160px" height="116px"/>
+                <avatar-image :src="user?.mainImage" width="1160px" height="116px"/>
               </div>
             </div>
             <!--Information-->
