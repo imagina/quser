@@ -7,7 +7,7 @@ import apiResponse from 'modules/qcrud/_plugins/apiResponse'
 
 //Features
 import axios from 'axios'
-import config from 'src/config/plugin'
+import config from 'src/setup/plugin'
 import { uid } from 'quasar'
 import { getTokenFirebase } from 'modules/qnotification/_plugins/firebase.js'
 
