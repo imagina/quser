@@ -16,10 +16,10 @@
                 <dynamic-field :field="field" :itemId="userData.id" v-model="form.session[fieldKey]"/>
             </div>
             <q-tabs v-model="menuOption" vertical active-color="primary">
-              <template v-for="(opt, keyOpt) in menuOptions">
+              <template v-for="(opt, keyOpt) in menuOptions" :key="keyOpt">
                 <q-tab
                   v-if="(opt?.vIf != undefined) ? opt?.vIf : true"
-                  :key="keyOpt" :name="opt.value"
+                  :name="opt.value"
                   :label="opt.label"
                   no-caps
                 />

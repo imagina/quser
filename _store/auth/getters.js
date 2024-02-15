@@ -110,6 +110,6 @@ export const profileImage = (state =>  {
 
     return state.userData.mediaFiles.profile
   }
-  const defaultPicture = state.userData.mainImage
+  const defaultPicture = state?.userData?.mainImage
   return { smallThumb: defaultPicture, mediumThumb: defaultPicture }
 })
