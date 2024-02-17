@@ -9,7 +9,7 @@ export default {
   computed: {
     //Extra fields from setting
     extraFields() {
-      return this.$clone(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::userAddressesExtraFields'))
+      return this.$clone(this.$getSetting('iprofile::userAddressesExtraFields'))
     },
     crudData() {
       return {

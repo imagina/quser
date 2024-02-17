@@ -155,12 +155,12 @@ export default {
     //Get settings data
     settings() {
       return {
-        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
-        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
-        rolesToRegister: this.$store.getters['qsiteApp/getSettingValueByName'](this.rolesToRegister) ||
-            this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToRegister'),
-        authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authRegisterCaption'),
-        activateCaptcha: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::activateCaptcha')),
+        politics: this.$getSetting('iprofile::registerUserWithPoliticsOfPrivacy'),
+        terms: this.$getSetting('iprofile::registerUserWithTermsAndConditions'),
+        rolesToRegister: this.$getSetting(this.rolesToRegister) ||
+            this.$getSetting('iprofile::rolesToRegister'),
+        authRegisterCaption: this.$getSetting('iprofile::authRegisterCaption'),
+        activateCaptcha: parseInt(this.$getSetting('isite::activateCaptcha')),
       }
     },
     //Termns and conditions
@@ -187,7 +187,7 @@ export default {
           rules: [val => !!val || this.$tr('isite.cms.message.fieldRequired')],
           label: this.$tr('iprofile.cms.message.privacyData', {
             concatData: concatData,
-            siteName: this.$store.getters['qsiteApp/getSettingValueByName']('core::site-name')
+            siteName: this.$getSetting('core::site-name')
           }),
         }
       }

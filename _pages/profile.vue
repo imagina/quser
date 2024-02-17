@@ -117,7 +117,7 @@ export default {
     //Has permissions
     hasPermission() {
       return {
-        addresses: this.$auth.hasAccess('profile.addresses.manage')
+        addresses: this.$hasAccess('profile.addresses.manage')
       }
     },
     //return formId from current role

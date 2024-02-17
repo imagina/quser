@@ -23,7 +23,7 @@ export default {
             return storeMicrosoft().getDataLogin();
         },
         microsoftClient() {
-            return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId') || false
+            return this.$getSetting('isite::microsoftClientId') || false
         },
         loading() {
                 return storeMicrosoft().getLoading();

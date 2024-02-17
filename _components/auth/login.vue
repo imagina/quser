@@ -94,8 +94,8 @@ export default {
     //Settings
     settings() {
       let response = {
-        authLoginCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authLoginCaption'),
-        allowResetPassword: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowResetPassword'),
+        authLoginCaption: this.$getSetting('iprofile::authLoginCaption'),
+        allowResetPassword: this.$getSetting('iprofile::allowResetPassword'),
       }
 
       //response
@@ -109,7 +109,7 @@ export default {
       }
     },
     withRegister() {
-      let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
+      let hasSetting = this.$getSetting('iprofile::registerUsers')
       return (hasSetting && parseInt(hasSetting)) /*&& (config('app.mode') == 'ipanel'))*/ ? true : false
     }
   },

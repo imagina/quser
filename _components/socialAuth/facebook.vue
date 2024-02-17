@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     appIdFacebook() {
-      return this.$store.getters['qsiteApp/getSettingValueByName']('isite::facebookClientId')
+      return this.$getSetting('isite::facebookClientId')
     },
     propsButton() {
       return {

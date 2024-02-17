@@ -76,7 +76,7 @@ export default {
     return {
       loading: false,
       search: null,
-      rolesToDirectory: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::rolesToDirectory'),
+      rolesToDirectory: this.$getSetting('iprofile::rolesToDirectory'),
       pagination: {
         perPage: 20,
         page: 1,

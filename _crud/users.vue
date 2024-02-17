@@ -304,7 +304,7 @@ export default {
     },
     //Setting custom login
     customLogin() {
-      var setting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::customLogin') || []
+      var setting = this.$getSetting('iprofile::customLogin') || []
       return setting.includes("user_name")
     }
   },

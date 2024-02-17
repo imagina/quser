@@ -57,8 +57,8 @@
 
         let response = {
           logo: this.$store.state.qsiteApp.logo,
-          authTitle: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authTitle'),
-          hideLogo: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::hideLogo')),
+          authTitle: this.$getSetting('iprofile::authTitle'),
+          hideLogo: parseInt(this.$getSetting('iprofile::hideLogo')),
           authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
         }
 
