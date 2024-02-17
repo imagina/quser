@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     clientIdGoogle() {
-      return this.$store.getters['qsiteApp/getSettingValueByName']('isite::googleClientId')
+      return this.$getSetting('isite::googleClientId')
     },
     propsButton() {
       return {

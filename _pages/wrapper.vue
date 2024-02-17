@@ -116,8 +116,8 @@ export default {
 
       let response = {
         logo: this.$store.state.qsiteApp.logo,
-        authTitle: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authTitle'),
-        hideLogo: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::hideLogo')),
+        authTitle: this.$getSetting('iprofile::authTitle'),
+        hideLogo: parseInt(this.$getSetting('iprofile::hideLogo')),
         authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
       }
 
@@ -126,14 +126,14 @@ export default {
     },
     //Validate if load social auth
     withAuthSocial() {
-      let hasSetting = parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsersWithSocialNetworks'))
+      let hasSetting = parseInt(this.$getSetting('iprofile::registerUsersWithSocialNetworks'))
       return hasSetting && (this.authType != "logout")
     },
     microsoftClient() {
-      return this.$store.getters['qsiteApp/getSettingValueByName']('isite::microsoftClientId')
+      return this.$getSetting('isite::microsoftClientId')
     },
     allowLocalLogin() {
-      return Boolean(Number(this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::allowLocalLogin')))
+      return Boolean(Number(this.$getSetting('iprofile::allowLocalLogin')))
     },
     modeAuthType() {
       return this.$store.getters['qsiteApp/getConfigApp']('iprofile.authType') || "withPassword"

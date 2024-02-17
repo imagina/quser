@@ -70,7 +70,7 @@
     },
     computed: {
       withRegister() {
-        let hasSetting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUsers')
+        let hasSetting = this.$getSetting('iprofile::registerUsers')
         return (hasSetting && !this.isIadmin) ? true : false
       },
       isIadmin() {
