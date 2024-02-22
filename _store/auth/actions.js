@@ -492,9 +492,9 @@ export const VALIDATE_SESION = ({ commit, dispatch, state }, params = {}) => {
     if (state.authenticated) return resolve(true)
     params = params || {}
     //Emit event to open modal login
-    eventBus.$emit(params.listenEventName || 'open-auth-login')
+    eventBus.emit(params.listenEventName || 'open-auth-login')
     //Watch callback login
-    eventBus.$on('auth-callback', () => resolve(true))
+    eventBus.on('auth-callback', () => resolve(true))
   })
 }
 
