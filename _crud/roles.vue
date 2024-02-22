@@ -75,8 +75,7 @@ export default {
             type: 'crud',
             props: {
               crudType: 'select',
-              //[ptc]
-              // crudData: import('modules/qform/_crud/crudForms'),
+              crudData: import('modules/qform/_crud/crudForms'),
               crudProps: {
                 label: `${this.$tr('isite.cms.label.form')}`,
               },
