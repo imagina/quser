@@ -122,7 +122,7 @@ export default {
             }
           },
           incognitoProfile: {
-            value: '0',
+            value: 0,
             type: 'select',
             fakeFieldName: 'settings',
             props: {
