@@ -51,6 +51,7 @@ export const userDepartmentsSelect = (state) => {
 }
 
 export const hasAccess = (state) => (can, params = {}) => {
+  if(can === null) return true //Return true if permission is null
   let permissions = state.permissions//Get default permissions
 
   //Get role permissions
