@@ -57,7 +57,7 @@ const state = reactive({
     dataLogin: {},
 });
 const myMSALObj = new msal.PublicClientApplication(msalConfig);
-
+await myMSALObj.initialize()
 export default function storeMicrosoft() {
     function getMsalConfig() {
         return state.msalConfig;
@@ -87,6 +87,7 @@ export default function storeMicrosoft() {
             setDataLogin(response);
             hideLoading();
         } catch (error) {
+            console.log(error);
             setToken(null);
             hideLoading();
             setCancelLogin(true);
