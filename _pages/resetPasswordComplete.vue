@@ -53,7 +53,7 @@
     computed: {
       settings() {
         //Get auth banner
-        let authBanner = this.$store.getters['qsiteApp/getSettingMediaByName']('iprofile::authBanner')
+        let authBanner = this.$getMediaSetting('iprofile::authBanner')
 
         let response = {
           logo: this.$store.state.qsiteApp.logo,
