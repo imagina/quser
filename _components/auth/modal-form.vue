@@ -22,7 +22,7 @@
     props: {},
     components: {formLogin},
     watch: {},
-    beforeDestroy() {
+    beforeUnmount() {
       eventBus.off('open-auth-login')
     },
     created() {

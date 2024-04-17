@@ -67,6 +67,9 @@ export default {
   props: {},
   components: {},
   watch: {},
+  beforeUnmount() {
+    eventBus.off('page.data.refresh')
+  },
   mounted() {
     this.$nextTick(function () {
       this.init()
