@@ -286,6 +286,7 @@ export default {
             value: {},
             type: 'media',
             props: {
+              vIf: Boolean(config('main.qmedia.moduleName')),
               label: this.$tr('iprofile.cms.label.profilePicture'),
               accept: 'images',
               directUpload: true,
