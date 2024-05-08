@@ -54,12 +54,12 @@
           <q-btn
             class="tw-text-xs tw-rounded-2xl"
             color="primary"
-            icon-right="fa-solid fa-broom-wide" 
+            icon-right="fa-solid fa-broom-wide"
             :label="$t('isite.cms.configList.clearCache', { capitalize: true })"
             flat
             rouded
             no-caps
-            @click="clearCache"
+            @click="$router.push({name: 'app.update.app'})"
           />
         </div>
       </div>
@@ -181,10 +181,7 @@ export default {
       if (windowLastRoute || (workSpace == config('app.mode'))) this.$router.push({name: 'app.home'})
       //Redirect to assigned workSpace
       else this.$helper.openExternalURL(redirectToWorkSpace, false)
-    },
-    clearCache() {
-      this.$store.dispatch('qsiteApp/REFRESH_PAGE');
-    },
+    }
   }
 }
 </script>
