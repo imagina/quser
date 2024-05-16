@@ -90,7 +90,7 @@ export default {
                 clearable: true
               }
             },
-            isActivated: {
+            status: {
               value: null,
               type: 'select',
               props: {
