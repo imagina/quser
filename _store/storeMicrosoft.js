@@ -1,11 +1,12 @@
 import { reactive } from 'vue';
 import baseService from 'modules/qcrud/_services/baseService.js';
 import * as msal from "@azure/msal-browser";
+import { store } from "src/plugins/utils"
 
 const msalConfig = {
     auth: {
-        clientId: "43331c90-0692-47a9-a48f-662f1bbf9c3e",
-        authority: "https://login.microsoftonline.com/7e761206-66fa-448b-a3e6-6c0660e38ed5",
+        clientId: store.getSetting('isite::microsoftClientId'),
+        authority: store.getSetting('iprofile::microsoftAuthUrl'),
         redirectUri: window.location.origin,
         postLogoutRedirectUri: window.location.origin
     },
@@ -36,7 +37,7 @@ const msalConfig = {
 };
 
 const loginRequest = {
-    scopes: ["User.Read", "offline_access"]
+    scopes: store.getSetting('iprofile::microsoftScopeLogin')
 };
 
 
