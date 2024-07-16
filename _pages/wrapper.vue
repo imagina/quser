@@ -142,7 +142,7 @@ export default {
       return hasSetting && (this.authType != "logout")
     },
     microsoftClient() {
-      return this.$getSetting('isite::microsoftClientId')
+      return this.$getSetting('iprofile::microsoftClientId')
     },
     allowLocalLogin() {
       return Boolean(Number(this.$getSetting('iprofile::allowLocalLogin')))
