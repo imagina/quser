@@ -23,7 +23,7 @@ export default {
             return storeMicrosoft().getDataLogin();
         },
         microsoftClient() {
-            return this.$getSetting('isite::microsoftClientId') || false
+            return this.$getSetting('iprofile::microsoftClientId') || false
         },
         loading() {
                 return storeMicrosoft().getLoading();
