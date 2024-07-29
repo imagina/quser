@@ -50,18 +50,6 @@
             </div>
           </div>
         </div>
-        <div class="tw-flex tw-justify-end tw--mt-10 tw-mr-2 tw-mb-2">
-          <q-btn
-            class="tw-text-xs tw-rounded-2xl"
-            color="primary"
-            icon-right="fa-solid fa-broom-wide"
-            :label="$t('isite.cms.configList.clearCache', { capitalize: true })"
-            flat
-            rouded
-            no-caps
-            @click="$router.push({name: 'app.update.app'})"
-          />
-        </div>
       </div>
     </div>
   </div>
