@@ -361,7 +361,6 @@ export const USER_IMPERSONATE = ({commit, dispatch, state}, userId = false) => {
           expiresIn: response.data.expiresIn
         })
 
-        await dispatch('qsiteApp/REFRESH_PAGE', null, {root: true})
         resolve(true)
       }).catch(error => {
         console.error('[AUTH ACTION] impersonate', error)
@@ -394,8 +393,7 @@ export const USER_LEAVE_IMPERSONATE = ({commit, dispatch, state}) => {
       await cache.set('auth.department.id', impersonatorData.departmentId)
       //AUTH success
       await dispatch('AUTH_SUCCESS', impersonatorData.sessionData)
-
-      await dispatch('qsiteApp/REFRESH_PAGE', null, {root: true})
+      
       resolve(true)
     } catch (e) {
       console.error('[USER LEAVE IMPERSONATE] ', e)
