@@ -1,9 +1,26 @@
-<template></template>
+<template>
+  <master-modal v-model="detailModal.show" :loading="detailModal.loading"
+                :title="$tr('isite.cms.details')">
+    <q-list separator v-if="detailModal.data">
+      <q-item v-for="(item, key) in detailModal.data" :key="key">
+        <q-item-section class="q-px-none">
+          <q-item-label caption class="text-blue-grey">{{ item.label }}</q-item-label>
+          <q-item-label>{{ item.value }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </q-list>
+  </master-modal>
+</template>
 <script>
 export default {
   data() {
     return {
-      crudId: this.$uid()
+      crudId: this.$uid(),
+      detailModal: {
+        show: false,
+        data: null,
+        loading: false
+      }
     }
   },
   computed: {
@@ -18,7 +35,7 @@ export default {
           title: this.$tr('iprofile.cms.newUser'),
         },
         read: {
-          requestParams: {include: 'roles,departments'},
+          requestParams: {include: 'roles,departments,fields'},
           columns: [
             {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
             {
@@ -102,7 +119,13 @@ export default {
                 clearable: true
               }
             },
-          }
+          },
+          actions: [{
+            name: 'details',
+            label: 'Details',
+            action: this.showUserDetails,
+            icon: 'fa-light fa-book'
+          }]
         },
         update: {
           title: this.$tr('iprofile.cms.updateUser'),
@@ -308,5 +331,45 @@ export default {
       return setting.includes("user_name")
     }
   },
+  methods: {
+    //Order and show the user details
+    async showUserDetails(user) {
+      this.detailModal.data = null;
+      this.detailModal.show = true;
+      this.detailModal.loading = true;
+      let fields = [
+        { label: this.$tr('isite.cms.form.name'), value: user.fullName },
+        { label: this.$tr('isite.cms.form.email'), value: user.email }
+      ];
+      //Add extra fields
+      if (user.fields.length) {
+        let extraFields = await this.getFields(user.fields.map(item => item.name));
+        user.fields.forEach(userField => {
+          let extraField = extraFields.find(item => item.name == userField.name);
+          if (extraField) fields.push({ label: extraField.label, value: userField.value });
+        });
+      }
+      this.detailModal.data = fields;
+      this.detailModal.loading = false;
+    },
+    //Get the fields by name
+    getFields(fieldNames) {
+      return new Promise((resolve, reject) => {
+        let requestParams = {
+          refresh: true,
+          params: { filter: { name: fieldNames } }
+        };
+        //request
+        this.$crud.index('apiRoutes.qform.fields', requestParams).then(response => {
+          return resolve(response.data);
+        }).catch(error => {
+          this.$apiResponse.handleError(error, () => {
+            reject(error);
+            this.loading = false;
+          });
+        });
+      });
+    }
+  }
 }
 </script>
