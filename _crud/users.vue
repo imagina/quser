@@ -1,26 +1,43 @@
-<template></template>
+<template>
+  <master-modal v-model="detailModal.show" :loading="detailModal.loading"
+                :title="$tr('isite.cms.details')">
+    <q-list separator v-if="detailModal.data">
+      <q-item v-for="(item, key) in detailModal.data" :key="key">
+        <q-item-section class="q-px-none">
+          <q-item-label caption class="text-blue-grey">{{ item.label }}</q-item-label>
+          <q-item-label>{{ item.value }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </q-list>
+  </master-modal>
+</template>
 <script>
 export default {
   data() {
     return {
-      crudId: this.$uid()
-    }
+      crudId: this.$uid(),
+      detailModal: {
+        show: false,
+        data: null,
+        loading: false
+      }
+    };
   },
   computed: {
     crudData() {
       return {
         crudId: this.crudId,
-        entityName: config("main.quser.entityNames.user"),
+        entityName: config('main.quser.entityNames.user'),
         apiRoute: 'apiRoutes.quser.users',
         permission: 'profile.user',
         extraFormFields: 'Iprofile.crud-fields.users',
         create: {
-          title: this.$tr('iprofile.cms.newUser'),
+          title: this.$tr('iprofile.cms.newUser')
         },
         read: {
-          requestParams: {include: 'roles,departments'},
+          requestParams: { include: 'roles,departments,fields' },
           columns: [
-            {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
+            { name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id' },
             {
               name: 'first_name', label: this.$tr('isite.cms.form.name'), field: 'fullName',
               align: 'left', sortable: true
@@ -41,29 +58,29 @@ export default {
               name: 'roles', label: this.$trp('isite.cms.label.role'), field: 'roles',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
               format: val => val ? val.map(item => {
-                return item.name
+                return item.name;
               }).join(', ') : ''
             },
             {
               name: 'departments', label: this.$trp('iprofile.cms.label.userGroup'), field: 'departments',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
               format: val => val ? val.map(item => {
-                return item.title
+                return item.title;
               }).join(', ') : ''
             },
             {
               name: 'last_loging', label: this.$tr('iprofile.cms.form.lastLogin'), field: 'lastLoginDate',
-              align: 'left', format: val => val ? this.$trd(val) : '-',
+              align: 'left', format: val => val ? this.$trd(val) : '-'
             },
             {
               name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
-              format: val => val ? this.$trd(val) : '-',
+              format: val => val ? this.$trd(val) : '-'
             },
             {
               name: 'updated_at', label: this.$tr('isite.cms.form.updatedAt'), field: 'updatedAt', align: 'left',
-              format: val => val ? this.$trd(val) : '-',
+              format: val => val ? this.$trd(val) : '-'
             },
-            {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
+            { name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left' }
           ].filter(item => item.vIf != undefined ? item.vIf : true),
           filters: {
             roleId: {
@@ -71,7 +88,7 @@ export default {
               type: 'select',
               loadOptions: {
                 apiRoute: 'apiRoutes.quser.roles',
-                select: {label: 'name', id: 'id'}
+                select: { label: 'name', id: 'id' }
               },
               props: {
                 label: `${this.$tr('isite.cms.label.role')}:`,
@@ -96,22 +113,28 @@ export default {
               props: {
                 label: `${this.$tr('isite.cms.form.status')}:`,
                 options: [
-                  {label: this.$tr('isite.cms.label.enabled'), value: '1'},
-                  {label: this.$tr('isite.cms.label.disabled'), value: '0'},
+                  { label: this.$tr('isite.cms.label.enabled'), value: '1' },
+                  { label: this.$tr('isite.cms.label.disabled'), value: '0' }
                 ],
                 clearable: true
               }
-            },
-          }
+            }
+          },
+          actions: [{
+            name: 'details',
+            label: 'Details',
+            action: this.showUserDetails,
+            icon: 'fa-light fa-book'
+          }]
         },
         update: {
           title: this.$tr('iprofile.cms.updateUser'),
-          requestParams: {include: 'roles,departments,settings'}
+          requestParams: { include: 'roles,departments,settings' }
         },
         delete: false,
         formLeft: {
-          id: {value: null},
-          userId: {value: this.$store.state.quserAuth.userId},
+          id: { value: null },
+          userId: { value: this.$store.state.quserAuth.userId },
           firstName: {
             value: null,
             type: 'input',
@@ -129,7 +152,7 @@ export default {
               label: `${this.$trp('isite.cms.form.lastName')}*`,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
-              ],
+              ]
             }
           },
           userName: {
@@ -140,7 +163,7 @@ export default {
               vIf: this.customLogin,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
-              ],
+              ]
             }
           },
           email: {
@@ -151,7 +174,7 @@ export default {
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
                 //val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
-              ],
+              ]
             }
           },
           phone: {
@@ -159,8 +182,8 @@ export default {
             type: 'localizedPhone',
             props: {
               label: `${this.$tr('isite.cms.form.phone')}`,
-              mask:"##########",
-            },
+              mask: '##########'
+            }
           },
           isActivated: {
             value: '1',
@@ -168,9 +191,9 @@ export default {
             props: {
               label: `${this.$tr('isite.cms.form.status')}:`,
               options: [
-                {label: this.$tr('isite.cms.label.enabled'), value: '1'},
-                {label: this.$tr('isite.cms.label.disabled'), value: '0'},
-              ],
+                { label: this.$tr('isite.cms.label.enabled'), value: '1' },
+                { label: this.$tr('isite.cms.label.disabled'), value: '0' }
+              ]
             }
           },
           changePassword: {
@@ -192,7 +215,7 @@ export default {
               vIf: (this.crudInfo.typeForm == 'create') || this.crudInfo.changePassword,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired'),
-                val => val.length >= 6 || this.$tr('isite.cms.message.fieldMinLeng', {num: 6})
+                val => val.length >= 6 || this.$tr('isite.cms.message.fieldMinLeng', { num: 6 })
               ]
             }
           },
@@ -206,10 +229,10 @@ export default {
               vIf: (this.crudInfo.typeForm == 'create') || this.crudInfo.changePassword,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired'),
-                val => this.crudInfo.password == val || this.$tr('isite.cms.message.fieldCheckPassword'),
+                val => this.crudInfo.password == val || this.$tr('isite.cms.message.fieldCheckPassword')
               ]
             }
-          },
+          }
         },
         formRight: {
           permissions: {
@@ -224,14 +247,14 @@ export default {
               crudType: 'select',
               crudData: import('@imagina/quser/_crud/roles'),
               crudProps: {
-                label: `${this.$trp('isite.cms.label.role', {capitalize: true})}*`,
+                label: `${this.$trp('isite.cms.label.role', { capitalize: true })}*`,
                 multiple: true,
                 useChips: true,
                 rules: [
                   val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
                 ]
               },
-              config: {options: {label: 'name', value: 'id'}},
+              config: { options: { label: 'name', value: 'id' } }
             }
           },
           departments: {
@@ -247,7 +270,7 @@ export default {
                 rules: [
                   val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
                 ]
-              },
+              }
             }
           },
           assignedRoles: {
@@ -263,7 +286,7 @@ export default {
             },
             loadOptions: {
               apiRoute: 'apiRoutes.quser.roles',
-              select: {label: 'name', id: 'id'}
+              select: { label: 'name', id: 'id' }
             }
           },
           assignedDepartments: {
@@ -279,7 +302,7 @@ export default {
             },
             loadOptions: {
               apiRoute: 'apiRoutes.quser.departments',
-              requestParams: {include: ''}
+              requestParams: { include: '' }
             }
           },
           mediasSingle: {
@@ -291,22 +314,65 @@ export default {
               directUpload: true,
               multiple: false,
               zone: 'profile',
-              entity: "Modules\\User\\Entities\\Sentinel\\User",
-              entityId: {value: this.$store.state.quserAuth.userId}
+              entity: 'Modules\\User\\Entities\\Sentinel\\User',
+              entityId: { value: this.$store.state.quserAuth.userId }
             }
-          },
+          }
         }
-      }
+      };
     },
     //Crud info
     crudInfo() {
-      return this.$store.state.qcrudComponent.component[this.crudId] || {}
+      return this.$store.state.qcrudComponent.component[this.crudId] || {};
     },
     //Setting custom login
     customLogin() {
-      var setting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::customLogin') || []
-      return setting.includes("user_name")
+      var setting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::customLogin') || [];
+      return setting.includes('user_name');
     }
   },
-}
+  methods: {
+    //Order and show the user details
+    async showUserDetails(user) {
+      this.detailModal.data = null;
+      this.detailModal.show = true;
+      this.detailModal.loading = true;
+
+      let fields = [
+        { label: this.$tr('isite.cms.form.name'), value: user.fullName },
+        { label: this.$tr('isite.cms.form.email'), value: user.email }
+      ];
+
+      //Add extra fields
+      if (user.fields.length) {
+        let extraFields = await this.getFields(user.fields.map(item => item.name));
+        user.fields.forEach(userField => {
+          let extraField = extraFields.find(item => item.name == userField.name);
+          if (extraField) fields.push({ label: extraField.label, value: userField.value });
+        });
+      }
+
+      this.detailModal.data = fields;
+      this.detailModal.loading = false;
+    },
+    //Get the fields by name
+    getFields(fieldNames) {
+      return new Promise((resolve, reject) => {
+        let requestParams = {
+          refresh: true,
+          params: { filter: { name: fieldNames } }
+        };
+        //request
+        this.$crud.index('apiRoutes.qform.fields', requestParams).then(response => {
+          return resolve(response.data);
+        }).catch(error => {
+          this.$apiResponse.handleError(error, () => {
+            reject(error);
+            this.loading = false;
+          });
+        });
+      });
+    }
+  }
+};
 </script>
