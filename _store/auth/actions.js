@@ -14,7 +14,7 @@ import { getTokenFirebase } from 'modules/qnotification/_plugins/firebase.js'
 //Request Login
 export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
   return new Promise(async (resolve, reject) => {
-    let dataRequest = { username: authData.username, password: authData.password }
+    let dataRequest = { username: authData.username, password: authData.password, device: helper.detectDevice() }
     axios.defaults.headers.common['Authorization'] = null;
     //Request login
     axios.defaults.params.setting.authProvider = 'local';
@@ -32,7 +32,7 @@ export const AUTH_SOCIAL_NETWORK = ({ dispatch, state }, params) => {
   return new Promise((resolve, reject) => {
     let requestUrl = `apiRoutes.quser.authLoginSocialNetwork`
     const socialData = params.socialData ? params.socialData : '';
-    let requestParams = { attributes: { token: params.token, socialData }, type: params.type }
+    let requestParams = { attributes: { token: params.token, socialData, device: helper.detectDevice()}, type: params.type }
     axios.defaults.params.setting.authProvider = params.type;
     axios.defaults.headers.common['Authorization'] = null;
     crud.post(requestUrl, requestParams).then(async response => {
