@@ -1,5 +1,6 @@
 <template></template>
 <script>
+import moment from 'moment-timezone'
 export default {
   data() {
     return {
@@ -21,6 +22,22 @@ export default {
           requestParams: {include: 'roles,departments'},
           columns: [
             {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
+            {
+              name: 'lastRequest', 
+              label: this.$tr('iprofile.cms.label.available'), 
+              field: 'lastRequest',
+              align: 'left',
+              vIf: this.isAvailable,
+              format: (item) => (`
+                <div>
+                  <i class="fa-solid ${this.diffMinutes(item).class}"></i>
+                  <span class="tw-ml-2">
+                    ${this.diffMinutes(item).label}
+                  </span>
+                </div>
+              `),
+              sortable: true
+            },
             {
               name: 'first_name', label: this.$tr('isite.cms.form.name'), field: 'fullName',
               align: 'left', sortable: true
@@ -285,7 +302,30 @@ export default {
     customLogin() {
       var setting = this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::customLogin') || []
       return setting.includes("user_name")
+    },
+    isAvailable() {
+      return this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::availabilityEnabled')
     }
   },
+  methods: {
+    diffMinutes(date) {
+      const available = { 
+        label: this.$tr('iprofile.cms.label.available'), 
+        class: 'fa-circle-check tw-text-green-500' 
+      }
+
+      const away = { 
+        label: this.$tr('iprofile.cms.label.away'), 
+        class: 'fa-clock tw-text-yellow-500' 
+      }
+      const FORMAT = 'YYYY-MM-DDTHH:mm:ss'
+
+      if (!date) return away
+      const dateMoment = moment(date, FORMAT)
+      const diff = dateMoment.diff(moment().format(FORMAT), 'minutes')
+      if (diff < 10) return available
+      if (diff > 10) return away
+    }
+  }
 }
 </script>
