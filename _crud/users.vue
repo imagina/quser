@@ -322,7 +322,7 @@ export default {
 
       if (!date) return away
       const dateMoment = moment(date, FORMAT)
-      const diff = dateMoment.diff(moment().format(FORMAT), 'minutes')
+      const diff = dateMoment.diff(moment().utc().format(FORMAT), 'minutes')
       if (diff < 10) return available
       if (diff > 10) return away
     }
