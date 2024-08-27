@@ -12,6 +12,7 @@
   </master-modal>
 </template>
 <script>
+import moment from 'moment-timezone'
 export default {
   data() {
     return {
@@ -38,6 +39,22 @@ export default {
           requestParams: {include: 'roles,departments,fields'},
           columns: [
             {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
+            {
+              name: 'lastRequest', 
+              label: this.$tr('iprofile.cms.label.available'), 
+              field: 'lastRequest',
+              align: 'left',
+              vIf: this.isAvailable,
+              format: (item) => (`
+                <div>
+                  <i class="fa-solid ${this.diffMinutes(item).class}"></i>
+                  <span class="tw-ml-2">
+                    ${this.diffMinutes(item).label}
+                  </span>
+                </div>
+              `),
+              sortable: true
+            },
             {
               name: 'first_name', label: this.$tr('isite.cms.form.name'), field: 'fullName',
               align: 'left', sortable: true
@@ -329,6 +346,9 @@ export default {
     customLogin() {
       var setting = this.$getSetting('iprofile::customLogin') || []
       return setting.includes("user_name")
+    },
+    isAvailable() {
+      return this.$getSetting('iprofile::availabilityEnabled')
     }
   },
   methods: {
@@ -369,6 +389,25 @@ export default {
           });
         });
       });
+    },
+    diffMinutes(date) {
+      const available = { 
+        label: this.$tr('iprofile.cms.label.available'), 
+        class: 'fa-circle-check tw-text-green-500' 
+      }
+      const away = { 
+        label: this.$tr('iprofile.cms.label.away'), 
+        class: 'fa-clock tw-text-yellow-500' 
+      }
+      const FORMAT = 'YYYY-MM-DDTHH:mm:ss'
+
+      if (!date) return away
+      const lastRequest = moment(date, FORMAT)
+      const nowDate = moment().utc().format(FORMAT)
+      const diff = moment(nowDate, FORMAT).diff(lastRequest, 'minutes')
+
+      if (diff <= 10) return available
+      if (diff > 10) return away
     }
   }
 }
