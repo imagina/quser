@@ -313,7 +313,6 @@ export default {
         label: this.$tr('iprofile.cms.label.available'), 
         class: 'fa-circle-check tw-text-green-500' 
       }
-
       const away = { 
         label: this.$tr('iprofile.cms.label.away'), 
         class: 'fa-clock tw-text-yellow-500' 
@@ -321,9 +320,11 @@ export default {
       const FORMAT = 'YYYY-MM-DDTHH:mm:ss'
 
       if (!date) return away
-      const dateMoment = moment(date, FORMAT)
-      const diff = dateMoment.diff(moment().utc().format(FORMAT), 'minutes')
-      if (diff < 10) return available
+      const lastRequest = moment(date, FORMAT)
+      const nowDate = moment().utc().format(FORMAT)
+      const diff = moment(nowDate, FORMAT).diff(lastRequest, 'minutes')
+
+      if (diff <= 10) return available
       if (diff > 10) return away
     }
   }
