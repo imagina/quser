@@ -47,7 +47,9 @@ export default {
         "incognitoProfile": "Perfil incógnito",
         "reset": "Restablecer Contraseña",
         "withPassword": "Con contraseña",
-        "withEmail": "Solo con email"
+        "withEmail": "Solo con email",
+        "available": "Disponible",
+        "away": "Lejos",
       },
       "form": {
         "lastLogin": "Ultima sesión",
