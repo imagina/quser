@@ -47,9 +47,9 @@ export default {
               vIf: this.isAvailable,
               format: (item) => (`
                 <div>
-                  <i class="fa-solid ${this.diffMinutes(item).class}"></i>
+                  <i class="fa-solid ${this.availability(item).class}"></i>
                   <span class="tw-ml-2">
-                    ${this.diffMinutes(item).label}
+                    ${this.availability(item).label}
                   </span>
                 </div>
               `),
@@ -348,7 +348,7 @@ export default {
       return setting.includes("user_name")
     },
     isAvailable() {
-      return this.$getSetting('iprofile::availabilityEnabled')
+      return Boolean(this.$getSetting('iprofile::availabilityEnabled'))
     }
   },
   methods: {
@@ -390,7 +390,7 @@ export default {
         });
       });
     },
-    diffMinutes(date) {
+    availability(date) {
       const available = { 
         label: this.$tr('iprofile.cms.label.available'), 
         class: 'fa-circle-check tw-text-green-500' 
