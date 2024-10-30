@@ -28,6 +28,7 @@ export default {
       return {
         crudId: this.crudId,
         entityName: config('main.quser.entityNames.user'),
+        entityType: 'Modules\\User\\Entities\\Sentinel\\User',
         apiRoute: 'apiRoutes.quser.users',
         permission: 'profile.user',
         extraFormFields: 'Iprofile.crud-fields.users',
