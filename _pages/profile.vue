@@ -2,7 +2,7 @@
   <div id="profilePage" :key="pageId">
     <!--Page actions-->
     <div class="box box-auto-height q-mb-md">
-      <page-actions :title="userData.fullName" @refresh="loadPage"/>
+      <page-actions :title="userData.fullName" @refresh="loadPage" />
     </div>
     <!--Form-->
     <div id="formProfile" class="relative-position">
@@ -12,8 +12,8 @@
           <div class="box box-auto-height">
             <!--Profile picture -->
             <div id="profilePicture" v-for="(field, fieldKey) in formsData.profile.fields" :key="fieldKey"
-                       :class="field.colClass || 'col-12 q-mb-md'">
-                <dynamic-field :field="field" :itemId="userData.id" v-model="form.session[fieldKey]"/>
+                 :class="field.colClass || 'col-12 q-mb-md'">
+              <dynamic-field :field="field" :itemId="userData.id" v-model="form.session[fieldKey]" />
             </div>
             <q-tabs v-model="menuOption" vertical active-color="primary">
               <template v-for="(opt, keyOpt) in menuOptions" :key="keyOpt">
@@ -36,10 +36,10 @@
               <div class="box box-auto-height">
                 <!--Title-->
                 <div class="box-title row items-center">
-                  <q-icon :name="formsData.session.icon" size="22px" class="q-mr-sm"/>
+                  <q-icon :name="formsData.session.icon" size="22px" class="q-mr-sm" />
                   {{ formsData.session.title }}
                 </div>
-                <q-separator class="q-mt-sm q-mb-md"/>
+                <q-separator class="q-mt-sm q-mb-md" />
                 <!--Form-->
                 <q-form @submit="updateUserData(form.session)" ref="formRegister" autocomplete="off"
                         class="row q-col-gutter-x-md"
@@ -47,12 +47,15 @@
                   <!--Fields-->
                   <div v-for="(field, fieldKey) in formsData.session.fields" :key="fieldKey"
                        :class="field.colClass || 'col-12'">
-                    <dynamic-field :field="field" v-model="form.session[field.name || fieldKey]"/>
+                    <dynamic-field :field="field" v-model="form.session[field.name || fieldKey]" />
                   </div>
                   <!--Actions-->
                   <div id="profileActions" class="col-12 text-right">
+                    <!--Change Password-->
+                    <q-btn :label="$tr('iprofile.cms.label.changePassword')" rounded unelevated color="blue-grey"
+                           :to="{name: 'auth.change-password'}" class="q-mr-md"/>
                     <!--Save-->
-                    <q-btn :label="$tr('isite.cms.label.save')" rounded unelevated color="green" type="submit"/>
+                    <q-btn :label="$tr('isite.cms.label.save')" rounded unelevated color="green" type="submit" />
                   </div>
                 </q-form>
               </div>
@@ -62,42 +65,42 @@
               <!--Title-->
               <div class="box box-auto-height q-mb-md">
                 <div class="box-title row items-center">
-                  <q-icon name="fas fa-user" size="22px" class="q-mr-sm"/>
+                  <q-icon name="fas fa-user" size="22px" class="q-mr-sm" />
                   {{ $tr('isite.cms.label.profile') }}
                 </div>
               </div>
               <!--Form-->
               <dynamic-form v-model="form.profile" v-if="roleFormId && profileFormBlocks.length"
-                            formType="grid" :blocks="profileFormBlocks" @submit="updateUserData(form.profile)"/>
+                            formType="grid" :blocks="profileFormBlocks" @submit="updateUserData(form.profile)" />
             </q-tab-panel>
             <!--Address-->
             <q-tab-panel name="address" v-if="hasPermission.addresses">
               <crud :crud-data="import('modules/quser/_crud/address')"
                     @created="$store.dispatch('quserAuth/AUTH_UPDATE')"
-                    @updated="$store.dispatch('quserAuth/AUTH_UPDATE')"/>
+                    @updated="$store.dispatch('quserAuth/AUTH_UPDATE')" />
             </q-tab-panel>
           </q-tab-panels>
         </div>
       </div>
       <!--inner loading-->
-      <inner-loading :visible="loading"/>
+      <inner-loading :visible="loading" />
     </div>
   </div>
 </template>
 
 <script>
-import { eventBus } from 'src/plugins/utils'
+import { eventBus } from 'src/plugins/utils';
 
 export default {
   beforeUnmount() {
-    eventBus.off('page.data.refresh')
+    eventBus.off('page.data.refresh');
   },
   props: {},
   components: {},
   mounted() {
-    this.$nextTick(function () {
-      this.init()
-    })
+    this.$nextTick(function() {
+      this.init();
+    });
   },
   data() {
     return {
@@ -111,28 +114,28 @@ export default {
         payout: {}
       },
       mainFields: ['firstName', 'lastName']
-    }
+    };
   },
   computed: {
     //Has permissions
     hasPermission() {
       return {
         addresses: this.$hasAccess('profile.addresses.manage')
-      }
+      };
     },
     //return formId from current role
     roleFormId() {
-      let roleId = this.$store.state.quserAuth.selectedRoleId
-      let roles = this.$store.state.quserAuth.userData.roles
-      let roleData = roleId ? roles.fond(item => item.id == roleId) : roles[0]
+      let roleId = this.$store.state.quserAuth.selectedRoleId;
+      let roles = this.$store.state.quserAuth.userData.roles;
+      let roleData = roleId ? roles.fond(item => item.id == roleId) : roles[0];
 
       //Response
-      return roleData?.formId || null
+      return roleData?.formId || null;
     },
     //Profile menu options
     menuOptions() {
       return [
-        {label: this.$tr('isite.cms.label.session'), value: 'session'},
+        { label: this.$tr('isite.cms.label.session'), value: 'session' },
         {
           label: this.$tr('isite.cms.label.profile'), value: 'profile',
           vIf: this.roleFormId && this.profileFormBlocks.length ? true : false
@@ -141,11 +144,11 @@ export default {
           label: this.$trp('isite.cms.label.address'), value: 'address',
           vIf: this.hasPermission.addresses
         }
-      ]
+      ];
     },
     //Return User data
     userData() {
-      return this.$clone(this.$store.state.quserAuth.userData)
+      return this.$clone(this.$store.state.quserAuth.userData);
     },
     //Default form Field
     formsData() {
@@ -163,47 +166,9 @@ export default {
                 rules: [
                   val => !!val || this.$tr('isite.cms.message.fieldRequired'),
                   val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
-                ],
-              }
-            },
-            changePassword: {
-              value: 0,
-              type: 'checkbox',
-              colClass: 'col-12 col-md-6',
-              props: {
-                label: `${this.$tr('isite.cms.message.updatePassword')}`,
-                trueValue: 1,
-                falseValue: 0,
-              }
-            },
-            password: {
-              value: null,
-              type: 'input',
-              colClass: 'col-12 col-md-6',
-              props: {
-                label: `${this.$trp('isite.cms.form.password')}*`,
-                type: 'password',
-                vIf: this.form.session.changePassword,
-                rules: [
-                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
-                  val => val.length >= 6 || this.$tr('isite.cms.message.fieldMinLeng', {num: 6})
                 ]
               }
-            },
-            passwordConfirmation: {
-              value: null,
-              type: 'input',
-              colClass: 'col-12 col-md-6',
-              props: {
-                label: `${this.$trp('isite.cms.form.checkPassword')}*`,
-                type: 'password',
-                vIf: this.form.session.changePassword,
-                rules: [
-                  val => !!val || this.$tr('isite.cms.message.fieldRequired'),
-                  val => (this.form.session.password == val) || this.$tr('isite.cms.message.fieldCheckPassword'),
-                ]
-              }
-            },
+            }
           }
         },
         profile: {
@@ -218,80 +183,80 @@ export default {
                 directUpload: true,
                 multiple: false,
                 zone: 'profile',
-                entity: "Modules\\User\\Entities\\Sentinel\\User",
-                entityId: null,
+                entity: 'Modules\\User\\Entities\\Sentinel\\User',
+                entityId: null
               }
-            },
+            }
           }
         }
-      }
+      };
     }
   },
   methods: {
     //init
     async init() {
-      this.loadPage()
+      this.loadPage();
       eventBus.on('page.data.refresh', () => {
-        this.loadPage()
-      })
+        this.loadPage();
+      });
     },
     //Refresh page actions
     async loadPage() {
-      this.loading = true
+      this.loading = true;
       await Promise.all([
         this.$store.dispatch('qsiteApp/GET_SITE_SETTINGS'),
         this.$store.dispatch('quserAuth/AUTH_UPDATE'),
         this.setProfileFormData(),
         this.getRoleForm()
-      ])
-      this.pageId = this.$uid()
-      this.loading = false
+      ]);
+      this.pageId = this.$uid();
+      this.loading = false;
     },
     //Set profile form data
     setProfileFormData() {
       return new Promise((resolve, reject) => {
-        let formData = {}
+        let formData = {};
         //Set main fields
-        this.mainFields.map(fieldName => formData[fieldName] = this.userData[fieldName])
+        this.mainFields.map(fieldName => formData[fieldName] = this.userData[fieldName]);
         //Set fields
         if (this.userData.fields && Array.isArray(this.userData.fields))
           this.userData.fields.forEach(field => {
-            formData[field.name] = field.value
-          })
+            formData[field.name] = field.value;
+          });
         //Set formdata
-        this.form.profile = this.$clone(formData)
-        resolve(true)
-      })
+        this.form.profile = this.$clone(formData);
+        resolve(true);
+      });
     },
     //Get role form
     getRoleForm() {
       return new Promise((resolve, reject) => {
-        if (!this.roleFormId) return resolve(false)
+        if (!this.roleFormId) return resolve(false);
         //reset extra blocks
-        this.extraBlocks = []
+        this.extraBlocks = [];
         //Open loading
-        this.loading = true
+        this.loading = true;
 
         //Request Params
         let requestParams = {
           refresh: true,
-          params: {include: 'blocks.fields'}
-        }
+          params: { include: 'blocks.fields' }
+        };
 
         //Request
         this.$crud.show('apiRoutes.qform.forms', this.roleFormId, requestParams).then(response => {
           //Set extra blocks
           let blocks = response.data.blocks.map(block => {
-            return {...block, fields: block.fields.map(field => field.dynamicField)}
-          })
+            return { ...block, fields: block.fields.map(field => field.dynamicField) };
+          });
           //concat block name to fields
           blocks.forEach((block, blockKey) => {
-            let fields = {}
-            block.fields.forEach((field, fieldKey) => fields[`${field.name}`] = field)
-            blocks[blockKey].fields = fields
-          })
+            let fields = {};
+            block.fields.forEach((field, fieldKey) => fields[`${field.name}`] = field);
+            blocks[blockKey].fields = fields;
+          });
           //set to profile blocks
-          this.profileFormBlocks = blocks.filter(item => item.name == 'fields')
+          this.profileFormBlocks = blocks.filter(item => item.name == 'fields');
 
           if (this.profileFormBlocks && this.profileFormBlocks.length) {
             this.profileFormBlocks[0].fields = {
@@ -301,50 +266,50 @@ export default {
                 colClass: 'col-12'
               },
               ...this.profileFormBlocks[0].fields
-            }
+            };
           }
 
-          this.loading = false
-          resolve(response.data)
+          this.loading = false;
+          resolve(response.data);
         }).catch(error => {
           this.$apiResponse.handleError(error, () => {
-            reject(error)
-            this.loading = false
-          })
-        })
-      })
+            reject(error);
+            this.loading = false;
+          });
+        });
+      });
     },
     //update data
     updateUserData(formData = {}) {
-      this.loading = true
+      this.loading = true;
       //Transform formData to profile
       if (this.menuOption == 'profile') {
-        let formDataProfile = {}
+        let formDataProfile = {};
         //Order form data by fields
         Object.keys(formData).forEach(fieldName => {
           //Set main fields
-          if (this.mainFields.includes(fieldName)) formDataProfile[fieldName] = formData[fieldName]
+          if (this.mainFields.includes(fieldName)) formDataProfile[fieldName] = formData[fieldName];
           else {//Set fields data
-            if (!formDataProfile.fields) formDataProfile.fields = []
-            formDataProfile.fields.push({name: fieldName, value: formData[fieldName] || ''})
+            if (!formDataProfile.fields) formDataProfile.fields = [];
+            formDataProfile.fields.push({ name: fieldName, value: formData[fieldName] || '' });
           }
-        })
+        });
         //Change form data
-        formData = this.$clone(formDataProfile)
+        formData = this.$clone(formDataProfile);
       }
       //Add userId to form data
-      formData = {email: this.userData.email, ...formData, id: this.userData.id, isActivated: true}
+      formData = { email: this.userData.email, ...formData, id: this.userData.id, isActivated: true };
       //Request
       this.$crud.update('apiRoutes.quser.users', this.userData.id, formData).then(async response => {
-        this.$alert.success({message: this.$tr('isite.cms.message.recordUpdated')})
-        this.loading = false
+        this.$alert.success({ message: this.$tr('isite.cms.message.recordUpdated') });
+        this.loading = false;
       }).catch(error => {
-        this.$alert.error({message: this.$tr('isite.cms.message.recordNoUpdated')})
-        this.loading = false
-      })
+        this.$alert.error({ message: this.$tr('isite.cms.message.recordNoUpdated') });
+        this.loading = false;
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

@@ -14,23 +14,23 @@
                  :label="`${$tr('isite.cms.form.email')} *`" v-model="form.username" type="text" color="blue-grey"
                  class="q-mb-sm" :rules="[
                       val => !!val || $tr('isite.cms.message.fieldRequired'),
-                      val => $helper.validateEmail(val) || $tr('isite.cms.message.fieldEmail')]"/>
+                      val => $helper.validateEmail(val) || $tr('isite.cms.message.fieldEmail')]" />
 
         <!--Captcha-->
-        <dynamic-field :field="{type : 'captcha'}" v-model="form.captcha"/>
+        <dynamic-field :field="{type : 'captcha'}" v-model="form.captcha" />
 
         <!--Actions-->
         <div class="row justify-between">
           <!--Button Login-->
           <q-btn :label="$tr('iprofile.cms.label.login')" no-caps rounded unelevated
-                 :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"/>
+                 :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey" />
           <!--Button submit-->
           <q-btn :loading="loading" color="primary" type="submit" :label="$tr('isite.cms.label.reset')"
                  unelevated rounded no-caps>
-            <div slot="loading">
-              <q-spinner-oval class="on-left"/>
+            <template v-slot:loading>
+              <q-spinner-oval class="on-left" />
               {{ `${$tr('isite.cms.label.validating')}...` }}
-            </div>
+            </template>
           </q-btn>
         </div>
       </q-form>
@@ -44,7 +44,8 @@
           <p class="text-subtitle1 text-justify">{{ modal.message }}</p>
           <!--Button login-->
           <div class="text-center q-mt-sm">
-            <q-btn unelevated rounded label="Iniciar sesion" :to="{name : 'auth.login'}" color="primary"/>
+            <q-btn unelevated rounded :label="$tr('iprofile.cms.label.login')" :to="{name : 'auth.login'}"
+                   color="primary" />
           </div>
         </q-card-section>
       </q-card>
@@ -55,17 +56,17 @@
 <script>
 export default {
   props: {
-    email: {default: null},
+    email: { default: null }
   },
   watch: {
     email() {
-      this.setEmail()
+      this.setEmail();
     }
   },
   mounted() {
-    this.$nextTick(function () {
-      this.setEmail()
-    })
+    this.$nextTick(function() {
+      this.setEmail();
+    });
   },
   data() {
     return {
@@ -77,34 +78,34 @@ export default {
       modal: {
         show: false,
         message: null
-      },
-    }
+      }
+    };
   },
   methods: {
     //Login
     async resetPassword() {
       this.loading = true;
-      const {username, captcha} = this.form;
-      this.$store.dispatch("quserAuth/RESET_PASSWORD_REQUEST", {username, captcha}).then((response) => {
+      const { username, captcha } = this.form;
+      this.$store.dispatch('quserAuth/RESET_PASSWORD_REQUEST', { username, captcha }).then((response) => {
         this.loading = false;
         this.modal = {
           show: true,
           message: response.data?.message || this.$tr('iprofile.cms.message.reset')
-        }
-      }).catch(({response}) => {
-        this.$alert.error(response.data.errors)
-        this.loading = false
+        };
+      }).catch(({ response }) => {
+        this.$alert.error(response.data.errors);
+        this.loading = false;
       });
     },
 
     //Set email
     setEmail() {
       if (this.email) {
-        this.form.username = this.$clone(this.email)
-      } else this.$refs.username.focus()
+        this.form.username = this.$clone(this.email);
+      } else this.$refs.username.focus();
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

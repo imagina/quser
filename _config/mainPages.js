@@ -62,18 +62,6 @@ export default {
     authType: 'resetPasswordComplete'
     //middleware: [auth]
   },
-  forceChangePassword: {
-    permission: null,
-    activated: true,
-    path: '/auth/force-change-password',
-    name: 'auth.change-password',
-    page: () => import('modules/quser/_pages/wrapper'),
-    layout: () => import('layouts/blank.vue'),
-    title: 'iprofile.cms.sidebar.resetPassword',
-    icon: 'fas fa-chart-bar',
-    authType: 'forceChangePassword',
-    authenticated: true
-  },
   //User Profile
   userProfile: {
     permission: null,
@@ -88,5 +76,18 @@ export default {
     subHeader: {
       refresh: true
     }
+  },
+  //Cahnge password
+  changePassword: {
+    permission: null,
+    activated: true,
+    path: '/auth/change-password',
+    name: 'auth.change-password',
+    page: () => import('modules/quser/_pages/wrapper'),
+    layout: () => import('layouts/blank.vue'),
+    title: 'iprofile.cms.sidebar.resetPassword',
+    icon: 'fas fa-chart-bar',
+    authType: 'changePassword',
+    authenticated: true
   },
 }

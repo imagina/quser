@@ -30,7 +30,7 @@
                   <!-- reset password -->
                   <reset-password-complete v-if="authType == 'resetPasswordComplete'" class="full-width"/>
                   <!-- force change password -->
-                  <force-change-password v-if="authType == 'forceChangePassword'" class="full-width"/>
+                  <change-password v-if="authType == 'changePassword'" class="full-width"/>
                 </div>
                 <!--Login  With Email-->
                 <email-auth v-if="['login', 'register'].includes(authType) && modeAuthType === 'withEmail'" class="full-width"/>
@@ -61,7 +61,7 @@ import loginForm from 'modules/quser/_components/auth/login'
 import registerForm from 'modules/quser/_components/auth/register'
 import resetPassword from 'modules/quser/_components/auth/resetPassword'
 import resetPasswordComplete from 'modules/quser/_components/auth/resetPasswordComplete'
-import forceChangePassword from 'modules/quser/_components/auth/forceChangePassword'
+import changePassword from 'modules/quser/_components/auth/changePassword'
 import logout from 'modules/quser/_components/auth/logout'
 import masterModal from 'modules/qsite/_components/master/masterModal'
 
@@ -79,7 +79,7 @@ export default {
     loginForm,
     registerForm,
     resetPassword,
-    forceChangePassword,
+    changePassword,
     logout,
     facebookAuth,
     googleAuth,

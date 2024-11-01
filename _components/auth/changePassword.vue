@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import crud from "modules/qcrud/_services/baseService";
-
 export default {
   data() {
     return {
@@ -48,7 +46,7 @@ export default {
             fields: {
               textInfo: {
                 type: 'banner',
-                vIf: this.$store.state.quserAuth.shouldChangePassword.shouldChangePassword,
+                vIf: this.$store.state.quserAuth.shouldChangePassword?.shouldChangePassword ?? false,
                 props: {
                   textColor: 'white',
                   color: 'amber',
@@ -60,7 +58,7 @@ export default {
                 value: null,
                 type: 'input',
                 props: {
-                  label: `${this.$trp('isite.cms.form.password')}*`,
+                  label: `${this.$tr('isite.cms.form.password')}*`,
                   type: 'password',
                   vIf: this.form.changePassword,
                   rules: [
