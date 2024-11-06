@@ -4,6 +4,7 @@ import crud from 'modules/qcrud/_services/baseService'
 //Plugins
 import { helper, cache, eventBus } from 'src/plugins/utils'
 import apiResponse from 'modules/qcrud/_plugins/apiResponse'
+import { store } from 'src/plugins/utils';
 
 //Features
 import axios from 'axios'
@@ -277,29 +278,32 @@ export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
 export const AUTH_FORCE_PASSWORD = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const sessionData = await cache.get.item('sessionData')//Get  session Data
-      //Validate session data
-      if (!sessionData) {
-        dispatch('AUTH_LOGOUT')//Logout
-        return resolve(false)//Close if there isn't token
-      }
-      //Request params
-      let requestParams = {
-        refresh: true
-      }
-      //Get userData about password
-      crud.index('apiRoutes.quser.validateChangePassword', requestParams).then(async response => {
-        commit('SET_PASSWORD_CHANGE', {
-          ...response.data,
-          uid: uid()
+      const expireTime = parseInt(store.getSetting('iprofile::passwordExpiredTime') ?? 0);
+      if (expireTime) {
+        const sessionData = await cache.get.item('sessionData')//Get  session Data
+        //Validate session data
+        if (!sessionData) {
+          dispatch('AUTH_LOGOUT')//Logout
+          return resolve(false)//Close if there isn't token
+        }
+        //Request params
+        let requestParams = {
+          refresh: true
+        }
+        //Get userData about password
+        crud.index('apiRoutes.quser.validateChangePassword', requestParams).then(async response => {
+          commit('SET_PASSWORD_CHANGE', {
+            ...response.data,
+            uid: uid()
+          })
+          resolve(true)
+        }).catch(error => {
+          apiResponse.handleError(error, () => {
+            console.error('[AUTH_FORCE_PASSWORD] ', error)
+            resolve(false)
+          })
         })
-        resolve(true)
-      }).catch(error => {
-        apiResponse.handleError(error, () => {
-          console.error('[AUTH_FORCE_PASSWORD] ', error)
-          resolve(false)
-        })
-      })
+      }
     } catch (e) {
       console.error('[AUTH_FORCE_PASSWORD] ', e)
       reject(e)
