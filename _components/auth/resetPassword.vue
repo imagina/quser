@@ -1,39 +1,21 @@
 <template>
   <div id="authResetPassword">
     <div id="formResetPasswordContent">
-      <!--Title-->
-      <div class="box-title text-uppercase q-mb-sm text-center">
-        {{ $tr('iprofile.cms.label.resetPassword') }}
-      </div>
-
-      <!--Form-->
-      <q-form @submit="resetPassword()" autocomplete="off"
-              @validation-error="$alert.error($tr('isite.cms.message.formInvalid'))">
-        <!--Email field-->
-        <q-input name="username" autofocus ref="username" autocomplete="off" outlined dense
-                 :label="`${$tr('isite.cms.form.email')} *`" v-model="form.username" type="text" color="blue-grey"
-                 class="q-mb-sm" :rules="[
-                      val => !!val || $tr('isite.cms.message.fieldRequired'),
-                      val => $helper.validateEmail(val) || $tr('isite.cms.message.fieldEmail')]"/>
-
-        <!--Captcha-->
-        <dynamic-field :field="{type : 'captcha'}" v-model="form.captcha"/>
-
-        <!--Actions-->
-        <div class="row justify-between">
-          <!--Button Login-->
-          <q-btn :label="$tr('iprofile.cms.label.login')" no-caps rounded unelevated
-                 :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey-1" text-color="blue-grey"/>
-          <!--Button submit-->
-          <q-btn :loading="loading" color="primary" type="submit" :label="$tr('isite.cms.label.reset')"
-                 unelevated rounded no-caps>
-            <div slot="loading">
-              <q-spinner-oval class="on-left"/>
-              {{ `${$tr('isite.cms.label.validating')}...` }}
-            </div>
-          </q-btn>
-        </div>
-      </q-form>
+    <!--Caption-->
+    <div v-if="settings.authRegisterCaption && (settings.authRegisterCaption != 'null')"
+         class="text-center text-caption text-grey-8 q-mb-md">
+      {{ settings.authRegisterCaption }}
+    </div>
+    <!--Dynamic form-->
+    <div id="formContent">
+      <dynamic-form v-model="form" :blocks="dynamicForm.blocks" @submit="resetPassword()" :actions="dynamicForm.actions"
+                    :title="$tr('iprofile.cms.label.resetPassword').toUpperCase()" class="q-mb-md" :loading="loading"
+                    default-col-class="col-12" :use-captcha="settings.activateCaptcha ? true : false" />
+    </div>
+    <!--Login-->
+    <div class="text-center full-width">
+      <q-btn :label="$tr('iprofile.cms.label.login')" unelevated no-caps
+             :to="{name : 'auth.login',query : this.$route.query}" color="blue-grey" rounded flat/>
     </div>
 
     <!--Dialog message-->
@@ -49,6 +31,7 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+  </div>
   </div>
 </template>
 
@@ -70,16 +53,64 @@ export default {
   data() {
     return {
       loading: false,
-      form: {
-        username: '',
-        captcha: false
-      },
+      form: null,
       modal: {
         show: false,
         message: null
       },
     }
   },
+  computed: {
+    //Get settings data
+    settings() {
+      return {
+        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
+        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
+        authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authRegisterCaption'),
+        activateCaptcha: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::activateCaptcha')),
+      }
+    },
+    dynamicForm(){
+      return {
+        actions: {
+          submit: {
+            label: this.$tr('isite.cms.label.reset'),
+            color: 'primary',
+            icon: null
+          },
+          login: {
+            label: this.$tr('iprofile.cms.label.login'),
+            to: {
+              name : 'auth.login',
+              query : this.$route.query
+            },
+            color: "blue-grey-1",
+            textColor:"blue-grey"
+          }
+        },
+        blocks: [
+          {
+            name: 'main',
+            fields: {
+              username: {
+                value: null,
+                type: 'input',
+                //colClass: 'col-12',
+                props: {
+                  label: `${this.$tr('isite.cms.form.email')}*`,
+                  rules: [
+                    val => !!val || this.$tr('isite.cms.message.fieldRequired'),
+                    val => this.$helper.validateEmail(val) || this.$tr('isite.cms.message.fieldEmail')
+                  ]
+                }
+              },
+            }
+          }
+        ]
+      }
+    }
+  },
+  
   methods: {
     //Login
     async resetPassword() {
