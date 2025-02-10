@@ -256,12 +256,16 @@ export default {
         this.$crud.show('apiRoutes.qform.forms', roleSelected.formId, requestParams).then(response => {
           //Set extra blocks
           let extraBlocks = response.data.blocks.map(block => {
-            return {...block, fields: block.fields.map(field => field.dynamicField)}
+            return {...block, fields: block.fields.map(field => ({
+                ...field.dynamicField,
+                name: (field.type == '15') ? 'firstName' :
+                  (field.type == '16') ? 'lastName' : field.dynamicField.name
+              }))}
           })
           //concat block name to fields
           extraBlocks.forEach((block, blockKey) => {
             let fields = {}
-            block.fields.forEach((field, fieldKey) => fields[`${field.name}`] = field)
+            block.fields.forEach((field, fieldKey) =>fields[`${field.name}`] = field)
             extraBlocks[blockKey].fields = fields
           })
           //set data
