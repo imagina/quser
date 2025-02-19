@@ -40,8 +40,8 @@ export default {
           columns: [
             {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
             {
-              name: 'lastRequest', 
-              label: this.$tr('iprofile.cms.label.available'), 
+              name: 'lastRequest',
+              label: this.$tr('iprofile.cms.label.available'),
               field: 'lastRequest',
               align: 'left',
               vIf: this.isAvailable,
@@ -86,7 +86,7 @@ export default {
               }).join(', ') : ''
             },
             {
-              name: 'last_loging', label: this.$tr('iprofile.cms.form.lastLogin'), field: 'lastLoginDate',
+              name: 'last_loging', label: this.$tr('iprofile.cms.form.lastLogin'), field: 'lastLogin',
               align: 'left', format: val => val ? this.$trd(val) : '-',
             },
             {
@@ -391,13 +391,13 @@ export default {
       });
     },
     availability(date) {
-      const available = { 
-        label: this.$tr('iprofile.cms.label.available'), 
-        class: 'fa-circle-check tw-text-green-500' 
+      const available = {
+        label: this.$tr('iprofile.cms.label.available'),
+        class: 'fa-circle-check tw-text-green-500'
       }
-      const away = { 
-        label: this.$tr('iprofile.cms.label.away'), 
-        class: 'fa-clock tw-text-yellow-500' 
+      const away = {
+        label: this.$tr('iprofile.cms.label.away'),
+        class: 'fa-clock tw-text-yellow-500'
       }
       const FORMAT = 'YYYY-MM-DDTHH:mm:ss'
 
