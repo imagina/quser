@@ -11,6 +11,7 @@ import axios from 'axios'
 import config from 'src/setup/plugin'
 import { uid } from 'quasar'
 import { getTokenFirebase } from 'modules/qnotification/_plugins/firebase.js'
+import notificationPlugin from 'modules/qnotification/_plugins/notification'
 
 //Request Login
 export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
@@ -74,6 +75,7 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
         commit('SET_AUTHENTICATED')
         await dispatch('SET_ORGANIZATION')//Set settings
         await getTokenFirebase(data.userData.id);
+        new notificationPlugin(store);
         return resolve(true)//Resolve
       } else {
         console.info('[AUTH_SUCCESS]::LOGOUT')
