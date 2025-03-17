@@ -1,0 +1,38 @@
+# EditorConfig helps developers define and maintain consistent coding styles
+# across different editors and IDEs
+
+root = true
+
+# Global rules (applies to all files)
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# JavaScript & TypeScript files
+[*.{js,ts,jsx,tsx}]
+indent_size = 2
+
+# Vue files
+[*.vue]
+indent_size = 2
+
+# SCSS & CSS files
+[*.{scss,css}]
+indent_size = 2
+
+# JSON & YAML files
+[*.{json,yml,yaml}]
+indent_size = 2
+insert_final_newline = true
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+
+# Ignore specific files (e.g., lock files, dependencies)
+[{package-lock.json,yarn.lock,pnpm-lock.yaml}]
+indent_style = none
