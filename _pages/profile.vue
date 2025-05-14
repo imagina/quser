@@ -247,7 +247,12 @@ export default {
         this.$crud.show('apiRoutes.qform.forms', this.roleFormId, requestParams).then(response => {
           //Set extra blocks
           let blocks = response.data.blocks.map(block => {
-            return { ...block, fields: block.fields.map(field => field.dynamicField) };
+            return { ...block, fields: block.fields.map(field => {
+                return {
+                  ...field.dynamicField,
+                  name: field.type == '15' ? 'firstName' : field.type == '16' ? 'lastName' : field.name,
+                }
+              }) };
           });
           //concat block name to fields
           blocks.forEach((block, blockKey) => {
