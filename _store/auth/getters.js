@@ -45,14 +45,14 @@ export const userRolesSelect = (state) => {
 }
 
 export const userDepartmentsSelect = (state) => {
-  let userData = state.userData
-  let departments = userData ? userData.departments : []
+  let userData = state.userData  
+  let departments = userData?.departments || []  
   return array.tree(departments)
 }
 
 export const hasAccess = (state) => (can, params = {}) => {
   if(can === null) return true //Return true if permission is null
-  let permissions = state.permissions//Get default permissions
+  let permissions = state.userData.permissions//Get default permissions
 
   //Get role permissions
   if (params && params.roleId) {
@@ -88,7 +88,7 @@ export const getRolesField = (state) => (field = 'id') => {
 }
 
 export const getDepartmentsField = (state) => (field = 'id') => {
-  let departments = state.userData.departments
+  let departments = state.userData?.departments || []
   let response = []
 
   departments.forEach(item => {

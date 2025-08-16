@@ -11,16 +11,26 @@ import config from 'src/setup/plugin'
 import { uid } from 'quasar'
 import { getTokenFirebase } from 'modules/qnotification/_plugins/firebase.js'
 import notificationPlugin from 'modules/qnotification/_plugins/notification'
+import { user } from './getters'
 
 //Request Login
 export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
   return new Promise(async (resolve, reject) => {
-    let dataRequest = { username: authData.username, password: authData.password, device: helper.detectDevice() }
+    let dataRequest = {
+      attributes: { email: authData.username, password: authData.password, device: helper.detectDevice() }
+    }
+
     axios.defaults.headers.common['Authorization'] = null;
     //Request login
     axios.defaults.params.setting.authProvider = 'local';
     crud.post('apiRoutes.quser.authLogin', dataRequest).then(async response => {
-      await dispatch('AUTH_SUCCESS', response.data)
+
+      const data = response.data
+      await dispatch('AUTH_SUCCESS', {
+          expiresIn: data.token.expiresIn,
+          userData: data.user,
+          userToken: data.token.accessToken
+      })
       resolve(true)
     }).catch(error => {
       reject(error)
@@ -61,9 +71,10 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
         await dispatch('SET_ROLE_DEPARTMENT')//Set role and department
         await dispatch('SET_PERMISSIONS')//Set Permissions
         await dispatch('SET_SETTINGS')//Set settings
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.userToken}`//Set default headers to axios
 
-        axios.defaults.headers.common['Authorization'] = data.userToken//Set default headers to axios
-        axios.defaults.params.setting.authProvider = sessionStorage.getItem('socialType') || 'local';
+        //v12 axios.defaults.params.setting.authProvider = sessionStorage.getItem('socialType') || 'local';
+        axios.defaults.params.setting.authProvider = 'local';
         await cache.set('sessionData', data)//Save session data in storage
         if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
           navigator.serviceWorker.controller.postMessage({
@@ -73,8 +84,8 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
         }
         commit('SET_AUTHENTICATED')
         await dispatch('SET_ORGANIZATION')//Set settings
-        await getTokenFirebase(data.userData.id);
-        new notificationPlugin(store);
+        //v12 await getTokenFirebase(data.userData.id);
+        //v12 new notificationPlugin(store);
         return resolve(true)//Resolve
       } else {
         console.info('[AUTH_SUCCESS]::LOGOUT')
@@ -91,10 +102,13 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
 //Set user role and user department
 export const SET_ROLE_DEPARTMENT = ({ state, commit, getters }, params = {}) => {
   return new Promise(async (resolve, reject) => {
+    //v12
+    resolve(true)
     try {
       if (!config('app.forceRoleAndDepartment')) return resolve(true)
       let roles = getters['getRolesField']()
-      let departments = getters['getDepartmentsField']()
+      //v12 let departments = getters['getDepartmentsField']()
+      let departments = []
 
       //Get role and department from params
       let roleUser = params.roleId || false
@@ -189,6 +203,8 @@ export const SET_SETTINGS = ({ dispatch, commit, state }) => {
       } else {//Srt all settings
         settings = state.userData.allSettings
       }
+
+
       //Save in store the settins
       commit('SET_SETTINGS', settings)
       resolve(true)//Resolve
@@ -205,7 +221,8 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
     try {
       let sessionData = await cache.get.item('sessionData')
       //Validate session data
-      if (!sessionData || !sessionData.userData || (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
+      //v12 if (!sessionData || !sessionData.userData || (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
+      if (!sessionData || !sessionData.userData) {
         dispatch('AUTH_LOGOUT')//Logout
         return resolve(false)//Close if there isn't token
       }
@@ -233,7 +250,7 @@ export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
       }
 
       //Set user token to axios
-      axios.defaults.headers.common['Authorization'] = sessionData.userToken
+      axios.defaults.headers.common['Authorization'] = `Bearer ${sessionData.userToken}`
       //Request params
       let params = {
         refresh: true,
@@ -243,7 +260,8 @@ export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
       //Get userData
       crud.index('apiRoutes.quser.me', params).then(async response => {
         if (response.status != 200) return reject(true)//Logout
-        sessionData.userData = response.data.userData//Update userData of sessiondata
+        sessionData.userData = response.data //Update userData of sessiondata
+
         await cache.set('sessionData', sessionData)//Update sessionData in cache
 
         //TODO dispatch global event ME
@@ -278,6 +296,13 @@ export const AUTH_UPDATE = ({ commit, dispatch, state }) => {
 //Refresh user Data
 export const AUTH_FORCE_PASSWORD = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
+
+    //v12 TODO RESOLVE EXPIREDTIME
+    resolve(true)
+    return
+
+
+
     try {
       const expireTime = parseInt(store.getSetting('iprofile::passwordExpiredTime') ?? 0);
       if (expireTime) {

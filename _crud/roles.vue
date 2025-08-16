@@ -12,7 +12,7 @@ export default {
         crudId: this.crudId,
         entityName: config("main.quser.entityNames.role"),
         apiRoute: 'apiRoutes.quser.roles',
-        permission: 'profile.role',
+        //permission: 'iuser.role',
         extraFormFields: 'Iprofile.crud-fields.roles',
         create: {
           title: this.$tr('iprofile.cms.newRole'),
@@ -20,37 +20,28 @@ export default {
         read: {
           columns: [
             {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id', style: 'width: 50px'},
-            {name: 'name', label: this.$tr('isite.cms.form.name'), field: 'name', align: 'rigth'},
-            {name: 'slug', label: this.$tr('isite.cms.form.slug'), field: 'slug', align: 'left'},
-            {
-              name: 'workSpace', label: this.$tr('isite.cms.label.workSpace'), field: 'settings',
-              align: 'left', format: val => val.workSpace || '-'
-            },
-            {
-              name: 'form', label: this.$tr('isite.cms.label.form'), field: 'form',
-              align: 'left', format: val => val ? val.title : '-'
-            },
+            {name: 'title', label: this.$tr('isite.cms.form.title'), field: 'title', align: 'rigth'},
             {
               name: 'created_at', label: this.$tr('isite.cms.form.createdAt'), field: 'createdAt', align: 'left',
               format: val => val ? this.$trd(val) : '-',
             },
             {name: 'actions', label: this.$tr('isite.cms.form.actions'), align: 'left'},
           ],
-          requestParams: {include: ''}
+          requestParams: {include: 'translations'}
         },
         update: {
           title: this.$tr('iprofile.cms.updateRole'),
-          requestParams: {include: ''}
+          requestParams: {include: 'translations'}
         },
         delete: true,
         formLeft: {
           id: {value: null},
           userId: {value: this.$store.state.quserAuth.userId},
-          name: {
+          title: {
             value: '',
             type: 'input',
             props: {
-              label: `${this.$tr('isite.cms.form.name')}*`,
+              label: `${this.$tr('isite.cms.form.title')}*`,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
@@ -58,41 +49,9 @@ export default {
             validateField: {
               apiRoute: 'apiRoutes.quser.roles',
               crudId: this.crudId,
-              requestParams: {filter: {field: 'name'}}
+              requestParams: {filter: {field: 'title'}}
             }
           },
-          slug: {
-            value: '',
-            type: 'input',
-            props: {
-              label: `${this.$tr('isite.cms.form.slug')}*`,
-              rules: [
-                val => !!val || this.$tr('isite.cms.message.fieldRequired')
-              ],
-            }
-          },
-          formId: {
-            type: 'crud',
-            props: {
-              crudType: 'select',
-              crudData: import('modules/qform/_crud/crudForms'),
-              crudProps: {
-                label: `${this.$tr('isite.cms.label.form')}`,
-              },
-              config: {
-                clearable : true,
-                options: {
-                  label: 'title', value: 'id'
-                }
-              },
-            },
-          },
-          permissions: {
-            type: 'permissions',
-            value: {}
-          }
-        },
-        formRight: {
           assignedRoles: {
             value: [],
             type: 'select',
@@ -104,23 +63,11 @@ export default {
             },
             loadOptions: {
               apiRoute: 'apiRoutes.quser.roles',
-              select: {label: 'name', id: 'id'}
+              requestParams: {include: 'translations'},
+              select: {label: 'title', id: 'id'}
             }
           },
-          assignedDepartments: {
-            value: [],
-            type: 'select',
-            fakeFieldName: 'settings',
-            props: {
-              label: 'Can manage departments under following departments',
-              multiple: true,
-              useChips: true,
-            },
-            loadOptions: {
-              apiRoute: 'apiRoutes.quser.departments',
-              requestParams: {include: ''}
-            }
-          },
+          
           incognitoProfile: {
             value: 0,
             type: 'select',
@@ -133,19 +80,13 @@ export default {
               ]
             }
           },
-          workSpace: {
-            value: 'iadmin',
-            type: 'select',
-            fakeFieldName: 'settings',
-            props: {
-              label: this.$tr('isite.cms.label.workSpace'),
-              options: [
-                {label: 'Iadmin', value: 'iadmin'},
-                {label: 'Ipanel', value: 'ipanel'},
-              ]
-            }
+                    
+          permissions: {
+            type: 'permissions',
+            value: {}
           }
-        }
+        },
+        //formRight: {}
       }
     },
     //Crud info

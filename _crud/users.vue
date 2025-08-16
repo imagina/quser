@@ -1,4 +1,4 @@
-<template>
+<template>  
   <master-modal v-model="detailModal.show" :loading="detailModal.loading"
                 :title="$tr('isite.cms.details')">
     <q-list separator v-if="detailModal.data">
@@ -30,13 +30,13 @@ export default {
         crudId: this.crudId,
         entityName: config("main.quser.entityNames.user"),
         apiRoute: 'apiRoutes.quser.users',
-        permission: 'profile.user',
+        permission: 'iuser.users',
         extraFormFields: 'Iprofile.crud-fields.users',
         create: {
           title: this.$tr('iprofile.cms.newUser'),
         },
         read: {
-          requestParams: {include: 'roles,departments,fields'},
+          requestParams: {include: 'roles,roles.translations,fields'},
           columns: [
             {name: 'id', label: this.$tr('isite.cms.form.id'), field: 'id'},
             {
@@ -56,7 +56,7 @@ export default {
               sortable: true
             },
             {
-              name: 'first_name', label: this.$tr('isite.cms.form.name'), field: 'fullName',
+              name: 'firstName', label: this.$tr('isite.cms.form.name'), field: 'firstName',
               align: 'left', sortable: true
             },
             {
@@ -75,16 +75,9 @@ export default {
               name: 'roles', label: this.$trp('isite.cms.label.role'), field: 'roles',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
               format: val => val ? val.map(item => {
-                return item.name
-              }).join(', ') : ''
-            },
-            {
-              name: 'departments', label: this.$trp('iprofile.cms.label.userGroup'), field: 'departments',
-              align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
-              format: val => val ? val.map(item => {
                 return item.title
               }).join(', ') : ''
-            },
+            },            
             {
               name: 'last_loging', label: this.$tr('iprofile.cms.form.lastLogin'), field: 'lastLogin',
               align: 'left', format: val => val ? this.$trd(val) : '-',
@@ -105,25 +98,14 @@ export default {
               type: 'select',
               loadOptions: {
                 apiRoute: 'apiRoutes.quser.roles',
-                select: {label: 'name', id: 'id'}
+                requestParams: {include: 'translations'},
+                select: {label: 'title', id: 'id'}
               },
               props: {
                 label: `${this.$tr('isite.cms.label.role')}:`,
                 clearable: true
               }
-            },
-            departmentId: {
-              value: null,
-              tree: false,
-              type: 'select',
-              loadOptions: {
-                apiRoute: 'apiRoutes.quser.departments'
-              },
-              props: {
-                label: `${this.$tr('isite.cms.label.department')}:`,
-                clearable: true
-              }
-            },
+            },            
             status: {
               value: null,
               type: 'select',
@@ -146,7 +128,7 @@ export default {
         },
         update: {
           title: this.$tr('iprofile.cms.updateUser'),
-          requestParams: {include: 'roles,departments,settings'}
+          requestParams: {include: 'roles,roles.translations,fields'},
         },
         delete: false,
         formLeft: {
@@ -271,9 +253,10 @@ export default {
                   val => (!!val && val.length) || this.$tr('isite.cms.message.fieldRequired')
                 ]
               },
-              config: {options: {label: 'name', value: 'id'}},
+              config: {options: {label: 'title', value: 'id'}},
             }
           },
+          /*
           departments: {
             value: [],
             type: 'crud',
@@ -290,11 +273,12 @@ export default {
               },
             }
           },
+          */
           assignedRoles: {
             value: [],
             type: 'select',
             fakeFieldName: 'settings',
-            permission: 'profile.permissions.manage',
+           // permission: 'profile.permissions.manage',
             props: {
               label: 'Can manage users with following roles',
               multiple: true,
@@ -303,14 +287,16 @@ export default {
             },
             loadOptions: {
               apiRoute: 'apiRoutes.quser.roles',
-              select: {label: 'name', id: 'id'}
+              requestParams: {include: 'translations'},
+              select: {label: 'title', id: 'id'}
             }
           },
+          /*v12
           assignedDepartments: {
             value: [],
             type: 'select',
             fakeFieldName: 'settings',
-            permission: 'profile.permissions.manage',
+            //permission: 'profile.permissions.manage',
             props: {
               label: 'Can manage departments under following User groups',
               multiple: true,
@@ -322,6 +308,7 @@ export default {
               requestParams: {include: ''}
             }
           },
+          */
           mediasSingle: {
             value: {},
             type: 'media',
@@ -348,6 +335,7 @@ export default {
       return setting.includes("user_name")
     },
     isAvailable() {
+     
       return Boolean(this.$getSetting('iprofile::availabilityEnabled'))
     }
   },

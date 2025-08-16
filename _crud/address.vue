@@ -87,6 +87,7 @@ export default {
             },
             loadOptions: {
               apiRoute: 'apiRoutes.qlocations.countries',
+              requestParams: {include: 'translations'},
               select: {label: 'name', id: 'id'},
             }
           },

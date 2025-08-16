@@ -1,13 +1,13 @@
-const moduleName = 'profile';
+const moduleName = 'iuser';
 const moduleVersion = 'v1';
 const urlBase = `/${moduleName}/${moduleVersion}`
 
 export default {
   urlBase: urlBase,
-  version: moduleVersion,
+  version: moduleVersion,  
   me: `${urlBase}/auth/me`,
-  mustChangePassword: `${urlBase}/auth/must-change-password`,
-  authLogin: `${urlBase}/auth/login`,
+  mustChangePassword: `${urlBase}/auth/must-change-password`,  
+  authLogin: `${urlBase}/auth/login`,  
   authLoginSocialNetwork: `${urlBase}/auth/social/{type}`,
   authReset: `${urlBase}/auth/reset`,
   authChanged: `${urlBase}/auth/reset-complete`,

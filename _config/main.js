@@ -14,7 +14,7 @@ export default {
   quickCards: [
     {
       active: true,
-      permission: 'profile.user.manage',
+      permission: 'iuser.users.manage',
       component: () => import('modules/quser/_components/quick-cards/lastUsers')
     }
   ]

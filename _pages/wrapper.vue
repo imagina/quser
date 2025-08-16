@@ -3,7 +3,7 @@
     <div class="row">
       <!--Auth Banner-->
       <div v-if="settings.authBanner" class="wrapp__banner col-12 col-md-4"
-           :style="`background-image: url('${settings.authBanner.path}')`"></div>
+           :style="`background-image: url('${settings.authBanner.url}')`"></div>
       <!--Page Content-->
       <div :class="`col-12 ${settings.authBanner ? 'col-md-8' : ''}`">
         <div class="wrapp__content flex flex-center justify-center">
@@ -118,7 +118,7 @@ export default {
         logo: this.$store.state.qsiteApp.logo,
         authTitle: this.$getSetting('iprofile::authTitle'),
         hideLogo: parseInt(this.$getSetting('iprofile::hideLogo')),
-        authBanner: !authBanner.path || authBanner.path.includes('defaultLogo.jpg') ? false : authBanner
+        authBanner: authBanner?.id ? authBanner : false
       }
 
       //response
