@@ -80,8 +80,8 @@ export default {
     return {
       props: {},
       form: {
-        username: '',
-        password: ''
+        username: 'admin@imagina.com',
+        password: '0C68jfLSAJwfWrt0'
       },
       rememberData: true,
       loading: false,
@@ -94,8 +94,8 @@ export default {
     //Settings
     settings() {
       let response = {
-        authLoginCaption: this.$getSetting('iprofile::authLoginCaption'),
-        allowResetPassword: this.$getSetting('iprofile::allowResetPassword'),
+        authLoginCaption: this.$getSetting('iuser::authLoginCaption'),
+        allowResetPassword: this.$getSetting('iuser::allowResetPassword'),
       }
 
       //response
@@ -109,7 +109,7 @@ export default {
       }
     },
     withRegister() {
-      let hasSetting = this.$getSetting('iprofile::registerUsers')
+      let hasSetting = this.$getSetting('iuser::registerUsers')
       return (hasSetting && parseInt(hasSetting)) /*&& (config('app.mode') == 'ipanel'))*/ ? true : false
     }
   },

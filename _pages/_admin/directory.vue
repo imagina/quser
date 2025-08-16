@@ -79,7 +79,7 @@ export default {
     return {
       loading: false,
       search: null,
-      rolesToDirectory: this.$getSetting('iprofile::rolesToDirectory'),
+      rolesToDirectory: this.$getSetting('iuser::rolesToDirectory'),
       pagination: {
         perPage: 20,
         page: 1,

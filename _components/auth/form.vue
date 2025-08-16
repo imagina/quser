@@ -70,7 +70,7 @@
     },
     computed: {
       withRegister() {
-        let hasSetting = this.$getSetting('iprofile::registerUsers')
+        let hasSetting = this.$getSetting('iuser::registerUsers')
         return (hasSetting && !this.isIadmin) ? true : false
       },
       isIadmin() {

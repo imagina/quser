@@ -1,4 +1,4 @@
-<template>  
+<template>
   <master-modal v-model="detailModal.show" :loading="detailModal.loading"
                 :title="$tr('isite.cms.details')">
     <q-list separator v-if="detailModal.data">
@@ -77,7 +77,7 @@ export default {
               format: val => val ? val.map(item => {
                 return item.title
               }).join(', ') : ''
-            },            
+            },
             {
               name: 'last_loging', label: this.$tr('iprofile.cms.form.lastLogin'), field: 'lastLogin',
               align: 'left', format: val => val ? this.$trd(val) : '-',
@@ -105,7 +105,7 @@ export default {
                 label: `${this.$tr('isite.cms.label.role')}:`,
                 clearable: true
               }
-            },            
+            },
             status: {
               value: null,
               type: 'select',
@@ -331,12 +331,12 @@ export default {
     },
     //Setting custom login
     customLogin() {
-      var setting = this.$getSetting('iprofile::customLogin') || []
+      var setting = this.$getSetting('iuser::customLogin') || []
       return setting.includes("user_name")
     },
     isAvailable() {
-     
-      return Boolean(this.$getSetting('iprofile::availabilityEnabled'))
+
+      return Boolean(this.$getSetting('iuser::availabilityEnabled'))
     }
   },
   methods: {

@@ -304,7 +304,7 @@ export const AUTH_FORCE_PASSWORD = ({ commit, dispatch, state }) => {
 
 
     try {
-      const expireTime = parseInt(store.getSetting('iprofile::passwordExpiredTime') ?? 0);
+      const expireTime = parseInt(store.getSetting('iuser::passwordExpiredTime') ?? 0);
       if (expireTime) {
         const sessionData = await cache.get.item('sessionData')//Get  session Data
         //Validate session data

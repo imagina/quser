@@ -112,12 +112,12 @@ export default {
     //Settings
     settings() {
       //Get auth banner
-      let authBanner = this.$getMediaSetting('iprofile::authBanner')
+      let authBanner = this.$getMediaSetting('iuser::authBanner')
 
       let response = {
         logo: this.$store.state.qsiteApp.logo,
-        authTitle: this.$getSetting('iprofile::authTitle'),
-        hideLogo: parseInt(this.$getSetting('iprofile::hideLogo')),
+        authTitle: this.$getSetting('iuser::authTitle'),
+        hideLogo: parseInt(this.$getSetting('iuser::hideLogo')),
         authBanner: authBanner?.id ? authBanner : false
       }
 
@@ -126,14 +126,14 @@ export default {
     },
     //Validate if load social auth
     withAuthSocial() {
-      let hasSetting = parseInt(this.$getSetting('iprofile::registerUsersWithSocialNetworks'))
+      let hasSetting = parseInt(this.$getSetting('iuser::registerUsersWithSocialNetworks'))
       return hasSetting && (this.authType != "logout")
     },
     microsoftClient() {
-      return this.$getSetting('iprofile::microsoftClientId')
+      return this.$getSetting('iuser::microsoftClientId')
     },
     allowLocalLogin() {
-      return Boolean(Number(this.$getSetting('iprofile::allowLocalLogin')))
+      return Boolean(Number(this.$getSetting('iuser::allowLocalLogin')))
     },
     modeAuthType() {
       return this.$store.getters['qsiteApp/getConfigApp']('iprofile.authType') || "withPassword"

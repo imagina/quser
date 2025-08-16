@@ -52,7 +52,7 @@ export default {
   props: {
     rolesToRegister: {
       type: String,
-      default: 'iprofile::rolesToRegister'
+      default: 'iuser::rolesToRegister'
     }
   },
   computed: {
@@ -155,11 +155,11 @@ export default {
     //Get settings data
     settings() {
       return {
-        politics: this.$getSetting('iprofile::registerUserWithPoliticsOfPrivacy'),
-        terms: this.$getSetting('iprofile::registerUserWithTermsAndConditions'),
+        politics: this.$getSetting('iuser::registerUserWithPoliticsOfPrivacy'),
+        terms: this.$getSetting('iuser::registerUserWithTermsAndConditions'),
         rolesToRegister: this.$getSetting(this.rolesToRegister) ||
-            this.$getSetting('iprofile::rolesToRegister'),
-        authRegisterCaption: this.$getSetting('iprofile::authRegisterCaption'),
+            this.$getSetting('iuser::rolesToRegister'),
+        authRegisterCaption: this.$getSetting('iuser::authRegisterCaption'),
         activateCaptcha: parseInt(this.$getSetting('isite::activateCaptcha')),
       }
     },

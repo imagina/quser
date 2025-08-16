@@ -64,9 +64,9 @@ export default {
     //Get settings data
     settings() {
       return {
-        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithPoliticsOfPrivacy'),
-        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::registerUserWithTermsAndConditions'),
-        authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iprofile::authRegisterCaption'),
+        politics: this.$store.getters['qsiteApp/getSettingValueByName']('iuser::registerUserWithPoliticsOfPrivacy'),
+        terms: this.$store.getters['qsiteApp/getSettingValueByName']('iuser::registerUserWithTermsAndConditions'),
+        authRegisterCaption: this.$store.getters['qsiteApp/getSettingValueByName']('iuser::authRegisterCaption'),
         activateCaptcha: parseInt(this.$store.getters['qsiteApp/getSettingValueByName']('isite::activateCaptcha')),
       }
     },

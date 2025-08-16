@@ -5,8 +5,8 @@ import { store } from "src/plugins/utils"
 
 const msalConfig = {
     auth: {
-        clientId: store.getSetting('iprofile::microsoftClientId'),
-        authority: store.getSetting('iprofile::microsoftAuthUrl'),
+        clientId: store.getSetting('iuser::microsoftClientId'),
+        authority: store.getSetting('iuser::microsoftAuthUrl'),
         redirectUri: window.location.origin,
         postLogoutRedirectUri: window.location.origin
     },
@@ -37,7 +37,7 @@ const msalConfig = {
 };
 
 const loginRequest = {
-    scopes: store.getSetting('iprofile::microsoftScopeLogin')
+    scopes: store.getSetting('iuser::microsoftScopeLogin')
 };
 
 
