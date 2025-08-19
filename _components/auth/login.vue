@@ -80,8 +80,8 @@ export default {
     return {
       props: {},
       form: {
-        username: 'admin@imagina.com',
-        password: '0C68jfLSAJwfWrt0'
+        username: '',
+        password: ''
       },
       rememberData: true,
       loading: false,
