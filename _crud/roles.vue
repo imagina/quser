@@ -40,16 +40,22 @@ export default {
           title: {
             value: '',
             type: 'input',
+            isTranslatable: true,
             props: {
               label: `${this.$tr('isite.cms.form.title')}*`,
               rules: [
                 val => !!val || this.$tr('isite.cms.message.fieldRequired')
               ],
-            },
-            validateField: {
-              apiRoute: 'apiRoutes.quser.roles',
-              crudId: this.crudId,
-              requestParams: {filter: {field: 'title'}}
+            }
+          },
+          systemName: {
+            value: '',
+            type: 'input',
+            props: {
+              label: `${this.$tr('isite.cms.form.slug')}*`,
+              rules: [
+                val => !!val || this.$tr('isite.cms.message.fieldRequired')
+              ],
             }
           },
           assignedRoles: {
