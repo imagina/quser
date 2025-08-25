@@ -17,7 +17,7 @@ export default {
   },
   //User Roles
   userRoles: {
-    permission: 'iuser.role.manage',
+    permission: 'iuser.roles.manage',
     activated: true,
     path: '/roles',
     name: 'quser.admin.roles',
