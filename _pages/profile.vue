@@ -183,7 +183,7 @@ export default {
                 directUpload: true,
                 multiple: false,
                 zone: 'profile',
-                entity: 'Modules\\User\\Entities\\Sentinel\\User',
+                entity: 'Modules\\User\\Models\\Sentinel\\User',
                 entityId: null
               }
             }
