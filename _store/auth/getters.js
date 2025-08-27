@@ -45,8 +45,8 @@ export const userRolesSelect = (state) => {
 }
 
 export const userDepartmentsSelect = (state) => {
-  let userData = state.userData  
-  let departments = userData?.departments || []  
+  let userData = state.userData
+  let departments = userData?.departments || []
   return array.tree(departments)
 }
 
@@ -107,9 +107,8 @@ export const getOrganization = (state => (id = false) => {
 
 //Profile image object { ...smallThumb, mediumThumb, path...  }
 export const profileImage = (state =>  {
-  if(state.userData.mediaFiles){
-
-    return state.userData.mediaFiles.profile
+  if(state.userData.files){
+    return state.userData.files.profile.thumbnails
   }
   const defaultPicture = state?.userData?.mainImage
   return { smallThumb: defaultPicture, mediumThumb: defaultPicture }
