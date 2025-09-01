@@ -67,10 +67,12 @@ export default {
               name: 'userName', label: this.$trp('isite.cms.form.userName'),
               field: 'userName', align: 'left', sortable: true, vIf: this.customLogin
             },
+            /*
             {
               name: 'isActivated', label: this.$tr('isite.cms.form.status'), field: 'isActivated',
               asStatus: true
             },
+            */
             {
               name: 'roles', label: this.$trp('isite.cms.label.role'), field: 'roles',
               align: 'left', classes: 'ellipsis', style: 'max-width : 250px',
@@ -184,6 +186,7 @@ export default {
               mask:"##########",
             },
           },
+          /*
           isActivated: {
             value: '1',
             type: 'select',
@@ -195,6 +198,7 @@ export default {
               ],
             }
           },
+          */
           changePassword: {
             value: false,
             type: 'checkbox',
