@@ -27,7 +27,7 @@ export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
 
       const data = response.data
       await dispatch('AUTH_SUCCESS', {
-          expiresIn: data.token.expiresIn,
+          expiresIn: (helper.timestamp() + data.token.expiresIn),
           userData: data.user,
           userToken: data.token.accessToken
       })
@@ -68,8 +68,6 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
       data = data || await cache.get.item('sessionData')
       if (data) {
         commit('AUTH_SUCCESS', data)//commit userdata in store
-        await dispatch('SET_ROLE_DEPARTMENT')//Set role and department
-        await dispatch('SET_PERMISSIONS')//Set Permissions
         await dispatch('SET_SETTINGS')//Set settings
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.userToken}`//Set default headers to axios
 
@@ -99,71 +97,12 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
   })
 }
 
-//Set user role and user department
-export const SET_ROLE_DEPARTMENT = ({ state, commit, getters }, params = {}) => {
-  return new Promise(async (resolve, reject) => {
-    //v12
-    resolve(true)
-    try {
-      if (!config('app.forceRoleAndDepartment')) return resolve(true)
-      let roles = getters['getRolesField']()
-      //v12 let departments = getters['getDepartmentsField']()
-      let departments = []
-
-      //Get role and department from params
-      let roleUser = params.roleId || false
-      let departmentUser = params.departmentId || false
-
-      //If no exist role and department search it in cache
-      if (!roleUser && !params.reset) roleUser = await cache.get.item('auth.role.id')
-      if (!departmentUser && !params.reset) departmentUser = await cache.get.item('auth.department.id')
-
-      //If not found in cache, get it from store
-      if (!roleUser && !params.reset) roleUser = state.userData.roles[0].id || false
-      if (!departmentUser && !params.reset) departmentUser = state.userData.departments[0].id || false
-
-      //Compare roleSelected with user roles
-      if (roles.indexOf(roleUser) == -1) roleUser = roles[0]
-      //Compare departmentSelected with user department
-      if (departments.indexOf(departmentUser) == -1) departmentUser = departments[0]
-
-      //Set default params to axios
-      axios.defaults.params.setting.departmentId = departmentUser
-      axios.defaults.params.setting.roleId = roleUser
-
-      //Save role and department sleected in cache and store
-      commit('SET_ROLE_ID', roleUser)
-      commit('SET_DEPARTMENT_ID', departmentUser)
-      await cache.set('auth.role.id', roleUser)
-      await cache.set('auth.department.id', departmentUser)
-
-      resolve({ departmentId: departmentUser, roleId: roleUser })//Response
-    } catch (e) {
-      console.error('[AUTH SET ROLE] ', e)
-      reject(e)
-    }
-  })
-}
 
 //Set permission of user
 export const SET_PERMISSIONS = ({ dispatch, commit, state }) => {
   return new Promise(async (resolve, reject) => {
-    try {
-      let permissions = []//Default data
-
-      //Set global permissions
-      if (config('app.forceRoleAndDepartment')) {
-        const roleId = state.selectedRoleId//Get role selected
-        const role = state.userData.roles.find(role => role.id === roleId)//Get role
-        const rolePermissions = JSON.parse(JSON.stringify(role.permissions))//Get role permissions
-        const userPermissions = state.userData.permissions//Get user permissions
-
-        //Merge permissions
-        permissions = { ...rolePermissions, ...userPermissions }
-      } else {//Set all permissions of user
-        permissions = state.userData.allPermissions
-      }
-
+    try {      
+      const permissions = state.userData.permissions
       //Save in store permissions
       commit('SET_PERMISSIONS', permissions)
       resolve(true)//Resolve

@@ -1,8 +1,9 @@
 export const AUTH_SUCCESS = (state, data) => {
   state.userData = {
     ...data.userData,
-    fullName: `${data.userData.firstName} ${data.userData.lastName}`
+    fullName: `${data.userData.firstName} ${data.userData.lastName}`,    
   }
+  state.permissions = data.userData.permissions
   state.userToken = data.userToken
   state.userId = data.userData.id
   state.organizations = data.userData.organizations || []

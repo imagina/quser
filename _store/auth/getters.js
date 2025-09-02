@@ -52,20 +52,10 @@ export const userDepartmentsSelect = (state) => {
 
 export const hasAccess = (state) => (can, params = {}) => {
   if(can === null) return true //Return true if permission is null
-  let permissions = state.userData.permissions//Get default permissions
-
-  //Get role permissions
-  if (params && params.roleId) {
-    //Search role
-    let role = state.userData ?
-      state.userData.roles.find(role => parseInt(role.id) == parseInt(params.roleId)) : false
-    //Set role permissions
-    permissions = role ? role.permissions : []
-  }
-
+  let permissions = state.permissions//Get default permissions
+  
   //Validate params
   if (!can || !permissions) return false
-
   //Validate permission
   if (permissions && Object.keys(permissions).length)
     return permissions[can] || false
