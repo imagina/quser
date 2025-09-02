@@ -2,6 +2,7 @@ export default {
   authenticated: false,
   impersonating: false,
   userToken: null,
+  refreshToken: null,
   userId: null,
   userData: null,
   permissions: null,
