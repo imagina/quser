@@ -282,7 +282,7 @@ export const AUTH_LOGOUT = async ({ commit, dispatch, state }) => {
     try {
       //Request to Logout in backend
       if (state.authenticated) {
-        await crud.get('apiRoutes.quser.authLogout').catch(error => {
+        await crud.post('apiRoutes.quser.authLogout').catch(error => {
           console.error(error)
         })
       }
