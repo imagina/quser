@@ -1,14 +1,23 @@
 export const AUTH_SUCCESS = (state, data) => {
   state.userData = {
     ...data.userData,
-    fullName: `${data.userData.firstName} ${data.userData.lastName}`,    
+    fullName: `${data.userData.firstName} ${data.userData.lastName}`,
   }
   state.permissions = data.userData.permissions
-  state.userToken = data.userToken
+  state.userToken = data.userToken,
+  state.refreshToken = data.refreshToken
   state.userId = data.userData.id
   state.organizations = data.userData.organizations || []
   state.authenticated = true
 }
+
+
+export const AUTH_REFRESH = (state, data) => {
+  state.userToken = data.userToken
+  state.refreshToken = data.refreshToken
+  state.authenticated = true
+}
+
 
 export const SET_ROLE_ID = (state, data) => {
   state.selectedRoleId = data

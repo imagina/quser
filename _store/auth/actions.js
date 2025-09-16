@@ -29,7 +29,8 @@ export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
       await dispatch('AUTH_SUCCESS', {
           expiresIn: (helper.timestamp() + data.token.expiresIn),
           userData: data.user,
-          userToken: data.token.accessToken
+          userToken: data.token.accessToken,
+          refreshToken: data.token.refreshToken
       })
       resolve(true)
     }).catch(error => {
@@ -101,7 +102,7 @@ export const AUTH_SUCCESS = ({ commit, dispatch, state }, data = false) => {
 //Set permission of user
 export const SET_PERMISSIONS = ({ dispatch, commit, state }) => {
   return new Promise(async (resolve, reject) => {
-    try {      
+    try {
       const permissions = state.userData.permissions
       //Save in store permissions
       commit('SET_PERMISSIONS', permissions)
@@ -160,11 +161,44 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
     try {
       let sessionData = await cache.get.item('sessionData')
       //Validate session data
-      //v12 if (!sessionData || !sessionData.userData || (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
       if (!sessionData || !sessionData.userData) {
         dispatch('AUTH_LOGOUT')//Logout
         return resolve(false)//Close if there isn't token
       }
+      /* RefreshToken */
+      if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
+
+        let requestData = {
+          attributes: {
+            token: sessionData.refreshToken
+          }
+        }
+
+        await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
+          const data = response.data
+
+          const result = {
+            expiresIn: (helper.timestamp() + data.expiresIn),
+            userToken: data.accessToken,
+            refreshToken: data.refreshToken
+          }
+          commit('AUTH_REFRESH', result)
+          commit('SET_AUTHENTICATED')
+          //Set user token to axios
+          sessionData.userToken = result.userToken
+          sessionData.refreshToken = result.refreshToken
+          sessionData.expiresIn = result.expiresIn
+          await cache.set('sessionData', sessionData)
+          axios.defaults.headers.common['Authorization'] = `Bearer ${sessionData.userToken}`
+          await dispatch('AUTH_SUCCESS', sessionData)
+          return resolve(true)
+        }).catch(error => {
+          console.error('[REFRESH_TOKEN] ', error)
+          dispatch('AUTH_LOGOUT')//Logout
+          return resolve(false)
+        })
+      }
+
       await dispatch('AUTH_UPDATE').catch(error => {
         dispatch('AUTH_LOGOUT')//Logout
         return resolve(false)
