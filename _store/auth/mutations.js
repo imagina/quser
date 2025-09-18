@@ -13,6 +13,7 @@ export const AUTH_SUCCESS = (state, data) => {
 
 
 export const AUTH_REFRESH = (state, data) => {
+  console.log('updatting token', data.userToken)
   state.userToken = data.userToken
   state.refreshToken = data.refreshToken
   state.authenticated = true

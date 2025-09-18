@@ -165,14 +165,15 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
         return resolve(false)//Close if there isn't token
       }
       /* RefreshToken */
+      /*
       if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
 
         let requestData = {
           attributes: {
             token: sessionData.refreshToken
           }
-        }
-
+        } 
+        commit('SET_REFRESHING', true);
         await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
           const data = response.data
 
@@ -181,8 +182,9 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
             userToken: data.accessToken,
             refreshToken: data.refreshToken
           }
-          commit('AUTH_REFRESH', result)
+          commit('AUTH_REFRESH', result)          
           commit('SET_AUTHENTICATED')
+          commit('SET_REFRESHING', false);
           //Set user token to axios
           sessionData.userToken = result.userToken
           sessionData.refreshToken = result.refreshToken
@@ -192,11 +194,12 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
           await dispatch('AUTH_SUCCESS', sessionData)
           return resolve(true)
         }).catch(error => {
-          console.error('[REFRESH_TOKEN] ', error)
+          console.error('[AUTH_TRYAUTOLOGIN] ', error)
           dispatch('AUTH_LOGOUT')//Logout
           return resolve(false)
         })
       }
+        */
 
       await dispatch('AUTH_UPDATE').catch(error => {
         dispatch('AUTH_LOGOUT')//Logout
@@ -434,18 +437,21 @@ export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
     
     if (sessionData && !state.isRefreshing && state.authenticated) {            
       
-      if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp() )) {
+      if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
         //Request to refresh token
+        console.log('SET_REFRESHING')
+        console.count('SET_REFRESHING')
         commit('SET_REFRESHING', true);
         let requestData = {
           attributes: {
             token: sessionData.refreshToken
           }
         }
-        axios.defaults.headers.common['Authorization'] = null
+        
         await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
          
           const data = response.data
+          console.log(data)
 
           const result = {
             expiresIn: (helper.timestamp() + data.expiresIn),
@@ -459,8 +465,11 @@ export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
           sessionData.refreshToken = result.refreshToken
           sessionData.expiresIn = result.expiresIn
           await cache.set('sessionData', sessionData)
-          console.log('newtoken: '+result.userToken)
-          axios.defaults.headers.common['Authorization'] = `Bearer ${result.userToken}`
+          sessionData = await cache.get.item('sessionData')
+
+          console.log('newtoken: '+sessionData.userToken)
+          return result.userToken
+          
 
           
         }).catch(error => {
@@ -468,9 +477,11 @@ export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
           commit('SET_REFRESHING', false);
         })
       }
+      return false
     }
   } catch (error) {
     commit('SET_REFRESHING', false);
+    return false
     console.log(error, 'REFRESH_TOKEN');
   }
 }
