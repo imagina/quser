@@ -13,6 +13,12 @@ import { getTokenFirebase } from 'modules/qnotification/_plugins/firebase.js'
 import notificationPlugin from 'modules/qnotification/_plugins/notification'
 import { user } from './getters'
 
+const renewalThreshold = 300; // 5 minutes
+
+function currentTime() {
+  return Math.floor(Date.now() / 1000) //returns unix time in seconds
+}
+
 //Request Login
 export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
   return new Promise(async (resolve, reject) => {
@@ -27,7 +33,7 @@ export const AUTH_REQUEST = ({ commit, dispatch, state }, authData) => {
 
       const data = response.data
       await dispatch('AUTH_SUCCESS', {
-          expiresIn: (helper.timestamp() + data.token.expiresIn),
+          expiresIn: (currentTime() + data.token.expiresIn),
           userData: data.user,
           userToken: data.token.accessToken,
           refreshToken: data.token.refreshToken
@@ -160,53 +166,19 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
       let sessionData = await cache.get.item('sessionData')
-      //Validate session data
-      if (!sessionData || !sessionData.userData) {
-        dispatch('AUTH_LOGOUT')//Logout
-        return resolve(false)//Close if there isn't token
-      }
-      /* RefreshToken */
-      if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
 
-        let requestData = {
-          attributes: {
-            token: sessionData.refreshToken
-          }
-        }
-
-        await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
-          const data = response.data
-
-          const result = {
-            expiresIn: (helper.timestamp() + data.expiresIn),
-            userToken: data.accessToken,
-            refreshToken: data.refreshToken
-          }
-          commit('AUTH_REFRESH', result)
-          commit('SET_AUTHENTICATED')
-          //Set user token to axios
-          sessionData.userToken = result.userToken
-          sessionData.refreshToken = result.refreshToken
-          sessionData.expiresIn = result.expiresIn
-          await cache.set('sessionData', sessionData)
-          axios.defaults.headers.common['Authorization'] = `Bearer ${sessionData.userToken}`
-          await dispatch('AUTH_SUCCESS', sessionData)
-          return resolve(true)
-        }).catch(error => {
-          console.error('[REFRESH_TOKEN] ', error)
-          dispatch('AUTH_LOGOUT')//Logout
-          return resolve(false)
-        })
+      if (sessionData && sessionData?.userToken && sessionData?.refreshToken &&  sessionData?.userData) {
+        await dispatch('AUTH_SUCCESS')
+        return resolve(state.authenticated)//Resolve
       }
 
-      await dispatch('AUTH_UPDATE').catch(error => {
-        dispatch('AUTH_LOGOUT')//Logout
-        return resolve(false)
-      })//Update user data
-      resolve(state.authenticated)//Resolve
+      dispatch('AUTH_LOGOUT')//Logout
+      return resolve(false)//Close if there isn't token
+
     } catch (error) {
+      dispatch('AUTH_LOGOUT')//Logout
       console.error('[AUTH_TRYAUTOLOGIN] ', error)
-      reject(false)
+      return reject(false)
     }
   })
 }
@@ -427,32 +399,49 @@ export const USER_LEAVE_IMPERSONATE = ({ commit, dispatch, state }) => {
   })
 }
 
-//Refresh user token
 export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
   try {
-    let sesionData = await cache.get.item('sessionData')
+    let sessionData = await cache.get.item('sessionData')
 
-    if (sesionData & !state.isRefreshing) {
-      let inTenMinutosDate = helper.timestamp() + (60000 * 5)//Current date plus 5 minutes
-      let expiresIn = helper.timestamp(sesionData.expiresIn)//Get timestamp expiresIn
-      //If token expires in ten minute, refresh
-      if (expiresIn <= inTenMinutosDate) {
-        //Request to refresh token
-        commit('SET_REFREHING', true);
-        await crud.post('apiRoutes.quser.refreshToken').then(async (response) => {
-          sesionData.expiresIn = response.data.expiresIn//Get expires in
-          cache.set('sessionData', sesionData)//Update expiresIn in sessionData
-          await dispatch('AUTH_SUCCESS', response.data);
-          commit('SET_REFREHING', false);
-        }).catch(error => {
-          console.error('[REFRESH_TOKEN] ', error)
-          commit('SET_REFREHING', false);
-        })
+    if (sessionData && !state.isRefreshing && state.authenticated) {
+      if (sessionData?.userToken && sessionData?.refreshToken && sessionData?.userData) {
+        if ( (sessionData.expiresIn - currentTime() ) <= renewalThreshold ) {
+          //Request to refresh token
+          commit('SET_REFRESHING', true);
+          let requestData = {
+            attributes: {
+              token: sessionData.refreshToken
+            }
+          }
+        
+          await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
+            const data = response.data
+
+            const result = {
+              expiresIn: (currentTime() + data.expiresIn),
+              userToken: data.accessToken,
+              refreshToken: data.refreshToken
+            }
+            commit('AUTH_REFRESH', result);
+            commit('SET_REFRESHING', false);
+            sessionData.userToken = result.userToken
+            sessionData.refreshToken = result.refreshToken
+            sessionData.expiresIn = result.expiresIn
+            await cache.set('sessionData', sessionData)
+
+          }).catch(error => {
+            console.error('[REFRESH_TOKEN] ', error)
+            commit('SET_REFRESHING', false);
+          })
+        }
       }
     }
+    return false
+
   } catch (error) {
-    commit('SET_REFREHING', false);
+    commit('SET_REFRESHING', false);
     console.log(error, 'REFRESH_TOKEN');
+    return false
   }
 }
 

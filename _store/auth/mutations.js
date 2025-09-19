@@ -1,13 +1,16 @@
 export const AUTH_SUCCESS = (state, data) => {
-  state.userData = {
-    ...data.userData,
-    fullName: `${data.userData.firstName} ${data.userData.lastName}`,
+  if(data?.userData){
+    state.userData = {
+      ...data.userData,
+      fullName: `${data.userData.firstName} ${data.userData.lastName}`,
+    }
+    state.permissions = data.userData.permissions
+    state.userId = data.userData.id
+    state.organizations = data.userData.organizations || []
   }
-  state.permissions = data.userData.permissions
-  state.userToken = data.userToken,
-  state.refreshToken = data.refreshToken
-  state.userId = data.userData.id
-  state.organizations = data.userData.organizations || []
+  state.userToken = data?.userToken || state.userToken,
+  state.refreshToken = data?.refreshToken || state.refreshToken
+  state.expiresIn = data?.expiresIn || state.expiresIn
   state.authenticated = true
 }
 
@@ -15,6 +18,7 @@ export const AUTH_SUCCESS = (state, data) => {
 export const AUTH_REFRESH = (state, data) => {
   state.userToken = data.userToken
   state.refreshToken = data.refreshToken
+  state.expiresIn = data.expiresIn
   state.authenticated = true
 }
 
@@ -76,6 +80,6 @@ export const SET_ORGANIZATION = (state, data) => {
   state.organizationId = data
 }
 
-export const SET_REFREHING = (state, data) => {
+export const SET_REFRESHING = (state, data) => {
   state.isRefreshing = data
 }
