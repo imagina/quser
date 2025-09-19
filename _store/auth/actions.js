@@ -155,7 +155,6 @@ export const SET_SETTINGS = ({ dispatch, commit, state }) => {
   })
 }
 
-//Try login
 export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -166,14 +165,15 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
         return resolve(false)//Close if there isn't token
       }
       /* RefreshToken */
+      /*
       if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
 
         let requestData = {
           attributes: {
             token: sessionData.refreshToken
           }
-        }
-
+        } 
+        commit('SET_REFRESHING', true);
         await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
           const data = response.data
 
@@ -182,8 +182,9 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
             userToken: data.accessToken,
             refreshToken: data.refreshToken
           }
-          commit('AUTH_REFRESH', result)
+          commit('AUTH_REFRESH', result)          
           commit('SET_AUTHENTICATED')
+          commit('SET_REFRESHING', false);
           //Set user token to axios
           sessionData.userToken = result.userToken
           sessionData.refreshToken = result.refreshToken
@@ -193,11 +194,12 @@ export const AUTH_TRYAUTOLOGIN = ({ commit, dispatch, state }) => {
           await dispatch('AUTH_SUCCESS', sessionData)
           return resolve(true)
         }).catch(error => {
-          console.error('[REFRESH_TOKEN] ', error)
+          console.error('[AUTH_TRYAUTOLOGIN] ', error)
           dispatch('AUTH_LOGOUT')//Logout
           return resolve(false)
         })
       }
+        */
 
       await dispatch('AUTH_UPDATE').catch(error => {
         dispatch('AUTH_LOGOUT')//Logout
@@ -430,28 +432,56 @@ export const USER_LEAVE_IMPERSONATE = ({ commit, dispatch, state }) => {
 //Refresh user token
 export const REFRESH_TOKEN = async ({ commit, dispatch, state }) => {
   try {
-    let sesionData = await cache.get.item('sessionData')
-
-    if (sesionData & !state.isRefreshing) {
-      let inTenMinutosDate = helper.timestamp() + (60000 * 5)//Current date plus 5 minutes
-      let expiresIn = helper.timestamp(sesionData.expiresIn)//Get timestamp expiresIn
-      //If token expires in ten minute, refresh
-      if (expiresIn <= inTenMinutosDate) {
+    
+    let sessionData = await cache.get.item('sessionData')
+    
+    if (sessionData && !state.isRefreshing && state.authenticated) {            
+      
+      if (sessionData && (helper.timestamp(sessionData.expiresIn) <= helper.timestamp())) {
         //Request to refresh token
-        commit('SET_REFREHING', true);
-        await crud.post('apiRoutes.quser.refreshToken').then(async (response) => {
-          sesionData.expiresIn = response.data.expiresIn//Get expires in
-          cache.set('sessionData', sesionData)//Update expiresIn in sessionData
-          await dispatch('AUTH_SUCCESS', response.data);
-          commit('SET_REFREHING', false);
+        console.log('SET_REFRESHING')
+        console.count('SET_REFRESHING')
+        commit('SET_REFRESHING', true);
+        let requestData = {
+          attributes: {
+            token: sessionData.refreshToken
+          }
+        }
+        
+        await crud.post('apiRoutes.quser.refreshToken', requestData).then(async (response) => {
+         
+          const data = response.data
+          console.log(data)
+
+          const result = {
+            expiresIn: (helper.timestamp() + data.expiresIn),
+            userToken: data.accessToken,
+            refreshToken: data.refreshToken
+          }          
+          commit('AUTH_REFRESH', result)          
+          commit('SET_REFRESHING', false);
+          //Set user token to axios
+          sessionData.userToken = result.userToken
+          sessionData.refreshToken = result.refreshToken
+          sessionData.expiresIn = result.expiresIn
+          await cache.set('sessionData', sessionData)
+          sessionData = await cache.get.item('sessionData')
+
+          console.log('newtoken: '+sessionData.userToken)
+          return result.userToken
+          
+
+          
         }).catch(error => {
           console.error('[REFRESH_TOKEN] ', error)
-          commit('SET_REFREHING', false);
+          commit('SET_REFRESHING', false);
         })
       }
+      return false
     }
   } catch (error) {
-    commit('SET_REFREHING', false);
+    commit('SET_REFRESHING', false);
+    return false
     console.log(error, 'REFRESH_TOKEN');
   }
 }

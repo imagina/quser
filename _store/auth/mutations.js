@@ -13,6 +13,7 @@ export const AUTH_SUCCESS = (state, data) => {
 
 
 export const AUTH_REFRESH = (state, data) => {
+  console.log('updatting token', data.userToken)
   state.userToken = data.userToken
   state.refreshToken = data.refreshToken
   state.authenticated = true
@@ -76,6 +77,6 @@ export const SET_ORGANIZATION = (state, data) => {
   state.organizationId = data
 }
 
-export const SET_REFREHING = (state, data) => {
+export const SET_REFRESHING = (state, data) => {
   state.isRefreshing = data
 }
