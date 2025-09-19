@@ -1,21 +1,24 @@
 export const AUTH_SUCCESS = (state, data) => {
-  state.userData = {
-    ...data.userData,
-    fullName: `${data.userData.firstName} ${data.userData.lastName}`,
+  if(data?.userData){
+    state.userData = {
+      ...data.userData,
+      fullName: `${data.userData.firstName} ${data.userData.lastName}`,
+    }
+    state.permissions = data.userData.permissions
+    state.userId = data.userData.id
+    state.organizations = data.userData.organizations || []
   }
-  state.permissions = data.userData.permissions
-  state.userToken = data.userToken,
-  state.refreshToken = data.refreshToken
-  state.userId = data.userData.id
-  state.organizations = data.userData.organizations || []
+  state.userToken = data?.userToken || state.userToken,
+  state.refreshToken = data?.refreshToken || state.refreshToken
+  state.expiresIn = data?.expiresIn || state.expiresIn
   state.authenticated = true
 }
 
 
 export const AUTH_REFRESH = (state, data) => {
-  console.log('updatting token', data.userToken)
   state.userToken = data.userToken
   state.refreshToken = data.refreshToken
+  state.expiresIn = data.expiresIn
   state.authenticated = true
 }
 
